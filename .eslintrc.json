@@ -1,0 +1,49 @@
+{
+    "plugins": ["import"],
+    "parser": "babel-eslint",
+    "extends": ["plugin:import/errors", "plugin:import/warnings", "eslint:recommended"],
+    "settings": {
+        "import/resolver": "rollup"
+    },
+
+    "env": {
+        "es6": true,
+        "browser": true
+    },
+
+    "globals": {
+        "clicky_custom": false,
+        "clicky": false,
+        "__ENVIRONMENT__": false
+    },
+
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "arrowFunctions": true,
+            "blockBindings": true,
+            "classes": true,
+            "defaultParams": true,
+            "destructuring": true,
+            "forOf": true,
+            "generators": true,
+            "modules": true,
+            "objectLiteralComputedProperties": true,
+            "objectLiteralDuplicateProperties": false,
+            "objectLiteralShorthandMethods": true,
+            "objectLiteralShorthandProperties": true,
+            "restParams": true,
+            "spread": true,
+            "experimentalObjectRestSpread": true,
+            "superInFunctions": true,
+            "templateStrings": true,
+            "jsx": true,
+            "regexYFlag": true,
+            "regexUFlag": true
+        }
+    },
+    "rules": {
+
+    }
+}

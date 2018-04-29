@@ -1,0 +1,13 @@
+.idea
+dist
+node_modules
+coverage/
+*.pyc
+*.tar.gz
+npm-debug.log*
+sublime-*
+launch_server/compose/data
+launch_server/compose/paperclip
+jenkins_ci
+
+/.vscode-upload.json
