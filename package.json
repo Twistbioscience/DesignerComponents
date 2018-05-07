@@ -27,10 +27,8 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-root-import": "^0.2.2",
+    "rollup-plugin-serve": "^0.4.2",
     "rollup-plugin-uglify": "^3.0.0"
   },
-  "dependencies": {
-    "emotion": "^9.1.2",
-    "eslint-plugin-import": "^2.11.0"
-  }
+  "dependencies": {}
 }
