@@ -11,3 +11,4 @@ launch_server/compose/paperclip
 jenkins_ci
 
 /.vscode-upload.json
+build/

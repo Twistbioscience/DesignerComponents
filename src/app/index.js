@@ -1,4 +1,4 @@
-import {header, h1, a, div} from '/utils/components'
+import {header, h1, a, div} from 'utils/components'
 
 const Header = props => (
   header({ className: `header` },
