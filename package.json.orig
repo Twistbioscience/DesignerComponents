@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
+<<<<<<< Updated upstream
+    "build": "rollup -c"
+=======
     "build": "rollup -c --watch",
     "start": "webpack-dev-server --progress --host 0.0.0.0"
+>>>>>>> Stashed changes
   },
   "repository": {
     "type": "git",
@@ -24,9 +28,12 @@
     "babel-eslint": "^8.2.3",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-es2015": "^6.24.1",
-    "eslint-plugin-import": "^2.12.0",
+<<<<<<< Updated upstream
+    "eslint-plugin-import": "^2.11.0",
+=======
     "html-webpack-plugin": "^3.2.0",
     "react": "^16.3.2",
+>>>>>>> Stashed changes
     "rollup": "^0.58.2",
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-eslint": "^4.0.0",

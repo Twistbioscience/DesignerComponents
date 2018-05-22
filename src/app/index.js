@@ -1,4 +1,4 @@
-import {header, h1, a, div} from 'utils/components'
+import {header, h1, a, div} from '../utils/components'
 
 const Header = props => (
   header({ className: `header` },
@@ -18,11 +18,8 @@ const Header = props => (
 
 const Table = props => div({ className: `skill-table` }, props.rows);
 
-const App = props => (
-  div({ id: `app` },
-    Header({ version: props.version }),
-    Table({ rows: props.rows }),
-  )
-);
+const App = props => {
+  console.log('sup!');
+};
 
-document.body.appendChild(App('someData'));
+export default App;
