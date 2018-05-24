@@ -11,7 +11,7 @@ const config = {
   context: appPath,
 
   entry: [
-    './playground/playground-root.js'
+    './playground/index.js'
   ],
 
   plugins: [
@@ -19,9 +19,6 @@ const config = {
       inject: 'body',
       template: 'playground/index.html'
     }),
-
-
-    // Pass environment variable to frontend scipts
     new webpack.DefinePlugin({
       // We must envify CommonJS builds:
       // https://github.com/reactjs/redux/issues/1029
@@ -32,6 +29,18 @@ const config = {
 
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true
+            }
+          }
+        ],
+        exclude
+      },
       // Expose React as global object
       {
         test: require.resolve('react'),
@@ -60,7 +69,8 @@ const config = {
     'react/addons': true,
     jsdom: 'window',
     'text-encoding': 'window'
-  }
+  },
+  devtool: 'eval'
 
   // eslint: {
   //   configFile: '.eslintrc',
@@ -68,15 +78,5 @@ const config = {
   //   fix: true
   // }
 };
-
-if (appEnv === 'development') {
-  config.devtool = 'eval';
-  // config.eslint.configFile = '.eslintrc-dev';
-}
-
-if (appEnv === 'test') {
-  // config.eslint.configFile = '.eslintrc-test';
-  config.devtool = 'eval-cheap-module-source-map';
-}
 
 module.exports = config;

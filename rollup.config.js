@@ -6,16 +6,14 @@ import replace from 'rollup-plugin-replace';
 import uglify from 'rollup-plugin-uglify';
 import resolve from 'rollup-plugin-node-resolve';
 import rootImport from 'rollup-plugin-root-import';
+import commonjs from 'rollup-plugin-commonjs';
 // import serve from 'rollup-plugin-serve'
 
 export default {
-  entry: 'src/app/index.js',
-  dest: process.env.NODE_ENV === 'production' ? 'build/app/index.min.js' : 'playground/dc.js',
-  format: 'cjs',
+  entry: 'src/index.js',
+  dest: 'build/index.min.js',
+  format: 'es',
   sourceMap: 'inline',
-  watch: {
-    include: 'src/**'
-  },
   plugins: [
     eslint({
       exclude: [
@@ -30,6 +28,7 @@ export default {
       ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
     }),
     resolve({ jsnext: true }),
+    commonjs(),
     rootImport({
       // Will first look in `client/src/*` and then `common/src/*`.
       root: `${__dirname}/src`,

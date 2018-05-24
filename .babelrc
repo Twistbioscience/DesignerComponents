@@ -1,5 +1,6 @@
 {
   "presets": [
+    "react",
     [
       "es2015",
       {
@@ -7,7 +8,14 @@
       }
     ]
   ],
-  "plugins": [
-    "external-helpers"
-  ]
+  "env": {
+    "production": {
+      "plugins": [
+        "external-helpers"
+      ]
+    },
+    "development": {
+       "plugins": ["react-hot-loader/babel"]
+    }
+  }
 }
