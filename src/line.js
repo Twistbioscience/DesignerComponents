@@ -27,10 +27,18 @@ class Line extends React.Component {
         const width = (annotation.endIndex - annotation.startIndex) * LETTER_WIDTH;
         const x = (annotation.startIndex - startIndex ) * LETTER_WIDTH;
         const y = (LETTER_HEIGHT * (showMinusStrand ? 2 : 1)) + (layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP));
+        const points = [
+                //arrowheads on both edges, no teeth:
+                x - 5/2, y,
+                x + width - 5/2, y,
+                x + width + 5/2, y+ANNOTATION_HEIGHT/2,
+                x + width - 5/2, y+ANNOTATION_HEIGHT,
+                x - 5/2, y+ANNOTATION_HEIGHT,
+                x + 5/2, y+ANNOTATION_HEIGHT/2
+            ].join(' ');
         return <g>
-          <rect width={ width } x={ x } y={ y }
-            height={ ANNOTATION_HEIGHT } fill="#0000a4" fillOpacity="0.3"/>
-          <text x={ x + width/4 } y={ y + (ANNOTATION_HEIGHT/2) + 6 } fontSize="12" className="indecies">{ annotation.name }</text>
+          <polygon points={ points } x={ x } y={ y } fill={ annotation.color || "#0000a4" } fillOpacity="0.3"/>
+          <text x={ x + width/4 } y={ y + (ANNOTATION_HEIGHT/2) + 5 } fontSize="12px" className="indecies">{ annotation.name }</text>
         </g>  
     })
 
