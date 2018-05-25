@@ -43,7 +43,7 @@ class Line extends React.Component {
     })
 
     return (
-      <svg style={style} width={LETTER_WIDTH*charsPerRow} fontFamily="monospace" fontSize="12pt">
+      <svg style={style} width={LETTER_WIDTH*charsPerRow} fontFamily="monospace" fontSize="12pt" onMouseDown={ this.props.onMouseDown }>
         <text x="0" y={ LETTER_HEIGHT  }>{ sequence }</text>
         <LineBpIndex startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length + 1 } stepSize={ 10 } minusStrand={ showMinusStrand }/>
         { showMinusStrand && <text x="0" y={ LETTER_HEIGHT*2  }>{ flipSequence(charMap, sequence) }</text> }

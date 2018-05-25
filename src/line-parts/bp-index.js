@@ -14,7 +14,7 @@ const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand}) => {
         const bpLabel = !minusStrand ? LETTER_HEIGHT + 20 : 2 * LETTER_HEIGHT + 20;
         const markerWidth = measureFontWidth('monospace', '10px', marker);
         markers.push(<line key={`bp-line-${marker}`} x1={ pos + LETTER_WIDTH/2 } x2={ pos + LETTER_WIDTH/2 } y1={ lineStart } y2={ lineEnd } shapeRendering="crispEdges" stroke="#000000" strokeWidth="1px"/>)
-        markers.push(<text key={`bp-index-marker-${marker}`} className="indecies" fontSize="10px" fill="#4A4A4A" y={ bpLabel } x={ pos - markerWidth/2 + 3 }>{ marker }</text>);
+        markers.push(<text key={`bp-index-marker-${marker}`} fontFamily="monospace" className="indecies" fontSize="10px" fill="#4A4A4A" y={ bpLabel } x={ pos }>{ marker }</text>);
     }
     return <g height={ 20 }>{ markers }</g>;
 }  

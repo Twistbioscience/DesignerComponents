@@ -14,14 +14,14 @@ import { getAnnotationLayer } from './utils/rendering';
 
 
 
-const rowRenderer = (gene, charsPerRow, showMinusStrand) => ({
+const rowRenderer = (gene, charsPerRow, showMinusStrand, onMouseDown) => ({
   key,         // Unique key within array of rows
   index,       // Index of row within collection
   isScrolling, // The List is currently being scrolled
   isVisible,   // This row is visible within the List (eg it is not an overscanned row)
   style        // Style object to be applied to row (to position it)
 }) => {
-  return <Line gene={ gene } style={ style } charsPerRow={ charsPerRow } showMinusStrand={ showMinusStrand } key={ key } index={ index }/>
+  return <Line gene={ gene } style={ style } charsPerRow={ charsPerRow } showMinusStrand={ showMinusStrand } key={ key } index={ index } onMouseDown={ onMouseDown }/>
 };
 
 const getRowHeight = (charsPerRow, annotations = [], showMinusStrand) => ({ index }) => {
@@ -53,9 +53,10 @@ export class SequenceViewer extends React.Component {
           rowHeight={ rowHeightFunc }
           height={ 500 }
           width={ this.props.width }
-          rowRenderer={rowRenderer(this.props.data, this.state.charsPerRow, this.state.showMinusStrand)}>
+          rowRenderer={rowRenderer(this.props.data, this.state.charsPerRow, this.state.showMinusStrand, this.onMouseDown)}>
       </List>
       <button onClick={ this.toggleMinusStrand }>Toggle minus strand</button>
+      { this.state.clickedIndex && <pre>{ this.state.clickedIndex }</pre>}
     </div>
   }
 
@@ -65,9 +66,11 @@ export class SequenceViewer extends React.Component {
     this.getTextElemArray = this.getTextElemArray.bind(this);
     this.toggleMinusStrand = this.toggleMinusStrand.bind(this);
     this.listRef = this.listRef.bind(this);
+    this.onMouseDown = this.onMouseDown.bind(this);
     this.state = {
       showDesigner: false,
-      showMinusStrand: false
+      showMinusStrand: false,
+      clickedIndex: null
     };
   }
 
@@ -122,5 +125,9 @@ export class SequenceViewer extends React.Component {
     if (c) {
       c.setAttribute('height', `${this.state.rowCount*LETTER_HEIGHT}px`);
     }
+  }
+
+  onMouseDown(e) {
+    this.setState({ clickedIndex: Math.floor(e.clientX/LETTER_WIDTH) });
   }
 }
