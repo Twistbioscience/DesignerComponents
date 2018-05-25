@@ -21,13 +21,13 @@ export const getAnnotationLayer = (annotations, index) => {
 };
 
 export function measureFontWidth(fontFamily, fontSize, text) {
-    var font = fontSize + fontFamily,
+    var font = `${fontSize} ${fontFamily}`,
         canvas = document.createElement('canvas'),
         context,
         fontWidth,
         height;
 
-    text = text || 'M';
+    text = text || 'A';
 
     document.body.appendChild(canvas);
     context = canvas.getContext('2d');
