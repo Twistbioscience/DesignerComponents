@@ -14,14 +14,14 @@ import { getAnnotationLayer } from './utils/rendering';
 
 
 
-const rowRenderer = (gene, charsPerRow, showMinusStrand, onMouseDown) => ({
+const rowRenderer = ({sequence, annotations, charsPerRow, minusStrand, onMouseDown }) => ({
   key,         // Unique key within array of rows
   index,       // Index of row within collection
   isScrolling, // The List is currently being scrolled
   isVisible,   // This row is visible within the List (eg it is not an overscanned row)
   style        // Style object to be applied to row (to position it)
 }) => {
-  return <Line gene={ gene } style={ style } charsPerRow={ charsPerRow } showMinusStrand={ showMinusStrand } key={ key } index={ index } onMouseDown={ onMouseDown }/>
+  return <Line sequence={ sequence } annotations={ annotations } style={ style } charsPerRow={ charsPerRow } minusStrand={ minusStrand } key={ key } index={ index } onMouseDown={ onMouseDown }/>
 };
 
 const getRowHeight = (charsPerRow, annotations = [], showMinusStrand) => ({ index }) => {
@@ -44,7 +44,7 @@ export class SequenceViewer extends React.Component {
       return <div>Loading</div>;
     }
 
-    const rowHeightFunc = getRowHeight(this.state.charsPerRow, this.props.data.annotations, this.state.showMinusStrand)
+    const rowHeightFunc = getRowHeight(this.state.charsPerRow, this.props.annotations, this.state.showMinusStrand)
     return <div>
       <List
           ref={ this.listRef }
@@ -53,7 +53,15 @@ export class SequenceViewer extends React.Component {
           rowHeight={ rowHeightFunc }
           height={ 500 }
           width={ this.props.width }
-          rowRenderer={rowRenderer(this.props.data, this.state.charsPerRow, this.state.showMinusStrand, this.onMouseDown)}>
+          rowRenderer={
+            rowRenderer({ 
+              sequence: this.props.sequence,
+              annotations: this.props.annotations,
+              charsPerRow: this.state.charsPerRow,
+              minusStrand: this.state.showMinusStrand,
+              onMouseDown: this.props.onMouseDown
+            })
+          }>
       </List>
       <button onClick={ this.toggleMinusStrand }>Toggle minus strand</button>
       { this.state.clickedIndex && <pre>{ this.state.clickedIndex }</pre>}
@@ -105,7 +113,7 @@ export class SequenceViewer extends React.Component {
 
   calculateStaticParams(props) {
     const charsPerRow = Math.floor(props.width/LETTER_WIDTH) - SCOLL_BAR_OFFSET;
-    const rowCount = Math.ceil(props.data.text.length/charsPerRow);
+    const rowCount = Math.ceil(props.sequence.length/charsPerRow);
     this.setState({
       charsPerRow,
       rowCount,
@@ -116,7 +124,7 @@ export class SequenceViewer extends React.Component {
   getTextElemArray() {
     const res = [];
     for (let i = 0; i < this.state.rowCount; i++) {
-      res.push(<text x="0" y={ (i * LETTER_HEIGHT) + LETTER_HEIGHT } fontFamily="monospace" fontSize="12pt">{ this.props.data.text.substr(this.state.charsPerRow*i, this.state.charsPerRow) }</text>)
+      res.push(<text x="0" y={ (i * LETTER_HEIGHT) + LETTER_HEIGHT } fontFamily="monospace" fontSize="12pt">{ this.props.sequence.substr(this.state.charsPerRow*i, this.state.charsPerRow) }</text>)
     }
     return res;
   }

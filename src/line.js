@@ -15,10 +15,10 @@ import LineBpIndex from './line-parts/bp-index';
 
 class Line extends React.Component {
   render() {
-    const { gene, charsPerRow , showMinusStrand, index, style } = this.props;
+    const { charsPerRow , minusStrand, index, style } = this.props;
     const startIndex = charsPerRow*index;
-    const sequence = gene.text.substr(startIndex, charsPerRow).toUpperCase();
-    const annotations = gene.annotations
+    const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
+    const annotations = this.props.annotations
     .filter(
       annotation => (annotation.startIndex < startIndex && annotation.endIndex > startIndex) || (annotation.startIndex > startIndex && annotation.startIndex < startIndex + charsPerRow)
     )
@@ -26,7 +26,7 @@ class Line extends React.Component {
         const layer = getAnnotationLayer(arr,index);
         const width = (annotation.endIndex - annotation.startIndex) * LETTER_WIDTH;
         const x = (annotation.startIndex - startIndex ) * LETTER_WIDTH;
-        const y = (LETTER_HEIGHT * (showMinusStrand ? 2 : 1)) + (layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP));
+        const y = (LETTER_HEIGHT * (minusStrand ? 2 : 1)) + (layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP));
         const points = [
                 //arrowheads on both edges, no teeth:
                 x - 5/2, y,
@@ -45,8 +45,8 @@ class Line extends React.Component {
     return (
       <svg style={style} width={LETTER_WIDTH*charsPerRow} fontFamily="monospace" fontSize="12pt" onMouseDown={ this.props.onMouseDown }>
         <text x="0" y={ LETTER_HEIGHT  }>{ sequence }</text>
-        <LineBpIndex startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length + 1 } stepSize={ 10 } minusStrand={ showMinusStrand }/>
-        { showMinusStrand && <text x="0" y={ LETTER_HEIGHT*2  }>{ flipSequence(charMap, sequence) }</text> }
+        <LineBpIndex startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length + 1 } stepSize={ 10 } minusStrand={ minusStrand }/>
+        { minusStrand && <text x="0" y={ LETTER_HEIGHT*2  }>{ flipSequence(charMap, sequence) }</text> }
         { annotations }
       </svg>
     );

@@ -12,9 +12,12 @@ class App extends Component {
         this.state.show 
         ? <AutoSizer>
           {
-            ({ width }) => {
-              return <SequenceViewer data={ sequenceEditorData } width={ width } />
-            }
+            ({ width }) =>
+            <SequenceViewer
+                sequence={ sequenceEditorData.text }
+                annotations={ sequenceEditorData.annotations }
+                width={ width } />
+            
           }
         </AutoSizer>
         : <div>Loading...</div>
