@@ -54,7 +54,7 @@ export class SequenceViewer extends React.Component {
           height={ 500 }
           width={ this.props.width }
           rowRenderer={rowRenderer(this.props.data, this.state.charsPerRow, this.state.showMinusStrand)}>
-          </List>
+      </List>
       <button onClick={ this.toggleMinusStrand }>Toggle minus strand</button>
     </div>
   }
