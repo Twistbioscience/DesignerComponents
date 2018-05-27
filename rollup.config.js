@@ -13,7 +13,6 @@ export default {
   entry: 'src/index.js',
   dest: 'build/index.min.js',
   format: 'es',
-  sourceMap: 'inline',
   plugins: [
     eslint({
       exclude: [
@@ -63,7 +62,7 @@ export default {
     //     foo: 'bar'
     //   }
     // }),
-    (process.env.NODE_ENV === 'production' && uglify()),
+    uglify(),
   ],
 };
 

@@ -70,8 +70,6 @@ export class SequenceViewer extends React.Component {
 
   constructor(props) {
     super(props);
-    this.setSvgHeight = this.setSvgHeight.bind(this);
-    this.getTextElemArray = this.getTextElemArray.bind(this);
     this.toggleMinusStrand = this.toggleMinusStrand.bind(this);
     this.listRef = this.listRef.bind(this);
     this.onMouseDown = this.onMouseDown.bind(this);
@@ -119,20 +117,6 @@ export class SequenceViewer extends React.Component {
       rowCount,
       showDesigner: true
     });
-  }
-
-  getTextElemArray() {
-    const res = [];
-    for (let i = 0; i < this.state.rowCount; i++) {
-      res.push(<text x="0" y={ (i * LETTER_HEIGHT) + LETTER_HEIGHT } fontFamily="monospace" fontSize="12pt">{ this.props.sequence.substr(this.state.charsPerRow*i, this.state.charsPerRow) }</text>)
-    }
-    return res;
-  }
-
-  setSvgHeight(c) {
-    if (c) {
-      c.setAttribute('height', `${this.state.rowCount*LETTER_HEIGHT}px`);
-    }
   }
 
   onMouseDown(e) {
