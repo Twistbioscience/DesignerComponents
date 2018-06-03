@@ -44,7 +44,7 @@ export class SequenceViewer extends React.Component {
       return <div>Loading</div>;
     }
 
-    const rowHeightFunc = getRowHeight(this.state.charsPerRow, this.props.annotations, this.state.showMinusStrand)
+    const rowHeightFunc = getRowHeight(this.state.charsPerRow, this.props.annotations, this.props.minusStrand)
     return <div>
       <List
           ref={ this.listRef }
@@ -58,24 +58,21 @@ export class SequenceViewer extends React.Component {
               sequence: this.props.sequence,
               annotations: this.props.annotations,
               charsPerRow: this.state.charsPerRow,
-              minusStrand: this.state.showMinusStrand,
+              minusStrand: this.props.minusStrand,
               onMouseDown: this.props.onMouseDown
             })
           }>
       </List>
-      <button onClick={ this.toggleMinusStrand }>Toggle minus strand</button>
       { this.state.clickedIndex && <pre>{ this.state.clickedIndex }</pre>}
     </div>
   }
 
   constructor(props) {
     super(props);
-    this.toggleMinusStrand = this.toggleMinusStrand.bind(this);
     this.listRef = this.listRef.bind(this);
     this.onMouseDown = this.onMouseDown.bind(this);
     this.state = {
       showDesigner: false,
-      showMinusStrand: false,
       clickedIndex: null
     };
   }
@@ -83,13 +80,6 @@ export class SequenceViewer extends React.Component {
   listRef(c) {
     if (c) {
       this.list = c;
-    }
-  }
-
-  toggleMinusStrand() {
-    this.setState({ showMinusStrand: !this.state.showMinusStrand });
-    if (this.list) {
-      this.list.recomputeRowHeights();
     }
   }
 
@@ -105,6 +95,11 @@ export class SequenceViewer extends React.Component {
         this.setState({ showDesigner: false });
       } else {
         this.calculateStaticParams(nextProps);
+      }
+    }
+    if (nextProps.minusStrand !== this.props.minusStrand) {
+      if (this.list) {
+        this.list.recomputeRowHeights();
       }
     }
   }

@@ -2,13 +2,13 @@ import { LETTER_WIDTH, LETTER_HEIGHT } from '../constants';
 import React from 'react';
 import { measureFontWidth } from '../utils/rendering';
 
-const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand}) => {
+const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, offset = 0}) => {
     const markers = [];
     const firstMarker = Math.ceil(startIndex/stepSize)*stepSize;
     const lastMarker = Math.floor(endIndex/stepSize)*stepSize;
     const offsetFromStart = firstMarker - startIndex;
     for (let marker = firstMarker; marker <= lastMarker; marker+= stepSize) {
-        const pos = ((marker-startIndex))*LETTER_WIDTH;
+        const pos = ((marker-startIndex+offset))*LETTER_WIDTH;
         const lineStart = !minusStrand ? LETTER_HEIGHT + 5 : 2 * LETTER_HEIGHT + 5;
         const lineEnd = !minusStrand ? LETTER_HEIGHT + 10 : 2 * LETTER_HEIGHT + 10;
         const bpLabel = !minusStrand ? LETTER_HEIGHT + 20 : 2 * LETTER_HEIGHT + 20;

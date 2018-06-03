@@ -14,11 +14,15 @@ class App extends Component {
         ? <AutoSizer>
           {
             ({ width }) =>
-            <SequenceViewer
-                sequence={ sequenceEditorData.text }
-                annotations={ sequenceEditorData.annotations }
-                orfs={ this.state.orfs }
-                width={ width } />
+            <div>
+              <SequenceViewer
+                  sequence={ sequenceEditorData.text }
+                  annotations={ sequenceEditorData.annotations }
+                  orfs={ this.state.orfs }
+                  minusStrand={ this.state.minusStrand }
+                  width={ width } />
+              <button onClick={ this.toggleMinusStrand }>Toggle minus strand</button>
+            </div>
             
           }
         </AutoSizer>
@@ -30,20 +34,23 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    this.toggleMinusStrand = this.toggleMinusStrand.bind(this);
     this.state = {
       show: false,
-      orfs: []
+      orfs: [],
+      annotations: [],
+      minusStrand: false
     };
 
   }
   componentWillMount() {
     setTimeout(() => {
-      this.setState({ show:true })
+      this.setState({ show:true, orfs: detectOrfs({ sequence: sequenceEditorData.text.toUpperCase() })})
     }, 0);
   }
 
-  componentDidMount() {
-    this.setState({ orfs: detectOrfs({ sequence: sequenceEditorData.text.toUpperCase() }) })
+  toggleMinusStrand() {
+    this.setState({ minusStrand: !this.state.minusStrand });
   }
 }
 
