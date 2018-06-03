@@ -14,3 +14,5 @@ export const charMap = {
   T:'A'
 };
 
+export const MIN_ORF_SIZE = 60;
+export const STOP_CODON = ['TAG'];
