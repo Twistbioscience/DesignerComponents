@@ -11,17 +11,28 @@ import {
 } from './constants';
 import Line from './line';
 import { getAnnotationLayer } from './utils/rendering';
+import {css} from 'react-emotion';
+import WebFont from 'webfontloader';
 
 
+const noSelection = css`
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    user-select: none;
+`;
 
-const rowRenderer = ({sequence, annotations, charsPerRow, minusStrand, onMouseDown }) => ({
+const rowRenderer = ({sequence, annotations, charsPerRow, minusStrand, onMouseDown, onMouseUp, selection, selectionInProgress }) => ({
   key,         // Unique key within array of rows
   index,       // Index of row within collection
   isScrolling, // The List is currently being scrolled
   isVisible,   // This row is visible within the List (eg it is not an overscanned row)
   style        // Style object to be applied to row (to position it)
 }) => {
-  return <Line sequence={ sequence } annotations={ annotations } style={ style } charsPerRow={ charsPerRow } minusStrand={ minusStrand } key={ key } index={ index } onMouseDown={ onMouseDown }/>
+  return <Line sequence={ sequence } annotations={ annotations } style={ style } charsPerRow={ charsPerRow }
+  minusStrand={ minusStrand } key={ key } index={ index } onMouseDown={ onMouseDown } onMouseUp={onMouseUp}
+  selection={selection} selectionInProgress={selectionInProgress} />
 };
 
 const getRowHeight = (charsPerRow, annotations = [], showMinusStrand) => ({ index }) => {
@@ -40,15 +51,16 @@ const getRowHeight = (charsPerRow, annotations = [], showMinusStrand) => ({ inde
 
 export class SequenceViewer extends React.Component {
   render() {
-    if (!this.state.showDesigner) {
+    if (!this.state.showDesigner || !this.state.fontsLoaded) {
       return <div>Loading</div>;
     }
 
-    const rowHeightFunc = getRowHeight(this.state.charsPerRow, this.props.annotations, this.props.minusStrand)
+    const rowHeightFunc = getRowHeight(this.state.charsPerRow, this.props.annotations, this.props.minusStrand);
+    const selectionInProgress=  (this.state.mouseDownIndex > 0)
     return <div>
       <List
           ref={ this.listRef }
-          className="list-container"
+          className={noSelection}
           rowCount={ this.state.rowCount }
           rowHeight={ rowHeightFunc }
           height={ 500 }
@@ -59,7 +71,10 @@ export class SequenceViewer extends React.Component {
               annotations: this.props.annotations,
               charsPerRow: this.state.charsPerRow,
               minusStrand: this.props.minusStrand,
-              onMouseDown: this.props.onMouseDown
+              onMouseDown: this.onMouseDown,
+              onMouseUp: this.onMouseUp,
+              selection: this.state.selection,
+              selectionInProgress:selectionInProgress
             })
           }>
       </List>
@@ -71,10 +86,29 @@ export class SequenceViewer extends React.Component {
     super(props);
     this.listRef = this.listRef.bind(this);
     this.onMouseDown = this.onMouseDown.bind(this);
+    this.onMouseUp = this.onMouseUp.bind(this);
     this.state = {
       showDesigner: false,
-      clickedIndex: null
+      clickedIndex: null,
+      selection:{},
+      mouseDownIndex: 0,
+      fontsLoaded: false
     };
+    this.loadFonts(()=>this.setState({fontsLoaded:true}));
+  }
+
+
+  loadFonts(callBack) {
+    WebFont.load({
+      google: {
+        families: ['Inconsolata', 'Droid Sans Mono']
+      },
+      active: function() {
+        console.info('*** DesignerComponentsController web fonts ready, initializing app');
+        callBack()
+
+      }
+    })
   }
 
   listRef(c) {
@@ -114,7 +148,15 @@ export class SequenceViewer extends React.Component {
     });
   }
 
-  onMouseDown(e) {
-    this.setState({ clickedIndex: Math.floor(e.clientX/LETTER_WIDTH) });
+  onMouseDown(e, index) {
+    this.setState({ mouseDownIndex: Math.floor(e.clientX/LETTER_WIDTH) + index });
+  }
+  onMouseUp(e, index, endSelection) {
+    const mouseUpIndex = Math.floor(e.clientX/LETTER_WIDTH) + index ;
+    const selection = {startIndex: Math.min(this.state.mouseDownIndex, mouseUpIndex), endIndex: Math.max(this.state.mouseDownIndex, mouseUpIndex)  };
+    this.setState({ selection: selection})
+    if(endSelection){
+      this.setState({ mouseDownIndex: 0});
+    }
   }
 }

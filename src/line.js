@@ -10,12 +10,37 @@ import {
 import { flipSequence } from './utils/sequence';
 import { getAnnotationLayer } from './utils/rendering';
 import LineBpIndex from './line-parts/bp-index';
+import Sequence from './line-parts/line-sequence';
 
 
 
 class Line extends React.Component {
+
+  constructor(){
+    super();
+    this.mouseDownHandler = this.mouseDownHandler.bind(this);
+    this.mouseUpHandler = this.mouseUpHandler.bind(this);
+  }
+
+  mouseDownHandler(index, charsPerRow){
+
+    return (e) => {
+      this.props.onMouseDown(e, index * charsPerRow);
+    }
+  }
+  mouseUpHandler(index, charsPerRow, endSelection, selectionInProgress){
+
+    return (e) => {
+      console.log(this.props.selectionInProgress)
+      if(selectionInProgress) {
+        this.props.onMouseUp(e, index * charsPerRow, endSelection);
+      }
+
+    }
+  }
+
   render() {
-    const { charsPerRow , minusStrand, index, style } = this.props;
+    const { charsPerRow , minusStrand, index, style, selection, selectionInProgress } = this.props;
     const startIndex = charsPerRow*index;
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
     const annotations = this.props.annotations
@@ -43,8 +68,11 @@ class Line extends React.Component {
     })
 
     return (
-      <svg style={style} width={LETTER_WIDTH*charsPerRow} fontFamily="monospace" fontSize="12pt" onMouseDown={ this.props.onMouseDown }>
-        <text x="0" y={ LETTER_HEIGHT  }>{ sequence }</text>
+      <svg style={style} width={LETTER_WIDTH*charsPerRow}
+    onMouseDown={ this.mouseDownHandler(index, charsPerRow)}
+    onMouseUp={ this.mouseUpHandler(index, charsPerRow, true, selectionInProgress)}
+    onMouseMove={ this.mouseUpHandler(index, charsPerRow, false, selectionInProgress)}  >
+        <Sequence startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length + 1 } sequence={sequence} selection={selection} />
         <LineBpIndex startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length + 1 } stepSize={ 10 } minusStrand={ minusStrand } offset={ startIndex === 1 ? 30 : 0}/>
         { minusStrand && <text x="0" y={ LETTER_HEIGHT*2  }>{ flipSequence(charMap, sequence) }</text> }
         { annotations }
