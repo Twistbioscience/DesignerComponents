@@ -1,6 +1,3 @@
-import { measureFontWidth } from './utils/rendering';
-
-export const LETTER_WIDTH = measureFontWidth('monospace', '12pt');
 export const LETTER_HEIGHT = 30;
 export const INDEX_OFFSET = 12; // Chars
 export const ANNOTATION_HEIGHT = 17;

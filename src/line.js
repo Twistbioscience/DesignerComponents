@@ -1,10 +1,8 @@
 import React from 'react';
 import {
-  LETTER_WIDTH,
   LETTER_HEIGHT,
   ANNOTATION_HEIGHT,
   ANNOTATION_GAP,
-  SCOLL_BAR_OFFSET,
   charMap
 } from './constants';
 import { flipSequence } from './utils/sequence';
@@ -40,7 +38,7 @@ class Line extends React.Component {
   }
 
   render() {
-    const { charsPerRow , minusStrand, index, style, selection, selectionInProgress } = this.props;
+    const { charsPerRow , minusStrand, index, style, selection, selectionInProgress, config } = this.props;
     const startIndex = charsPerRow*index;
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
     const annotations = this.props.annotations
@@ -49,8 +47,8 @@ class Line extends React.Component {
     )
     .map((annotation, index, arr) => {
         const layer = getAnnotationLayer(arr,index);
-        const width = (annotation.endIndex - annotation.startIndex) * LETTER_WIDTH;
-        const x = (annotation.startIndex - startIndex ) * LETTER_WIDTH;
+        const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_WIDTH_12_PX;
+        const x = (annotation.startIndex - startIndex ) * config.LETTER_WIDTH_12_PX;
         const y = (LETTER_HEIGHT * (minusStrand ? 2 : 1)) + (layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP));
         const points = [
                 //arrowheads on both edges, no teeth:
@@ -68,12 +66,14 @@ class Line extends React.Component {
     })
 
     return (
-      <svg style={style} width={LETTER_WIDTH*charsPerRow}
+      <svg style={style} width={config.LETTER_WIDTH_12_PX*charsPerRow}
     onMouseDown={ this.mouseDownHandler(index, charsPerRow)}
     onMouseUp={ this.mouseUpHandler(index, charsPerRow, true, selectionInProgress)}
     onMouseMove={ this.mouseUpHandler(index, charsPerRow, false, selectionInProgress)}  >
-        <Sequence startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length + 1 } sequence={sequence} selection={selection} />
-        <LineBpIndex startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length + 1 } stepSize={ 10 } minusStrand={ minusStrand } offset={ startIndex === 1 ? 30 : 0}/>
+        <Sequence startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length + 1 } sequence={sequence}
+                  selection={selection} config={config} />
+        <LineBpIndex startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length + 1 } stepSize={ 10 }
+                     minusStrand={ minusStrand } offset={ startIndex === 1 ? 30 : 0} config={config} />
         { minusStrand && <text x="0" y={ LETTER_HEIGHT*2  }>{ flipSequence(charMap, sequence) }</text> }
         { annotations }
       </svg>

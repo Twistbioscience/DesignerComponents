@@ -2,17 +2,16 @@
 import React from 'react';
 import List from 'react-virtualized/dist/commonjs/List';
 import {
-  LETTER_WIDTH,
   LETTER_HEIGHT,
   ANNOTATION_HEIGHT,
   ANNOTATION_GAP,
-  SCOLL_BAR_OFFSET,
-  charMap
+  SCOLL_BAR_OFFSET
 } from './constants';
 import Line from './line';
 import { getAnnotationLayer } from './utils/rendering';
+import FontsLoader from './utils/fonts-loader';
+import { measureFontWidth } from './utils/rendering';
 import {css} from 'react-emotion';
-import WebFont from 'webfontloader';
 
 
 const noSelection = css`
@@ -23,6 +22,11 @@ const noSelection = css`
     user-select: none;
 `;
 
+const config = {
+  LETTER_WIDTH_12_PX:0,
+  LETTER_WIDTH_10_PX_MONOSPACE:0
+};
+
 const rowRenderer = ({sequence, annotations, charsPerRow, minusStrand, onMouseDown, onMouseUp, selection, selectionInProgress }) => ({
   key,         // Unique key within array of rows
   index,       // Index of row within collection
@@ -32,7 +36,7 @@ const rowRenderer = ({sequence, annotations, charsPerRow, minusStrand, onMouseDo
 }) => {
   return <Line sequence={ sequence } annotations={ annotations } style={ style } charsPerRow={ charsPerRow }
   minusStrand={ minusStrand } key={ key } index={ index } onMouseDown={ onMouseDown } onMouseUp={onMouseUp}
-  selection={selection} selectionInProgress={selectionInProgress} />
+  selection={selection} selectionInProgress={selectionInProgress} config={config} />
 };
 
 const getRowHeight = (charsPerRow, annotations = [], showMinusStrand) => ({ index }) => {
@@ -52,7 +56,7 @@ const getRowHeight = (charsPerRow, annotations = [], showMinusStrand) => ({ inde
 export class SequenceViewer extends React.Component {
   render() {
     if (!this.state.showDesigner || !this.state.fontsLoaded) {
-      return <div>Loading</div>;
+      return <FontsLoader callBack={this.onFontsLoaded} />
     }
 
     const rowHeightFunc = getRowHeight(this.state.charsPerRow, this.props.annotations, this.props.minusStrand);
@@ -74,7 +78,8 @@ export class SequenceViewer extends React.Component {
               onMouseDown: this.onMouseDown,
               onMouseUp: this.onMouseUp,
               selection: this.state.selection,
-              selectionInProgress:selectionInProgress
+              selectionInProgress:selectionInProgress,
+              config: config
             })
           }>
       </List>
@@ -87,6 +92,7 @@ export class SequenceViewer extends React.Component {
     this.listRef = this.listRef.bind(this);
     this.onMouseDown = this.onMouseDown.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
+    this.onFontsLoaded = this.onFontsLoaded.bind(this);
     this.state = {
       showDesigner: false,
       clickedIndex: null,
@@ -94,21 +100,6 @@ export class SequenceViewer extends React.Component {
       mouseDownIndex: 0,
       fontsLoaded: false
     };
-    this.loadFonts(()=>this.setState({fontsLoaded:true}));
-  }
-
-
-  loadFonts(callBack) {
-    WebFont.load({
-      google: {
-        families: ['Inconsolata', 'Droid Sans Mono']
-      },
-      active: function() {
-        console.info('*** DesignerComponentsController web fonts ready, initializing app');
-        callBack()
-
-      }
-    })
   }
 
   listRef(c) {
@@ -117,11 +108,6 @@ export class SequenceViewer extends React.Component {
     }
   }
 
-  componentDidMount() {
-    if (this.props.width > 0) {
-      this.calculateStaticParams(this.props);
-    }
-  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.width !== this.props.width) {
@@ -138,8 +124,15 @@ export class SequenceViewer extends React.Component {
     }
   }
 
+  onFontsLoaded() {
+    this.setState({fontsLoaded:true});
+    config.LETTER_WIDTH_12_PX = measureFontWidth('Inconsolata', '12pt');
+    config.LETTER_WIDTH_10_PX_MONOSPACE = measureFontWidth('monospace', '10pt');
+    this.calculateStaticParams(this.props);
+  }
+
   calculateStaticParams(props) {
-    const charsPerRow = Math.floor(props.width/LETTER_WIDTH) - SCOLL_BAR_OFFSET;
+    const charsPerRow = Math.floor(props.width/config.LETTER_WIDTH_12_PX) - SCOLL_BAR_OFFSET;
     const rowCount = Math.ceil(props.sequence.length/charsPerRow);
     this.setState({
       charsPerRow,
@@ -149,10 +142,10 @@ export class SequenceViewer extends React.Component {
   }
 
   onMouseDown(e, index) {
-    this.setState({ mouseDownIndex: Math.floor(e.clientX/LETTER_WIDTH) + index });
+    this.setState({ mouseDownIndex: Math.floor(e.clientX/config.LETTER_WIDTH_12_PX) + index });
   }
   onMouseUp(e, index, endSelection) {
-    const mouseUpIndex = Math.floor(e.clientX/LETTER_WIDTH) + index ;
+    const mouseUpIndex = Math.floor(e.clientX/config.LETTER_WIDTH_12_PX) + index ;
     const selection = {startIndex: Math.min(this.state.mouseDownIndex, mouseUpIndex), endIndex: Math.max(this.state.mouseDownIndex, mouseUpIndex)  };
     this.setState({ selection: selection})
     if(endSelection){
