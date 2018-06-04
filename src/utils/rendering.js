@@ -21,22 +21,16 @@ export const getAnnotationLayer = (annotations, index) => {
 };
 
 export function measureFontWidth(fontFamily, fontSize, text) {
-    var font = `${fontSize} ${fontFamily}`,
-        canvas = document.createElement('canvas'),
-        context,
-        fontWidth,
-        height;
-
-    text = text || 'A';
-
-    document.body.appendChild(canvas);
-    context = canvas.getContext('2d');
-    canvas.style.font = font;
-    context.font = font;
-
-    //measureText only gives us width:
-    fontWidth = context.measureText(text).width;
-    document.body.removeChild(canvas);
-
-    return fontWidth;
+  var svgNS = 'http://www.w3.org/2000/svg';
+  var svgRoot = document.createElementNS(svgNS,"svg");
+  var text = document.createElementNS(svgNS,"text");
+  text.setAttribute("font-family",fontFamily);
+  text.setAttribute("font-size",fontSize);
+  text.setAttribute('visibility', 'hidden');
+  text.textContent = "A";
+  svgRoot.appendChild(text);
+  document.body.appendChild(svgRoot);
+  const size = text.getBBox();
+  document.body.removeChild(svgRoot);
+  return size;
 }

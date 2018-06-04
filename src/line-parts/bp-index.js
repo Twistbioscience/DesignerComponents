@@ -1,4 +1,3 @@
-import { LETTER_HEIGHT } from '../constants';
 import React from 'react';
 
 const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, offset = 0, config}) => {
@@ -7,9 +6,9 @@ const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, offset = 0, c
     const lastMarker = Math.floor(endIndex/stepSize)*stepSize;
     for (let marker = firstMarker; marker <= lastMarker; marker+= stepSize) {
         const pos = ((marker-startIndex+offset))*config.LETTER_WIDTH_12_PX;
-        const lineStart = !minusStrand ? LETTER_HEIGHT + 5 : 2 * LETTER_HEIGHT + 5;
-        const lineEnd = !minusStrand ? LETTER_HEIGHT + 10 : 2 * LETTER_HEIGHT + 10;
-        const bpLabel = !minusStrand ? LETTER_HEIGHT + 20 : 2 * LETTER_HEIGHT + 20;
+        const lineStart = !minusStrand ? config.LETTER_HEIGHT_12_PX + 5 : 2 * config.LETTER_HEIGHT_12_PX + 5;
+        const lineEnd = !minusStrand ? config.LETTER_HEIGHT_12_PX + 10 : 2 * config.LETTER_HEIGHT_12_PX + 10;
+        const bpLabel = !minusStrand ? config.LETTER_HEIGHT_12_PX + 20 : 2 * config.LETTER_HEIGHT_12_PX + 20;
         markers.push(<line key={`bp-line-${marker}`} x1={ pos + config.LETTER_WIDTH_12_PX/2 } x2={ pos + config.LETTER_WIDTH_12_PX/2 }
                            y1={ lineStart } y2={ lineEnd } shapeRendering="crispEdges" stroke="#000000"
                            strokeWidth="1px"/>)

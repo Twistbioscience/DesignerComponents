@@ -2,7 +2,6 @@
 import React from 'react';
 import List from 'react-virtualized/dist/commonjs/List';
 import {
-  LETTER_HEIGHT,
   ANNOTATION_HEIGHT,
   ANNOTATION_GAP,
   SCOLL_BAR_OFFSET
@@ -12,7 +11,6 @@ import { getAnnotationLayer } from './utils/rendering';
 import FontsLoader from './utils/fonts-loader';
 import { measureFontWidth } from './utils/rendering';
 import {css} from 'react-emotion';
-
 
 const noSelection = css`
     -webkit-user-select: none;
@@ -24,6 +22,7 @@ const noSelection = css`
 
 const config = {
   LETTER_WIDTH_12_PX:0,
+  LETTER_HEIGHT_12_PX:0,
   LETTER_WIDTH_10_PX_MONOSPACE:0
 };
 
@@ -49,7 +48,7 @@ const getRowHeight = (charsPerRow, annotations = [], showMinusStrand) => ({ inde
     return Math.max(layers, getAnnotationLayer(arr, currIndex));
   }, 0);
   const annotationContainerHeight = layerCount > 0 ? ((layerCount + 1) * (ANNOTATION_GAP + ANNOTATION_HEIGHT)) : 0;
-  const sequenceHeight = showMinusStrand ? LETTER_HEIGHT * 2 : LETTER_HEIGHT;
+  const sequenceHeight = showMinusStrand ? config.LETTER_HEIGHT_12_PX * 2 : config.LETTER_HEIGHT_12_PX;
   return sequenceHeight + annotationContainerHeight + 25;
 }
 
@@ -60,7 +59,7 @@ export class SequenceViewer extends React.Component {
     }
 
     const rowHeightFunc = getRowHeight(this.state.charsPerRow, this.props.annotations, this.props.minusStrand);
-    const selectionInProgress=  (this.state.mouseDownIndex > 0)
+    const selectionInProgress=  (this.state.mouseDownIndex > 0);
     return <div>
       <List
           ref={ this.listRef }
@@ -126,8 +125,10 @@ export class SequenceViewer extends React.Component {
 
   onFontsLoaded() {
     this.setState({fontsLoaded:true});
-    config.LETTER_WIDTH_12_PX = measureFontWidth('Inconsolata', '12pt');
-    config.LETTER_WIDTH_10_PX_MONOSPACE = measureFontWidth('monospace', '10pt');
+    const fontSize = measureFontWidth('Inconsolata', '12pt');
+    config.LETTER_WIDTH_12_PX = fontSize.width;
+    config.LETTER_HEIGHT_12_PX = fontSize.height;
+    config.LETTER_WIDTH_10_PX_MONOSPACE = measureFontWidth('monospace', '10pt').width;
     this.calculateStaticParams(this.props);
   }
 
@@ -144,6 +145,7 @@ export class SequenceViewer extends React.Component {
   onMouseDown(e, index) {
     this.setState({ mouseDownIndex: Math.floor(e.clientX/config.LETTER_WIDTH_12_PX) + index });
   }
+
   onMouseUp(e, index, endSelection) {
     const mouseUpIndex = Math.floor(e.clientX/config.LETTER_WIDTH_12_PX) + index ;
     const selection = {startIndex: Math.min(this.state.mouseDownIndex, mouseUpIndex), endIndex: Math.max(this.state.mouseDownIndex, mouseUpIndex)  };

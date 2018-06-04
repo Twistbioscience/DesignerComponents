@@ -2,10 +2,8 @@ import React from 'react';
 import {
   LETTER_HEIGHT,
   ANNOTATION_HEIGHT,
-  ANNOTATION_GAP,
-  charMap
+  ANNOTATION_GAP
 } from './constants';
-import { flipSequence } from './utils/sequence';
 import { getAnnotationLayer } from './utils/rendering';
 import LineBpIndex from './line-parts/bp-index';
 import Sequence from './line-parts/line-sequence';
@@ -49,7 +47,7 @@ class Line extends React.Component {
         const layer = getAnnotationLayer(arr,index);
         const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_WIDTH_12_PX;
         const x = (annotation.startIndex - startIndex ) * config.LETTER_WIDTH_12_PX;
-        const y = (LETTER_HEIGHT * (minusStrand ? 2 : 1)) + (layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP));
+        const y = (config.LETTER_HEIGHT_12_PX * (minusStrand ? 2 : 1)) + (layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP));
         const points = [
                 //arrowheads on both edges, no teeth:
                 x - 5/2, y,
@@ -71,10 +69,9 @@ class Line extends React.Component {
     onMouseUp={ this.mouseUpHandler(index, charsPerRow, true, selectionInProgress)}
     onMouseMove={ this.mouseUpHandler(index, charsPerRow, false, selectionInProgress)}  >
         <Sequence startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length + 1 } sequence={sequence}
-                  selection={selection} config={config} />
+                  minusStrand={ minusStrand } selection={selection} config={config} />
         <LineBpIndex startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length + 1 } stepSize={ 10 }
                      minusStrand={ minusStrand } offset={ startIndex === 1 ? 30 : 0} config={config} />
-        { minusStrand && <text x="0" y={ LETTER_HEIGHT*2  }>{ flipSequence(charMap, sequence) }</text> }
         { annotations }
       </svg>
     );
