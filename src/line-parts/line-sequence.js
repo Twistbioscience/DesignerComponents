@@ -1,6 +1,5 @@
-import { charMap } from '../constants';
+import { charMap, MINUS_STRAND_MARGIN } from '../constants';
 import { flipSequence } from '../utils/sequence';
-
 const Sequence = ({startIndex, endIndex, sequence, selection, config, minusStrand }) => {
   const selectionPaddingButtom = 5;
   const selectionHeight = minusStrand ? config.LETTER_HEIGHT_SEQUENCE*2 + selectionPaddingButtom  :
@@ -16,12 +15,14 @@ const Sequence = ({startIndex, endIndex, sequence, selection, config, minusStran
 
   const selectionRect = getRect();
   return <g>
-      <text  y={ config.LETTER_HEIGHT_SEQUENCE  } fontFamily="Inconsolata" fontSize="12pt" letterSpacing="2">{ sequence }</text>
-      { minusStrand && <text x="0" y={ config.LETTER_HEIGHT_SEQUENCE*2  } fontFamily="Inconsolata" fontSize="12pt" letterSpacing={config.LETTER_SPACING_SEQUENCE} >
+      <text  y={ config.LETTER_HEIGHT_SEQUENCE  } fontFamily="Inconsolata" fontSize="12pt" fill="#000000"
+             letterSpacing={config.LETTER_SPACING_SEQUENCE}>{ sequence }</text>
+      { minusStrand && <text x="0" y={ config.LETTER_HEIGHT_SEQUENCE*2 + MINUS_STRAND_MARGIN  } fontFamily="Inconsolata"
+                             fontSize="12pt" letterSpacing={config.LETTER_SPACING_SEQUENCE} fill="#808080" >
         { flipSequence(charMap, sequence) }</text> }
       {(selectionRect.wdt > 0) && <rect x={selectionRect.x}
                                         height={selectionHeight} width={selectionRect.wdt}
-                                        fill= "rgba(1,1,1,0.2)" />}
+                                        fill= "rgba(0,0,0,0.05)" />}
     </g>;
 }
 

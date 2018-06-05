@@ -12,8 +12,8 @@ const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, offset = 0, c
         markers.push(<line key={`bp-line-${marker}`} x1={ pos } x2={ pos }
                            y1={ lineStart } y2={ lineEnd } shapeRendering="crispEdges" stroke="#000000"
                            strokeWidth="1px"/>)
-        markers.push(<text key={`bp-index-marker-${marker}`} fontFamily="monospace"  fontSize="10px"
-                           y={ bpLabel } x={ pos - (marker.toString().length*config.LETTER_WIDTH_10_PX_MONOSPACE)/2 }>{ marker }</text>);
+        markers.push(<text key={`bp-index-marker-${marker}`} fontFamily="Droid Sans Mono"  fontSize="7pt"  fill="#4a4a4a"
+                           y={ bpLabel } x={ pos - (marker.toString().length*config.LETTER_WIDTH_BP_INDEX_LABEL)/2 }>{ marker }</text>);
     }
     return <g height={ 20 } >{ markers }</g>;
 }  

@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  LETTER_HEIGHT,
   ANNOTATION_HEIGHT,
   ANNOTATION_GAP
 } from './constants';
@@ -27,7 +26,6 @@ class Line extends React.Component {
   mouseUpHandler(index, charsPerRow, endSelection, selectionInProgress){
 
     return (e) => {
-      console.log(this.props.selectionInProgress)
       if(selectionInProgress) {
         this.props.onMouseUp(e, index * charsPerRow, endSelection);
       }
@@ -59,7 +57,7 @@ class Line extends React.Component {
             ].join(' ');
         return <g>
           <polygon points={ points } x={ x } y={ y } fill={ annotation.color || "#0000a4" } fillOpacity="0.3"/>
-          <text x={ x + width/4 } y={ y + (ANNOTATION_HEIGHT/2) + 5 } fontSize="12px" className="indecies">{ annotation.name }</text>
+          <text x={ x + width/4 } y={ y + (ANNOTATION_HEIGHT/2) + 5 } fontSize="12px">{ annotation.name }</text>
         </g>  
     })
 
