@@ -40,6 +40,7 @@ class Line extends React.Component {
     const { charsPerRow , minusStrand, index, style, selection, selectionInProgress, config } = this.props;
     const startIndex = charsPerRow*index;
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
+    const endIndex = startIndex + sequence.length;
     const annotationsBottom = this.props.annotations
     .filter(
       annotation => (annotation.startIndex < startIndex && annotation.endIndex > startIndex) || (annotation.startIndex > startIndex && annotation.startIndex < startIndex + charsPerRow)
@@ -65,17 +66,29 @@ class Line extends React.Component {
         </g>  
     })
 
+    const getRect = () => {
+      const startX = (selection.startIndex && selection.startIndex > startIndex) ? (selection.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE : 0 ;
+      const endX = selection.endIndex ?
+        (selection.endIndex < endIndex) ? (selection.endIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE :
+          (endIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE :
+        -1;
+      return {x:startX, wdt:endX - startX};
+    };
+
+    const selectionRect = getRect();
     return (
       <svg style={style} width={config.LETTER_FULL_WIDTH_SEQUENCE*charsPerRow}
     onMouseDown={ this.mouseDownHandler(index, charsPerRow)}
     onMouseUp={ this.mouseUpHandler(index, charsPerRow, true, selectionInProgress)}
     onMouseMove={ this.mouseUpHandler(index, charsPerRow, false, selectionInProgress)}  >
-        <Sequence startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length + 1 } sequence={sequence}
-                  minusStrand={ minusStrand } selection={selection} config={config} />
+        <Sequence sequence={sequence} minusStrand={ minusStrand } config={config} />
         <LineBpIndex startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length  } stepSize={ 10 }
                      minusStrand={ minusStrand } offset={ startIndex === 1 ? 30 : 0} config={config} />
         { annotationsBottom }
-        <rect height="2" width={config.LETTER_FULL_WIDTH_SEQUENCE*charsPerRow} style={{fill: "#000000"}}/>
+        <rect height="2" y={style.height-2} width={config.LETTER_FULL_WIDTH_SEQUENCE*charsPerRow} style={{fill: "#000000"}}/>
+        {(selectionRect.wdt > 0) && <rect x={selectionRect.x} y={LINE_PADDING_TOP}
+                                          height={style.height} width={selectionRect.wdt}
+                                          fill= "rgba(0,0,0,0.05)" />}
       </svg>
     );
   }
