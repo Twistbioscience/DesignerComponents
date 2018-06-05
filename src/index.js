@@ -21,9 +21,11 @@ const noSelection = css`
 `;
 
 const config = {
-  LETTER_WIDTH_12_PX:0,
-  LETTER_HEIGHT_12_PX:0,
-  LETTER_WIDTH_10_PX_MONOSPACE:0
+  LETTER_WIDTH_SEQUENCE:0,
+  LETTER_HEIGHT_SEQUENCE:0,
+  LETTER_WIDTH_10_PX_MONOSPACE:0,
+  LETTER_SPACING_SEQUENCE:0,
+  LETTER_FULL_WIDTH_SEQUENCE:0
 };
 
 const rowRenderer = ({sequence, annotations, charsPerRow, minusStrand, onMouseDown, onMouseUp, selection, selectionInProgress }) => ({
@@ -48,7 +50,7 @@ const getRowHeight = (charsPerRow, annotations = [], showMinusStrand) => ({ inde
     return Math.max(layers, getAnnotationLayer(arr, currIndex));
   }, 0);
   const annotationContainerHeight = layerCount > 0 ? ((layerCount + 1) * (ANNOTATION_GAP + ANNOTATION_HEIGHT)) : 0;
-  const sequenceHeight = showMinusStrand ? config.LETTER_HEIGHT_12_PX * 2 : config.LETTER_HEIGHT_12_PX;
+  const sequenceHeight = showMinusStrand ? config.LETTER_HEIGHT_SEQUENCE * 2 : config.LETTER_HEIGHT_SEQUENCE;
   return sequenceHeight + annotationContainerHeight + 25;
 }
 
@@ -126,14 +128,17 @@ export class SequenceViewer extends React.Component {
   onFontsLoaded() {
     this.setState({fontsLoaded:true});
     const fontSize = measureFontWidth('Inconsolata', '12pt');
-    config.LETTER_WIDTH_12_PX = fontSize.width;
-    config.LETTER_HEIGHT_12_PX = fontSize.height;
+    config.LETTER_WIDTH_SEQUENCE = fontSize.width;
+    config.LETTER_HEIGHT_SEQUENCE = fontSize.height;
     config.LETTER_WIDTH_10_PX_MONOSPACE = measureFontWidth('monospace', '10pt').width;
+    config.LETTER_SPACING_SEQUENCE = 2; // this could be calculated from letter width
+    config.LETTER_FULL_WIDTH_SEQUENCE = (fontSize.width + 2);
+    console.log(">>>",config.LETTER_WIDTH_10_PX_MONOSPACE )
     this.calculateStaticParams(this.props);
   }
 
   calculateStaticParams(props) {
-    const charsPerRow = Math.floor(props.width/config.LETTER_WIDTH_12_PX) - SCOLL_BAR_OFFSET;
+    const charsPerRow = Math.floor(props.width/(config.LETTER_WIDTH_SEQUENCE + config.LETTER_SPACING_SEQUENCE)) - SCOLL_BAR_OFFSET;
     const rowCount = Math.ceil(props.sequence.length/charsPerRow);
     this.setState({
       charsPerRow,
@@ -143,11 +148,11 @@ export class SequenceViewer extends React.Component {
   }
 
   onMouseDown(e, index) {
-    this.setState({ mouseDownIndex: Math.floor(e.clientX/config.LETTER_WIDTH_12_PX) + index });
+    this.setState({ mouseDownIndex: Math.floor(e.clientX/(config.LETTER_WIDTH_SEQUENCE + config.LETTER_SPACING_SEQUENCE)) + index });
   }
 
   onMouseUp(e, index, endSelection) {
-    const mouseUpIndex = Math.floor(e.clientX/config.LETTER_WIDTH_12_PX) + index ;
+    const mouseUpIndex = Math.floor(e.clientX/(config.LETTER_WIDTH_SEQUENCE + config.LETTER_SPACING_SEQUENCE)) + index ;
     const selection = {startIndex: Math.min(this.state.mouseDownIndex, mouseUpIndex), endIndex: Math.max(this.state.mouseDownIndex, mouseUpIndex)  };
     this.setState({ selection: selection})
     if(endSelection){

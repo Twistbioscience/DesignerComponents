@@ -45,9 +45,9 @@ class Line extends React.Component {
     )
     .map((annotation, index, arr) => {
         const layer = getAnnotationLayer(arr,index);
-        const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_WIDTH_12_PX;
-        const x = (annotation.startIndex - startIndex ) * config.LETTER_WIDTH_12_PX;
-        const y = (config.LETTER_HEIGHT_12_PX * (minusStrand ? 2 : 1)) + (layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP));
+        const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
+        const x = (annotation.startIndex - startIndex ) * config.LETTER_FULL_WIDTH_SEQUENCE;
+        const y = (config.LETTER_HEIGHT_SEQUENCE * (minusStrand ? 2 : 1)) + (layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP));
         const points = [
                 //arrowheads on both edges, no teeth:
                 x - 5/2, y,
@@ -64,13 +64,13 @@ class Line extends React.Component {
     })
 
     return (
-      <svg style={style} width={config.LETTER_WIDTH_12_PX*charsPerRow}
+      <svg style={style} width={config.LETTER_FULL_WIDTH_SEQUENCE*charsPerRow}
     onMouseDown={ this.mouseDownHandler(index, charsPerRow)}
     onMouseUp={ this.mouseUpHandler(index, charsPerRow, true, selectionInProgress)}
     onMouseMove={ this.mouseUpHandler(index, charsPerRow, false, selectionInProgress)}  >
         <Sequence startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length + 1 } sequence={sequence}
                   minusStrand={ minusStrand } selection={selection} config={config} />
-        <LineBpIndex startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length + 1 } stepSize={ 10 }
+        <LineBpIndex startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length  } stepSize={ 10 }
                      minusStrand={ minusStrand } offset={ startIndex === 1 ? 30 : 0} config={config} />
         { annotations }
       </svg>
