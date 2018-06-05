@@ -130,10 +130,9 @@ export class SequenceViewer extends React.Component {
     const fontSize = measureFontWidth('Inconsolata', '12pt');
     config.LETTER_WIDTH_SEQUENCE = fontSize.width;
     config.LETTER_HEIGHT_SEQUENCE = fontSize.height;
-    config.LETTER_WIDTH_10_PX_MONOSPACE = measureFontWidth('monospace', '10pt').width;
+    config.LETTER_WIDTH_10_PX_MONOSPACE = measureFontWidth('monospace', '10px').width;
     config.LETTER_SPACING_SEQUENCE = 2; // this could be calculated from letter width
     config.LETTER_FULL_WIDTH_SEQUENCE = (fontSize.width + 2);
-    console.log(">>>",config.LETTER_WIDTH_10_PX_MONOSPACE )
     this.calculateStaticParams(this.props);
   }
 
