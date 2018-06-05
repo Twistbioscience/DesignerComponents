@@ -37,7 +37,7 @@ class Line extends React.Component {
     const { charsPerRow , minusStrand, index, style, selection, selectionInProgress, config } = this.props;
     const startIndex = charsPerRow*index;
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
-    const annotations = this.props.annotations
+    const annotationsBottom = this.props.annotations
     .filter(
       annotation => (annotation.startIndex < startIndex && annotation.endIndex > startIndex) || (annotation.startIndex > startIndex && annotation.startIndex < startIndex + charsPerRow)
     )
@@ -55,9 +55,9 @@ class Line extends React.Component {
                 x - 5/2, y+ANNOTATION_HEIGHT,
                 x + 5/2, y+ANNOTATION_HEIGHT/2
             ].join(' ');
-        return <g>
-          <polygon points={ points } x={ x } y={ y } fill={ annotation.color || "#0000a4" } fillOpacity="0.3"/>
-          <text x={ x + width/4 } y={ y + (ANNOTATION_HEIGHT/2) + 5 } fontSize="12px">{ annotation.name }</text>
+        return <g key={`annotations-bottom-${index}`}>
+          <polygon key={`annotations-bottom-poly-${index}`} points={ points } x={ x } y={ y } fill={ annotation.color || "#0000a4" } fillOpacity="0.3"/>
+          <text key={`annotations-bottom-text-${index}`} x={ x + width/4 } y={ y + (ANNOTATION_HEIGHT/2) + 5 } fontSize="12px">{ annotation.name }</text>
         </g>  
     })
 
@@ -70,7 +70,8 @@ class Line extends React.Component {
                   minusStrand={ minusStrand } selection={selection} config={config} />
         <LineBpIndex startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length  } stepSize={ 10 }
                      minusStrand={ minusStrand } offset={ startIndex === 1 ? 30 : 0} config={config} />
-        { annotations }
+        { annotationsBottom }
+        <rect height="2" width={config.LETTER_FULL_WIDTH_SEQUENCE*charsPerRow} style={{fill: "#000000"}}/>
       </svg>
     );
   }

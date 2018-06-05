@@ -4,7 +4,10 @@ import List from 'react-virtualized/dist/commonjs/List';
 import {
   ANNOTATION_HEIGHT,
   ANNOTATION_GAP,
-  SCOLL_BAR_OFFSET
+  SCOLL_BAR_OFFSET,
+  MINUS_STRAND_MARGIN,
+  LINE_PADDING_TOP,
+  LINE_PADDING_BOTTOM
 } from './constants';
 import Line from './line';
 import { getAnnotationLayer } from './utils/rendering';
@@ -32,7 +35,8 @@ const config = {
   LETTER_HEIGHT_SEQUENCE:0,
   LETTER_WIDTH_BP_INDEX_LABEL:0,
   LETTER_SPACING_SEQUENCE:0,
-  LETTER_FULL_WIDTH_SEQUENCE:0
+  LETTER_FULL_WIDTH_SEQUENCE:0,
+  BP_INDEX_HEIGHT:0,
 };
 
 const rowRenderer = ({sequence, annotations, charsPerRow, minusStrand, onMouseDown, onMouseUp, selection, selectionInProgress }) => ({
@@ -42,7 +46,7 @@ const rowRenderer = ({sequence, annotations, charsPerRow, minusStrand, onMouseDo
   isVisible,   // This row is visible within the List (eg it is not an overscanned row)
   style        // Style object to be applied to row (to position it)
 }) => {
-  return <Line sequence={ sequence } annotations={ annotations } style={ style } charsPerRow={ charsPerRow }
+  return <Line  sequence={ sequence } annotations={ annotations } style={ style } charsPerRow={ charsPerRow }
   minusStrand={ minusStrand } key={ key } index={ index } onMouseDown={ onMouseDown } onMouseUp={onMouseUp}
   selection={selection} selectionInProgress={selectionInProgress} config={config} />
 };
@@ -57,8 +61,8 @@ const getRowHeight = (charsPerRow, annotations = [], showMinusStrand) => ({ inde
     return Math.max(layers, getAnnotationLayer(arr, currIndex));
   }, 0);
   const annotationContainerHeight = layerCount > 0 ? ((layerCount + 1) * (ANNOTATION_GAP + ANNOTATION_HEIGHT)) : 0;
-  const sequenceHeight = showMinusStrand ? config.LETTER_HEIGHT_SEQUENCE * 2 : config.LETTER_HEIGHT_SEQUENCE;
-  return sequenceHeight + annotationContainerHeight + 25;
+  const sequenceHeight = showMinusStrand ? config.LETTER_HEIGHT_SEQUENCE * 2 + MINUS_STRAND_MARGIN : config.LETTER_HEIGHT_SEQUENCE;
+  return sequenceHeight + annotationContainerHeight + LINE_PADDING_BOTTOM + LINE_PADDING_TOP + config.BP_INDEX_HEIGHT;
 }
 
 export class SequenceViewer extends React.Component {
@@ -141,6 +145,7 @@ export class SequenceViewer extends React.Component {
     config.LETTER_WIDTH_BP_INDEX_LABEL = measureFontWidth('Droid Sans Mono', '7pt').width;
     config.LETTER_SPACING_SEQUENCE = letterSpacing; // this could be calculated from letter width
     config.LETTER_FULL_WIDTH_SEQUENCE = (fontSize.width + letterSpacing);
+    config.BP_INDEX_HEIGHT = 25;   //calculate dynamically
     this.calculateStaticParams(this.props);
   }
 
