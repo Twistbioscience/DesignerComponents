@@ -1,7 +1,10 @@
 import React from 'react';
 import {
   ANNOTATION_HEIGHT,
-  ANNOTATION_GAP
+  ANNOTATION_GAP,
+  LINE_PADDING_TOP,
+  MINUS_STRAND_MARGIN,
+  ANNOTATION_PADDING_TOP
 } from './constants';
 import { getAnnotationLayer } from './utils/rendering';
 import LineBpIndex from './line-parts/bp-index';
@@ -45,7 +48,8 @@ class Line extends React.Component {
         const layer = getAnnotationLayer(arr,index);
         const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
         const x = (annotation.startIndex - startIndex ) * config.LETTER_FULL_WIDTH_SEQUENCE;
-        const y = (config.LETTER_HEIGHT_SEQUENCE * (minusStrand ? 2 : 1)) + (layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP));
+        const y = (config.LETTER_HEIGHT_SEQUENCE * (minusStrand ? 2 : 1)) + (minusStrand ? MINUS_STRAND_MARGIN : 0) +
+          (layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP)) + LINE_PADDING_TOP + ANNOTATION_PADDING_TOP;
         const points = [
                 //arrowheads on both edges, no teeth:
                 x - 5/2, y,

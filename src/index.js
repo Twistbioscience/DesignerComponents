@@ -4,6 +4,7 @@ import List from 'react-virtualized/dist/commonjs/List';
 import {
   ANNOTATION_HEIGHT,
   ANNOTATION_GAP,
+  ANNOTATION_PADDING_TOP,
   SCOLL_BAR_OFFSET,
   MINUS_STRAND_MARGIN,
   LINE_PADDING_TOP,
@@ -60,9 +61,9 @@ const getRowHeight = (charsPerRow, annotations = [], showMinusStrand) => ({ inde
   .reduce((layers, annotation, currIndex, arr) => {
     return Math.max(layers, getAnnotationLayer(arr, currIndex));
   }, 0);
-  const annotationContainerHeight = layerCount > 0 ? ((layerCount + 1) * (ANNOTATION_GAP + ANNOTATION_HEIGHT)) : 0;
+  const annotationContainerHeight = layerCount > 0 ? ((layerCount) * (ANNOTATION_GAP + ANNOTATION_HEIGHT))+ ANNOTATION_PADDING_TOP : 0;
   const sequenceHeight = showMinusStrand ? config.LETTER_HEIGHT_SEQUENCE * 2 + MINUS_STRAND_MARGIN : config.LETTER_HEIGHT_SEQUENCE;
-  return sequenceHeight + annotationContainerHeight + LINE_PADDING_BOTTOM + LINE_PADDING_TOP + config.BP_INDEX_HEIGHT;
+  return sequenceHeight + annotationContainerHeight + LINE_PADDING_BOTTOM + LINE_PADDING_TOP + config.BP_INDEX_HEIGHT ;
 }
 
 export class SequenceViewer extends React.Component {
