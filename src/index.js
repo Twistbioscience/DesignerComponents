@@ -2,26 +2,54 @@
 import React from 'react';
 import List from 'react-virtualized/dist/commonjs/List';
 import {
-  LETTER_WIDTH,
-  LETTER_HEIGHT,
   ANNOTATION_HEIGHT,
   ANNOTATION_GAP,
+  ANNOTATION_PADDING_TOP,
   SCOLL_BAR_OFFSET,
-  charMap
+  MINUS_STRAND_MARGIN,
+  LINE_PADDING_TOP,
+  LINE_PADDING_BOTTOM
 } from './constants';
 import Line from './line';
 import { getAnnotationLayer } from './utils/rendering';
+import FontsLoader from './utils/fonts-loader';
+import { measureFontWidth } from './utils/rendering';
+import {css, cx} from 'react-emotion';
+
+const noSelection = css`
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    user-select: none;
+`;
 
 
+const RIGHT_PADDING = 12;
+const panel = css`
+    padding-left: ${RIGHT_PADDING}px;
+    -webkit-font-smoothing: antialiased;
+`;
 
-const rowRenderer = ({sequence, annotations, charsPerRow, minusStrand, onMouseDown }) => ({
+const config = {
+  LETTER_WIDTH_SEQUENCE:0,
+  LETTER_HEIGHT_SEQUENCE:0,
+  LETTER_WIDTH_BP_INDEX_LABEL:0,
+  LETTER_SPACING_SEQUENCE:0,
+  LETTER_FULL_WIDTH_SEQUENCE:0,
+  BP_INDEX_HEIGHT:0,
+};
+
+const rowRenderer = ({sequence, annotations, charsPerRow, minusStrand, onMouseDown, onMouseUp, selection, selectionInProgress }) => ({
   key,         // Unique key within array of rows
   index,       // Index of row within collection
   isScrolling, // The List is currently being scrolled
   isVisible,   // This row is visible within the List (eg it is not an overscanned row)
   style        // Style object to be applied to row (to position it)
 }) => {
-  return <Line sequence={ sequence } annotations={ annotations } style={ style } charsPerRow={ charsPerRow } minusStrand={ minusStrand } key={ key } index={ index } onMouseDown={ onMouseDown }/>
+  return <Line  sequence={ sequence } annotations={ annotations } style={ style } charsPerRow={ charsPerRow }
+  minusStrand={ minusStrand } key={ key } index={ index } onMouseDown={ onMouseDown } onMouseUp={onMouseUp}
+  selection={selection} selectionInProgress={selectionInProgress} config={config} />
 };
 
 const getRowHeight = (charsPerRow, annotations = [], showMinusStrand) => ({ index }) => {
@@ -33,22 +61,23 @@ const getRowHeight = (charsPerRow, annotations = [], showMinusStrand) => ({ inde
   .reduce((layers, annotation, currIndex, arr) => {
     return Math.max(layers, getAnnotationLayer(arr, currIndex));
   }, 0);
-  const annotationContainerHeight = layerCount > 0 ? ((layerCount + 1) * (ANNOTATION_GAP + ANNOTATION_HEIGHT)) : 0;
-  const sequenceHeight = showMinusStrand ? LETTER_HEIGHT * 2 : LETTER_HEIGHT;
-  return sequenceHeight + annotationContainerHeight + 25;
+  const annotationContainerHeight = layerCount > 0 ? ((layerCount) * (ANNOTATION_GAP + ANNOTATION_HEIGHT))+ ANNOTATION_PADDING_TOP : 0;
+  const sequenceHeight = showMinusStrand ? config.LETTER_HEIGHT_SEQUENCE * 2 + MINUS_STRAND_MARGIN : config.LETTER_HEIGHT_SEQUENCE;
+  return sequenceHeight + annotationContainerHeight + LINE_PADDING_BOTTOM + LINE_PADDING_TOP + config.BP_INDEX_HEIGHT ;
 }
 
 export class SequenceViewer extends React.Component {
   render() {
-    if (!this.state.showDesigner) {
-      return <div>Loading</div>;
+    if (!this.state.showDesigner || !this.state.fontsLoaded) {
+      return <FontsLoader callBack={this.onFontsLoaded} />
     }
 
-    const rowHeightFunc = getRowHeight(this.state.charsPerRow, this.props.annotations, this.props.minusStrand)
+    const rowHeightFunc = getRowHeight(this.state.charsPerRow, this.props.annotations, this.props.minusStrand);
+    const selectionInProgress=  (this.state.mouseDownIndex > 0);
     return <div>
       <List
           ref={ this.listRef }
-          className="list-container"
+          className={cx(panel,noSelection)}
           rowCount={ this.state.rowCount }
           rowHeight={ rowHeightFunc }
           height={ 500 }
@@ -59,7 +88,11 @@ export class SequenceViewer extends React.Component {
               annotations: this.props.annotations,
               charsPerRow: this.state.charsPerRow,
               minusStrand: this.props.minusStrand,
-              onMouseDown: this.props.onMouseDown
+              onMouseDown: this.onMouseDown,
+              onMouseUp: this.onMouseUp,
+              selection: this.state.selection,
+              selectionInProgress:selectionInProgress,
+              config: config
             })
           }>
       </List>
@@ -71,9 +104,14 @@ export class SequenceViewer extends React.Component {
     super(props);
     this.listRef = this.listRef.bind(this);
     this.onMouseDown = this.onMouseDown.bind(this);
+    this.onMouseUp = this.onMouseUp.bind(this);
+    this.onFontsLoaded = this.onFontsLoaded.bind(this);
     this.state = {
       showDesigner: false,
-      clickedIndex: null
+      clickedIndex: null,
+      selection:{},
+      mouseDownIndex: 0,
+      fontsLoaded: false
     };
   }
 
@@ -83,11 +121,6 @@ export class SequenceViewer extends React.Component {
     }
   }
 
-  componentDidMount() {
-    if (this.props.width > 0) {
-      this.calculateStaticParams(this.props);
-    }
-  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.width !== this.props.width) {
@@ -104,8 +137,21 @@ export class SequenceViewer extends React.Component {
     }
   }
 
+  onFontsLoaded() {
+    this.setState({fontsLoaded:true});
+    const fontSize = measureFontWidth('Inconsolata', '12pt');
+    const letterSpacing = 3;
+    config.LETTER_WIDTH_SEQUENCE = fontSize.width;
+    config.LETTER_HEIGHT_SEQUENCE = fontSize.height;
+    config.LETTER_WIDTH_BP_INDEX_LABEL = measureFontWidth('Droid Sans Mono', '7pt').width;
+    config.LETTER_SPACING_SEQUENCE = letterSpacing; // this could be calculated from letter width
+    config.LETTER_FULL_WIDTH_SEQUENCE = (fontSize.width + letterSpacing);
+    config.BP_INDEX_HEIGHT = 25;   //calculate dynamically
+    this.calculateStaticParams(this.props);
+  }
+
   calculateStaticParams(props) {
-    const charsPerRow = Math.floor(props.width/LETTER_WIDTH) - SCOLL_BAR_OFFSET;
+    const charsPerRow = Math.floor((props.width-RIGHT_PADDING)/(config.LETTER_WIDTH_SEQUENCE + config.LETTER_SPACING_SEQUENCE)) - SCOLL_BAR_OFFSET;
     const rowCount = Math.ceil(props.sequence.length/charsPerRow);
     this.setState({
       charsPerRow,
@@ -114,7 +160,20 @@ export class SequenceViewer extends React.Component {
     });
   }
 
-  onMouseDown(e) {
-    this.setState({ clickedIndex: Math.floor(e.clientX/LETTER_WIDTH) });
+  getIndexFromEvent(e, index) {
+    return Math.floor((e.clientX-RIGHT_PADDING)/(config.LETTER_WIDTH_SEQUENCE + config.LETTER_SPACING_SEQUENCE)) + index;
+  }
+
+  onMouseDown(e, index) {
+    this.setState({ mouseDownIndex: this.getIndexFromEvent(e, index) });
+  }
+
+  onMouseUp(e, index, endSelection) {
+    const mouseUpIndex = this.getIndexFromEvent(e, index);
+    const selection = {startIndex: Math.min(this.state.mouseDownIndex, mouseUpIndex), endIndex: Math.max(this.state.mouseDownIndex, mouseUpIndex)  };
+    this.setState({ selection: selection});
+    if(endSelection){
+      this.setState({ mouseDownIndex: 0});
+    }
   }
 }
