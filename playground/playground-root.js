@@ -3,7 +3,7 @@ import sequenceEditorData from './data.json';
 import { detectOrfs } from '../src/utils/sequence';
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer'
 import { hot } from 'react-hot-loader'
-import {Main} from '../src/index'
+import {DesignerComponents} from '../src/index'
 
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
           {
             ({ width }) =>
             <div>
-              <Main
+              <DesignerComponents
                   sequence={ sequenceEditorData.text }
                   annotations={ sequenceEditorData.annotations }
                   orfs={ this.state.orfs }
