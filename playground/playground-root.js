@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import sequenceEditorData from './data.json';
-import {SequenceViewer} from '../src/index';
 import { detectOrfs } from '../src/utils/sequence';
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer'
 import { hot } from 'react-hot-loader'
+import {DesignerComponents} from '../src/index'
+
 
 class App extends Component {
   render() {
@@ -15,7 +16,7 @@ class App extends Component {
           {
             ({ width }) =>
             <div>
-              <SequenceViewer
+              <DesignerComponents
                   sequence={ sequenceEditorData.text }
                   annotations={ sequenceEditorData.annotations }
                   orfs={ this.state.orfs }
