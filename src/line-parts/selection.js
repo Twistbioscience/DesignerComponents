@@ -13,10 +13,10 @@ const Selection = ({ selectionRect, height, selection, startIndex, endIndex }) =
 
 const SelectionCaret = ({height , pos}) => {
   return <g>
-    <rect x= {pos-3} height="4" width="4" fill="0x111111" />
-    <line  x1={ pos-1 } x2={ pos-1 }
-               y1={ 0  } y2={ height } shapeRendering="crispEdges" stroke="#000000"
-               strokeWidth="2px"/>
+    <rect x= {pos-3} y={LINE_PADDING_TOP - 3} height="5" width="5" fill="0x111111" />
+    <line  x1={ pos } x2={ pos }
+               y1={ LINE_PADDING_TOP  } y2={ height - LINE_PADDING_TOP } shapeRendering="crispEdges" stroke="#000000"
+               strokeWidth="1px"/>
   </g>
 };
 
