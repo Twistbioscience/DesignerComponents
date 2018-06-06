@@ -1,6 +1,6 @@
 {
   "name": "designercomponents",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Designer-Components v2 POC for React",
   "main": "lib/designer-components.js",
   "unpkg": "dist/designer-components.js",
