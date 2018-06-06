@@ -12,3 +12,6 @@ jenkins_ci
 
 /.vscode-upload.json
 build/
+dist/
+es/
+lib/
