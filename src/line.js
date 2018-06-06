@@ -9,6 +9,7 @@ import {
 import { getAnnotationLayer } from './utils/rendering';
 import LineBpIndex from './line-parts/bp-index';
 import Sequence from './line-parts/line-sequence';
+import Selection from './line-parts/selection';
 
 
 
@@ -86,9 +87,8 @@ class Line extends React.Component {
                      minusStrand={ minusStrand } offset={ startIndex === 1 ? 30 : 0} config={config} />
         { annotationsBottom }
         <rect height="2" y={style.height-2} width={config.LETTER_FULL_WIDTH_SEQUENCE*charsPerRow} style={{fill: "#000000"}}/>
-        {(selectionRect.wdt > 0) && <rect x={selectionRect.x} y={LINE_PADDING_TOP}
-                                          height={style.height} width={selectionRect.wdt}
-                                          fill= "rgba(0,0,0,0.05)" />}
+        {(selectionRect.wdt > 0) && <Selection height={style.height} selectionRect={selectionRect}
+                                               selection={selection} startIndex={startIndex} endIndex={endIndex} />}
       </svg>
     );
   }
