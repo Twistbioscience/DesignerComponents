@@ -13,6 +13,7 @@ const config = {
   LETTER_SPACING_SEQUENCE:0,
   LETTER_FULL_WIDTH_SEQUENCE:0,
   BP_INDEX_HEIGHT:0,
+  ORF_LINE_HEIGHT: 10
 };
 
 export const WithSelection = (Component) => {

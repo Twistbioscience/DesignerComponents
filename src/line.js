@@ -12,23 +12,29 @@ import Sequence from './line-parts/line-sequence';
 import Selection from './line-parts/selection';
 import Orf from "./line-parts/orf";
 
+const multiplyByLetterWidth = (letterWidth) => (num) => letterWidth * num;
+
 const isStarterWithinLine = (lineStart, lineEnd, starter) => starter <= lineEnd &&  starter >= lineStart;
 
-const getOrfPositionInLine = (lineStartIndex, lineEndIndex, orfs, charsPerRow, letterWidth, letterSpacing) => {
+export const getOrfPositionInLine = (lineStartIndex, lineEndIndex, orfs, charsPerRow, letterWidth) => {
     return orfs
         .filter(orf => orf.location[0].start <= lineEndIndex)
         .reduce((acc, orf, index) => {
+            const multiplyByCurrentLetterWidth = multiplyByLetterWidth(letterWidth);
             const item = {
-                start: (Math.max(lineStartIndex, orf.location[0].start - 1) % charsPerRow) * letterWidth,
-                end: (((Math.min(lineEndIndex, orf.location[0].end) - 1) % charsPerRow) + 1) * letterWidth,
+                start: multiplyByCurrentLetterWidth((Math.max(lineStartIndex, orf.location[0].start - 1) % charsPerRow)),
+                end: multiplyByCurrentLetterWidth((((Math.min(lineEndIndex, orf.location[0].end) - 1) % charsPerRow) + 1)),
                 strand: orf.strand,
                 starters: orf.starters.filter(starter => isStarterWithinLine(lineStartIndex, lineEndIndex, starter))
-                                      .map(starter => ((starter % charsPerRow) * letterWidth) - ((letterWidth + letterSpacing) / 2)),
+                                      .map(starter => multiplyByCurrentLetterWidth(starter % (charsPerRow + 1))),
                 color: orf.color
             };
             return {...acc, [index]: [...(acc[index] || []), item]};
         }, {});
 };
+
+
+
 
 class Line extends React.Component {
 
@@ -36,15 +42,7 @@ class Line extends React.Component {
     super();
     this.mouseDownHandler = this.mouseDownHandler.bind(this);
     this.mouseUpHandler = this.mouseUpHandler.bind(this);
-
   }
-
-/*  setSiblingHeight(index, height){
-      const newHeight = {index, height};
-      this.setState((prevState) => ({
-          heights: {...prevState.heights, newHeight}
-      }))
-  }*/
 
   mouseDownHandler(index, charsPerRow){
 
@@ -112,6 +110,11 @@ class Line extends React.Component {
         <Sequence sequence={sequence} minusStrand={ minusStrand } config={config} />
         <LineBpIndex startIndex={ startIndex + 1 } endIndex={ startIndex + sequence.length  } stepSize={ 10 }
                      minusStrand={ minusStrand } offset={ startIndex === 1 ? 30 : 0} config={config} />
+              <Orf orfs={getOrfPositionInLine(startIndex, endIndex, this.props.orfs, charsPerRow, config.LETTER_FULL_WIDTH_SEQUENCE, config.LETTER_SPACING_SEQUENCE)}
+                   charsPerRow={charsPerRow}
+                   config={config}
+                   minusStrand={ minusStrand }
+              />
         { annotationsBottom }
         <rect height="2" y={style.height-2} width={config.LETTER_FULL_WIDTH_SEQUENCE*charsPerRow} style={{fill: "#000000"}}/>
         {(selectionRect.wdt > 0) && <Selection height={style.height} selectionRect={selectionRect}
