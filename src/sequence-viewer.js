@@ -28,7 +28,7 @@ const panel = css`
 `;
 
 const rowRenderer = ({sequence, annotations, charsPerRow, minusStrand, onMouseDown, onMouseUp, selection,
-selectionInProgress, config }) => ({
+selectionInProgress, config, orfs }) => ({
        key,         // Unique key within array of rows
        index,       // Index of row within collection
        isScrolling, // The List is currently being scrolled
@@ -37,7 +37,7 @@ selectionInProgress, config }) => ({
      }) => {
   return <Line  sequence={ sequence } annotations={ annotations } style={ style } charsPerRow={ charsPerRow }
                 minusStrand={ minusStrand } key={ key } index={ index } onMouseDown={ onMouseDown } onMouseUp={onMouseUp}
-                selection={selection} selectionInProgress={selectionInProgress} config={config} />
+                selection={selection} selectionInProgress={selectionInProgress} config={config} orfs={orfs} />
 };
 
 const getRowHeight = (charsPerRow, annotations = [], showMinusStrand, config) => ({ index }) => {
@@ -51,7 +51,7 @@ const getRowHeight = (charsPerRow, annotations = [], showMinusStrand, config) =>
     }, 0);
   const annotationContainerHeight = layerCount > 0 ? ((layerCount) * (ANNOTATION_GAP + ANNOTATION_HEIGHT))+ ANNOTATION_PADDING_TOP : 0;
   const sequenceHeight = showMinusStrand ? config.LETTER_HEIGHT_SEQUENCE * 2 + MINUS_STRAND_MARGIN : config.LETTER_HEIGHT_SEQUENCE;
-  return sequenceHeight + annotationContainerHeight + LINE_PADDING_BOTTOM + LINE_PADDING_TOP + config.BP_INDEX_HEIGHT ;
+  return sequenceHeight + annotationContainerHeight + LINE_PADDING_BOTTOM + LINE_PADDING_TOP + config.BP_INDEX_HEIGHT;
 };
 
 
@@ -78,7 +78,8 @@ export default class SequenceViewer extends React.Component {
             onMouseUp: this.props.onMouseUp,
             selection: this.props.selection,
             selectionInProgress:selectionInProgress,
-            config: this.props.config
+            config: this.props.config,
+            orfs: this.props.orfs
           })
         }>
       </List>

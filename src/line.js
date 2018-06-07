@@ -10,8 +10,25 @@ import { getAnnotationLayer } from './utils/rendering';
 import LineBpIndex from './line-parts/bp-index';
 import Sequence from './line-parts/line-sequence';
 import Selection from './line-parts/selection';
+import Orf from "./line-parts/orf";
 
+const isStarterWithinLine = (lineStart, lineEnd, starter) => starter <= lineEnd &&  starter >= lineStart;
 
+const getOrfPositionInLine = (lineStartIndex, lineEndIndex, orfs, charsPerRow, letterWidth, letterSpacing) => {
+    return orfs
+        .filter(orf => orf.location[0].start <= lineEndIndex)
+        .reduce((acc, orf, index) => {
+            const item = {
+                start: (Math.max(lineStartIndex, orf.location[0].start - 1) % charsPerRow) * letterWidth,
+                end: (((Math.min(lineEndIndex, orf.location[0].end) - 1) % charsPerRow) + 1) * letterWidth,
+                strand: orf.strand,
+                starters: orf.starters.filter(starter => isStarterWithinLine(lineStartIndex, lineEndIndex, starter))
+                                      .map(starter => ((starter % charsPerRow) * letterWidth) - ((letterWidth + letterSpacing) / 2)),
+                color: orf.color
+            };
+            return {...acc, [index]: [...(acc[index] || []), item]};
+        }, {});
+};
 
 class Line extends React.Component {
 
@@ -19,7 +36,15 @@ class Line extends React.Component {
     super();
     this.mouseDownHandler = this.mouseDownHandler.bind(this);
     this.mouseUpHandler = this.mouseUpHandler.bind(this);
+
   }
+
+/*  setSiblingHeight(index, height){
+      const newHeight = {index, height};
+      this.setState((prevState) => ({
+          heights: {...prevState.heights, newHeight}
+      }))
+  }*/
 
   mouseDownHandler(index, charsPerRow){
 
@@ -36,6 +61,8 @@ class Line extends React.Component {
 
     }
   }
+
+
 
   render() {
     const { charsPerRow , minusStrand, index, style, selection, selectionInProgress, config } = this.props;
@@ -64,7 +91,7 @@ class Line extends React.Component {
         return <g key={`annotations-bottom-${index}`}>
           <polygon key={`annotations-bottom-poly-${index}`} points={ points } x={ x } y={ y } fill={ annotation.color || "#0000a4" } fillOpacity="0.3"/>
           <text key={`annotations-bottom-text-${index}`} x={ x + width/4 } y={ y + (ANNOTATION_HEIGHT/2) + 5 } fontSize="12px">{ annotation.name }</text>
-        </g>  
+        </g>
     })
 
     const getRect = () => {
@@ -92,7 +119,7 @@ class Line extends React.Component {
       </svg>
     );
   }
-} 
+}
 
 export default Line;
 
