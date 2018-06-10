@@ -3,6 +3,7 @@ import sequenceEditorData from './data.json';
 import { detectOrfs } from '../src/utils/sequence';
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer'
 import { hot } from 'react-hot-loader'
+import {DesignerComponentsViewer} from '../src/index'
 import {DesignerComponents} from '../src/index'
 
 
