@@ -41,8 +41,9 @@ selectionInProgress, config, orfs }) => ({
                 selection={selection} selectionInProgress={selectionInProgress} config={config} orfs={orfs} />
 };
 
-const getRowHeight = (charsPerRow = 169, annotations = [], showMinusStrand, config, orfs, seqLength) => ({ index }) => {
+const getRowHeight = (charsPerRow = 169, annotations = [], showMinusStrand, config, orfs, sequence) => ({ index }) => {
   const startIndex = charsPerRow*index;
+  const seqLength = sequence.substr(startIndex, charsPerRow).length;
   const endIndex = startIndex + seqLength;
   const orfsPerLine = getOrfPositionInLine(startIndex, endIndex, orfs, charsPerRow, config.LETTER_FULL_WIDTH_SEQUENCE, config.LETTER_SPACING_SEQUENCE);
   const layerCount = annotations
@@ -54,14 +55,14 @@ const getRowHeight = (charsPerRow = 169, annotations = [], showMinusStrand, conf
     }, 0);
   const annotationContainerHeight = layerCount > 0 ? ((layerCount) * (ANNOTATION_GAP + ANNOTATION_HEIGHT))+ ANNOTATION_PADDING_TOP : 0;
   const sequenceHeight = showMinusStrand ? config.LETTER_HEIGHT_SEQUENCE * 2 + MINUS_STRAND_MARGIN : config.LETTER_HEIGHT_SEQUENCE;
-  const orfsHeight = Object.keys(orfsPerLine).length * config.ORF_LINE_HEIGHT;
+  const orfsHeight = (Object.keys(orfsPerLine).length * config.ORF_LINE_HEIGHT) + config.ORF_LINE_HEIGHT;
   return sequenceHeight + annotationContainerHeight + LINE_PADDING_BOTTOM + LINE_PADDING_TOP + config.BP_INDEX_HEIGHT + orfsHeight;
 };
 
 
 export default class SequenceViewer extends React.Component {
   render() {
-    const rowHeightFunc = getRowHeight(this.state.charsPerRow, this.props.annotations, this.props.minusStrand, this.props.config, this.props.orfs, this.props.sequence.length);
+    const rowHeightFunc = getRowHeight(this.state.charsPerRow, this.props.annotations, this.props.minusStrand, this.props.config, this.props.orfs, this.props.sequence);
     const selectionInProgress=  (this.props.mouseDownIndex > 0);
 
     return <div>

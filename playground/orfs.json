@@ -1,0 +1,42 @@
+[
+  {
+    "location": [
+      {
+        "start": 285,
+        "end": 400
+      }
+    ],
+    "startCodons": [
+      "ATG"
+    ],
+    "starters": [
+      285,
+      336,
+      387,
+      48,
+      702,
+      738,
+      762
+    ],
+    "strand": "forward",
+    "frame": 1,
+    "color": "blue"
+  },
+  {
+    "location": [
+      {
+        "start": 500,
+        "end": 1371
+      }
+    ],
+    "startCodons": [
+      "ATG"
+    ],
+    "starters": [
+      1371
+    ],
+    "strand": "reverse",
+    "frame": -2,
+    "color": "yellow"
+  }
+]

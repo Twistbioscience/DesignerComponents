@@ -8,6 +8,7 @@ export const LINE_PADDING_BOTTOM = 2;
 export const RIGHT_PADDING = 12;
 
 
+
 export const charMap = {
   A:'T',
   G:'C',

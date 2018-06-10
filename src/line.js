@@ -10,7 +10,7 @@ import { getAnnotationLayer } from './utils/rendering';
 import LineBpIndex from './line-parts/bp-index';
 import Sequence from './line-parts/line-sequence';
 import Selection from './line-parts/selection';
-import Orf from "./line-parts/orf";
+import Orf from "./line-parts/orf/orf";
 
 const multiplyByLetterWidth = (letterWidth) => (num) => letterWidth * num;
 
@@ -115,7 +115,9 @@ class Line extends React.Component {
                    config={config}
                    minusStrand={ minusStrand }
               />
+
         { annotationsBottom }
+
         <rect height="2" y={style.height-2} width={config.LETTER_FULL_WIDTH_SEQUENCE*charsPerRow} style={{fill: "#000000"}}/>
         {(selectionRect.wdt > 0) && <Selection height={style.height} selectionRect={selectionRect}
                                                selection={selection} startIndex={startIndex} endIndex={endIndex} />}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import sequenceEditorData from './data.json';
+import orfs from './orfs.json';
 import { detectOrfs } from '../src/utils/sequence';
 import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer'
 import { hot } from 'react-hot-loader'
@@ -19,7 +20,7 @@ class App extends Component {
               <DesignerComponents
                   sequence={ sequenceEditorData.text }
                   annotations={ sequenceEditorData.annotations }
-                  orfs={ this.state.orfs }
+                  orfs={ orfs }
                   minusStrand={ this.state.minusStrand }
                   width={ width } />
               <button onClick={ this.toggleMinusStrand }>Toggle minus strand</button>
