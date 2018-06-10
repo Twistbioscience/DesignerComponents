@@ -16,6 +16,5 @@ export function measureFontWidth(fontFamily, fontSize, letter) {
 }
 
 export function isFontLoaded() {
-  console.log("isFontLoaded = ",measureFontWidth('Inconsolata', '12pt','w').width === measureFontWidth('Inconsolata', '12pt','i').width)
   return measureFontWidth('Inconsolata', '12pt','w').width === measureFontWidth('Inconsolata', '12pt','i').width ;
 }
