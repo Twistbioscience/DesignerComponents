@@ -23,9 +23,7 @@ pipeline:
     pull: true
     secrets: [nexus_access_key]
     commands:
-      - echo "//nexus.twistbioscience-staging.com/repository/all-npm/:_authToken=$NEXUS_ACCESS_KEY"
       - echo "//nexus.twistbioscience-staging.com/repository/all-npm/:_authToken=$NEXUS_ACCESS_KEY" > ~/.npmrc
-      - cat ~/.npmrc
       - npm config set registry https://nexus.twistbioscience-staging.com/repository/all-npm/
       - npm install
 
