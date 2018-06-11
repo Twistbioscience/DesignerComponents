@@ -1,0 +1,69 @@
+pipeline:
+  slack:
+    image: plugins/slack
+    webhook: https://hooks.slack.com/services/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
+    channel: jenkins
+    username: Drone
+    icon_url: http://discourse.drone.io/uploads/drone/original/1X/9dd937ba6f92071cbc3db623bd001298474084ee.png
+    template: >
+      Starting build {{repo.owner}}/{{repo.name}}/{{build.branch}} [#{{build.number}}]
+    when:
+      status: [ success ]
+
+  restore-cache:
+    image: drillster/drone-volume-cache
+    restore: true
+    mount:
+      - ./node_modules
+    volumes:
+      - /tmp/cache:/cache
+
+  prepare:
+    image: docker.twistbioscience-staging.com/devops_slave_ecommerce_client_node
+    pull: true
+    secrets: [nexus_access_key]
+    commands:
+      - echo "//nexus.twistbioscience-staging.com/repository/all-npm/:_authToken=$DOCKER_NEXUS_ACCESS_KEY"
+      - echo "//nexus.twistbioscience-staging.com/repository/all-npm/:_authToken=$DOCKER_NEXUS_ACCESS_KEY" > ~/.npmrc
+      - cat ~/.npmrc
+      - npm config set registry https://nexus.twistbioscience-staging.com/repository/all-npm/
+      - npm install
+
+  rebuild-cache:
+    image: drillster/drone-volume-cache
+    rebuild: true
+    mount:
+      - ./node_modules
+    volumes:
+      - /tmp/cache:/cache
+
+  test:
+    image: docker.twistbioscience-staging.com/devops_slave_ecommerce_client_node
+    commands:
+      - npm run lint
+      - npm run test
+
+  slack:
+    image: plugins/slack
+    webhook: https://hooks.slack.com/services/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
+    channel: jenkins
+    username: Drone
+    icon_url: http://discourse.drone.io/uploads/drone/original/1X/9dd937ba6f92071cbc3db623bd001298474084ee.png
+    template: |
+      {{#success build.status}}
+        :sunny: SUCCESS: {{repo.owner}}/{{repo.name}}/{{build.branch}} [#{{build.number}}]
+        ({{build.link}})
+      {{else}}
+        :thunder_cloud_and_rain: FAILED: {{repo.owner}}/{{repo.name}}/{{build.branch}} [#{{build.number}}]
+        ({{build.link}})
+      {{/success}}
+    when:
+      status: [ success, failure ]
+
+  email:
+    image: drillster/drone-email
+    from: drone@twistbioscience-staging.com
+    host: smtp.sendgrid.net
+    secrets: [ email_username, email_password ]
+    when:
+      status: [ failure ]
