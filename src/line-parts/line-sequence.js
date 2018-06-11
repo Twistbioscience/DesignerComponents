@@ -1,3 +1,4 @@
+import React from 'react';
 import {charMap, MINUS_STRAND_MARGIN, LINE_PADDING_TOP} from '../constants';
 import {flipSequence} from '../utils/sequence';
 const Sequence = ({sequence, config, minusStrand}) => {
