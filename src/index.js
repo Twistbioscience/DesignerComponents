@@ -10,4 +10,4 @@ export const DesignerComponents = isFontLoaded()
 
 export const DesignerComponentsViewer = isFontLoaded()
   ? WithConfigSetter(SequenceViewer)
-  : WithFontsLoader(WithConfigSetter(SequenceViewer)); 
+  : WithFontsLoader(WithConfigSetter(SequenceViewer));
