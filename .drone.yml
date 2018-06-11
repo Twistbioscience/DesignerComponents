@@ -39,7 +39,7 @@ pipeline:
     image: docker.twistbioscience-staging.com/devops_slave_ecommerce_client_node
     commands:
       - npm run lint
-      - npm run test
+      - npm run test:ci
 
   slack:
     image: plugins/slack
