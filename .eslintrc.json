@@ -1,7 +1,7 @@
 {
-    "plugins": ["prettier", "import"],
+    "plugins": ["import", "react"],
     "parser": "babel-eslint",
-    "extends": ["plugin:import/errors", "plugin:import/warnings", "eslint:recommended", "prettier"],
+    "extends": ["plugin:import/errors", "plugin:import/warnings", "eslint:recommended", "plugin:prettier/recommended"],
     "settings": {
         "import/resolver": "babel-module"
     },
@@ -44,6 +44,8 @@
         }
     },
     "rules": {
-
+      // React specific
+      "react/jsx-uses-react": 2,
+      "react/jsx-uses-vars": 2
     }
 }
