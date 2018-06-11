@@ -30,7 +30,7 @@ const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, offset = 0, c
         fontSize="7pt"
         fill="#4a4a4a"
         y={bpLabel + LINE_PADDING_TOP}
-        x={pos - marker.toString().length * config.LETTER_WIDTH_BP_INDEX_LABEL / 2}>
+        x={pos - (marker.toString().length * config.LETTER_WIDTH_BP_INDEX_LABEL) / 2}>
         {marker}
       </text>
     );

@@ -29,6 +29,6 @@ describe('Line', () => {
     const {container, debug} = render(<Line {...props} />);
     const firstLabel = getByText(container, '10');
     const firstLabelXPos = parseFloat(firstLabel.getAttribute('x'));
-    expect(firstLabelXPos).toBe(config.LETTER_FULL_WIDTH_SEQUENCE * 10 - config.LETTER_WIDTH_BP_INDEX_LABEL * 2 / 2);
+    expect(firstLabelXPos).toBe(config.LETTER_FULL_WIDTH_SEQUENCE * 10 - (config.LETTER_WIDTH_BP_INDEX_LABEL * 2) / 2);
   });
 });
