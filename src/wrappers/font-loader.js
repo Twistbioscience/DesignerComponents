@@ -27,7 +27,6 @@ export const WithFontsLoader = Component => {
           families: ['Inconsolata', 'Droid Sans Mono']
         },
         active: function() {
-          console.info('*** DesignerComponentsController web fonts ready, initializing app');
           onFontsLoaded();
         }
       });
