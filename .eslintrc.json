@@ -1,9 +1,9 @@
 {
-    "plugins": ["import"],
+    "plugins": ["prettier", "import"],
     "parser": "babel-eslint",
-    "extends": ["plugin:import/errors", "plugin:import/warnings", "eslint:recommended"],
+    "extends": ["plugin:import/errors", "plugin:import/warnings", "eslint:recommended", "prettier"],
     "settings": {
-        "import/resolver": "rollup"
+        "import/resolver": "babel-module"
     },
 
     "env": {
