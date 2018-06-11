@@ -8,6 +8,7 @@
       }
     ]
   ],
+  "plugins": [["module-resolver", { "root": ["./src"] } ]],
   "env": {
     "production": {
       "plugins": [

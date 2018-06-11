@@ -7,12 +7,11 @@ export const LINE_PADDING_TOP = 4;
 export const LINE_PADDING_BOTTOM = 2;
 export const RIGHT_PADDING = 12;
 
-
 export const charMap = {
-  A:'T',
-  G:'C',
-  C:'G',
-  T:'A'
+  A: 'T',
+  G: 'C',
+  C: 'G',
+  T: 'A'
 };
 
 export const MIN_ORF_SIZE = 60;

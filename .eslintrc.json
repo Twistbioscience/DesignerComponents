@@ -1,9 +1,9 @@
 {
-    "plugins": ["import"],
+    "plugins": ["import", "react"],
     "parser": "babel-eslint",
-    "extends": ["plugin:import/errors", "plugin:import/warnings", "eslint:recommended"],
+    "extends": ["plugin:import/errors", "plugin:import/warnings", "eslint:recommended", "plugin:prettier/recommended"],
     "settings": {
-        "import/resolver": "rollup"
+        "import/resolver": "babel-module"
     },
 
     "env": {
@@ -44,6 +44,8 @@
         }
     },
     "rules": {
-
+      // React specific
+      "react/jsx-uses-react": 2,
+      "react/jsx-uses-vars": 2
     }
 }
