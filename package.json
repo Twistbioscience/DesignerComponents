@@ -12,7 +12,7 @@
     "src"
   ],
   "scripts": {
-    "test": "NODE_ENV=test node_modules/.bin/jest --watch --inspect",
+    "test": "NODE_ENV=test node_modules/.bin/jest --watch -- --inspect",
     "clean": "rimraf lib dist es coverage",
     "lint": "./node_modules/.bin/eslint ./src/",
     "prettier": "prettier --config --write .prettierrc \"{src,__{tests,mocks}__}/**/*.js\"",
