@@ -23,7 +23,7 @@ pipeline:
     pull: true
     secrets: [nexus_access_key]
     commands:
-      - echo env | grep NEXUS
+      - env | grep NEXUS
       - echo "//nexus.twistbioscience-staging.com/repository/all-npm/:_authToken=$DOCKER_NEXUS_ACCESS_KEY"
       - echo "//nexus.twistbioscience-staging.com/repository/all-npm/:_authToken=$DOCKER_NEXUS_ACCESS_KEY" > ~/.npmrc
       - cat ~/.npmrc
