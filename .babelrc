@@ -2,12 +2,13 @@
   "presets": [
     "react",
     [
-      "es2015",
+      "env",
       {
         "modules": false
       }
     ]
   ],
+  "plugins": [["module-resolver", { "root": ["./src"] } ]],
   "env": {
     "production": {
       "plugins": [
@@ -16,6 +17,9 @@
     },
     "development": {
        "plugins": ["react-hot-loader/babel"]
+    },
+    "test": {
+      "presets": ["env", "react"],
     }
   }
 }

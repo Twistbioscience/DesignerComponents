@@ -7,7 +7,7 @@ export const getAnnotationLayer = (annotations, index) => {
     }
     const prevAnnotation = annotations[i - 1];
     if (annotation.startIndex < prevAnnotation.endIndex) {
-      const prevLayer = getAnnotationLayer(annotations, i-1);
+      const prevLayer = getAnnotationLayer(annotations, i - 1);
       if (layer === prevLayer) {
         layer++;
       } else {

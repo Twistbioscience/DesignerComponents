@@ -1,23 +1,12 @@
 // Rollup plugins
-import nodeResolve from "rollup-plugin-node-resolve";
 import babel from "rollup-plugin-babel";
 import replace from "rollup-plugin-replace";
 import uglify from "rollup-plugin-uglify";
-import rootImport from "rollup-plugin-root-import";
-import commonjs from "rollup-plugin-commonjs";
 
 const env = process.env.NODE_ENV;
 const config = {
   input: "src/index.js",
   plugins: [
-    rootImport({
-      // Will first look in `client/src/*` and then `common/src/*`.
-      root: `${__dirname}/src`,
-      useEntry: "prepend",
-
-      // If we don't find the file verbatim, try adding these extensions
-      extensions: ".js"
-    }),
     babel({
       plugins: ["external-helpers"]
     }),

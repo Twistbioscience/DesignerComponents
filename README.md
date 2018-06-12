@@ -42,4 +42,11 @@ We want to be semvered so releases are manual
 4. `git push && git push --tags`
 5. `npm run twist-publish` - Will clean the old build, run test and checks, actually build the project and release it to nexus
 
+#### Testing
+Run `npm run test` will run jest in watch mode
+For testing react components we use react-testing-library
+Debugger is avaiable via standard node debugging
+Debugger is exposed on port 9229 - chrome devtools are enabled by default
+see explanation on debugging node apps https://nodejs.org/en/docs/guides/debugging-getting-started/
+
 
