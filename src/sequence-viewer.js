@@ -11,9 +11,9 @@ import {
   RIGHT_PADDING
 } from './constants';
 import Line from './line';
-import { getAnnotationLayer } from './utils/rendering';
 import {css, cx} from 'react-emotion';
 import {getOrfPositionInLine} from "./line";
+import {getFeatureLayer, getOrfLayer} from "./utils/rendering";
 
 const noSelection = css`
     -webkit-user-select: none;
@@ -46,16 +46,20 @@ const getRowHeight = (charsPerRow = 169, annotations = [], showMinusStrand, conf
   const seqLength = sequence.substr(startIndex, charsPerRow).length;
   const endIndex = startIndex + seqLength;
   const orfsPerLine = getOrfPositionInLine(startIndex, endIndex, orfs, charsPerRow, config.LETTER_FULL_WIDTH_SEQUENCE, config.LETTER_SPACING_SEQUENCE);
+  const orfsLayersCount = orfsPerLine.length > 0 ? Math.max(...orfsPerLine.map((orf, index, arr) => getOrfLayer(arr,index)))
+                                             : 0;
+  console.log({index, orfsLayersCount});
+
   const layerCount = annotations
     .filter(
       annotation => (annotation.startIndex < startIndex && annotation.endIndex > startIndex) || (annotation.startIndex > startIndex && annotation.startIndex < startIndex + charsPerRow)
     )
     .reduce((layers, annotation, currIndex, arr) => {
-      return Math.max(layers, getAnnotationLayer(arr, currIndex));
+      return Math.max(layers, getFeatureLayer(arr, currIndex));
     }, 0);
   const annotationContainerHeight = layerCount > 0 ? ((layerCount) * (ANNOTATION_GAP + ANNOTATION_HEIGHT))+ ANNOTATION_PADDING_TOP : 0;
   const sequenceHeight = showMinusStrand ? config.LETTER_HEIGHT_SEQUENCE * 2 + MINUS_STRAND_MARGIN : config.LETTER_HEIGHT_SEQUENCE;
-  const orfsHeight = (Object.keys(orfsPerLine).length * config.ORF_LINE_HEIGHT) + config.ORF_LINE_HEIGHT;
+  const orfsHeight = (orfsLayersCount * config.ORF_LINE_HEIGHT) + config.ORF_LINE_HEIGHT;
   return sequenceHeight + annotationContainerHeight + LINE_PADDING_BOTTOM + LINE_PADDING_TOP + config.BP_INDEX_HEIGHT + orfsHeight;
 };
 

@@ -20,7 +20,10 @@ class App extends Component {
               <DesignerComponents
                   sequence={ sequenceEditorData.text }
                   annotations={ sequenceEditorData.annotations }
+                  orfs={ this.state.orfs }
+/*
                   orfs={ orfs }
+*/
                   minusStrand={ this.state.minusStrand }
                   width={ width } />
               <button onClick={ this.toggleMinusStrand }>Toggle minus strand</button>

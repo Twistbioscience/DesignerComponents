@@ -6,11 +6,11 @@ import {
   MINUS_STRAND_MARGIN,
   ANNOTATION_PADDING_TOP
 } from './constants';
-import { getAnnotationLayer } from './utils/rendering';
 import LineBpIndex from './line-parts/bp-index';
 import Sequence from './line-parts/line-sequence';
 import Selection from './line-parts/selection';
 import Orf from "./line-parts/orf/orf";
+import {getFeatureLayer, getOrfLayer} from "./utils/rendering";
 
 const multiplyByLetterWidth = (letterWidth) => (num) => letterWidth * num;
 
@@ -18,19 +18,18 @@ const isStarterWithinLine = (lineStart, lineEnd, starter) => starter <= lineEnd 
 
 export const getOrfPositionInLine = (lineStartIndex, lineEndIndex, orfs, charsPerRow, letterWidth) => {
     return orfs
-        .filter(orf => orf.location[0].start <= lineEndIndex)
-        .reduce((acc, orf, index) => {
+        .filter(orf => orf.location[0].start <= lineEndIndex && orf.location[0].end >= lineStartIndex)
+        .map(orf => {
             const multiplyByCurrentLetterWidth = multiplyByLetterWidth(letterWidth);
-            const item = {
+            return {
                 start: multiplyByCurrentLetterWidth((Math.max(lineStartIndex, orf.location[0].start - 1) % charsPerRow)),
                 end: multiplyByCurrentLetterWidth((((Math.min(lineEndIndex, orf.location[0].end) - 1) % charsPerRow) + 1)),
                 strand: orf.strand,
                 starters: orf.starters.filter(starter => isStarterWithinLine(lineStartIndex, lineEndIndex, starter))
-                                      .map(starter => multiplyByCurrentLetterWidth(starter % (charsPerRow + 1))),
+                    .map(starter => multiplyByCurrentLetterWidth(starter % (charsPerRow + 1))),
                 color: orf.color
             };
-            return {...acc, [index]: [...(acc[index] || []), item]};
-        }, {});
+        });
 };
 
 
@@ -72,7 +71,7 @@ class Line extends React.Component {
       annotation => (annotation.startIndex < startIndex && annotation.endIndex > startIndex) || (annotation.startIndex > startIndex && annotation.startIndex < startIndex + charsPerRow)
     )
     .map((annotation, index, arr) => {
-        const layer = getAnnotationLayer(arr,index);
+        const layer = getFeatureLayer(arr,index);
         const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
         const x = (annotation.startIndex - startIndex ) * config.LETTER_FULL_WIDTH_SEQUENCE;
         const y = (config.LETTER_HEIGHT_SEQUENCE * (minusStrand ? 2 : 1)) + (minusStrand ? MINUS_STRAND_MARGIN : 0) +
