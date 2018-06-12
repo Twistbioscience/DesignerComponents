@@ -5,7 +5,12 @@
   "main": "lib/designer-components.js",
   "unpkg": "dist/designer-components.js",
   "module": "es/designer-components.js",
-  "files": ["dist", "lib", "es", "src"],
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "src"
+  ],
   "scripts": {
     "test": "NODE_ENV=test node node_modules/.bin/jest --watch",
     "test:debug": "NODE_ENV=test node --inspect-brk node_modules/.bin/jest --runInBand --watch",
@@ -20,7 +25,7 @@
     "build:es": "BABEL_ENV=es NODE_ENV=es rollup -c -o es/designer-components.js",
     "build:umd": "BABEL_ENV=es NODE_ENV=development rollup -c -o dist/designer-components.js",
     "build:umd:min": "BABEL_ENV=es NODE_ENV=production rollup -c -o dist/designer-components.min.js",
-    "prepare": "npm run clean && npm run format:check && npm run lint && npm test && npm run build",
+    "prepare": "npm run clean && npm run format:check && npm run lint && npm run test:ci && npm run build",
     "twist-publish": "npm publish --registry https://nexus.twistbioscience-staging.com/repository/twist-npm/"
   },
   "repository": {
@@ -82,8 +87,13 @@
     "webfontloader": "^1.6.28"
   },
   "jest": {
-    "moduleDirectories": ["node_modules", "src"],
-    "collectCoverageFrom": ["src/**/*.js"],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 0,
@@ -94,8 +104,7 @@
     },
     "testRegex": "(/src/.spec|(\\.|/)(spec))\\.jsx?$",
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|css|scss)$":
-        "<rootDir>/_mocks_/file-mock.js"
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|css|scss)$": "<rootDir>/_mocks_/file-mock.js"
     },
     "transform": {
       "^.+\\.(js)$": "babel-jest"
@@ -104,6 +113,8 @@
       "$_ENVIRONMENT": "test"
     },
     "automock": false,
-    "setupFiles": ["./setupJest.js"]
+    "setupFiles": [
+      "./setupJest.js"
+    ]
   }
 }
