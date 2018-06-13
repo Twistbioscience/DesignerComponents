@@ -10,9 +10,7 @@ const config = {
   // The base directory for resolvinnpg `entry` (must be absolute path)
   context: appPath,
 
-  entry: [
-    './playground/index.js'
-  ],
+  entry: ['./playground/index.js'],
 
   plugins: [
     new HtmlWebpackPlugin({
