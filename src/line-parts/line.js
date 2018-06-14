@@ -23,28 +23,21 @@ const isOrfWithinLine = (orf, start, end) => orf.location[0].start <= end && orf
 
 export const getOrfPositionInLine = (lineStartIndex, lineEndIndex, orfs, charsPerRow, letterWidth) => {
     return orfs
-        .filter(orf => isOrfWithinLine(orf, lineStartIndex, lineEndIndex))
-        .map((orf, index) => {
-            const startIndex = Math.max(lineStartIndex, orf.location[0].start - 1);
-            const endIndex = Math.min(lineEndIndex, orf.location[0].end - 1);
-
-            const start = (Math.max(lineStartIndex, orf.location[0].start - 1) % charsPerRow) * letterWidth;
-            const end = (((Math.min(lineEndIndex, orf.location[0].end) - 1) % charsPerRow) + 1) * letterWidth;
-            const numberOfFullShapesToDraw = Math.floor((end - start) / 33);
-            const incompleteShapeType = ((end - start) % 33) / (33 / 3);
+        .filter(orf => isOrfWithinLine(orf, lineStartIndex, lineEndIndex) && orf.strand === 'forward')
+        .map(orf => {
+            const orfLineStart = Math.max(lineStartIndex, orf.location[0].start);
+            const orfLineEnd = Math.min(lineEndIndex, orf.location[0].end);
             return {
-                start,
-                end,
-                startIndex,
-                endIndex,
+                orfLineStart,
+                orfLineEnd,
+                start: (orfLineStart % charsPerRow) * letterWidth,
+                end: (orfLineEnd % charsPerRow) * letterWidth,
                 orfStartIndex: orf.location[0].start,
-                prevLineModulo: (startIndex + 1 - orf.location[0].start) % 3,
                 strand: orf.strand,
+                frame: orf.frame,
                 starters: orf.starters.filter(starter => isStarterWithinLine(lineStartIndex, lineEndIndex, starter))
                     .map(starter => (starter % (charsPerRow + 1)) * letterWidth),
                 color: colorMap[orf.location[0].start], // for dev time only
-                numberOfFullShapesToDraw,
-                incompleteShapeType,
             }
         })
 };
@@ -121,11 +114,12 @@ class Line extends React.Component {
                  onMouseUp={this.mouseUpHandler(index, charsPerRow, true, selectionInProgress)}
                  onMouseMove={this.mouseUpHandler(index, charsPerRow, false, selectionInProgress)}>
                 <Sequence sequence={sequence} minusStrand={minusStrand} config={config}/>
-                <LineBpIndex startIndex={startIndex + 1} endIndex={startIndex + sequence.length} stepSize={10}
+                <LineBpIndex startIndex={startIndex + 1} endIndex={startIndex + sequence.length} stepSize={3}
                              minusStrand={minusStrand} offset={startIndex === 1 ? 30 : 0} config={config}/>
                 <Orf
-                    orfs={getOrfPositionInLine(startIndex, endIndex, this.props.orfs, charsPerRow, config.LETTER_FULL_WIDTH_SEQUENCE, config.LETTER_SPACING_SEQUENCE)}
+                    orfs={getOrfPositionInLine(startIndex, endIndex, this.props.orfs, config.LETTER_FULL_WIDTH_SEQUENCE, config.LETTER_SPACING_SEQUENCE)}
                     charsPerRow={charsPerRow}
+                    letterWidth={config.LETTER_FULL_WIDTH_SEQUENCE}
                     config={config}
                     minusStrand={minusStrand}
                 />
