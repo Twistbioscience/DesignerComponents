@@ -5,7 +5,7 @@ import {flipSequence} from '../utils/sequence';
 const getDx = length => {
   let res = '';
   for (let i = 0; i < length; i++) {
-    res += '3 ';
+    res += `3 `;
   }
   res = res.trim();
   return res;

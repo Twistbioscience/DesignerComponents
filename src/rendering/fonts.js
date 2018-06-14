@@ -1,9 +1,6 @@
 import {FONT_FAMILY} from 'constants';
 
 const getDx = count => {
-  if (count === 1) {
-    return undefined;
-  }
   let res = '';
   for (let i = 0; i < count; i++) {
     res += '3 ';
@@ -17,7 +14,7 @@ export function measureFontWidth(fontFamily, fontSize, letter) {
   text.setAttribute('font-family', fontFamily);
   text.setAttribute('font-size', fontSize);
   text.setAttribute('visibility', 'hidden');
-  if (letter && letter.length > 1) {
+  if (letter) {
     text.setAttribute('dx', getDx(letter.length));
   }
   text.setAttribute('text-anchor', 'start');
