@@ -1,6 +1,6 @@
 import React from 'react';
-import {RIGHT_PADDING, SCOLL_BAR_OFFSET} from '../constants';
-import {measureFontWidth} from '../rendering/fonts';
+import {RIGHT_PADDING, SCOLL_BAR_OFFSET, FONT_FAMILY} from '../constants';
+import {measureFontWidth, measureSpaceWidth} from '../rendering/fonts';
 
 export const WithConfigSetter = Component => {
   return class extends React.Component {
@@ -47,13 +47,13 @@ export const WithConfigSetter = Component => {
 
 export const getConfig = () => {
   const config = {};
-  const fontSize = measureFontWidth('Inconsolata', '12pt');
+  const fontSize = measureFontWidth(FONT_FAMILY, '12pt');
   const letterSpacing = 3;
   config.LETTER_WIDTH_SEQUENCE = fontSize.width;
   config.LETTER_HEIGHT_SEQUENCE = fontSize.height;
   config.LETTER_WIDTH_BP_INDEX_LABEL = measureFontWidth('Droid Sans Mono', '7pt').width;
   config.LETTER_SPACING_SEQUENCE = letterSpacing; // this could be calculated from letter width
-  config.LETTER_FULL_WIDTH_SEQUENCE = fontSize.width + letterSpacing;
+  config.LETTER_FULL_WIDTH_SEQUENCE = 11;
   config.BP_INDEX_HEIGHT = 25; //calculate dynamically
   return config;
 };

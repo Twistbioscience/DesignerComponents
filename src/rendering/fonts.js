@@ -1,3 +1,5 @@
+import {FONT_FAMILY} from 'constants';
+
 export function measureFontWidth(fontFamily, fontSize, letter) {
   var svgNS = 'http://www.w3.org/2000/svg';
   var svgRoot = document.createElementNS(svgNS, 'svg');
@@ -14,5 +16,5 @@ export function measureFontWidth(fontFamily, fontSize, letter) {
 }
 
 export function isFontLoaded() {
-  return measureFontWidth('Inconsolata', '12pt', 'w').width === measureFontWidth('Inconsolata', '12pt', 'i').width;
+  return measureFontWidth(FONT_FAMILY, '12pt', 'w').width === measureFontWidth(FONT_FAMILY, '12pt', 'i').width;
 }

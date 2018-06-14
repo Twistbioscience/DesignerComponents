@@ -1,13 +1,23 @@
 import React from 'react';
 import {LINE_PADDING_TOP} from '../constants';
 
-const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, offset = 0, config}) => {
-  const markers = [];
+const someVal = 0;
+const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, config}) => {
+  const markers = [
+    /* <line
+      x1={10 + 11 * (someVal - 0.25)}
+      x2={10 + 11 * (someVal - 0.25)}
+      y1={0}
+      y2={30}
+      stroke="#000000"
+      strokeWidth="1px"
+    /> */
+  ];
   const firstMarker = Math.ceil(startIndex / stepSize) * stepSize;
   const lastMarker = Math.floor(endIndex / stepSize) * stepSize;
   for (let marker = firstMarker; marker <= lastMarker; marker += stepSize) {
-    const pos =
-      (marker - startIndex + offset) * config.LETTER_FULL_WIDTH_SEQUENCE + config.LETTER_FULL_WIDTH_SEQUENCE / 2;
+    const offset = marker - startIndex;
+    const pos = 10 + (offset - 0.25) * 11;
     const lineStart = !minusStrand ? config.LETTER_HEIGHT_SEQUENCE + 5 : 2 * config.LETTER_HEIGHT_SEQUENCE + 5;
     const lineEnd = !minusStrand ? config.LETTER_HEIGHT_SEQUENCE + 10 : 2 * config.LETTER_HEIGHT_SEQUENCE + 10;
     const bpLabel = !minusStrand ? config.LETTER_HEIGHT_SEQUENCE + 20 : 2 * config.LETTER_HEIGHT_SEQUENCE + 20;
@@ -35,7 +45,11 @@ const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, offset = 0, c
       </text>
     );
   }
-  return <g height={20}>{markers}</g>;
+  return (
+    <g height={20} width={config.LETTER_FULL_WIDTH_SEQUENCE * (endIndex - startIndex + 1)}>
+      {markers}
+    </g>
+  );
 };
 
 export default LineBpIndex;
