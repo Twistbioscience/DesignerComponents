@@ -2,8 +2,8 @@
   {
     "location": [
       {
-        "start": 285,
-        "end": 400
+        "start": 200,
+        "end": 250
       }
     ],
     "startCodons": [
@@ -25,25 +25,31 @@
   {
     "location": [
       {
-        "start": 410,
-        "end": 1371
+        "start": 200,
+        "end": 220
       }
     ],
     "startCodons": [
       "ATG"
     ],
     "starters": [
-      1371
+      285,
+      336,
+      387,
+      48,
+      702,
+      738,
+      762
     ],
     "strand": "reverse",
-    "frame": -2,
+    "frame": 1,
     "color": "yellow"
   },
   {
     "location": [
       {
-        "start": 1050,
-        "end": 1080
+        "start": 200,
+        "end": 220
       }
     ],
     "startCodons": [
@@ -60,13 +66,13 @@
     ],
     "strand": "forward",
     "frame": 1,
-    "color": "blue"
+    "color": "red"
   },
   {
     "location": [
       {
-        "start": 300,
-        "end": 310
+        "start": 200,
+        "end": 220
       }
     ],
     "startCodons": [
@@ -81,15 +87,15 @@
       738,
       762
     ],
-    "strand": "forward",
+    "strand": "reverse",
     "frame": 1,
-    "color": "blue"
+    "color": "black"
   },
   {
     "location": [
       {
-        "start": 170,
-        "end": 180
+        "start": 200,
+        "end": 220
       }
     ],
     "startCodons": [
@@ -104,15 +110,15 @@
       738,
       762
     ],
-    "strand": "forward",
+    "strand": "reverse",
     "frame": 1,
-    "color": "blue"
+    "color": "black"
   },
   {
     "location": [
       {
-        "start": 170,
-        "end": 180
+        "start": 200,
+        "end": 220
       }
     ],
     "startCodons": [
@@ -127,31 +133,8 @@
       738,
       762
     ],
-    "strand": "forward",
+    "strand": "reverse",
     "frame": 1,
-    "color": "blue"
-  },
-  {
-    "location": [
-      {
-        "start": 170,
-        "end": 180
-      }
-    ],
-    "startCodons": [
-      "ATG"
-    ],
-    "starters": [
-      285,
-      336,
-      387,
-      48,
-      702,
-      738,
-      762
-    ],
-    "strand": "forward",
-    "frame": 1,
-    "color": "blue"
+    "color": "black"
   }
 ]
