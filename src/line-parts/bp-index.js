@@ -1,7 +1,7 @@
 import React from 'react';
 import {LINE_PADDING_TOP} from '../constants';
 
-const someVal = 0;
+//const someVal = 0;
 const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, config}) => {
   const markers = [
     /* <line
@@ -17,7 +17,7 @@ const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, config}) => {
   const lastMarker = Math.floor(endIndex / stepSize) * stepSize;
   for (let marker = firstMarker; marker <= lastMarker; marker += stepSize) {
     const offset = marker - startIndex;
-    const pos = 10 + (offset - 0.25) * 11;
+    const pos = config.FIRST_LETTER_WIDTH + (offset - 0.25) * config.OTHER_LETTERS_WIDTH;
     const lineStart = !minusStrand ? config.LETTER_HEIGHT_SEQUENCE + 5 : 2 * config.LETTER_HEIGHT_SEQUENCE + 5;
     const lineEnd = !minusStrand ? config.LETTER_HEIGHT_SEQUENCE + 10 : 2 * config.LETTER_HEIGHT_SEQUENCE + 10;
     const bpLabel = !minusStrand ? config.LETTER_HEIGHT_SEQUENCE + 20 : 2 * config.LETTER_HEIGHT_SEQUENCE + 20;
@@ -45,11 +45,7 @@ const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, config}) => {
       </text>
     );
   }
-  return (
-    <g height={20} width={config.LETTER_FULL_WIDTH_SEQUENCE * (endIndex - startIndex + 1)}>
-      {markers}
-    </g>
-  );
+  return <g height={20}>{markers}</g>;
 };
 
 export default LineBpIndex;

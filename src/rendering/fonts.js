@@ -1,5 +1,15 @@
 import {FONT_FAMILY} from 'constants';
 
+const getDx = count => {
+  if (count === 1) {
+    return undefined;
+  }
+  let res = '';
+  for (let i = 0; i < count; i++) {
+    res += '3 ';
+  }
+  return res;
+};
 export function measureFontWidth(fontFamily, fontSize, letter) {
   var svgNS = 'http://www.w3.org/2000/svg';
   var svgRoot = document.createElementNS(svgNS, 'svg');
@@ -7,6 +17,10 @@ export function measureFontWidth(fontFamily, fontSize, letter) {
   text.setAttribute('font-family', fontFamily);
   text.setAttribute('font-size', fontSize);
   text.setAttribute('visibility', 'hidden');
+  if (letter && letter.length > 1) {
+    text.setAttribute('dx', getDx(letter.length));
+  }
+  text.setAttribute('text-anchor', 'start');
   text.textContent = letter || 'A';
   svgRoot.appendChild(text);
   document.body.appendChild(svgRoot);

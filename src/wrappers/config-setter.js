@@ -47,13 +47,16 @@ export const WithConfigSetter = Component => {
 
 export const getConfig = () => {
   const config = {};
-  const fontSize = measureFontWidth(FONT_FAMILY, '12pt');
+  const oneLetter = measureFontWidth(FONT_FAMILY, '12pt', 'G');
+  const twoLetters = measureFontWidth(FONT_FAMILY, '12pt', 'GG');
   const letterSpacing = 3;
-  config.LETTER_WIDTH_SEQUENCE = fontSize.width;
-  config.LETTER_HEIGHT_SEQUENCE = fontSize.height;
+  config.LETTER_WIDTH_SEQUENCE = oneLetter.width;
+  config.LETTER_HEIGHT_SEQUENCE = oneLetter.height;
   config.LETTER_WIDTH_BP_INDEX_LABEL = measureFontWidth('Droid Sans Mono', '7pt').width;
   config.LETTER_SPACING_SEQUENCE = letterSpacing; // this could be calculated from letter width
   config.LETTER_FULL_WIDTH_SEQUENCE = 11;
+  config.FIRST_LETTER_WIDTH = oneLetter.width;
+  config.OTHER_LETTERS_WIDTH = twoLetters.width - oneLetter.width;
   config.BP_INDEX_HEIGHT = 25; //calculate dynamically
   return config;
 };
