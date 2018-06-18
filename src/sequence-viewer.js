@@ -39,6 +39,7 @@ export default class SequenceViewer extends React.Component {
           rowRenderer={rowRenderer({
             sequence: this.props.sequence,
             annotations: this.props.annotations,
+            restrictionSites: this.props.restrictionSites,
             charsPerRow: this.props.charsPerRow,
             minusStrand: this.props.minusStrand,
             onMouseDown: this.props.onMouseDown,

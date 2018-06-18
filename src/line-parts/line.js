@@ -4,8 +4,11 @@ import {
   ANNOTATION_GAP,
   LINE_PADDING_TOP,
   MINUS_STRAND_MARGIN,
-  ANNOTATION_PADDING_TOP
+  ANNOTATION_PADDING_TOP,
+  RESITE_VERT_PADDING,
+  RESITE_HOR_PADDING
 } from '../constants';
+import reSiteDefinitionsJson from '../re-site-definitions.json';
 import {getAnnotationLayer} from '../rendering/annotations';
 import LineBpIndex from './bp-index';
 import Sequence from './line-sequence';
@@ -40,6 +43,71 @@ class Line extends React.Component {
     const startIndex = charsPerRow * index;
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
     const endIndex = startIndex + sequence.length;
+    const restrictionSites = this.props.restrictionSites
+      .map(site => {
+        const width = RESITE_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
+        const height = (config.LETTER_HEIGHT_SEQUENCE + RESITE_VERT_PADDING) * (minusStrand ? 2 : 1);
+        const x = (site.startIndex - startIndex - 1) * config.LETTER_FULL_WIDTH_SEQUENCE - 1.5;
+        const y =
+          LINE_PADDING_TOP;
+        const points_1 = [
+          x,
+          y,
+          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y,
+          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + height / 2,
+          x + (site.cutIndex3_5 + site.overhang) * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + height / 2,
+          x + (site.cutIndex3_5 + site.overhang) * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + height,
+          x,
+          y + height
+        ].join(' ');
+        const points_2 = [
+          x + width,
+          y,
+          x + width,
+          y + height,
+          x + (site.cutIndex3_5 + site.overhang) * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + height,
+          x + (site.cutIndex3_5 + site.overhang) * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + height / 2,
+          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + height / 2,
+          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y
+        ].join(' ');
+        return (
+          <g>
+            <rect
+              x={x}
+              y={y}
+              height={height}
+              width={width}
+              fill="transparent"
+              stroke="red"
+              stroke-width="1"
+            />
+            <polygon
+              points={points_1}
+              x={x}
+              y={y}
+              fill="transparent"
+              stroke="blue"
+              stroke-width="1"
+            />
+            <polygon
+              points={points_2}
+              x={x}
+              y={y}
+              fill="transparent"
+              stroke="green"
+              stroke-width="1"
+            />
+          </g>
+        );
+      });
     const annotationsBottom = this.props.annotations
       .filter(
         annotation =>
@@ -123,6 +191,7 @@ class Line extends React.Component {
           config={config}
         />
         {annotationsBottom}
+        {restrictionSites}
         <rect
           height="2"
           y={style.height - 2}
