@@ -50,22 +50,12 @@ class Line extends React.Component {
         const x = (site.startIndex - startIndex - 1) * config.LETTER_FULL_WIDTH_SEQUENCE - 1.5;
         const y =
           LINE_PADDING_TOP;
-        const points_1_top = [
+        const points_1_half = [
           x,
           y,
-          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
+          x + (site.cutIndex3_5 + (site.direction === -1 ? site.overhang : 0)) * config.LETTER_FULL_WIDTH_SEQUENCE,
           y,
-          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
-          y + height,
-          x,
-          y + height
-        ].join(' ');
-        const points_1_bottom = [
-          x,
-          y,
-          x + (site.cutIndex3_5 + site.overhang) * config.LETTER_FULL_WIDTH_SEQUENCE,
-          y,
-          x + (site.cutIndex3_5 + site.overhang) * config.LETTER_FULL_WIDTH_SEQUENCE,
+          x + (site.cutIndex3_5 + (site.direction === -1 ? site.overhang : 0)) * config.LETTER_FULL_WIDTH_SEQUENCE,
           y + height,
           x,
           y + height
@@ -84,24 +74,14 @@ class Line extends React.Component {
           x,
           y + height
         ].join(' ');
-        const points_2_top = [
+        const points_2_half = [
           x + width,
           y,
           x + width,
           y + height,
-          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
+          x + (site.cutIndex3_5 + (site.direction === -1 ? site.overhang : 0)) * config.LETTER_FULL_WIDTH_SEQUENCE,
           y + height,
-          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
-          y
-        ].join(' ');
-        const points_2_bottom = [
-          x + width,
-          y,
-          x + width,
-          y + height,
-          x + (site.cutIndex3_5 + site.overhang) * config.LETTER_FULL_WIDTH_SEQUENCE,
-          y + height,
-          x + (site.cutIndex3_5 + site.overhang) * config.LETTER_FULL_WIDTH_SEQUENCE,
+          x + (site.cutIndex3_5 + (site.direction === -1 ? site.overhang : 0)) * config.LETTER_FULL_WIDTH_SEQUENCE,
           y
         ].join(' ');
         const points_2_full = [
@@ -124,7 +104,7 @@ class Line extends React.Component {
         return (
           <g key={`restriction-site-${index}`}>
             <polygon
-              points={minusStrand ? points_1_full : (site.direction === -1 ? points_1_bottom : points_1_top)}
+              points={minusStrand ? points_1_full : points_1_half}
               x={x}
               y={y}
               fill="transparent"
@@ -133,7 +113,7 @@ class Line extends React.Component {
               transform={site.direction === -1 ? rotate : "rotate(0)"}
             />
             <polygon
-              points={minusStrand ? points_2_full : (site.direction === -1 ? points_2_bottom : points_2_top)}
+              points={minusStrand ? points_2_full : points_2_half}
               x={x}
               y={y}
               fill="transparent"
