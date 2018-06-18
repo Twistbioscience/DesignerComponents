@@ -44,13 +44,18 @@ class Line extends React.Component {
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
     const endIndex = startIndex + sequence.length;
     const restrictionSites = this.props.restrictionSites
+      .filter(
+        site =>
+          (site.startIndex < startIndex && site.endIndex > startIndex) ||
+          (site.startIndex > startIndex && site.startIndex < startIndex + charsPerRow)
+      )
       .map((site, index) => {
         const width = RESITE_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
         const height = (config.LETTER_HEIGHT_SEQUENCE + RESITE_VERT_PADDING) * (minusStrand ? 2 : 1);
-        const x = (site.startIndex - startIndex - 1) * config.LETTER_FULL_WIDTH_SEQUENCE - 1.5;
+        const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE - 1.5;
         const y =
           LINE_PADDING_TOP;
-        const points_1_half = [
+        const pointsHalfStrand1 = [
           x,
           y,
           x + (site.cutIndex3_5 + (site.direction === -1 ? site.overhang : 0)) * config.LETTER_FULL_WIDTH_SEQUENCE,
@@ -60,7 +65,7 @@ class Line extends React.Component {
           x,
           y + height
         ].join(' ');
-        const points_1_full = [
+        const pointsFullStrand1 = [
           x,
           y,
           x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
@@ -74,7 +79,7 @@ class Line extends React.Component {
           x,
           y + height
         ].join(' ');
-        const points_2_half = [
+        const pointsHalfStrand2 = [
           x + width,
           y,
           x + width,
@@ -84,7 +89,7 @@ class Line extends React.Component {
           x + (site.cutIndex3_5 + (site.direction === -1 ? site.overhang : 0)) * config.LETTER_FULL_WIDTH_SEQUENCE,
           y
         ].join(' ');
-        const points_2_full = [
+        const pointsFullStrand2 = [
           x + width,
           y,
           x + width,
@@ -100,11 +105,13 @@ class Line extends React.Component {
         ].join(' ');
         const mid_x = x + width / 2;
         const mid_y = y + height / 2;
+        const overflowing = startIndex + charsPerRow < site.endIndex;
+        console.log(overflowing);
         const rotate = "rotate(180 " + mid_x.toString() + " " + mid_y.toString() + ")"
         return (
           <g key={`restriction-site-${index}`}>
             <polygon
-              points={minusStrand ? points_1_full : points_1_half}
+              points={minusStrand ? pointsFullStrand1 : pointsHalfStrand1}
               x={x}
               y={y}
               fill="transparent"
@@ -113,7 +120,7 @@ class Line extends React.Component {
               transform={site.direction === -1 ? rotate : "rotate(0)"}
             />
             <polygon
-              points={minusStrand ? points_2_full : points_2_half}
+              points={minusStrand ? pointsFullStrand2 : pointsHalfStrand2}
               x={x}
               y={y}
               fill="transparent"
