@@ -22,4 +22,4 @@ const getLayerCount = (checkOverlap) => (annotations, index) => {
 };
 
 export const getAnnotationLayer = getLayerCount((curr, prev) => curr.startIndex < prev.endIndex);
-export const getOrfLayer = getLayerCount((curr, prev) => curr.start < prev.end);
+export const getOrfLayer = getLayerCount((curr, prev) => curr.orfLineStart < prev.orfLineEnd);

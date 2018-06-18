@@ -23,7 +23,7 @@ const isOrfWithinLine = (orf, start, end) => orf.location[0].start <= end && orf
 
 export const getOrfPositionInLine = (lineStartIndex, lineEndIndex, orfs, charsPerRow, letterWidth) => {
     return orfs
-        .filter(orf => isOrfWithinLine(orf, lineStartIndex, lineEndIndex) && orf.strand === 'forward')
+        .filter(orf => isOrfWithinLine(orf, lineStartIndex, lineEndIndex))
         .map(orf => {
             const orfLineStart = Math.max(lineStartIndex, orf.location[0].start);
             const orfLineEnd = Math.min(lineEndIndex, orf.location[0].end);
@@ -70,7 +70,7 @@ class Line extends React.Component {
         const {charsPerRow, minusStrand, index, style, selection, selectionInProgress, config} = this.props;
         const startIndex = charsPerRow * index;
         const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
-        const endIndex = startIndex + sequence.length;
+        const endIndex = startIndex + sequence.length - 1;
         const annotationsBottom = this.props.annotations
             .filter(
                 annotation => (annotation.startIndex < startIndex && annotation.endIndex > startIndex) || (annotation.startIndex > startIndex && annotation.startIndex < startIndex + charsPerRow)
@@ -119,9 +119,11 @@ class Line extends React.Component {
                 <Orf
                     orfs={getOrfPositionInLine(startIndex, endIndex, this.props.orfs, config.LETTER_FULL_WIDTH_SEQUENCE, config.LETTER_SPACING_SEQUENCE)}
                     charsPerRow={charsPerRow}
+                    endIndex={endIndex}
                     letterWidth={config.LETTER_FULL_WIDTH_SEQUENCE}
                     config={config}
                     minusStrand={minusStrand}
+                    sequence={this.props.sequence}
                 />
 
                 {annotationsBottom}
