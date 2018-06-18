@@ -106,7 +106,6 @@ class Line extends React.Component {
         const mid_x = x + width / 2;
         const mid_y = y + height / 2;
         const overflowing = startIndex + charsPerRow < site.endIndex;
-        console.log(overflowing);
         const rotate = "rotate(180 " + mid_x.toString() + " " + mid_y.toString() + ")"
         return (
           <g key={`restriction-site-${index}`}>
