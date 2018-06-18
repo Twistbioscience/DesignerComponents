@@ -8,7 +8,6 @@ import {
   RESITE_VERT_PADDING,
   RESITE_HOR_PADDING
 } from '../constants';
-import reSiteDefinitionsJson from '../re-site-definitions.json';
 import {getAnnotationLayer} from '../rendering/annotations';
 import LineBpIndex from './bp-index';
 import Sequence from './line-sequence';
@@ -53,8 +52,7 @@ class Line extends React.Component {
         const width = RESITE_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
         const height = (config.LETTER_HEIGHT_SEQUENCE + RESITE_VERT_PADDING) * (minusStrand ? 2 : 1);
         const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE - 1.5;
-        const y =
-          LINE_PADDING_TOP;
+        const y = LINE_PADDING_TOP;
         const pointsHalfStrand1 = [
           x,
           y,
@@ -105,8 +103,7 @@ class Line extends React.Component {
         ].join(' ');
         const mid_x = x + width / 2;
         const mid_y = y + height / 2;
-        const overflowing = startIndex + charsPerRow < site.endIndex;
-        const rotate = "rotate(180 " + mid_x.toString() + " " + mid_y.toString() + ")"
+        const rotate = 'rotate(180 ' + mid_x.toString() + ' ' + mid_y.toString() + ')'
         return (
           <g key={`restriction-site-${index}`}>
             <polygon
@@ -116,7 +113,7 @@ class Line extends React.Component {
               fill="transparent"
               stroke={site.color}
               strokeWidth="1"
-              transform={site.direction === -1 ? rotate : "rotate(0)"}
+              transform={site.direction === -1 ? rotate : 'rotate(0)'}
             />
             <polygon
               points={minusStrand ? pointsFullStrand2 : pointsHalfStrand2}
@@ -125,7 +122,7 @@ class Line extends React.Component {
               fill="transparent"
               stroke={site.color}
               strokeWidth="1"
-              transform={site.direction === -1 ? rotate : "rotate(0)"}
+              transform={site.direction === -1 ? rotate : 'rotate(0)'}
             />
           </g>
         );
