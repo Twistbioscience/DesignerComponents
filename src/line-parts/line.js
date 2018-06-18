@@ -56,7 +56,17 @@ class Line extends React.Component {
           x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
           y,
           x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
-          y + height / 2,
+          y + height,
+          x,
+          y + height
+        ].join(' ');
+        const points_1_minus = [
+          x,
+          y,
+          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y,
+          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + (minusStrand ? height / 2 : height),
           x + (site.cutIndex3_5 + site.overhang) * config.LETTER_FULL_WIDTH_SEQUENCE,
           y + height / 2,
           x + (site.cutIndex3_5 + site.overhang) * config.LETTER_FULL_WIDTH_SEQUENCE,
@@ -65,6 +75,16 @@ class Line extends React.Component {
           y + height
         ].join(' ');
         const points_2 = [
+          x + width,
+          y,
+          x + width,
+          y + height,
+          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + height,
+          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y
+        ].join(' ');
+        const points_2_minus = [
           x + width,
           y,
           x + width,
@@ -90,7 +110,7 @@ class Line extends React.Component {
               stroke-width="1"
             />
             <polygon
-              points={points_1}
+              points={minusStrand ? points_1_minus : points_1}
               x={x}
               y={y}
               fill="transparent"
@@ -98,7 +118,7 @@ class Line extends React.Component {
               stroke-width="1"
             />
             <polygon
-              points={points_2}
+              points={minusStrand ? points_2_minus : points_2}
               x={x}
               y={y}
               fill="transparent"

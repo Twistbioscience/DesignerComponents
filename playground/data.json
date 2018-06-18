@@ -7,7 +7,8 @@
     {"startIndex": 24, "endIndex": 44, "name": "Annotation 4"}
   ],
   "restrictionSites": [
-    {"name": "BsaI", "startIndex": 128, "endIndex": 139, "overhang": 4, "cutIndex3_5": 7, "direction": 1},
-    {"name": "EcoRV", "startIndex": 154, "endIndex": 160, "overhang": 0, "cutIndex3_5": 3, "direction": -1}
+    {"name": "BsaI", "startIndex": 128, "endIndex": 138, "overhang": 4, "cutIndex3_5": 7, "direction": 1},
+    {"name": "EcoRV", "startIndex": 154, "endIndex": 159, "overhang": 0, "cutIndex3_5": 3, "direction": 1},
+    {"name": "HaeII", "startIndex": 240, "endIndex": 245, "overhang": -4, "cutIndex3_5": 5, "direction": 1}
   ]
 }
