@@ -98,6 +98,9 @@ class Line extends React.Component {
           x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
           y
         ].join(' ');
+        const mid_x = x + width / 2;
+        const mid_y = y + height / 2;
+        const rotate = "rotate(180 " + mid_x.toString() + " " + mid_y.toString() + ")"
         return (
           <g>
             <rect
@@ -116,14 +119,16 @@ class Line extends React.Component {
               fill="transparent"
               stroke="blue"
               stroke-width="1"
+              transform={site.direction === 1 ? "rotate(0)" : rotate}
             />
             <polygon
               points={minusStrand ? points_2_minus : points_2}
               x={x}
               y={y}
               fill="transparent"
-              stroke="green"
+              stroke="blue"
               stroke-width="1"
+              transform={site.direction === 1 ? "rotate(0)" : rotate}
             />
           </g>
         );
