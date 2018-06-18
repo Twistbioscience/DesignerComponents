@@ -1,6 +1,6 @@
 import React from 'react';
 import {RIGHT_PADDING, SCOLL_BAR_OFFSET, FONT_FAMILY} from '../constants';
-import {measureFontWidth, measureSpaceWidth} from '../rendering/fonts';
+import {measureFontWidth} from '../rendering/fonts';
 
 export const WithConfigSetter = Component => {
   return class extends React.Component {
