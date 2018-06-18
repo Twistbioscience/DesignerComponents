@@ -4,8 +4,11 @@ import {
   ANNOTATION_GAP,
   LINE_PADDING_TOP,
   MINUS_STRAND_MARGIN,
-  ANNOTATION_PADDING_TOP
+  ANNOTATION_PADDING_TOP,
+  RESITE_VERT_PADDING,
+  RESITE_HOR_PADDING
 } from '../constants';
+import reSiteDefinitionsJson from '../re-site-definitions.json';
 import {getAnnotationLayer} from '../rendering/annotations';
 import LineBpIndex from './bp-index';
 import Sequence from './line-sequence';
@@ -40,6 +43,93 @@ class Line extends React.Component {
     const startIndex = charsPerRow * index;
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
     const endIndex = startIndex + sequence.length;
+    const restrictionSites = this.props.restrictionSites
+      .filter(
+        site =>
+          (site.startIndex < startIndex && site.endIndex > startIndex) ||
+          (site.startIndex > startIndex && site.startIndex < startIndex + charsPerRow)
+      )
+      .map((site, index) => {
+        const width = RESITE_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
+        const height = (config.LETTER_HEIGHT_SEQUENCE + RESITE_VERT_PADDING) * (minusStrand ? 2 : 1);
+        const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE - 1.5;
+        const y =
+          LINE_PADDING_TOP;
+        const pointsHalfStrand1 = [
+          x,
+          y,
+          x + (site.cutIndex3_5 + (site.direction === -1 ? site.overhang : 0)) * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y,
+          x + (site.cutIndex3_5 + (site.direction === -1 ? site.overhang : 0)) * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + height,
+          x,
+          y + height
+        ].join(' ');
+        const pointsFullStrand1 = [
+          x,
+          y,
+          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y,
+          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + (minusStrand ? height / 2 : height),
+          x + (site.cutIndex3_5 + site.overhang) * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + height / 2,
+          x + (site.cutIndex3_5 + site.overhang) * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + height,
+          x,
+          y + height
+        ].join(' ');
+        const pointsHalfStrand2 = [
+          x + width,
+          y,
+          x + width,
+          y + height,
+          x + (site.cutIndex3_5 + (site.direction === -1 ? site.overhang : 0)) * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + height,
+          x + (site.cutIndex3_5 + (site.direction === -1 ? site.overhang : 0)) * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y
+        ].join(' ');
+        const pointsFullStrand2 = [
+          x + width,
+          y,
+          x + width,
+          y + height,
+          x + (site.cutIndex3_5 + site.overhang) * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + height,
+          x + (site.cutIndex3_5 + site.overhang) * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + height / 2,
+          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y + height / 2,
+          x + site.cutIndex3_5 * config.LETTER_FULL_WIDTH_SEQUENCE,
+          y
+        ].join(' ');
+        const mid_x = x + width / 2;
+        const mid_y = y + height / 2;
+        const overflowing = startIndex + charsPerRow < site.endIndex;
+        const rotate = "rotate(180 " + mid_x.toString() + " " + mid_y.toString() + ")"
+        return (
+          <g key={`restriction-site-${index}`}>
+            <polygon
+              points={minusStrand ? pointsFullStrand1 : pointsHalfStrand1}
+              x={x}
+              y={y}
+              fill="transparent"
+              stroke={site.color}
+              strokeWidth="1"
+              transform={site.direction === -1 ? rotate : "rotate(0)"}
+            />
+            <polygon
+              points={minusStrand ? pointsFullStrand2 : pointsHalfStrand2}
+              x={x}
+              y={y}
+              fill="transparent"
+              stroke={site.color}
+              strokeWidth="1"
+              transform={site.direction === -1 ? rotate : "rotate(0)"}
+            />
+          </g>
+        );
+      });
     const annotationsBottom = this.props.annotations
       .filter(
         annotation =>
@@ -123,6 +213,7 @@ class Line extends React.Component {
           config={config}
         />
         {annotationsBottom}
+        {restrictionSites}
         <rect
           height="2"
           y={style.height - 2}

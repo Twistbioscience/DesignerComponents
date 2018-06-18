@@ -13,6 +13,7 @@ import {getAnnotationLayer} from './annotations';
 export const rowRenderer = ({
   sequence,
   annotations,
+  restrictionSites,
   charsPerRow,
   minusStrand,
   onMouseDown,
@@ -31,6 +32,7 @@ export const rowRenderer = ({
     <Line
       sequence={sequence}
       annotations={annotations}
+      restrictionSites={restrictionSites}
       style={style}
       charsPerRow={charsPerRow}
       minusStrand={minusStrand}
