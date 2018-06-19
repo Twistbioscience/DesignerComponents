@@ -17,7 +17,7 @@ const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, config}) => {
   const lastMarker = Math.floor(endIndex / stepSize) * stepSize;
   for (let marker = firstMarker; marker <= lastMarker; marker += stepSize) {
     const offset = marker - startIndex;
-    const pos = config.FIRST_LETTER_WIDTH + (offset - 0.25) * config.OTHER_LETTERS_WIDTH;
+    const pos = config.LETTER_WIDTH_SEQUENCE + (offset - 0.25) * config.LETTER_WIDTH_SEQUENCE;
     const lineStart = !minusStrand ? config.LETTER_HEIGHT_SEQUENCE + 5 : 2 * config.LETTER_HEIGHT_SEQUENCE + 5;
     const lineEnd = !minusStrand ? config.LETTER_HEIGHT_SEQUENCE + 10 : 2 * config.LETTER_HEIGHT_SEQUENCE + 10;
     const bpLabel = !minusStrand ? config.LETTER_HEIGHT_SEQUENCE + 20 : 2 * config.LETTER_HEIGHT_SEQUENCE + 20;
