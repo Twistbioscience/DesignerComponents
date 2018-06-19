@@ -119,7 +119,6 @@ class Line extends React.Component {
           endIndex={startIndex + sequence.length}
           stepSize={10}
           minusStrand={minusStrand}
-          offset={startIndex === 1 ? 30 : 0}
           config={config}
         />
         {annotationsBottom}
