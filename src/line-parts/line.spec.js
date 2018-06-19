@@ -6,7 +6,7 @@ import 'jest-dom/extend-expect';
 
 describe('Line', () => {
   const config = {
-    LETTER_FULL_WIDTH_SEQUENCE: 13,
+    LETTER_FULL_WIDTH_SEQUENCE: 10.703125,
     LETTER_HEIGHT_SEQUENCE: 17,
     LETTER_WIDTH_BP_INDEX_LABEL: 8
   };

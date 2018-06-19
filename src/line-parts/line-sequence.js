@@ -4,9 +4,19 @@ import {
   MINUS_STRAND_MARGIN,
   LINE_PADDING_TOP,
   RESITE_BOX_HOR_PADDING,
-  RESITE_BOX_VERT_PADDING
+  RESITE_BOX_VERT_PADDING,
+  FONT_FAMILY
 } from '../constants';
 import {flipSequence} from '../utils/sequence';
+
+const getDx = length => {
+  let res = '';
+  for (let i = 0; i < length; i++) {
+    res += `3 `;
+  }
+  res = res.trim();
+  return res;
+};
 
 const Sequence = ({sequence, config, minusStrand, restrictionSites, startIndex, endIndex, charsPerRow, annotationsTopHeight}) => {
   const restrictionSiteBoxes = restrictionSites
@@ -91,13 +101,14 @@ const Sequence = ({sequence, config, minusStrand, restrictionSites, startIndex, 
     });
 
   return (
-    <g>
+    <g width={config.LETTER_FULL_WIDTH_SEQUENCE * sequence.length}>
       <text
         y={annotationsTopHeight + config.LETTER_HEIGHT_SEQUENCE + LINE_PADDING_TOP}
-        fontFamily="Inconsolata"
+        fontFamily={FONT_FAMILY}
         fontSize="12pt"
         fill="#000000"
-        letterSpacing={config.LETTER_SPACING_SEQUENCE}>
+        text-anchor="start"
+        dx={getDx(sequence.length)}>
         {sequence}
       </text>
       {restrictionSiteBoxes}
@@ -105,9 +116,10 @@ const Sequence = ({sequence, config, minusStrand, restrictionSites, startIndex, 
         <text
           x="0"
           y={annotationsTopHeight + config.LETTER_HEIGHT_SEQUENCE * 2 + MINUS_STRAND_MARGIN + LINE_PADDING_TOP}
-          fontFamily="Inconsolata"
+          fontFamily={FONT_FAMILY}
           fontSize="12pt"
-          letterSpacing={config.LETTER_SPACING_SEQUENCE}
+          text-anchor="start"
+          dx={getDx(sequence.length)}
           fill="#808080">
           {flipSequence(charMap, sequence)}
         </text>

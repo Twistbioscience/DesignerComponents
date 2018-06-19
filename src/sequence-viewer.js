@@ -50,7 +50,6 @@ export default class SequenceViewer extends React.Component {
             config: this.props.config
           })}
         />
-        {this.props.clickedIndex && <pre>{this.props.clickedIndex}</pre>}
       </div>
     );
   }
