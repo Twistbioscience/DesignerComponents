@@ -29,9 +29,10 @@ const Sequence = ({
   annotationsTopHeight
 }) => {
   const restrictionSiteBoxes = restrictionSites.map((site, index) => {
+    console.log(site);
     const width = RESITE_BOX_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
     const height = (config.LETTER_HEIGHT_SEQUENCE + RESITE_BOX_VERT_PADDING) * (minusStrand ? 2 : 1);
-    const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE + 2;
+    const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE + 1;
     const y = annotationsTopHeight + LINE_PADDING_TOP;
     const pointsHalfStrand1 = [
       x,
