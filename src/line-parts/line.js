@@ -36,16 +36,7 @@ class Line extends React.Component {
   }
 
   render() {
-    const {
-      charsPerRow,
-      minusStrand,
-      index,
-      style,
-      selection,
-      selectionInProgress,
-      config,
-      startAdapterLength
-    } = this.props;
+    const {charsPerRow, minusStrand, index, style, selection, selectionInProgress, config} = this.props;
     const startIndex = charsPerRow * index;
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
     const endIndex = startIndex + sequence.length;
