@@ -48,7 +48,6 @@ class Line extends React.Component {
     const annotationsTopHeight = getResiteLabelsContainerHeight(restrictionSites);
     const maxLayer = restrictionSites
       .map((site, index, arr) => {
-        console.log(getResiteLayer(arr, index));
         return getResiteLayer(arr, index)
       })
       .reduce((layers, annotation, currIndex, arr) => {
@@ -57,14 +56,14 @@ class Line extends React.Component {
     const filteredRestrictionSites = this.props.restrictionSites
       .filter(
         site =>
-          (site.startIndex < startIndex && site.endIndex > startIndex) ||
+          (site.startIndex <= startIndex && site.endIndex > startIndex) ||
           (site.startIndex > startIndex && site.startIndex < startIndex + charsPerRow)
       );
     const annotationsTop = filteredRestrictionSites
       .map((site, index, arr) => {
         const layer = getAnnotationLayer(arr, index);
         const width = RESITE_BOX_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
-        const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE - 1.5;
+        const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE + 1;
         const y =
           layer * (1 + RESITE_LABEL_GAP) +
           LINE_PADDING_TOP;
