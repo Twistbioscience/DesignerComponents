@@ -95,12 +95,12 @@ class Line extends React.Component {
     const getRect = () => {
       const startX =
         selection.startIndex && selection.startIndex > startIndex
-          ? (selection.startIndex - startIndex) * config.LETTER_WIDTH_SEQUENCE
+          ? (selection.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE
           : 0;
       const endX = selection.endIndex
         ? selection.endIndex < endIndex
-          ? (selection.endIndex - startIndex) * config.LETTER_WIDTH_SEQUENCE
-          : (endIndex - startIndex) * config.LETTER_WIDTH_SEQUENCE
+          ? (selection.endIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE
+          : (endIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE
         : -1;
       return {x: startX, wdt: endX - startX};
     };
@@ -109,7 +109,7 @@ class Line extends React.Component {
     return (
       <svg
         style={style}
-        width={config.LETTER_WIDTH_SEQUENCE * charsPerRow}
+        width={config.LETTER_FULL_WIDTH_SEQUENCE * charsPerRow}
         onMouseDown={this.mouseDownHandler(index, charsPerRow)}
         onMouseUp={this.mouseUpHandler(index, charsPerRow, true, selectionInProgress)}
         onMouseMove={this.mouseUpHandler(index, charsPerRow, false, selectionInProgress)}>
@@ -125,7 +125,7 @@ class Line extends React.Component {
         <rect
           height="2"
           y={style.height - 2}
-          width={config.LETTER_WIDTH_SEQUENCE * charsPerRow}
+          width={config.LETTER_FULL_WIDTH_SEQUENCE * charsPerRow}
           style={{fill: '#000000'}}
         />
         {selectionRect.wdt > 0 && (
