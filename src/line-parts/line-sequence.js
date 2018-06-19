@@ -3,22 +3,18 @@ import {
   charMap,
   MINUS_STRAND_MARGIN,
   LINE_PADDING_TOP,
-  RESITE_HOR_PADDING,
-  RESITE_VERT_PADDING
+  RESITE_BOX_HOR_PADDING,
+  RESITE_BOX_VERT_PADDING
 } from '../constants';
 import {flipSequence} from '../utils/sequence';
-const Sequence = ({sequence, config, minusStrand, restrictionSites, startIndex, endIndex, charsPerRow}) => {
+
+const Sequence = ({sequence, config, minusStrand, restrictionSites, startIndex, endIndex, charsPerRow, annotationsTopHeight}) => {
   const restrictionSiteBoxes = restrictionSites
-    .filter(
-      site =>
-        (site.startIndex < startIndex && site.endIndex > startIndex) ||
-        (site.startIndex > startIndex && site.startIndex < startIndex + charsPerRow)
-    )
     .map((site, index) => {
-      const width = RESITE_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
-      const height = (config.LETTER_HEIGHT_SEQUENCE + RESITE_VERT_PADDING) * (minusStrand ? 2 : 1);
+      const width = RESITE_BOX_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
+      const height = (config.LETTER_HEIGHT_SEQUENCE + RESITE_BOX_VERT_PADDING) * (minusStrand ? 2 : 1);
       const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE - 1.5;
-      const y = LINE_PADDING_TOP;
+      const y = annotationsTopHeight + LINE_PADDING_TOP;
       const pointsHalfStrand1 = [
         x,
         y,
@@ -93,10 +89,11 @@ const Sequence = ({sequence, config, minusStrand, restrictionSites, startIndex, 
         </g>
       );
     });
+
   return (
     <g>
       <text
-        y={config.LETTER_HEIGHT_SEQUENCE + LINE_PADDING_TOP}
+        y={annotationsTopHeight + config.LETTER_HEIGHT_SEQUENCE + LINE_PADDING_TOP}
         fontFamily="Inconsolata"
         fontSize="12pt"
         fill="#000000"
@@ -107,7 +104,7 @@ const Sequence = ({sequence, config, minusStrand, restrictionSites, startIndex, 
       {minusStrand && (
         <text
           x="0"
-          y={config.LETTER_HEIGHT_SEQUENCE * 2 + MINUS_STRAND_MARGIN + LINE_PADDING_TOP}
+          y={annotationsTopHeight + config.LETTER_HEIGHT_SEQUENCE * 2 + MINUS_STRAND_MARGIN + LINE_PADDING_TOP}
           fontFamily="Inconsolata"
           fontSize="12pt"
           letterSpacing={config.LETTER_SPACING_SEQUENCE}

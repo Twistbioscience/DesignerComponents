@@ -23,6 +23,7 @@ export default class SequenceViewer extends React.Component {
     const rowHeightFunc = getRowHeight(
       this.props.charsPerRow,
       this.props.annotations,
+      this.props.restrictionSites,
       this.props.minusStrand,
       this.props.config
     );

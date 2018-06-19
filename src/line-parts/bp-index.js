@@ -1,7 +1,7 @@
 import React from 'react';
 import {LINE_PADDING_TOP} from '../constants';
 
-const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, offset = 0, config}) => {
+const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, offset = 0, config, annotationsTopHeight}) => {
   const markers = [];
   const firstMarker = Math.ceil(startIndex / stepSize) * stepSize;
   const lastMarker = Math.floor(endIndex / stepSize) * stepSize;
@@ -16,8 +16,8 @@ const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, offset = 0, c
         key={`bp-line-${marker}`}
         x1={pos}
         x2={pos}
-        y1={lineStart + LINE_PADDING_TOP}
-        y2={lineEnd + LINE_PADDING_TOP}
+        y1={lineStart + LINE_PADDING_TOP + annotationsTopHeight}
+        y2={lineEnd + LINE_PADDING_TOP + annotationsTopHeight}
         shapeRendering="crispEdges"
         stroke="#000000"
         strokeWidth="1px"
@@ -29,7 +29,7 @@ const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, offset = 0, c
         fontFamily="Droid Sans Mono"
         fontSize="7pt"
         fill="#4a4a4a"
-        y={bpLabel + LINE_PADDING_TOP}
+        y={bpLabel + LINE_PADDING_TOP + annotationsTopHeight}
         x={pos - (marker.toString().length * config.LETTER_WIDTH_BP_INDEX_LABEL) / 2}>
         {marker}
       </text>
