@@ -48,8 +48,6 @@ class Line extends React.Component {
     const annotationsTopHeight = getResiteLabelsContainerHeight(restrictionSites);
     const maxLayer = restrictionSites
       .map((site, index, arr) => {
-        console.log(site);
-        console.log(getResiteLayer(arr, index));
         return getResiteLayer(arr, index)
       })
       .reduce((layers, annotation, currIndex, arr) => {
