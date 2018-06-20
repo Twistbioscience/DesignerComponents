@@ -1,39 +1,34 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import sequenceEditorData from './data.json';
 import orfs from './orfs.json';
-import { detectOrfs } from '../src/utils/sequence';
-import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer'
-import { hot } from 'react-hot-loader'
-import {DesignerComponentsViewer} from '../src/index'
-import {DesignerComponents} from '../src/index'
-
+import {detectOrfs} from '../src/utils/sequence';
+import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
+import {hot} from 'react-hot-loader';
+import {DesignerComponentsViewer} from '../src/index';
+import {DesignerComponents} from '../src/index';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-      {
-        this.state.show 
-        ? <AutoSizer>
-          {
-            ({ width }) =>
-            <div>
-              <DesignerComponents
-                  sequence={ sequenceEditorData.text }
-                  annotations={ sequenceEditorData.annotations }
-                  orfs={ this.state.orfs }
-/*
-                  orfs={ orfs }
-*/
-                  minusStrand={ this.state.minusStrand }
-                  width={ width } />
-              <button onClick={ this.toggleMinusStrand }>Toggle minus strand</button>
-            </div>
-            
-          }
-        </AutoSizer>
-        : <div>Loading...</div>
-      }
+        {this.state.show ? (
+          <AutoSizer>
+            {({width}) => (
+              <div>
+                <DesignerComponents
+                  sequence={sequenceEditorData.text}
+                  annotations={sequenceEditorData.annotations}
+                  orfs={this.state.orfs}
+                  minusStrand={this.state.minusStrand}
+                  width={width}
+                />
+                <button onClick={this.toggleMinusStrand}>Toggle minus strand</button>
+              </div>
+            )}
+          </AutoSizer>
+        ) : (
+          <div>Loading...</div>
+        )}
       </div>
     );
   }
@@ -47,19 +42,16 @@ class App extends Component {
       annotations: [],
       minusStrand: false
     };
-
   }
   componentWillMount() {
     setTimeout(() => {
-      this.setState({ show:true, orfs: detectOrfs({ sequence: sequenceEditorData.text.toUpperCase() })})
+      this.setState({show: true, orfs: detectOrfs({sequence: sequenceEditorData.text.toUpperCase()})});
     }, 0);
   }
 
   toggleMinusStrand() {
-    this.setState({ minusStrand: !this.state.minusStrand });
+    this.setState({minusStrand: !this.state.minusStrand});
   }
 }
 
 export default hot(module)(App);
-
-
