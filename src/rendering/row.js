@@ -7,9 +7,8 @@ import {
   LINE_PADDING_BOTTOM
 } from '../constants';
 
-import Line from '../line-parts/line';
 import {getAnnotationLayer, getOrfLayer} from './annotations';
-import {getOrfPositionInLine} from '../line-parts/line';
+import Line, {getOrfPositionInLine} from '../line-parts/line';
 
 export const rowRenderer = ({
   sequence,
@@ -47,7 +46,6 @@ export const rowRenderer = ({
     />
   );
 };
-
 const getAnnotationsHeight = (annotations, startIndex, charsPerRow) => {
   const layerCount = annotations
     .filter(

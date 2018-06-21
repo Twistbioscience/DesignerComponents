@@ -37,6 +37,14 @@ export const findMatches = (base, pattern, tripletSearch) => {
 
   return result;
 };
+export const getReverseComplement = seq =>
+  flipSequence(
+    charMap,
+    seq
+      .split('')
+      .reverse()
+      .join('')
+  );
 
 export const detectOrfs = ({sequence = '', startCodons = ['ATG'], minAALength = MIN_ORF_SIZE}) => {
   const complementSequence = flipSequence(charMap, sequence);

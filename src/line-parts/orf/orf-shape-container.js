@@ -1,4 +1,5 @@
 import React from 'react';
+import {getReverseComplement} from '../../utils/sequence';
 
 const FORWARD = 'forward';
 const REVERSE = 'reverse';
@@ -6,6 +7,7 @@ const REVERSE = 'reverse';
 const START = 'start';
 const END = 'end';
 const FULL = 'full';
+const DEFAULT_LETTER_SPACING = 25;
 
 const strandToPathMap = {
   [FORWARD]: {
@@ -37,25 +39,118 @@ const orfTypeWidthMap = {
   1: 22,
   0: 33
 };
+
 const OrfShapeItem = ({x, y, color, d}) => {
   return <path fill={color} stroke="#bfbfbf" fillOpacity="0.1" d={d} transform={`translate(${x}, ${y})`} />;
 };
 
-const translationTable = {
+const aminoAcidTranslationTable = {
+  TTT: 'F',
+  TTC: 'F',
+  TTA: 'L',
+  TTG: 'L',
+  CTT: 'L',
+  CTC: 'L',
+  CTA: 'L',
+  CTG: 'L',
+  ATT: 'I',
+  ATC: 'I',
+  ATA: 'I',
+  ATG: 'M',
+  GTT: 'V',
+  GTC: 'V',
+  GTA: 'V',
+  GTG: 'V',
+  TCT: 'S',
+  TCC: 'S',
+  TCA: 'S',
+  TCG: 'S',
+  AGT: 'S',
+  AGC: 'S',
+  CCT: 'P',
+  CCC: 'P',
+  CCA: 'P',
+  CCG: 'P',
+  ACT: 'T',
+  ACC: 'T',
+  ACA: 'T',
+  ACG: 'T',
+  GCT: 'A',
+  GCC: 'A',
+  GCA: 'A',
+  GCG: 'A',
+  TAT: 'Y',
+  TAC: 'Y',
+  TAA: '*',
+  TAG: '*',
+  TGA: '*',
+  CAT: 'H',
+  CAC: 'H',
+  CAA: 'Q',
+  CAG: 'Q',
+  AAT: 'N',
+  AAC: 'N',
+  AAA: 'K',
   AAG: 'K',
-  ATG: 'K'
+  GAT: 'D',
+  GAC: 'D',
+  GAA: 'E',
+  GAG: 'E',
+  TGT: 'C',
+  TGC: 'C',
+  TGG: 'W',
+  CGT: 'R',
+  CGC: 'R',
+  CGA: 'R',
+  CGG: 'R',
+  AGA: 'R',
+  AGG: 'R',
+  GGT: 'G',
+  GGC: 'G',
+  GGA: 'G',
+  GGG: 'G'
+};
+
+const getAminoAcidByTriplet = (triplet, strand) => {
+  return {
+    [FORWARD]: aminoAcidTranslationTable[triplet],
+    [REVERSE]: aminoAcidTranslationTable[getReverseComplement(triplet)]
+  }[strand];
 };
 
 const aaLetterStartPosition = {
-  2: '26px',
-  1: '9px'
+  2: '27px',
+  1: '10px',
+  0: '16px'
 };
-const AALetters = ({textChunks, x, y, firstBrickType, lastBrickType}) => {
+
+const aaLetterEndPosition = {
+  2: DEFAULT_LETTER_SPACING,
+  1: '20px',
+  0: DEFAULT_LETTER_SPACING
+};
+
+const calculateAALetterDx = (arr, index, lastBrickType, firstBrickType) => {
+  if (index === arr.length - 1) {
+    return aaLetterEndPosition[lastBrickType];
+  }
+
+  if (index === 1 && firstBrickType === 1) {
+    return '20px';
+  }
+
+  if (index > 0) {
+    return DEFAULT_LETTER_SPACING;
+  }
+
+  return aaLetterStartPosition[firstBrickType];
+};
+const AALetters = ({textChunks, x, y, firstBrickType, lastBrickType, strand}) => {
   return (
     <text x={x} y={y + 12} fontFamily="Inconsolata" fontSize="16px">
-      {textChunks.map((chunk, index) => (
-        <tspan dx={index > 0 ? '25px' : aaLetterStartPosition[firstBrickType] || '16px'}>
-          {translationTable[chunk] || 'K'}
+      {textChunks.map((chunk, index, arr) => (
+        <tspan dx={calculateAALetterDx(arr, index, lastBrickType, firstBrickType)}>
+          {getAminoAcidByTriplet(chunk, strand)}
         </tspan>
       ))}
     </text>
@@ -106,6 +201,7 @@ const OrfShapeContainer = ({start, firstBrickType, lastBrickType, fullBricks, st
         y={y}
         firstBrickType={firstBrickType}
         lastBrickType={lastBrickType}
+        strand={strand}
       />
     </g>
   );
