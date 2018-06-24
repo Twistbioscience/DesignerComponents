@@ -7,9 +7,10 @@ export const LINE_PADDING_TOP = 4;
 export const LINE_PADDING_BOTTOM = 2;
 export const RIGHT_PADDING = 12;
 export const FONT_FAMILY = 'Inconsolata';
+export const RESITE_FONT_SIZE = '8pt';
 export const RESITE_BOX_VERT_PADDING = 5;
 export const RESITE_BOX_HOR_PADDING = 0.5;
-export const RESITE_LABEL_GAP = 6;
+export const RESITE_LABEL_GAP = 9;
 
 export const charMap = {
   A: 'T',

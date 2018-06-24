@@ -32,6 +32,7 @@ const Sequence = ({
   const restrictionSiteBoxes = restrictionSites.map((site, index) => {
     return (
       <RestrictionSiteBox
+        key={'resite-box-' + startIndex + '-' + site.name + '-'  + site.startIndex.toString()}
         site={site}
         index={index}
         minusStrand={minusStrand}

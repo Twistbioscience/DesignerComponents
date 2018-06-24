@@ -63,6 +63,7 @@ class Line extends React.Component {
       .map((site, index, arr) => {
         return (
           <RestrictionSiteLabel
+            key={'resite-label-' + startIndex + '-' + site.name + '-'  + site.startIndex.toString()}
             site={site}
             index={index}
             arr={arr}

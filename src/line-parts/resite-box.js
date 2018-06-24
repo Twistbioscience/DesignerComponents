@@ -61,7 +61,7 @@ const RestrictionSiteBox = ({site, index, config, minusStrand, startIndex, endIn
   const mid_y = y + height / 2;
   const rotate = 'rotate(180 ' + mid_x.toString() + ' ' + mid_y.toString() + ')';
   return (
-    <g key={`restriction-site-${index}`}>
+    <g key={`restriction-site-box`}>
       <polygon
         points={minusStrand ? pointsFullStrand1 : pointsHalfStrand1}
         x={x}
