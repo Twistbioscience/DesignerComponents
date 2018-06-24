@@ -1,3 +1,5 @@
+// @flow
+
 export const getAnnotationLayer = (annotations, index) => {
   const annotation = annotations[index];
   let layer = 1;
