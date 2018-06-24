@@ -8,9 +8,7 @@ import {
 } from '../constants';
 
 import Line from '../line-parts/line';
-import {getAnnotationLayer} from './annotations';
-import {getResiteLabelsContainerHeight} from './resite-labels';
-
+import {getAnnotationLayer, getAnnotationsTopHeight, getAnnotationsBottomHeight} from './annotations';
 
 export const rowRenderer = ({
   sequence,
@@ -51,20 +49,10 @@ export const rowRenderer = ({
 
 export const getRowHeight = (charsPerRow, annotations = [], restrictionSites = [], showMinusStrand, config) => ({index}) => {
   const startIndex = charsPerRow * index;
-  const layerCount = annotations
-    .filter(
-      annotation =>
-        (annotation.startIndex < startIndex && annotation.endIndex > startIndex) ||
-        (annotation.startIndex > startIndex && annotation.startIndex < startIndex + charsPerRow)
-    )
-    .reduce((layers, annotation, currIndex, arr) => {
-      return Math.max(layers, getAnnotationLayer(arr, currIndex));
-    }, 0);
-  const resiteLabelsContainerHeight = getResiteLabelsContainerHeight(restrictionSites);
-  const annotationContainerHeight =
-    layerCount > 0 ? layerCount * (ANNOTATION_GAP + ANNOTATION_HEIGHT) + ANNOTATION_PADDING_TOP : 0;
+  const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
+  const annotationsBottomHeight = getAnnotationsBottomHeight(annotations, startIndex, charsPerRow);
   const sequenceHeight = showMinusStrand
     ? config.LETTER_HEIGHT_SEQUENCE * 2 + MINUS_STRAND_MARGIN
     : config.LETTER_HEIGHT_SEQUENCE;
-  return resiteLabelsContainerHeight + sequenceHeight + annotationContainerHeight + LINE_PADDING_BOTTOM + LINE_PADDING_TOP + config.BP_INDEX_HEIGHT;
+  return annotationsTopHeight + sequenceHeight + annotationsBottomHeight + LINE_PADDING_BOTTOM + LINE_PADDING_TOP + config.BP_INDEX_HEIGHT;
 };

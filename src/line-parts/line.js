@@ -9,11 +9,11 @@ import {
   RESITE_BOX_HOR_PADDING,
   RESITE_LABEL_GAP
 } from '../constants';
-import {getAnnotationLayer, getResiteLayer} from '../rendering/annotations';
-import {getResiteLabelsContainerHeight} from '../rendering/resite-labels';
+import {getAnnotationLayer, getResiteLayer, getAnnotationsTopHeight} from '../rendering/annotations';
 import LineBpIndex from './bp-index';
 import Sequence from './line-sequence';
 import Selection from './selection';
+import RestrictionSiteLabel from './resite-label';
 
 class Line extends React.Component {
   constructor() {
@@ -45,13 +45,13 @@ class Line extends React.Component {
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
     const endIndex = startIndex + sequence.length;
     const restrictionSites = this.props.restrictionSites;
-    const annotationsTopHeight = getResiteLabelsContainerHeight(restrictionSites);
-    const maxLayer = restrictionSites
+    const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
+    const maxResiteLayer = restrictionSites
       .map((site, index, arr) => {
         return getResiteLayer(arr, index)
       })
-      .reduce((layers, annotation, currIndex, arr) => {
-        return Math.max(layers, getResiteLayer(arr, currIndex));
+      .reduce((maxLayer, currentLayer) => {
+        return Math.max(maxLayer, currentLayer);
       });
     const filteredRestrictionSites = this.props.restrictionSites
       .filter(
@@ -61,21 +61,15 @@ class Line extends React.Component {
       );
     const annotationsTop = filteredRestrictionSites
       .map((site, index, arr) => {
-        const layer = getAnnotationLayer(arr, index);
-        const width = RESITE_BOX_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
-        const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE + 1;
-        const y =
-          layer * (1 + RESITE_LABEL_GAP) +
-          LINE_PADDING_TOP;
         return (
-          <g key={`resite-label-${index}`}>
-            <path
-              d={'M ' + x.toString() + ' ' + y.toString() + 'H ' + (x + width).toString()}
-              fill={site.color}
-              stroke={site.color}
-              strokeWidth="1"
-            />
-          </g>
+          <RestrictionSiteLabel
+            site={site}
+            index={index}
+            arr={arr}
+            config={config}
+            startIndex={startIndex}
+            maxResiteLayer={maxResiteLayer}
+          />
         );
       });
     const annotationsBottom = this.props.annotations
