@@ -1,3 +1,5 @@
+// @flow
+
 const getLayerCount = checkOverlap => (annotations = [], index) =>
   annotations
     .slice(0, index)
