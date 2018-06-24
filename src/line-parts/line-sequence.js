@@ -115,7 +115,7 @@ const Sequence = ({
         fontFamily={FONT_FAMILY}
         fontSize="12pt"
         fill="#000000"
-        text-anchor="start"
+        textAnchor="start"
         dx={getDx(sequence.length)}>
         {sequence}
       </text>
@@ -126,7 +126,7 @@ const Sequence = ({
           y={annotationsTopHeight + config.LETTER_HEIGHT_SEQUENCE * 2 + MINUS_STRAND_MARGIN + LINE_PADDING_TOP}
           fontFamily={FONT_FAMILY}
           fontSize="12pt"
-          text-anchor="start"
+          textAnchor="start"
           dx={getDx(sequence.length)}
           fill="#808080">
           {flipSequence(charMap, sequence)}
