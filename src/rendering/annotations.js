@@ -4,7 +4,8 @@ import {
   ANNOTATION_HEIGHT,
   ANNOTATION_PADDING_TOP,
   LINE_PADDING_TOP,
-  LINE_PADDING_BOTTOM
+  LINE_PADDING_BOTTOM,
+  MINUS_STRAND_MARGIN
 } from '../constants';
 
 const getLayerCount = checkOverlap => (annotations = [], index) =>
@@ -28,7 +29,7 @@ export const getResiteLayer = getLayerCount((curr, prev) => curr.startIndex < pr
 export const getOrfLayer = getLayerCount((curr, prev) => curr.orfLineStart < prev.orfLineEnd);
 
 export const getAnnotationsTopHeight = restrictionSites => {
-  const resiteLabelLayers = restrictionSites.map((site, index, arr) => {
+  const resiteLabelLayers = restrictionSites.map((site, index) => {
     return getResiteLayer(restrictionSites, index);
   });
   const mostLayers = Math.max(...resiteLabelLayers);

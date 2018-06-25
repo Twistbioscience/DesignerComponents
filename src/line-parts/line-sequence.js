@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  charMap,
-  MINUS_STRAND_MARGIN,
-  RESITE_BOX_HOR_PADDING,
-  RESITE_BOX_VERT_PADDING,
-  FONT_FAMILY
-} from '../constants';
+import {charMap, MINUS_STRAND_MARGIN, FONT_FAMILY} from '../constants';
 import {flipSequence} from '../utils/sequence';
 import RestrictionSiteBox from './resite-box';
 
@@ -25,13 +19,12 @@ const Sequence = ({
   restrictionSites,
   startIndex,
   endIndex,
-  charsPerRow,
   annotationsTopHeight
 }) => {
   const restrictionSiteBoxes = restrictionSites.map((site, index) => {
     return (
       <RestrictionSiteBox
-        key={'resite-box-' + startIndex + '-' + site.name + '-'  + site.startIndex.toString()}
+        key={'resite-box-' + startIndex + '-' + site.name + '-' + site.startIndex.toString()}
         site={site}
         index={index}
         minusStrand={minusStrand}

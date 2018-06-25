@@ -1,5 +1,4 @@
 import React from 'react';
-import {getAnnotationLayer} from '../rendering/annotations';
 import LineBpIndex from './bp-index';
 import Sequence from './line-sequence';
 import Selection from './selection';

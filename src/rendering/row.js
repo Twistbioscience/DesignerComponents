@@ -1,11 +1,10 @@
-import {
-  ANNOTATION_HEIGHT,
-  ANNOTATION_GAP,
-  ANNOTATION_PADDING_TOP,
-} from '../constants';
-
 import Line from '../line-parts/line';
-import {getAnnotationLayer, getResiteLayer, getAnnotationsTopHeight, getSequenceHeight, getAnnotationsBottomHeight} from './annotations';
+import {
+  getResiteLayer,
+  getAnnotationsTopHeight,
+  getSequenceHeight,
+  getAnnotationsBottomHeight
+} from './annotations';
 
 export const rowRenderer = ({
   sequence,
@@ -61,10 +60,5 @@ export const getRowHeight = (charsPerRow, annotations = [], restrictionSites = [
   const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
   const annotationsBottomHeight = getAnnotationsBottomHeight(annotations, startIndex, charsPerRow);
   const sequenceHeight = getSequenceHeight(showMinusStrand, config);
-  return (
-    annotationsTopHeight +
-    sequenceHeight +
-    annotationsBottomHeight +
-    config.BP_INDEX_HEIGHT
-  );
+  return annotationsTopHeight + sequenceHeight + annotationsBottomHeight + config.BP_INDEX_HEIGHT;
 };

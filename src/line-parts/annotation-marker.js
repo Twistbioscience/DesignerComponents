@@ -1,8 +1,4 @@
-import {
-  ANNOTATION_HEIGHT,
-  ANNOTATION_GAP,
-  ANNOTATION_PADDING_TOP,
-} from '../constants';
+import {ANNOTATION_HEIGHT, ANNOTATION_GAP, ANNOTATION_PADDING_TOP} from '../constants';
 import {getAnnotationLayer, getSequenceHeight} from '../rendering/annotations.js';
 
 const AnnotationMarker = ({annotation, index, arr, config, minusStrand, startIndex, annotationsTopHeight}) => {
@@ -11,10 +7,7 @@ const AnnotationMarker = ({annotation, index, arr, config, minusStrand, startInd
   const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
   const x = (annotation.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
   const y =
-    annotationsTopHeight +
-    sequenceHeight +
-    layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP) +
-    ANNOTATION_PADDING_TOP;
+    annotationsTopHeight + sequenceHeight + layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP) + ANNOTATION_PADDING_TOP;
   const points = [
     //arrowheads on both edges, no teeth:
     x - 5 / 2,
