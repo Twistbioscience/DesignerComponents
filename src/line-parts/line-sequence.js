@@ -12,15 +12,7 @@ const getDx = length => {
   return res;
 };
 
-const Sequence = ({
-  sequence,
-  config,
-  minusStrand,
-  restrictionSites,
-  startIndex,
-  endIndex,
-  annotationsTopHeight
-}) => {
+const Sequence = ({sequence, config, minusStrand, restrictionSites, startIndex, endIndex, annotationsTopHeight}) => {
   const restrictionSiteBoxes = restrictionSites.map((site, index) => {
     return (
       <RestrictionSiteBox

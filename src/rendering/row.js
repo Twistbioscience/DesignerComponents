@@ -1,10 +1,5 @@
 import Line from '../line-parts/line';
-import {
-  getResiteLayer,
-  getAnnotationsTopHeight,
-  getSequenceHeight,
-  getAnnotationsBottomHeight
-} from './annotations';
+import {getResiteLayer, getAnnotationsTopHeight, getSequenceHeight, getAnnotationsBottomHeight} from './annotations';
 
 export const rowRenderer = ({
   sequence,
