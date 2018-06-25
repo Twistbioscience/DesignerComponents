@@ -55,7 +55,7 @@ const RestrictionSiteBox = ({site, config, minusStrand, startIndex, annotationsT
   ].join(' ');
   const mid_x = x + width / 2;
   const mid_y = y + height / 2;
-  const rotate = 'rotate(180 ' + mid_x.toString() + ' ' + mid_y.toString() + ')';
+  const rotate = 'rotate(180 ' + mid_x + ' ' + mid_y + ')';
   return (
     <g key={`restriction-site-box`}>
       <polygon

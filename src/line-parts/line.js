@@ -53,13 +53,14 @@ class Line extends React.Component {
     const annotationsTop = filteredRestrictionSites.map((site, index, arr) => {
       return (
         <RestrictionSiteLabel
-          key={'resite-label-' + startIndex + '-' + site.name + '-' + site.startIndex.toString()}
+          key={'resite-label-' + startIndex + '-' + site.name + '-' + site.startIndex}
           site={site}
           index={index}
           arr={arr}
           config={config}
           startIndex={startIndex}
           maxResiteLayer={maxResiteLayer}
+          charsPerRow={charsPerRow}
         />
       );
     });
@@ -72,7 +73,7 @@ class Line extends React.Component {
       .map((annotation, index, arr) => {
         return (
           <AnnotationMarker
-            key={'annotation-marker-' + annotation.name + '-' + annotation.startIndex.toString()}
+            key={'annotation-marker-' + annotation.name + '-' + annotation.startIndex}
             annotation={annotation}
             index={index}
             arr={arr}
@@ -101,7 +102,6 @@ class Line extends React.Component {
     return (
       <svg
         style={style}
-        width={config.LETTER_FULL_WIDTH_SEQUENCE * charsPerRow}
         onMouseDown={this.mouseDownHandler(index, charsPerRow)}
         onMouseUp={this.mouseUpHandler(index, charsPerRow, true, selectionInProgress)}
         onMouseMove={this.mouseUpHandler(index, charsPerRow, false, selectionInProgress)}>

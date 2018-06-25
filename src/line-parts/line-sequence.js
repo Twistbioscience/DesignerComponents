@@ -16,7 +16,7 @@ const Sequence = ({sequence, config, minusStrand, restrictionSites, startIndex, 
   const restrictionSiteBoxes = restrictionSites.map((site, index) => {
     return (
       <RestrictionSiteBox
-        key={'resite-box-' + startIndex + '-' + site.name + '-' + site.startIndex.toString()}
+        key={'resite-box-' + startIndex + '-' + site.name + '-' + site.startIndex}
         site={site}
         index={index}
         minusStrand={minusStrand}

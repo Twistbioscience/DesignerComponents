@@ -28,6 +28,7 @@ export default class SequenceViewer extends React.Component {
       this.props.config
     );
     const selectionInProgress = this.props.mouseDownIndex > 0;
+    const width = this.props.config.LETTER_FULL_WIDTH_SEQUENCE * this.props.charsPerRow + RIGHT_PADDING;
     return (
       <div>
         <List
@@ -36,7 +37,7 @@ export default class SequenceViewer extends React.Component {
           rowCount={this.props.rowCount}
           rowHeight={rowHeightFunc}
           height={500}
-          width={this.props.width}
+          width={width}
           rowRenderer={rowRenderer({
             sequence: this.props.sequence,
             annotations: this.props.annotations,
