@@ -1,22 +1,19 @@
 import {
-  LINE_PADDING_TOP,
   ANNOTATION_HEIGHT,
   ANNOTATION_GAP,
   ANNOTATION_PADDING_TOP,
-  MINUS_STRAND_MARGIN
 } from '../constants';
-import {getAnnotationLayer} from '../rendering/annotations.js';
+import {getAnnotationLayer, getSequenceHeight} from '../rendering/annotations.js';
 
 const AnnotationMarker = ({annotation, index, arr, config, minusStrand, startIndex, annotationsTopHeight}) => {
   const layer = getAnnotationLayer(arr, index);
+  const sequenceHeight = getSequenceHeight(minusStrand, config);
   const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
   const x = (annotation.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
   const y =
     annotationsTopHeight +
-    config.LETTER_HEIGHT_SEQUENCE * (minusStrand ? 2 : 1) +
-    (minusStrand ? MINUS_STRAND_MARGIN : 0) +
+    sequenceHeight +
     layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP) +
-    LINE_PADDING_TOP +
     ANNOTATION_PADDING_TOP;
   const points = [
     //arrowheads on both edges, no teeth:

@@ -2,7 +2,6 @@ import React from 'react';
 import {
   charMap,
   MINUS_STRAND_MARGIN,
-  LINE_PADDING_TOP,
   RESITE_BOX_HOR_PADDING,
   RESITE_BOX_VERT_PADDING,
   FONT_FAMILY
@@ -47,7 +46,7 @@ const Sequence = ({
   return (
     <g width={config.LETTER_FULL_WIDTH_SEQUENCE * sequence.length}>
       <text
-        y={annotationsTopHeight + config.LETTER_HEIGHT_SEQUENCE + LINE_PADDING_TOP}
+        y={annotationsTopHeight + config.LETTER_HEIGHT_SEQUENCE}
         fontFamily={FONT_FAMILY}
         fontSize="12pt"
         fill="#000000"
@@ -59,7 +58,7 @@ const Sequence = ({
       {minusStrand && (
         <text
           x="0"
-          y={annotationsTopHeight + config.LETTER_HEIGHT_SEQUENCE * 2 + MINUS_STRAND_MARGIN + LINE_PADDING_TOP}
+          y={annotationsTopHeight + config.LETTER_HEIGHT_SEQUENCE * 2 + MINUS_STRAND_MARGIN}
           fontFamily={FONT_FAMILY}
           fontSize="12pt"
           textAnchor="start"

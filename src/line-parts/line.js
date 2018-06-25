@@ -1,14 +1,4 @@
 import React from 'react';
-import {
-  ANNOTATION_HEIGHT,
-  ANNOTATION_GAP,
-  LINE_PADDING_TOP,
-  MINUS_STRAND_MARGIN,
-  ANNOTATION_PADDING_TOP,
-  RESITE_BOX_VERT_PADDING,
-  RESITE_BOX_HOR_PADDING,
-  RESITE_LABEL_GAP
-} from '../constants';
 import {getAnnotationLayer} from '../rendering/annotations';
 import LineBpIndex from './bp-index';
 import Sequence from './line-sequence';
