@@ -8,7 +8,7 @@ import {
 } from '../constants';
 
 import Line from '../line-parts/line';
-import {getAnnotationLayer, getAnnotationsTopHeight, getAnnotationsBottomHeight} from './annotations';
+import {getAnnotationLayer, getResiteLayer, getAnnotationsTopHeight, getAnnotationsBottomHeight} from './annotations';
 
 export const rowRenderer = ({
   sequence,
@@ -28,11 +28,21 @@ export const rowRenderer = ({
   // isVisible, // This row is visible within the List (eg it is not an overscanned row)
   style // Style object to be applied to row (to position it)
 }) => {
+  const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
+  const maxResiteLayer = restrictionSites
+    .map((site, index, arr) => {
+      return getResiteLayer(arr, index);
+    })
+    .reduce((maxLayer, currentLayer) => {
+      return Math.max(maxLayer, currentLayer);
+    });
   return (
     <Line
       sequence={sequence}
       annotations={annotations}
       restrictionSites={restrictionSites}
+      annotationsTopHeight={annotationsTopHeight}
+      maxResiteLayer={maxResiteLayer}
       style={style}
       charsPerRow={charsPerRow}
       minusStrand={minusStrand}
@@ -47,12 +57,21 @@ export const rowRenderer = ({
   );
 };
 
-export const getRowHeight = (charsPerRow, annotations = [], restrictionSites = [], showMinusStrand, config) => ({index}) => {
+export const getRowHeight = (charsPerRow, annotations = [], restrictionSites = [], showMinusStrand, config) => ({
+  index
+}) => {
   const startIndex = charsPerRow * index;
   const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
   const annotationsBottomHeight = getAnnotationsBottomHeight(annotations, startIndex, charsPerRow);
   const sequenceHeight = showMinusStrand
     ? config.LETTER_HEIGHT_SEQUENCE * 2 + MINUS_STRAND_MARGIN
     : config.LETTER_HEIGHT_SEQUENCE;
-  return annotationsTopHeight + sequenceHeight + annotationsBottomHeight + LINE_PADDING_BOTTOM + LINE_PADDING_TOP + config.BP_INDEX_HEIGHT;
+  return (
+    annotationsTopHeight +
+    sequenceHeight +
+    annotationsBottomHeight +
+    LINE_PADDING_BOTTOM +
+    LINE_PADDING_TOP +
+    config.BP_INDEX_HEIGHT
+  );
 };

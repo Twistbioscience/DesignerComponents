@@ -10,7 +10,7 @@ export const FONT_FAMILY = 'Inconsolata';
 export const RESITE_FONT_SIZE = '8pt';
 export const RESITE_BOX_VERT_PADDING = 5;
 export const RESITE_BOX_HOR_PADDING = 0.5;
-export const RESITE_LABEL_GAP = 9;
+export const RESITE_LABEL_GAP = 8;
 
 export const charMap = {
   A: 'T',

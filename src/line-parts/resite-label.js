@@ -4,7 +4,7 @@ import {
   RESITE_BOX_VERT_PADDING,
   RESITE_FONT_SIZE,
   LINE_PADDING_TOP,
-  FONT_FAMILY,
+  FONT_FAMILY
 } from '../constants';
 
 import {getAnnotationLayer} from '../rendering/annotations';
@@ -44,9 +44,7 @@ const getRestrictionSiteLine = (site, textWidth, siteWidth, index, config, start
 const RestrictionSiteLabel = ({site, index, arr, config, startIndex, maxResiteLayer}) => {
   const layer = getAnnotationLayer(arr, index);
   const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE + 1;
-  const y =
-    (maxResiteLayer - layer + 1) * (1 + RESITE_LABEL_GAP) +
-    LINE_PADDING_TOP;
+  const y = (maxResiteLayer - layer + 1) * (1 + RESITE_LABEL_GAP) + LINE_PADDING_TOP;
   const textWidth = site.name.length * measureFontWidth(FONT_FAMILY, RESITE_FONT_SIZE, 'i').width;
   const siteWidth = RESITE_BOX_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
   const siteText = getRestrictionSiteText(site, textWidth, siteWidth, x, y);

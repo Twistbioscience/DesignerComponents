@@ -1,8 +1,4 @@
-import {
-  LINE_PADDING_TOP,
-  RESITE_BOX_HOR_PADDING,
-  RESITE_BOX_VERT_PADDING,
-} from '../constants';
+import {LINE_PADDING_TOP, RESITE_BOX_HOR_PADDING, RESITE_BOX_VERT_PADDING} from '../constants';
 
 const RestrictionSiteBox = ({site, index, config, minusStrand, startIndex, endIndex, annotationsTopHeight}) => {
   const width = RESITE_BOX_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;

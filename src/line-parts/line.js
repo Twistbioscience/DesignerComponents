@@ -9,11 +9,13 @@ import {
   RESITE_BOX_HOR_PADDING,
   RESITE_LABEL_GAP
 } from '../constants';
-import {getAnnotationLayer, getResiteLayer, getAnnotationsTopHeight} from '../rendering/annotations';
+import {getAnnotationLayer} from '../rendering/annotations';
 import LineBpIndex from './bp-index';
 import Sequence from './line-sequence';
 import Selection from './selection';
 import RestrictionSiteLabel from './resite-label';
+import AnnotationMarker from './annotation-marker';
+
 
 class Line extends React.Component {
   constructor() {
@@ -40,39 +42,39 @@ class Line extends React.Component {
   }
 
   render() {
-    const {charsPerRow, minusStrand, index, style, selection, selectionInProgress, config} = this.props;
+    const {
+      charsPerRow,
+      minusStrand,
+      index,
+      style,
+      selection,
+      selectionInProgress,
+      config,
+      restrictionSites,
+      maxResiteLayer,
+      annotationsTopHeight
+    } = this.props;
     const startIndex = charsPerRow * index;
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
     const endIndex = startIndex + sequence.length;
-    const restrictionSites = this.props.restrictionSites;
-    const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
-    const maxResiteLayer = restrictionSites
-      .map((site, index, arr) => {
-        return getResiteLayer(arr, index)
-      })
-      .reduce((maxLayer, currentLayer) => {
-        return Math.max(maxLayer, currentLayer);
-      });
-    const filteredRestrictionSites = this.props.restrictionSites
-      .filter(
-        site =>
-          (site.startIndex <= startIndex && site.endIndex > startIndex) ||
-          (site.startIndex > startIndex && site.startIndex < startIndex + charsPerRow)
+    const filteredRestrictionSites = this.props.restrictionSites.filter(
+      site =>
+        (site.startIndex <= startIndex && site.endIndex > startIndex) ||
+        (site.startIndex > startIndex && site.startIndex < startIndex + charsPerRow)
+    );
+    const annotationsTop = filteredRestrictionSites.map((site, index, arr) => {
+      return (
+        <RestrictionSiteLabel
+          key={'resite-label-' + startIndex + '-' + site.name + '-' + site.startIndex.toString()}
+          site={site}
+          index={index}
+          arr={arr}
+          config={config}
+          startIndex={startIndex}
+          maxResiteLayer={maxResiteLayer}
+        />
       );
-    const annotationsTop = filteredRestrictionSites
-      .map((site, index, arr) => {
-        return (
-          <RestrictionSiteLabel
-            key={'resite-label-' + startIndex + '-' + site.name + '-'  + site.startIndex.toString()}
-            site={site}
-            index={index}
-            arr={arr}
-            config={config}
-            startIndex={startIndex}
-            maxResiteLayer={maxResiteLayer}
-          />
-        );
-      });
+    });
     const annotationsBottom = this.props.annotations
       .filter(
         annotation =>
@@ -80,49 +82,17 @@ class Line extends React.Component {
           (annotation.startIndex > startIndex && annotation.startIndex < startIndex + charsPerRow)
       )
       .map((annotation, index, arr) => {
-        const layer = getAnnotationLayer(arr, index);
-        const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
-        const x = (annotation.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
-        const y =
-          annotationsTopHeight +
-          config.LETTER_HEIGHT_SEQUENCE * (minusStrand ? 2 : 1) +
-          (minusStrand ? MINUS_STRAND_MARGIN : 0) +
-          layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP) +
-          LINE_PADDING_TOP +
-          ANNOTATION_PADDING_TOP;
-        const points = [
-          //arrowheads on both edges, no teeth:
-          x - 5 / 2,
-          y,
-          x + width - 5 / 2,
-          y,
-          x + width + 5 / 2,
-          y + ANNOTATION_HEIGHT / 2,
-          x + width - 5 / 2,
-          y + ANNOTATION_HEIGHT,
-          x - 5 / 2,
-          y + ANNOTATION_HEIGHT,
-          x + 5 / 2,
-          y + ANNOTATION_HEIGHT / 2
-        ].join(' ');
         return (
-          <g key={`annotations-bottom-${index}`}>
-            <polygon
-              key={`annotations-bottom-poly-${index}`}
-              points={points}
-              x={x}
-              y={y}
-              fill={annotation.color || '#0000a4'}
-              fillOpacity="0.3"
-            />
-            <text
-              key={`annotations-bottom-text-${index}`}
-              x={x + width / 4}
-              y={y + ANNOTATION_HEIGHT / 2 + 5}
-              fontSize="12px">
-              {annotation.name}
-            </text>
-          </g>
+          <AnnotationMarker
+            key={'annotation-marker-' + annotation.name + '-' + annotation.startIndex.toString()}
+            annotation={annotation}
+            index={index}
+            arr={arr}
+            config={config}
+            minusStrand={minusStrand}
+            startIndex={startIndex}
+            annotationsTopHeight={annotationsTopHeight}
+          />
         );
       });
 
