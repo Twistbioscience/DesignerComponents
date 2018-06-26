@@ -3,6 +3,80 @@ import {RESITE_LABEL_GAP, RESITE_BOX_HOR_PADDING, RESITE_FONT_SIZE, LINE_PADDING
 import {getAnnotationLayer} from '../rendering/annotations';
 import {measureFontWidth} from '../rendering/fonts';
 
+const RestrictionSiteLabel = ({site, index, arr, config, startIndex, maxResiteLayer, charsPerRow, lineWidth}) => {
+  const layer = getAnnotationLayer(arr, index);
+  const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE + 1;
+  const y = (maxResiteLayer - layer + 1) * (1 + RESITE_LABEL_GAP) + LINE_PADDING_TOP;
+  const textWidth = site.name.length * measureFontWidth(FONT_FAMILY, RESITE_FONT_SIZE, 'i').width;
+  const siteWidth = RESITE_BOX_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
+  var translate = 'translate(0)';
+  var d = null;
+  var isTextShown = true;
+  var showLine = true;
+  var showText = true;
+  const isSiteCroppedFromLeft = site.startIndex < startIndex;
+  const isSiteCroppedFromRight = site.endIndex - startIndex + 1 > charsPerRow;
+
+  if (isSiteCroppedFromLeft) {
+    isTextShown = x + siteWidth / 2 + textWidth / 2 > 0;
+    if (isTextShown) {
+      // if text is cropped from left
+      if (x + siteWidth / 2 - textWidth / 2 < 0) {
+        // if more of the text is showing on this line, move the text to the right
+        if (x + siteWidth / 2 > 0) {
+          translate = 'translate(' + (-x - siteWidth / 2 + textWidth / 2) + ')';
+          //  if text wider then remaining site width, don't show line
+          if (x + siteWidth < textWidth) {
+            showLine = false;
+          } else {
+            // draw a tail on right side
+            d = 'M ' + (textWidth + 1) + ' ' + y + ' ' + (x + siteWidth) + ' ' + y;
+          }
+        }
+        // if more of the text is showing on the previous line, we will render the text there instead
+        // here we will just draw a line from the start to the end
+        else {
+          showText = false;
+          d = 'M 0 ' + y + ' ' + (x + siteWidth) + ' ' + y;
+        }
+      }
+    }
+  } else if (isSiteCroppedFromRight) {
+    isTextShown = x + siteWidth / 2 - textWidth / 2 < lineWidth;
+    if (isTextShown) {
+      // if text is cropped from right
+      if (x + siteWidth / 2 + textWidth / 2 > lineWidth) {
+        // if half or more of the text is showing on this line, move the text to the left
+        if (x + siteWidth / 2 <= lineWidth) {
+          translate = 'translate(' + (-x - siteWidth / 2 - textWidth / 2 + lineWidth) + ')';
+          //  if text wider then remaining site width, don't show line
+          if (lineWidth - textWidth < x) {
+            showLine = false;
+          } else {
+            // draw a tail on left side
+            d = 'M ' + x + ' ' + y + ' ' + (lineWidth - textWidth - 1) + ' ' + y;
+          }
+        }
+        // if more of the text is showing on the following line, we will render the text there instead
+        // here we will just draw a line from the start to the end
+        else {
+          showText = false;
+          d = 'M ' + x + ' ' + y + ' ' + lineWidth + ' ' + y;
+        }
+      }
+    }
+  }
+
+  const siteText = getRestrictionSiteText(site, textWidth, siteWidth, x, y, translate);
+  const siteLine = getRestrictionSiteLine(site, textWidth, siteWidth, index, config, startIndex, x, y, d);
+  return (
+    <g key={'resite-label'}>
+      {showText && siteText}
+      {showLine && siteLine}
+    </g>
+  );
+};
+
 const getRestrictionSiteText = (site, textWidth, siteWidth, x, y, translate) => {
   const yOffset = 3;
 
@@ -20,6 +94,7 @@ const getRestrictionSiteText = (site, textWidth, siteWidth, x, y, translate) => 
   );
 };
 
+// If d is passed in, it is because the text was cropped and we are changing the location of the text/line
 const getRestrictionSiteLine = (site, textWidth, siteWidth, index, config, startIndex, x, y, d) => {
   const firstLineEndX = x + (siteWidth / 2 - textWidth / 2) - 2;
   const secondLineStartX = x + (siteWidth / 2 + textWidth / 2) + 1;
@@ -50,64 +125,6 @@ const getRestrictionSiteLine = (site, textWidth, siteWidth, index, config, start
       stroke={site.color}
       strokeWidth="1"
     />
-  );
-};
-
-const RestrictionSiteLabel = ({site, index, arr, config, startIndex, maxResiteLayer, charsPerRow}) => {
-  const layer = getAnnotationLayer(arr, index);
-  const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE + 1;
-  const y = (maxResiteLayer - layer + 1) * (1 + RESITE_LABEL_GAP) + LINE_PADDING_TOP;
-  const textWidth = site.name.length * measureFontWidth(FONT_FAMILY, RESITE_FONT_SIZE, 'i').width;
-  const siteWidth = RESITE_BOX_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
-  var translate = 'translate(0)';
-  var d = null;
-  var isTextShown = true;
-  var isLineShown = true;
-  var textAdjusted = false;
-  const isSiteCroppedFromLeft = site.startIndex < startIndex;
-  const isSiteCroppedFromRight = site.endIndex - startIndex + 1 > charsPerRow;
-
-  if (isSiteCroppedFromLeft) {
-    isTextShown = x + siteWidth / 2 + textWidth / 2 > 0;
-    if (isTextShown) {
-      // if text is cropped by left edge of container, move it to the right
-      if (x + siteWidth / 2 - textWidth / 2 < 0) {
-        translate = 'translate(' + (-x - siteWidth / 2 + textWidth / 2) + ')';
-        //  if text wider then remaining site width, don't show line
-        if (x + siteWidth < textWidth) {
-          isLineShown = false;
-        } else {
-          // draw a tail on right side
-          d = 'M ' + (textWidth + 1) + ' ' + y + ' ' + (x + siteWidth) + ' ' + y;
-        }
-        textAdjusted = true;
-      }
-    }
-  } else if (isSiteCroppedFromRight) {
-    const lineWidth = config.LETTER_FULL_WIDTH_SEQUENCE * charsPerRow;
-    isTextShown = x + siteWidth / 2 - textWidth / 2 < lineWidth;
-    if (isTextShown) {
-      // if text is cropped by right edges, move it to the left
-      if (x + siteWidth / 2 + textWidth / 2 > lineWidth) {
-        translate = 'translate(' + (-x - siteWidth / 2 - textWidth / 2 + lineWidth) + ')';
-        //  if text wider then remaining site width, don't show line
-        if (lineWidth - textWidth < x) {
-          isLineShown = false;
-        } else {
-          // draw a tail on right side
-          d = 'M ' + x + ' ' + y + ' ' + (lineWidth - textWidth - 1) + ' ' + y;
-        }
-      }
-    }
-  }
-
-  const siteText = getRestrictionSiteText(site, textWidth, siteWidth, x, y, translate);
-  const siteLine = getRestrictionSiteLine(site, textWidth, siteWidth, index, config, startIndex, x, y, d);
-  return (
-    <g key={'resite-label'}>
-      {siteText}
-      {isLineShown && siteLine}
-    </g>
   );
 };
 

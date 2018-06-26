@@ -45,10 +45,11 @@ class Line extends React.Component {
     const startIndex = charsPerRow * index;
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
     const endIndex = startIndex + sequence.length;
+    const lineWidth = config.LETTER_FULL_WIDTH_SEQUENCE * charsPerRow;
     const filteredRestrictionSites = restrictionSites.filter(
       site =>
-        (site.startIndex <= startIndex && site.endIndex > startIndex) ||
-        (site.startIndex > startIndex && site.startIndex < startIndex + charsPerRow)
+        (site.startIndex <= startIndex && site.endIndex >= startIndex) ||
+        (site.startIndex >= startIndex && site.startIndex < startIndex + charsPerRow)
     );
     const annotationsTop = filteredRestrictionSites.map((site, index, arr) => {
       return (
@@ -61,6 +62,7 @@ class Line extends React.Component {
           startIndex={startIndex}
           maxResiteLayer={maxResiteLayer}
           charsPerRow={charsPerRow}
+          lineWidth={lineWidth}
         />
       );
     });
@@ -129,7 +131,7 @@ class Line extends React.Component {
         <rect
           height="2"
           y={style.height - 2}
-          width={config.LETTER_FULL_WIDTH_SEQUENCE * charsPerRow}
+          width={lineWidth}
           style={{fill: '#000000'}}
         />
         {selectionRect.wdt > 0 && (

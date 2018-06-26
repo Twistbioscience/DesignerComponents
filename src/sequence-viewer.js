@@ -1,7 +1,7 @@
 // This is where we will hold the external component API
 import React from 'react';
 import List from 'react-virtualized/dist/commonjs/List';
-import {RIGHT_PADDING} from './constants';
+import {LEFT_PADDING} from './constants';
 import {getRowHeight, rowRenderer} from './rendering/row';
 import {css, cx} from 'react-emotion';
 
@@ -14,7 +14,7 @@ const noSelection = css`
 `;
 
 const panel = css`
-  padding-left: ${RIGHT_PADDING}px;
+  padding-left: ${LEFT_PADDING}px;
   -webkit-font-smoothing: antialiased;
 `;
 
@@ -28,7 +28,7 @@ export default class SequenceViewer extends React.Component {
       this.props.config
     );
     const selectionInProgress = this.props.mouseDownIndex > 0;
-    const width = this.props.config.LETTER_FULL_WIDTH_SEQUENCE * this.props.charsPerRow + RIGHT_PADDING;
+    const width = this.props.config.LETTER_FULL_WIDTH_SEQUENCE * this.props.charsPerRow + LEFT_PADDING;
     return (
       <div>
         <List

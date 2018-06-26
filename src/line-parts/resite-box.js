@@ -1,5 +1,19 @@
 import {RESITE_BOX_HOR_PADDING, RESITE_BOX_VERT_PADDING} from '../constants';
 
+
+/* renders:
+                           __________
+    pointsFullStrand1 ->  |  |___    | <- pointsFullStrand2
+                          |______|___|
+    or
+                           __________
+    pointsHalfStrand1 ->  |___|______| <- pointsHalfStrand2
+
+    If the restriction site matches on the reverse strand (site.direction == -1),
+    it should be rendered upside down and backwards. This is done through a rotation transform.
+*/
+
+
 const RestrictionSiteBox = ({site, config, minusStrand, startIndex, annotationsTopHeight}) => {
   const width = RESITE_BOX_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
   const height = (config.LETTER_HEIGHT_SEQUENCE + RESITE_BOX_VERT_PADDING) * (minusStrand ? 2 : 1);
