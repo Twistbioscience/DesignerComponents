@@ -14,8 +14,13 @@
     {"name": "BsaI", "startIndex": 142, "endIndex": 152, "overhang": 4, "cutIndex3_5": 7, "direction": -1, "color": "#b0b3ee"},
     {"name": "HaeII", "startIndex": 149, "endIndex": 154, "overhang": -4, "cutIndex3_5": 5, "direction": 1, "color": "#fc957b"},
     {"name": "EcoRV", "startIndex": 151, "endIndex": 156, "overhang": 0, "cutIndex3_5": 3, "direction": 1, "color": "#7dfc7e"},
+    {"name": "vErYLongStrandwithLongName", "startIndex": 200, "endIndex": 500, "overhang": -50, "cutIndex3_5": 88, "direction": 1, "color": "#800000"},
     {"name": "EcoRV", "startIndex": 219, "endIndex": 225, "overhang": 0, "cutIndex3_5": 3, "direction": -1, "color": "#7dfc7e"},
-    {"name": "HaeII", "startIndex": 340, "endIndex": 345, "overhang": -4, "cutIndex3_5": 5, "direction": 1, "color": "#fc957b"},
-    {"name": "HaeII", "startIndex": 370, "endIndex": 375, "overhang": -4, "cutIndex3_5": 5, "direction": 1, "color": "#fc957b"}
+    {"name": "AbcI", "startIndex": 340, "endIndex": 345, "overhang": -4, "cutIndex3_5": 5, "direction": 1, "color": "#fc957b"},
+    {"name": "HaeII", "startIndex": 370, "endIndex": 375, "overhang": -4, "cutIndex3_5": 5, "direction": 1, "color": "#06015d"},
+    {"name": "AspBHI", "startIndex": 371, "endIndex": 387, "overhang": 4, "cutIndex3_5": 13, "direction": 1, "color": "#fc957b"},
+    {"name": "BarI", "startIndex": 375, "endIndex": 399, "overhang": -5, "cutIndex3_5": 25, "direction": 1, "color": "#000000"},
+    {"name": "AspLEI", "startIndex": 377, "endIndex": 380, "overhang": -2, "cutIndex3_5": 3, "direction": 1, "color": "#5c2045"},
+    {"name": "AspBHI", "startIndex": 388, "endIndex": 404, "overhang": 4, "cutIndex3_5": 13, "direction": -1, "color": "#a7bd5b"}
   ]
 }

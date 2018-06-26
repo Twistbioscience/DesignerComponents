@@ -25,12 +25,12 @@ const getLayerCount = checkOverlap => (annotations = [], index) =>
     .reduce((curr, prev) => (prev.layer === curr ? prev.layer + 1 : curr), 1);
 
 export const getAnnotationLayer = getLayerCount((curr, prev) => curr.startIndex < prev.endIndex);
-export const getResiteLayer = getLayerCount((curr, prev) => curr.startIndex < prev.endIndex);
+export const getResiteLayer = getLayerCount((curr, prev) => curr.startIndex <= prev.endIndex);
 export const getOrfLayer = getLayerCount((curr, prev) => curr.orfLineStart < prev.orfLineEnd);
 
 export const getAnnotationsTopHeight = restrictionSites => {
   const resiteLabelLayers = restrictionSites.map((site, index) => {
-    return getResiteLayer(restrictionSites, index);
+    return getAnnotationLayer(restrictionSites, index);
   });
   const mostLayers = Math.max(...resiteLabelLayers);
   const annotationsTopHeight = LINE_PADDING_TOP + (1 + RESITE_LABEL_GAP) * (mostLayers > 0 ? mostLayers + 1 : 1);
