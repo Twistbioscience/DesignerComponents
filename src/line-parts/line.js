@@ -128,12 +128,7 @@ class Line extends React.Component {
           config={config}
         />
         {annotationsBottom}
-        <rect
-          height="2"
-          y={style.height - 2}
-          width={lineWidth}
-          style={{fill: '#000000'}}
-        />
+        <rect height="2" y={style.height - 2} width={lineWidth} style={{fill: '#000000'}} />
         {selectionRect.wdt > 0 && (
           <Selection
             height={style.height}
