@@ -8,7 +8,7 @@ import {
 } from '../constants';
 
 import Line from '../line-parts/line';
-import {getAnnotationLayer} from './annotations';
+import {getAnnotationLayer, filterAnnotations} from './annotations';
 
 export const rowRenderer = ({
   sequence,
@@ -48,11 +48,7 @@ export const rowRenderer = ({
 export const getRowHeight = (charsPerRow, annotations = [], showMinusStrand, config) => ({index}) => {
   const startIndex = charsPerRow * index;
   const layerCount = annotations
-    .filter(
-      annotation =>
-        (annotation.startIndex < startIndex && annotation.endIndex > startIndex) ||
-        (annotation.startIndex > startIndex && annotation.startIndex < startIndex + charsPerRow)
-    )
+    .filter(annotation => filterAnnotations(annotation, startIndex, charsPerRow))
     .reduce((layers, annotation, currIndex, arr) => {
       return Math.max(layers, getAnnotationLayer(arr, currIndex));
     }, 0);

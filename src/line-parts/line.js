@@ -6,7 +6,7 @@ import {
   MINUS_STRAND_MARGIN,
   ANNOTATION_PADDING_TOP
 } from '../constants';
-import {getAnnotationLayer} from '../rendering/annotations';
+import {getAnnotationLayer, filterAnnotations} from '../rendering/annotations';
 import LineBpIndex from './bp-index';
 import Sequence from './line-sequence';
 import Selection from './selection';
@@ -41,11 +41,7 @@ class Line extends React.Component {
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
     const endIndex = startIndex + sequence.length;
     const annotationsBottom = this.props.annotations
-      .filter(
-        annotation =>
-          (annotation.startIndex < startIndex && annotation.endIndex > startIndex) ||
-          (annotation.startIndex > startIndex && annotation.startIndex < startIndex + charsPerRow)
-      )
+      .filter(annotation => filterAnnotations(annotation, startIndex, charsPerRow))
       .map((annotation, index, arr) => {
         const layer = getAnnotationLayer(arr, index);
         const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
