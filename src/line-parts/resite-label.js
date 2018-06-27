@@ -3,7 +3,6 @@ import {RESITE_LABEL_GAP, RESITE_BOX_HOR_PADDING, RESITE_FONT_SIZE, LINE_PADDING
 import {getResiteLayer} from '../rendering/annotations';
 import {measureFontWidth} from '../rendering/fonts';
 
-
 // Assumption: the text for the restriction site label is never longer than the length
 // of the restriction site box
 const RestrictionSiteLabel = ({site, index, arr, config, startIndex, maxResiteLayer, charsPerRow, lineWidth}) => {
