@@ -1,9 +1,11 @@
+// @flow
 // This is where we will hold the external component API
 import React from 'react';
 import List from 'react-virtualized/dist/commonjs/List';
 import {LEFT_PADDING} from './constants';
 import {getRowHeight, rowRenderer} from './rendering/row';
 import {css, cx} from 'react-emotion';
+import type {Config, Annotation, RestrictionSite, SelectionType} from './types';
 
 const noSelection = css`
   -webkit-user-select: none;
@@ -18,7 +20,22 @@ const panel = css`
   -webkit-font-smoothing: antialiased;
 `;
 
-export default class SequenceViewer extends React.Component {
+type Props = {
+  charsPerRow: number,
+  minusStrand: boolean,
+  selection: SelectionType,
+  selectionInProgress: boolean,
+  sequence: string,
+  config: Config,
+  restrictionSites: Array<RestrictionSite>,
+  annotations: Array<Annotation>,
+  onMouseDown: (e: SyntheticEvent<>, index: number) => void,
+  onMouseUp: (e: SyntheticEvent<>, index: number, endSelection: boolean) => void,
+  mouseDownIndex: number,
+  rowCount: number
+};
+
+export default class SequenceViewer extends React.Component<Props> {
   render() {
     const rowHeightFunc = getRowHeight(
       this.props.charsPerRow,
@@ -55,18 +72,13 @@ export default class SequenceViewer extends React.Component {
     );
   }
 
-  constructor(props) {
-    super(props);
-    this.listRef = this.listRef.bind(this);
-  }
-
-  listRef(c) {
+  listRef = c => {
     if (c) {
       this.list = c;
     }
-  }
+  };
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     if (nextProps.minusStrand !== this.props.minusStrand) {
       if (this.list) {
         this.list.recomputeRowHeights();

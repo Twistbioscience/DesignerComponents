@@ -1,3 +1,5 @@
+// @flow
+
 export const ANNOTATION_HEIGHT = 17;
 export const ANNOTATION_GAP = 5;
 export const ANNOTATION_PADDING_TOP = 5;

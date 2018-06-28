@@ -1,7 +1,25 @@
+// @flow
+import React from 'react';
 import {ANNOTATION_HEIGHT, ANNOTATION_GAP, ANNOTATION_PADDING_TOP} from '../constants';
 import {getAnnotationLayer, getSequenceHeight} from '../rendering/annotations.js';
+import type {Annotation, Config} from '../types';
 
-const AnnotationMarker = ({annotation, index, arr, config, minusStrand, startIndex, annotationsTopHeight}) => {
+const AnnotationMarker = ({
+  annotation,
+  index,
+  arr,
+  config,
+  minusStrand,
+  startIndex,
+  annotationsTopHeight} : {
+    annotation: Annotation,
+    index: number,
+    arr: Array<Annotation>,
+    config: Config,
+    minusStrand: boolean,
+    startIndex: number,
+    annotationsTopHeight: number
+  }) => {
   const layer = getAnnotationLayer(arr, index);
   const sequenceHeight = getSequenceHeight(minusStrand, config);
   const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;

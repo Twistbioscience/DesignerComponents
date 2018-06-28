@@ -1,3 +1,5 @@
+// @flow
+
 import {
   RESITE_LABEL_GAP,
   ANNOTATION_GAP,
@@ -8,7 +10,9 @@ import {
   MINUS_STRAND_MARGIN
 } from '../constants';
 
-const getLayerCount = checkOverlap => (annotations = [], index) =>
+import type {Annotation, RestrictionSite, Config} from '../types.js';
+
+const getLayerCount = checkOverlap => (annotations: Array<any> = [], index: number) =>
   annotations
     .slice(0, index)
     .map((annotation, i) => Object.assign({}, annotation, {layer: getLayerCount(checkOverlap)(annotations, i)}))
@@ -26,9 +30,9 @@ const getLayerCount = checkOverlap => (annotations = [], index) =>
 
 export const getAnnotationLayer = getLayerCount((curr, prev) => curr.startIndex < prev.endIndex);
 export const getResiteLayer = getLayerCount((curr, prev) => curr.startIndex < prev.endIndex);
-export const getOrfLayer = getLayerCount((curr, prev) => curr.orfLineStart < prev.orfLineEnd);
+// export const getOrfLayer = getLayerCount((curr, prev) => curr.orfLineStart < prev.orfLineEnd);
 
-export const getAnnotationsTopHeight = restrictionSites => {
+export const getAnnotationsTopHeight = (restrictionSites: Array<RestrictionSite>) => {
   const resiteLabelLayers = restrictionSites.map((site, index) => {
     return getResiteLayer(restrictionSites, index);
   });
@@ -37,14 +41,14 @@ export const getAnnotationsTopHeight = restrictionSites => {
   return annotationsTopHeight;
 };
 
-export const getSequenceHeight = (minusStrand, config) => {
+export const getSequenceHeight = (minusStrand: boolean, config: Config) => {
   const sequenceHeight = minusStrand
     ? config.LETTER_HEIGHT_SEQUENCE * 2 + MINUS_STRAND_MARGIN
     : config.LETTER_HEIGHT_SEQUENCE;
   return sequenceHeight;
 };
 
-export const getAnnotationsBottomHeight = (annotations, startIndex, charsPerRow) => {
+export const getAnnotationsBottomHeight = (annotations: Array<Annotation>, startIndex: number, charsPerRow: number) => {
   const layerCount = annotations
     .filter(
       annotation =>

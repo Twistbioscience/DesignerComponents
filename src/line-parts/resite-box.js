@@ -1,4 +1,7 @@
+// @flow
+import React from 'react';
 import {RESITE_BOX_HOR_PADDING, RESITE_BOX_VERT_PADDING} from '../constants';
+import type {RestrictionSite, Config} from '../types';
 
 /* renders:
                            __________
@@ -12,7 +15,19 @@ import {RESITE_BOX_HOR_PADDING, RESITE_BOX_VERT_PADDING} from '../constants';
     it should be rendered upside down and backwards. This is done through a rotation transform.
 */
 
-const RestrictionSiteBox = ({site, config, minusStrand, startIndex, annotationsTopHeight}) => {
+const RestrictionSiteBox = ({
+  site,
+  config,
+  minusStrand,
+  startIndex,
+  annotationsTopHeight
+}: {
+  site: RestrictionSite,
+  config: Config,
+  minusStrand: boolean,
+  startIndex: number,
+  annotationsTopHeight: number
+}) => {
   const width = RESITE_BOX_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
   const height = (config.LETTER_HEIGHT_SEQUENCE + RESITE_BOX_VERT_PADDING) * (minusStrand ? 2 : 1);
   const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE + 1;
@@ -75,7 +90,7 @@ const RestrictionSiteBox = ({site, config, minusStrand, startIndex, annotationsT
         x={x}
         y={y}
         fill="transparent"
-        stroke={site.color}
+        stroke={site.color || '#0000a4'}
         strokeWidth="1"
         transform={site.direction === -1 ? rotate : 'rotate(0)'}
       />
@@ -84,7 +99,7 @@ const RestrictionSiteBox = ({site, config, minusStrand, startIndex, annotationsT
         x={x}
         y={y}
         fill="transparent"
-        stroke={site.color}
+        stroke={site.color || '#0000a4'}
         strokeWidth="1"
         transform={site.direction === -1 ? rotate : 'rotate(0)'}
       />

@@ -1,33 +1,48 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import LineBpIndex from './bp-index';
 import Sequence from './line-sequence';
 import Selection from './selection';
 import RestrictionSiteLabel from './resite-label';
 import AnnotationMarker from './annotation-marker';
+import type {Config, Annotation, RestrictionSite, SelectionType} from '../types';
 
-class Line extends React.Component {
-  constructor() {
-    super();
-    this.mouseDownHandler = this.mouseDownHandler.bind(this);
-    this.mouseUpHandler = this.mouseUpHandler.bind(this);
-  }
+type Props = {
+  charsPerRow: number,
+  minusStrand: boolean,
+  index: number,
+  style: any,
+  selection: SelectionType,
+  selectionInProgress: boolean,
+  sequence: string,
+  config: Config,
+  restrictionSites: Array<RestrictionSite>,
+  maxResiteLayer: number,
+  annotations: Array<Annotation>,
+  annotationsTopHeight: number,
+  onMouseDown: (e: SyntheticEvent<>, index: number) => void,
+  onMouseUp: (e: SyntheticEvent<>, index: number, endSelection: boolean) => void
+};
 
-  mouseDownHandler(index, charsPerRow) {
+class Line extends React.Component<Props> {
+
+  mouseDownHandler = (index: number, charsPerRow: number) => {
     return this.props.onMouseDown
-      ? e => {
+      ? (e: SyntheticEvent<>) => {
           this.props.onMouseDown(e, index * charsPerRow);
         }
       : null;
-  }
-  mouseUpHandler(index, charsPerRow, endSelection, selectionInProgress) {
+  };
+
+  mouseUpHandler = (index: number, charsPerRow: number, endSelection: boolean, selectionInProgress: boolean) => {
     return this.props.onMouseUp
-      ? e => {
+      ? (e: SyntheticEvent<>) => {
           if (selectionInProgress) {
             this.props.onMouseUp(e, index * charsPerRow, endSelection);
           }
         }
       : null;
-  }
+  };
 
   render() {
     const {
@@ -37,6 +52,7 @@ class Line extends React.Component {
       style,
       selection,
       selectionInProgress,
+      annotations,
       config,
       restrictionSites,
       maxResiteLayer,
@@ -66,7 +82,7 @@ class Line extends React.Component {
         />
       );
     });
-    const annotationsBottom = this.props.annotations
+    const annotationsBottom = annotations
       .filter(
         annotation =>
           (annotation.startIndex < startIndex && annotation.endIndex > startIndex) ||
@@ -87,7 +103,7 @@ class Line extends React.Component {
         );
       });
 
-    const getRect = () => {
+    const getRect: () => {x: number, wdt: number} = () => {
       const startX =
         selection.startIndex && selection.startIndex > startIndex
           ? (selection.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE
@@ -100,7 +116,7 @@ class Line extends React.Component {
       return {x: startX, wdt: endX - startX};
     };
 
-    const selectionRect = selection ? getRect() : 0;
+    const selectionRect = selection ? getRect() : {x: 0, wdt: 0};
     return (
       <svg
         style={style}

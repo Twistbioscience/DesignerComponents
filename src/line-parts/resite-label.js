@@ -1,9 +1,29 @@
+// @flow
+import React from 'react';
 import {RESITE_LABEL_GAP, RESITE_BOX_HOR_PADDING, RESITE_FONT_SIZE, LINE_PADDING_TOP, FONT_FAMILY} from '../constants';
-
 import {getAnnotationLayer} from '../rendering/annotations';
 import {measureFontWidth} from '../rendering/fonts';
+import type {RestrictionSite, Config} from '../types';
 
-const RestrictionSiteLabel = ({site, index, arr, config, startIndex, maxResiteLayer, charsPerRow, lineWidth}) => {
+const RestrictionSiteLabel = ({
+  site,
+  index,
+  arr,
+  config,
+  startIndex,
+  maxResiteLayer,
+  charsPerRow,
+  lineWidth
+}: {
+  site: RestrictionSite,
+  index: number,
+  arr: Array<RestrictionSite>,
+  config: Config,
+  startIndex: number,
+  maxResiteLayer: number,
+  charsPerRow: number,
+  lineWidth: number
+}) => {
   const layer = getAnnotationLayer(arr, index);
   const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE + 1;
   const y = (maxResiteLayer - layer + 1) * (1 + RESITE_LABEL_GAP) + LINE_PADDING_TOP;
@@ -87,7 +107,7 @@ const getRestrictionSiteText = (site, textWidth, siteWidth, x, y, translate) => 
       transform={translate}
       fontFamily={FONT_FAMILY}
       fontSize={RESITE_FONT_SIZE}
-      fill={site.color}
+      fill={site.color || '#0000a4'}
       textAnchor="start">
       {site.name}
     </text>
@@ -121,7 +141,7 @@ const getRestrictionSiteLine = (site, textWidth, siteWidth, index, config, start
           ' ' +
           y
       }
-      fill={site.color}
+      fill={site.color || '#0000a4'}
       stroke={site.color}
       strokeWidth="1"
     />

@@ -1,7 +1,23 @@
+// @flow
 import React from 'react';
+import type {Config} from '../types';
+
 
 //const someVal = 0;
-const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, config, annotationsTopHeight}) => {
+const LineBpIndex = ({
+  startIndex,
+  endIndex,
+  stepSize,
+  minusStrand,
+  config,
+  annotationsTopHeight} : {
+    startIndex: number,
+    endIndex: number,
+    stepSize: number,
+    minusStrand: boolean,
+    config: Config,
+    annotationsTopHeight: number
+  }) => {
   const markers = [
     /* <line
       x1={10 + 11 * (someVal - 0.25)}
