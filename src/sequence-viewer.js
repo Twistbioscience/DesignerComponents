@@ -29,8 +29,8 @@ type Props = {
   config: Config,
   restrictionSites: Array<RestrictionSite>,
   annotations: Array<Annotation>,
-  onMouseDown: (e: SyntheticEvent<>, index: number) => void,
-  onMouseUp: (e: SyntheticEvent<>, index: number, endSelection: boolean) => void,
+  onMouseDown: (e: Event, index: number) => void,
+  onMouseUp: (e: Event, index: number, endSelection: boolean) => void,
   mouseDownIndex: number,
   rowCount: number
 };

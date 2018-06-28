@@ -1,5 +1,4 @@
 // @flow
-
 import {
   RESITE_LABEL_GAP,
   ANNOTATION_GAP,
@@ -30,7 +29,7 @@ const getLayerCount = checkOverlap => (annotations: Array<any> = [], index: numb
 
 export const getAnnotationLayer = getLayerCount((curr, prev) => curr.startIndex < prev.endIndex);
 export const getResiteLayer = getLayerCount((curr, prev) => curr.startIndex < prev.endIndex);
-// export const getOrfLayer = getLayerCount((curr, prev) => curr.orfLineStart < prev.orfLineEnd);
+export const getOrfLayer = getLayerCount((curr, prev) => curr.orfLineStart < prev.orfLineEnd);
 
 export const getAnnotationsTopHeight = (restrictionSites: Array<RestrictionSite>) => {
   const resiteLabelLayers = restrictionSites.map((site, index) => {

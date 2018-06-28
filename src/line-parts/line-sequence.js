@@ -3,7 +3,7 @@ import React from 'react';
 import {charMap, MINUS_STRAND_MARGIN, FONT_FAMILY} from '../constants';
 import {flipSequence} from '../utils/sequence';
 import RestrictionSiteBox from './resite-box';
-import type {Config, Annotation, RestrictionSite, SelectionType} from '../types';
+import type {Config, RestrictionSite} from '../types';
 
 const getDx = length => {
   let res = '';

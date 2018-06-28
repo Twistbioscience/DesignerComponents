@@ -11,15 +11,16 @@ const AnnotationMarker = ({
   config,
   minusStrand,
   startIndex,
-  annotationsTopHeight} : {
-    annotation: Annotation,
-    index: number,
-    arr: Array<Annotation>,
-    config: Config,
-    minusStrand: boolean,
-    startIndex: number,
-    annotationsTopHeight: number
-  }) => {
+  annotationsTopHeight
+}: {
+  annotation: Annotation,
+  index: number,
+  arr: Array<Annotation>,
+  config: Config,
+  minusStrand: boolean,
+  startIndex: number,
+  annotationsTopHeight: number
+}) => {
   const layer = getAnnotationLayer(arr, index);
   const sequenceHeight = getSequenceHeight(minusStrand, config);
   const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
