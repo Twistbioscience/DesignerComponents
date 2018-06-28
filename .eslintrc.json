@@ -1,5 +1,5 @@
 {
-    "plugins": ["import", "react"],
+    "plugins": ["import", "react", "flowtype"],
     "parser": "babel-eslint",
     "extends": ["plugin:import/errors", "plugin:import/warnings", "eslint:recommended", "plugin:prettier/recommended"],
     "settings": {
@@ -46,6 +46,8 @@
     "rules": {
       // React specific
       "react/jsx-uses-react": 2,
-      "react/jsx-uses-vars": 2
+      "react/jsx-uses-vars": 2,
+      "flowtype/use-flow-type": 1,
+      "flowtype/define-flow-type": 1
     }
 }
