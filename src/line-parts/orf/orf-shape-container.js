@@ -34,7 +34,7 @@ const strandToPathMap = {
   }
 };
 
-export const getAminoAcidByTriplet = (triplet, strand) => {
+const getAminoAcidByTriplet = (triplet, strand) => {
   return {
     [FORWARD]: aminoAcidTranslationTable[triplet],
     [REVERSE]: aminoAcidTranslationTable[getReverseComplement(triplet)]
