@@ -16,4 +16,11 @@ const getLayerCount = checkOverlap => (annotations = [], index) =>
     })
     .reduce((curr, prev) => (prev.layer === curr ? prev.layer + 1 : curr), 1);
 
-export const getAnnotationLayer = getLayerCount((curr, prev) => curr.startIndex < prev.endIndex);
+export const getAnnotationLayer = getLayerCount((curr, prev) => curr.startIndex <= prev.endIndex);
+
+export const filterAnnotations = (annotation, startIndex, charsPerRow) => {
+  const showAnnotation =
+    (annotation.startIndex <= startIndex && annotation.endIndex >= startIndex) ||
+    (annotation.startIndex >= startIndex && annotation.startIndex < startIndex + charsPerRow);
+  return showAnnotation;
+};
