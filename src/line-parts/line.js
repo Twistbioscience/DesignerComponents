@@ -25,15 +25,21 @@ type Props = {
 };
 
 class Line extends React.Component<Props> {
-  mouseDownHandler = (index: number, charsPerRow: number) => {
+  constructor() {
+    super();
+    this.mouseDownHandler = this.mouseDownHandler.bind(this);
+    this.mouseUpHandler = this.mouseUpHandler.bind(this);
+  }
+
+  mouseDownHandler(index: number, charsPerRow: number) {
     return this.props.onMouseDown
       ? (e: SyntheticEvent<>) => {
           this.props.onMouseDown(e, index * charsPerRow);
         }
       : null;
-  };
+  }
 
-  mouseUpHandler = (index: number, charsPerRow: number, endSelection: boolean, selectionInProgress: boolean) => {
+  mouseUpHandler(index: number, charsPerRow: number, endSelection: boolean, selectionInProgress: boolean) {
     return this.props.onMouseUp
       ? (e: SyntheticEvent<>) => {
           if (selectionInProgress) {
@@ -41,7 +47,7 @@ class Line extends React.Component<Props> {
           }
         }
       : null;
-  };
+  }
 
   render() {
     const {

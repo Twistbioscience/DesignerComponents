@@ -72,11 +72,16 @@ export default class SequenceViewer extends React.Component<Props> {
     );
   }
 
-  listRef = c => {
+  constructor(props) {
+    super(props);
+    this.listRef = this.listRef.bind(this);
+  }
+
+  listRef(c) {
     if (c) {
       this.list = c;
     }
-  };
+  }
 
   componentWillReceiveProps(nextProps: Props) {
     if (nextProps.minusStrand !== this.props.minusStrand) {
