@@ -1,9 +1,7 @@
 [ignore]
 .*/coverage/.*
-.*/dist/.*
 .*/es/.*
 .*/lib/.*
-.*/coverage/.*
 
 [include]
 .*/src/.*

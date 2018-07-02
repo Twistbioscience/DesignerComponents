@@ -72,7 +72,7 @@ export default class SequenceViewer extends React.Component<Props> {
     );
   }
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.listRef = this.listRef.bind(this);
   }
