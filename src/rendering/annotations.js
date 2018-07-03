@@ -24,9 +24,16 @@ const getLayerCount = checkOverlap => (annotations = [], index) =>
     })
     .reduce((curr, prev) => (prev.layer === curr ? prev.layer + 1 : curr), 1);
 
-export const getAnnotationLayer = getLayerCount((curr, prev) => curr.startIndex < prev.endIndex);
+export const getAnnotationLayer = getLayerCount((curr, prev) => curr.startIndex <= prev.endIndex);
 export const getResiteLayer = getLayerCount((curr, prev) => curr.startIndex <= prev.endIndex);
 export const getOrfLayer = getLayerCount((curr, prev) => curr.orfLineStart < prev.orfLineEnd);
+
+export const filterAnnotations = (annotation, startIndex, charsPerRow) => {
+  const showAnnotation =
+    (annotation.startIndex <= startIndex && annotation.endIndex >= startIndex) ||
+    (annotation.startIndex >= startIndex && annotation.startIndex < startIndex + charsPerRow);
+  return showAnnotation;
+};
 
 export const getAnnotationsTopHeight = restrictionSites => {
   const resiteLabelLayers = restrictionSites.map((site, index) => {
@@ -46,11 +53,7 @@ export const getSequenceHeight = (minusStrand, config) => {
 
 export const getAnnotationsBottomHeight = (annotations, startIndex, charsPerRow) => {
   const layerCount = annotations
-    .filter(
-      annotation =>
-        (annotation.startIndex < startIndex && annotation.endIndex > startIndex) ||
-        (annotation.startIndex > startIndex && annotation.startIndex < startIndex + charsPerRow)
-    )
+    .filter(annotation => filterAnnotations(annotation, startIndex, charsPerRow))
     .reduce((layers, annotation, currIndex, arr) => {
       return Math.max(layers, getAnnotationLayer(arr, currIndex));
     }, 0);

@@ -4,6 +4,7 @@ import Sequence from './line-sequence';
 import Selection from './selection';
 import RestrictionSiteLabel from './resite-label';
 import AnnotationMarker from './annotation-marker';
+import {filterAnnotations} from '../rendering/annotations';
 
 class Line extends React.Component {
   constructor() {
@@ -67,11 +68,7 @@ class Line extends React.Component {
       );
     });
     const annotationsBottom = this.props.annotations
-      .filter(
-        annotation =>
-          (annotation.startIndex < startIndex && annotation.endIndex > startIndex) ||
-          (annotation.startIndex > startIndex && annotation.startIndex < startIndex + charsPerRow)
-      )
+      .filter(annotation => filterAnnotations(annotation, startIndex, charsPerRow))
       .map((annotation, index, arr) => {
         return (
           <AnnotationMarker
