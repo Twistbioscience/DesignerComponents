@@ -24,14 +24,14 @@ const restrictionSites = [
   // Restriction Site that is very long and spans more than one line
   {name: 'vErYLong', startIndex: 200, endIndex: 500, overhang: -50, cutIndex3_5: 88, direction: 1, color: '#800000'},
   // Shortest Restriction Site (4 characters)
-  {name: "BfuCI", startIndex: 204, endIndex: 207, overhang: 4, cutIndex3_5: 0, direction: 1, color: '#ff0065'},
+  {name: 'BfuCI', startIndex: 204, endIndex: 207, overhang: 4, cutIndex3_5: 0, direction: 1, color: '#ff0065'},
   {name: 'EcoRV', startIndex: 219, endIndex: 225, overhang: 0, cutIndex3_5: 3, direction: -1, color: '#7dfc7e'},
   // Two Restriction Sites that end at the same index
   {name: 'stuff', startIndex: 240, endIndex: 265, overhang: 0, cutIndex3_5: 3, direction: -1, color: '#b0b3ee'},
   {name: 'yeahhh', startIndex: 247, endIndex: 265, overhang: 4, cutIndex3_5: 5, direction: 1, color: '#7dfc7e'},
   // Two Restriction Sites that start at the same index
   {name: 'mOrE', startIndex: 293, endIndex: 299, overhang: -2, cutIndex3_5: 5, direction: 1, color: '#b0b3ee'},
-  {name: 'siTeS', startIndex: 293, endIndex: 302, overhang: 4, cutIndex3_5: 4, direction: 1, color: '#7dfc7e'},
+  {name: 'siTeS', startIndex: 293, endIndex: 302, overhang: 4, cutIndex3_5: 4, direction: 1, color: '#7dfc7e'}
 ];
 
 // This is a not a real test right now. Still need to figure out how to render/test svgs by mocking measureFontWidth.
