@@ -1,5 +1,5 @@
 import {RESITE_LABEL_GAP, RESITE_BOX_HOR_PADDING, RESITE_FONT_SIZE, LINE_PADDING_TOP, FONT_FAMILY} from '../constants';
-
+import React from 'react';
 import {getResiteLayer} from '../rendering/annotations';
 import {measureFontWidth} from '../rendering/fonts';
 
