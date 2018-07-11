@@ -5,6 +5,7 @@ import Selection from './selection';
 import RestrictionSiteLabel from './resite-label';
 import AnnotationMarker from './annotation-marker';
 import {filterAnnotations} from '../rendering/annotations';
+import {getRestrictionSites} from '../utils/restriction-sites';
 
 class Line extends React.Component {
   constructor() {
@@ -45,6 +46,9 @@ class Line extends React.Component {
     } = this.props;
     const startIndex = charsPerRow * index;
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
+
+    const test = getRestrictionSites(sequence);
+
     const endIndex = startIndex + sequence.length;
     const lineWidth = config.LETTER_FULL_WIDTH_SEQUENCE * charsPerRow;
     const filteredRestrictionSites = restrictionSites.filter(
