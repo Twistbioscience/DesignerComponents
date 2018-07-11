@@ -1,16 +1,14 @@
 // This approach is used for our restriction site detection:
 // https://medium.com/@keithwhor/nbeam-how-i-wrote-an-ultra-fast-dna-sequence-alignment-algorithm-in-javascript-c199e936da
-import reSiteDefitions from '../re-site-definitions.json'
+import reSiteDefitions from '../re-site-definitions.json';
 
-
-export const getRestrictionSites = (sequence) => {
-
+export const getRestrictionSites = sequence => {
   const restrictionSites = Object.entries(reSiteDefitions).map(entry => entry[1])[0];
 
   restrictionSites.map(site => {
     const matches = matchSequences(site.recognitionSequence.toUpperCase(), sequence);
     if (matches[0]) {
-      console.log("Site: " + site.recognitionSequence);
+      console.log('Site: ' + site.recognitionSequence);
       console.log(matches);
     }
   });
@@ -147,7 +145,6 @@ const matchSequences = (patternString, sequenceString) => {
     A = patternBinary.getUint32(k << 2);
 
     for (i = k; i < sequenceLength; i++) {
-
       B = sequenceBinary.getUint32(i << 2);
 
       // if match without shifting is non-zero, count matches
@@ -166,10 +163,9 @@ const matchSequences = (patternString, sequenceString) => {
     // break loop if A1 and A2 have been shifted far enough
     // to zero them both out
     while (A1 || A2) {
-
       for (i = 0; i < sequenceLength; i++) {
         B = sequenceBinary.getUint32(i << 2);
-        pos = ((i - k) << 3);
+        pos = (i - k) << 3;
 
         // if match without shifting is non-zero, count matches
         const pos1 = (pos + adjustPos) << 2;
@@ -177,11 +173,11 @@ const matchSequences = (patternString, sequenceString) => {
 
         if (pos1 < matchLen) {
           (T = A1 & B) && matchView.setUint32(pos1, matchView.getUint32(pos1) + matchCount(T));
-        };
+        }
         if (pos2 > -1) {
           (T = A2 & B) && matchView.setUint32(pos2, matchView.getUint32(pos2) + matchCount(T));
-        };
-      };
+        }
+      }
 
       // keep "walking" / shifting current integer to each offset
 
@@ -190,31 +186,15 @@ const matchSequences = (patternString, sequenceString) => {
 
       ++adjustPos;
       --adjustNeg;
-
-    };
-  };
+    }
+  }
 
   var matchIndices = [];
   for (k = 0; k < matchLen; k += 4) {
     if (matchView.getUint32(k) === patternStringLength) {
-      matchIndices.push(k >> 2)
+      matchIndices.push(k >> 2);
     }
   }
 
   return matchIndices;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
