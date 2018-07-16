@@ -4,6 +4,7 @@ import List from 'react-virtualized/dist/commonjs/List';
 import {LEFT_PADDING} from './constants';
 import {getRowHeight, rowRenderer} from './rendering/row';
 import {css, cx} from 'react-emotion';
+import {getRestrictionSites} from './utils/restriction-sites';
 
 const noSelection = css`
   -webkit-user-select: none;
@@ -20,10 +21,13 @@ const panel = css`
 
 export default class SequenceViewer extends React.Component {
   render() {
+    const restrictionSites = getRestrictionSites(this.props.sequence.substring(0, 500));
+    console.log(this.props.sequence.length);
+    console.log(restrictionSites);
     const rowHeightFunc = getRowHeight(
       this.props.charsPerRow,
       this.props.annotations,
-      this.props.restrictionSites,
+      restrictionSites,
       this.props.minusStrand,
       this.props.config
     );
@@ -41,7 +45,7 @@ export default class SequenceViewer extends React.Component {
           rowRenderer={rowRenderer({
             sequence: this.props.sequence,
             annotations: this.props.annotations,
-            restrictionSites: this.props.restrictionSites,
+            restrictionSites: restrictionSites,
             charsPerRow: this.props.charsPerRow,
             minusStrand: this.props.minusStrand,
             onMouseDown: this.props.onMouseDown,

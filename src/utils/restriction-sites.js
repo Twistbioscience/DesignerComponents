@@ -1,22 +1,11 @@
-// This approach is used for our restriction site detection:
+// This approach is used for restriction site detection:
 // https://medium.com/@keithwhor/nbeam-how-i-wrote-an-ultra-fast-dna-sequence-alignment-algorithm-in-javascript-c199e936da
-import reSiteDefitions from '../re-site-definitions.json';
+import reSiteDefinitions from '../re-site-definitions.json';
+import {getComplementSequence} from './sequence';
+import {getNamedColor} from './colors';
 
-export const getRestrictionSites = sequence => {
-  const restrictionSites = Object.entries(reSiteDefitions).map(entry => entry[1])[0];
-
-  restrictionSites.map(site => {
-    const matches = matchSequences(site.recognitionSequence.toUpperCase(), sequence);
-    if (matches[0]) {
-      console.log('Site: ' + site.recognitionSequence);
-      console.log(matches);
-    }
-  });
-
-  // HANDLE WITH PATTERN LONGER THAN SEQUENCE
-  // matchSequences('AGTCCCAGA', 'AAGTCCCAGACCAGTCCCAGANNAGTCCCAGA');
-  return sequence;
-};
+const restrictionSiteDefinitions = Object.entries(reSiteDefinitions).map(entry => entry[1])[0];
+const popularReSiteDefinitions = restrictionSiteDefinitions.filter(site => site.subLists.includes('POPULAR'));
 
 // Each base is 4 bits
 // A : 1000
@@ -31,17 +20,69 @@ const baseToBinary = {
   T: 0b100, // 0100
   G: 0b10, // 0010
   C: 0b1, // 0001
-  W: 0b1100, // 1100
-  S: 0b11, // 0011
-  M: 0b1001, // 1001
-  K: 0b110, // 0110
-  R: 0b1010, // 1010
-  Y: 0b101, // 0101
-  B: 0b111, // 0111
-  D: 0b1110, // 1110
-  H: 0b1101, // 1101
-  V: 0b1011, // 1011
-  N: 0b1111 // 1111
+  W: 0b1100, // 1100  = A | T
+  S: 0b11, // 0011    = G | C
+  M: 0b1001, // 1001  = A | C
+  K: 0b110, // 0110   = T | G
+  R: 0b1010, // 1010  = A | G
+  Y: 0b101, // 0101   = T | C
+  B: 0b111, // 0111   = not A
+  D: 0b1110, // 1110  = not C
+  H: 0b1101, // 1101  = not G
+  V: 0b1011, // 1011  = not T
+  N: 0b1111 // 1111   = any
+};
+
+export const getRestrictionSites = (sequenceString, reSiteDefinitions) => {
+  console.log('function fired');
+  const sequenceLength = sequenceString.length;
+  const complementString = getComplementSequence(sequenceString.toUpperCase());
+  const reversedComplementString = complementString
+    .split('')
+    .reverse()
+    .join('');
+  const sequenceComplementBinary = convertSequenceToBinary(reversedComplementString);
+  const sequenceBinary = convertSequenceToBinary(sequenceString.toUpperCase());
+
+  var reSites = [];
+
+  popularReSiteDefinitions.map(site => {
+    const siteLength = site.recognitionSequence.length;
+    const forwardMatches = matchSequences(site.recognitionSequence, sequenceBinary);
+    const reverseMatches = matchSequences(site.recognitionSequence, sequenceComplementBinary);
+
+    forwardMatches.map(index => {
+      reSites.push({
+        name: site.name,
+        startIndex: index,
+        endIndex: index + siteLength - 1,
+        overhang: Number(site.overhang),
+        cutIndex3_5: Number(site.cutIndex3_5),
+        direction: 1,
+        color: getNamedColor(site.name)
+      });
+    });
+    reverseMatches.map(index => {
+      reSites.push({
+        name: site.name,
+        startIndex: sequenceLength - index - siteLength,
+        endIndex: sequenceLength - index - 1,
+        overhang: Number(site.overhang),
+        cutIndex3_5: Number(site.cutIndex3_5),
+        direction: -1,
+        color: getNamedColor(site.name)
+      });
+    });
+  });
+
+  console.log(sequenceString);
+  console.log(reSites);
+  const uniqueReSites = uniqueRestrictionSites(reSites);
+  const sortedReSites = sortRestrictionSites(uniqueReSites);
+
+  console.log(sequenceLength);
+  console.log(sequenceBinary.byteLength);
+  return sortedReSites;
 };
 
 var bitCountLookup = [];
@@ -54,6 +95,32 @@ for (var i = 0; i < 256; i++) {
   }
   bitCountLookup.push(count);
 }
+
+const sortRestrictionSites = sites => {
+  const sorted = sites.sort((a, b) => {
+    if (a.startIndex < b.startIndex) {
+      return -1;
+    } else if (b.startIndex < a.startIndex) {
+      return 1;
+    } else {
+      if (a.name < b.name) {
+        return -1;
+      } else if (a.name > b.name) {
+        return 1;
+      }
+    }
+
+    return 0;
+  });
+
+  return sorted;
+};
+
+const uniqueRestrictionSites = sites => {
+  return sites.filter(
+    (site, index, arr) => index === arr.findIndex(s => s.name === site.name && s.startIndex === site.startIndex)
+  );
+};
 
 /**
  * Converts string representation of a sequence to a binary representation of the sequence
@@ -124,12 +191,11 @@ const matchCount = T => {
  * @param sequence - dna sequence (binary representation) we are searching
  * @return {Array<int>} of indixes in sequence where pattern matches
  */
-const matchSequences = (patternString, sequenceString) => {
+const matchSequences = (patternString, sequenceBinary) => {
   var mapBuffer, mapArray, A, A1, A2, B, T, cur, pos, i, k, adjustNeg, adjustPos;
 
-  const patternBinary = convertSequenceToBinary(patternString);
+  const patternBinary = convertSequenceToBinary(patternString.toUpperCase());
   const patternStringLength = patternString.length;
-  const sequenceBinary = convertSequenceToBinary(sequenceString);
 
   // We want to process the DNA in chunks of 8 bases (32 bits)
   const patternByteLength = patternBinary.byteLength;
