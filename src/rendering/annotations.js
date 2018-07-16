@@ -8,8 +8,9 @@ import {
   MINUS_STRAND_MARGIN
 } from '../constants';
 
-const getLayerCount = checkOverlap => (annotations = [], index) =>
-  annotations
+const getLayerCount = checkOverlap => (annotations = [], index) => {
+    console.log("in getLayerCount");
+    return annotations
     .slice(0, index)
     .map((annotation, i) => Object.assign({}, annotation, {layer: getLayerCount(checkOverlap)(annotations, i)}))
     .filter(annotation => checkOverlap(annotations[index], annotation))
@@ -23,6 +24,7 @@ const getLayerCount = checkOverlap => (annotations = [], index) =>
       return 0;
     })
     .reduce((curr, prev) => (prev.layer === curr ? prev.layer + 1 : curr), 1);
+}
 
 export const getAnnotationLayer = getLayerCount((curr, prev) => curr.startIndex <= prev.endIndex);
 export const getResiteLayer = getLayerCount((curr, prev) => curr.startIndex <= prev.endIndex);

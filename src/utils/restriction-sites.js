@@ -47,6 +47,7 @@ const restrictionSiteDefinitions = Object.entries(reSiteDefinitions).map(entry =
 const popularReSiteDefinitions = restrictionSiteDefinitions.filter(site => site.subLists.includes('POPULAR'));
 
 export const detectRestrictionSites = (sequenceString, reSiteDefinitions = popularReSiteDefinitions) => {
+  console.log("detectRestrictionSites START");
   const sequenceLength = sequenceString.length;
   const complementString = getComplementSequence(sequenceString.toUpperCase());
   const reversedComplementString = complementString
@@ -90,9 +91,7 @@ export const detectRestrictionSites = (sequenceString, reSiteDefinitions = popul
   const uniqueReSites = uniqueRestrictionSites(reSites);
   const sortedReSites = sortRestrictionSites(uniqueReSites);
 
-  console.log('function fired');
-  console.log(reSites);
-  console.log(sequenceLength);
+  console.log("detectRestrictionSites END");
   return sortedReSites;
 };
 
@@ -138,7 +137,7 @@ const convertSequenceToBinary = sequenceString => {
  * @return Array<int> - indices in sequence where pattern matches
  */
 const matchSequences = (patternString, sequenceBinary) => {
-  var mapBuffer, mapArray, A, A1, A2, B, T, cur, pos, i, k, adjustNeg, adjustPos;
+  var A, A1, A2, B, T, pos, i, k, adjustNeg, adjustPos;
 
   const patternBinary = convertSequenceToBinary(patternString.toUpperCase());
   const patternStringLength = patternString.length;
@@ -231,24 +230,24 @@ const matchCount = T => {
 };
 
 // Print an entire dataview in binary
-const printDataView = dv => {
-  const len = dv.byteLength / 4;
-  var str = '';
-  for (var i = 0; i < len; i++) {
-    str += dv.getUint32(i << 2).toString(2) + ' ';
-  }
-  console.log(str);
-};
+// const printDataView = dv => {
+//   const len = dv.byteLength / 4;
+//   var str = '';
+//   for (var i = 0; i < len; i++) {
+//     str += dv.getUint32(i << 2).toString(2) + ' ';
+//   }
+//   console.log(str);
+// };
 
 // Print a 32 bit number b in binary
-const print32Bit = b => {
-  var str = '';
-  for (var i = 0; i < 4; i++) {
-    str = (b & 0b11111111).toString(2) + ' ' + str;
-    b = b >>> 8;
-  }
-  console.log(str);
-};
+// const print32Bit = b => {
+//   var str = '';
+//   for (var i = 0; i < 4; i++) {
+//     str = (b & 0b11111111).toString(2) + ' ' + str;
+//     b = b >>> 8;
+//   }
+//   console.log(str);
+// };
 
 // Sorts array of restriction sites by startIndex, and breaks ties with
 // alphabetical order of names

@@ -31,6 +31,7 @@ class Line extends React.Component {
   }
 
   render() {
+    console.log("Rendering Line");
     const {
       charsPerRow,
       minusStrand,

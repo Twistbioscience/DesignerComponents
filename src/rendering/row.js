@@ -1,10 +1,11 @@
 import Line from '../line-parts/line';
-import {getResiteLayer, getAnnotationsTopHeight, getSequenceHeight, getAnnotationsBottomHeight} from './annotations';
+import {getAnnotationsTopHeight, getSequenceHeight, getAnnotationsBottomHeight} from './annotations';
 
 export const rowRenderer = ({
   sequence,
   annotations,
   restrictionSites,
+  maxResiteLayer,
   charsPerRow,
   minusStrand,
   onMouseDown,
@@ -20,13 +21,7 @@ export const rowRenderer = ({
   style // Style object to be applied to row (to position it)
 }) => {
   const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
-  const maxResiteLayer = restrictionSites
-    .map((site, index, arr) => {
-      return getResiteLayer(arr, index);
-    })
-    .reduce((maxLayer, currentLayer) => {
-      return Math.max(maxLayer, currentLayer);
-    }, 0);
+  console.log("Returning rowRenderer");
   return (
     <Line
       sequence={sequence}
