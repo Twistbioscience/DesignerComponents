@@ -26,7 +26,7 @@ export const rowRenderer = ({
     })
     .reduce((maxLayer, currentLayer) => {
       return Math.max(maxLayer, currentLayer);
-    });
+    }, 0);
   return (
     <Line
       sequence={sequence}
@@ -48,11 +48,10 @@ export const rowRenderer = ({
   );
 };
 
-export const getRowHeight = (charsPerRow, annotations = [], restrictionSites = [], showMinusStrand, config) => ({
+export const getRowHeight = (charsPerRow, annotations = [], annotationsTopHeight, showMinusStrand, config) => ({
   index
 }) => {
   const startIndex = charsPerRow * index;
-  const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
   const annotationsBottomHeight = getAnnotationsBottomHeight(annotations, startIndex, charsPerRow);
   const sequenceHeight = getSequenceHeight(showMinusStrand, config);
   return annotationsTopHeight + sequenceHeight + annotationsBottomHeight + config.BP_INDEX_HEIGHT;

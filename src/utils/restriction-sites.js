@@ -4,17 +4,11 @@ import reSiteDefinitions from '../re-site-definitions.json';
 import {getComplementSequence} from './sequence';
 import {getNamedColor} from './colors';
 
-const restrictionSiteDefinitions = Object.entries(reSiteDefinitions).map(entry => entry[1])[0];
-const popularReSiteDefinitions = restrictionSiteDefinitions.filter(site => site.subLists.includes('POPULAR'));
-
 // Each base is 4 bits
 // A : 1000
 // T : 0100
 // G : 0010
 // C : 0001
-// Mixed bases are constructed using bitwise OR
-// M = A | C = 1000 | 0001 = 1001
-
 const baseToBinary = {
   A: 0b1000, // 1000
   T: 0b100, // 0100
@@ -33,8 +27,26 @@ const baseToBinary = {
   N: 0b1111 // 1111   = any
 };
 
-export const getRestrictionSites = (sequenceString, reSiteDefinitions) => {
-  console.log('function fired');
+// bitCountLookup stores the number of bits in an 8bit number that are on (1)
+// For example,
+// bitCountLookup[01000000] = 1
+// bitCountLookup[00001100] = 2
+// bitCountLookup[11111110] = 7
+var bitCountLookup = [];
+for (var i = 0; i < 256; i++) {
+  var count = 0;
+  var n = i;
+  while (n !== 0) {
+    count++;
+    n &= n - 1;
+  }
+  bitCountLookup.push(count);
+}
+
+const restrictionSiteDefinitions = Object.entries(reSiteDefinitions).map(entry => entry[1])[0];
+const popularReSiteDefinitions = restrictionSiteDefinitions.filter(site => site.subLists.includes('POPULAR'));
+
+export const detectRestrictionSites = (sequenceString, reSiteDefinitions = popularReSiteDefinitions) => {
   const sequenceLength = sequenceString.length;
   const complementString = getComplementSequence(sequenceString.toUpperCase());
   const reversedComplementString = complementString
@@ -46,7 +58,7 @@ export const getRestrictionSites = (sequenceString, reSiteDefinitions) => {
 
   var reSites = [];
 
-  popularReSiteDefinitions.map(site => {
+  reSiteDefinitions.map(site => {
     const siteLength = site.recognitionSequence.length;
     const forwardMatches = matchSequences(site.recognitionSequence, sequenceBinary);
     const reverseMatches = matchSequences(site.recognitionSequence, sequenceComplementBinary);
@@ -75,57 +87,21 @@ export const getRestrictionSites = (sequenceString, reSiteDefinitions) => {
     });
   });
 
-  console.log(sequenceString);
-  console.log(reSites);
   const uniqueReSites = uniqueRestrictionSites(reSites);
   const sortedReSites = sortRestrictionSites(uniqueReSites);
 
+  console.log('function fired');
+  console.log(reSites);
   console.log(sequenceLength);
-  console.log(sequenceBinary.byteLength);
   return sortedReSites;
 };
 
-var bitCountLookup = [];
-for (var i = 0; i < 256; i++) {
-  var count = 0;
-  var n = i;
-  while (n !== 0) {
-    count++;
-    n &= n - 1;
-  }
-  bitCountLookup.push(count);
-}
-
-const sortRestrictionSites = sites => {
-  const sorted = sites.sort((a, b) => {
-    if (a.startIndex < b.startIndex) {
-      return -1;
-    } else if (b.startIndex < a.startIndex) {
-      return 1;
-    } else {
-      if (a.name < b.name) {
-        return -1;
-      } else if (a.name > b.name) {
-        return 1;
-      }
-    }
-
-    return 0;
-  });
-
-  return sorted;
-};
-
-const uniqueRestrictionSites = sites => {
-  return sites.filter(
-    (site, index, arr) => index === arr.findIndex(s => s.name === site.name && s.startIndex === site.startIndex)
-  );
-};
-
 /**
- * Converts string representation of a sequence to a binary representation of the sequence
+ * Converts string representation of a sequence to a binary representation of
+ * the sequence
  * @param sequenceString - sequence represented as a string
- * @return {Uint32Array} binary buffer representing sequence
+ * @return {DataView} - a dataview with an underlying binary buffer that
+ *                      represents the sequence
  */
 const convertSequenceToBinary = sequenceString => {
   var sequenceBuffer, view, i, len, bases;
@@ -139,11 +115,11 @@ const convertSequenceToBinary = sequenceString => {
   view = new DataView(sequenceBuffer);
 
   // for "AC", the following would yield
-  // uint8view[i] = 0000 0000 (starting array)
-  // uint8view[i] = 0000 1000 ('A')
-  // uint8view[i] = 1000 0000 (<< 4)
-  //                     0100 ('T')
-  // uint8view[i] = 1000 0100 (|=)
+  // bases = 0000 0000 (starting view)
+  // bases = 0000 1000 ('A')
+  // bases = 1000 0000 (<< 4)
+  //              0100 ('T')
+  // bases = 1000 0100 (|=)
 
   for (i = 0, len = sequenceBuffer.byteLength; i < len; i++) {
     bases = baseToBinary[sequenceString[i * 2]] << 4;
@@ -154,42 +130,12 @@ const convertSequenceToBinary = sequenceString => {
   return view;
 };
 
-const printDataView = dv => {
-  const len = dv.byteLength / 4;
-  var str = '';
-  for (var i = 0; i < len; i++) {
-    str += dv.getUint32(i << 2).toString(2) + ' ';
-  }
-  console.log(str);
-};
-
-const print32Bit = b => {
-  var str = '';
-  for (var i = 0; i < 4; i++) {
-    str = (b & 0b11111111).toString(2) + ' ' + str;
-    b = b >>> 8;
-  }
-  console.log(str);
-};
-
-// for a 32bit strand that is the OR of two 32bit DNA strands
-const matchCount = T => {
-  var matches = T;
-  var numMatches = 0;
-  matches |= matches >>> 1;
-  matches |= matches >>> 2;
-  matches &= 0x11111111;
-  matches |= matches >>> 3;
-  matches |= matches >>> 6;
-  numMatches += bitCountLookup[((matches >>> 12) & 0xf0) | (matches & 0xf)];
-  return numMatches;
-};
-
 /**
  * Returns all starting indices of the sequence where the pattern matches
- * @param pattern - dna pattern (binary representation) we are trying to find in our sequence
- * @param sequence - dna sequence (binary representation) we are searching
- * @return {Array<int>} of indixes in sequence where pattern matches
+ * @param patternString - dna pattern (string representation) we are trying to
+ *                        find in our sequence
+ * @param sequenceBinary - dna sequence (binary representation) we are searching
+ * @return Array<int> - indices in sequence where pattern matches
  */
 const matchSequences = (patternString, sequenceBinary) => {
   var mapBuffer, mapArray, A, A1, A2, B, T, cur, pos, i, k, adjustNeg, adjustPos;
@@ -198,6 +144,9 @@ const matchSequences = (patternString, sequenceBinary) => {
   const patternStringLength = patternString.length;
 
   // We want to process the DNA in chunks of 8 bases (32 bits)
+  // >> 2 is the same as / by 4
+  // << 2 is the same as * by 4
+  // << 3 is the same as * by 8
   const patternByteLength = patternBinary.byteLength;
   const patternLength = patternByteLength >> 2;
   const sequenceByteLength = sequenceBinary.byteLength;
@@ -233,7 +182,8 @@ const matchSequences = (patternString, sequenceBinary) => {
         B = sequenceBinary.getUint32(i << 2);
         pos = (i - k) << 3;
 
-        // if match without shifting is non-zero, count matches
+        // if match with shifting is non-zero, count matches and account for offset
+
         const pos1 = (pos + adjustPos) << 2;
         const pos2 = (pos + adjustNeg) << 2;
 
@@ -245,7 +195,7 @@ const matchSequences = (patternString, sequenceBinary) => {
         }
       }
 
-      // keep "walking" / shifting current integer to each offset
+      // keep shifting pattern in each direction
 
       A1 >>>= 4;
       A2 <<= 4;
@@ -263,4 +213,71 @@ const matchSequences = (patternString, sequenceBinary) => {
   }
 
   return matchIndices;
+};
+
+// If A and B are both 32 bit numbers (each up to 8 nucleotide bases),
+// then matchCount(T) return the number of matching bases between A and B where
+// T = A & B
+const matchCount = T => {
+  var matches = T;
+  var numMatches = 0;
+  matches |= matches >>> 1;
+  matches |= matches >>> 2;
+  matches &= 0x11111111;
+  matches |= matches >>> 3;
+  matches |= matches >>> 6;
+  numMatches += bitCountLookup[((matches >>> 12) & 0xf0) | (matches & 0xf)];
+  return numMatches;
+};
+
+// Print an entire dataview in binary
+const printDataView = dv => {
+  const len = dv.byteLength / 4;
+  var str = '';
+  for (var i = 0; i < len; i++) {
+    str += dv.getUint32(i << 2).toString(2) + ' ';
+  }
+  console.log(str);
+};
+
+// Print a 32 bit number b in binary
+const print32Bit = b => {
+  var str = '';
+  for (var i = 0; i < 4; i++) {
+    str = (b & 0b11111111).toString(2) + ' ' + str;
+    b = b >>> 8;
+  }
+  console.log(str);
+};
+
+// Sorts array of restriction sites by startIndex, and breaks ties with
+// alphabetical order of names
+const sortRestrictionSites = sites => {
+  const sorted = sites.sort((a, b) => {
+    if (a.startIndex < b.startIndex) {
+      return -1;
+    } else if (b.startIndex < a.startIndex) {
+      return 1;
+    } else {
+      if (a.name < b.name) {
+        return -1;
+      } else if (a.name > b.name) {
+        return 1;
+      }
+    }
+
+    return 0;
+  });
+
+  return sorted;
+};
+
+// Filters array of restriction sites to array of unique restriction sites
+// Use case: for some restriction site definitions, the site matches both in the
+// forward and backward direction at the same index of a sequence. This function
+// makes sure that we don't render the site twice unnecessarily
+const uniqueRestrictionSites = sites => {
+  return sites.filter(
+    (site, index, arr) => index === arr.findIndex(s => s.name === site.name && s.startIndex === site.startIndex)
+  );
 };
