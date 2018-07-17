@@ -1,13 +1,23 @@
 import {ANNOTATION_HEIGHT, ANNOTATION_GAP, ANNOTATION_PADDING_TOP} from '../constants';
-import {getAnnotationLayer, getSequenceHeight} from '../rendering/annotations.js';
+import {getSequenceHeight} from '../rendering/annotations.js';
 
-const AnnotationMarker = ({annotation, index, arr, config, minusStrand, startIndex, annotationsTopHeight}) => {
-  const layer = getAnnotationLayer(arr, index);
+const AnnotationMarker = ({
+  annotation,
+  layerIndex,
+  annotationIndex,
+  config,
+  minusStrand,
+  startIndex,
+  annotationsTopHeight
+}) => {
   const sequenceHeight = getSequenceHeight(minusStrand, config);
   const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
   const x = (annotation.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
   const y =
-    annotationsTopHeight + sequenceHeight + layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP) + ANNOTATION_PADDING_TOP;
+    annotationsTopHeight +
+    sequenceHeight +
+    (layerIndex + 1) * (ANNOTATION_HEIGHT + ANNOTATION_GAP) +
+    ANNOTATION_PADDING_TOP;
   const points = [
     //arrowheads on both edges, no teeth:
     x - 5 / 2,
@@ -24,9 +34,9 @@ const AnnotationMarker = ({annotation, index, arr, config, minusStrand, startInd
     y + ANNOTATION_HEIGHT / 2
   ].join(' ');
   return (
-    <g key={`annotations-bottom-${index}`}>
+    <g key={`annotations-bottom-${layerIndex}-${annotationIndex}`}>
       <polygon
-        key={`annotations-bottom-poly-${index}`}
+        key={`annotations-bottom-poly-${layerIndex}-${annotationIndex}`}
         points={points}
         x={x}
         y={y}
@@ -34,7 +44,7 @@ const AnnotationMarker = ({annotation, index, arr, config, minusStrand, startInd
         fillOpacity="0.3"
       />
       <text
-        key={`annotations-bottom-text-${index}`}
+        key={`annotations-bottom-text-${layerIndex}-${annotationIndex}`}
         x={x + width / 4}
         y={y + ANNOTATION_HEIGHT / 2 + 5}
         fontSize="12px">

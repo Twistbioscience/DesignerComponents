@@ -1,14 +1,12 @@
 import {RESITE_LABEL_GAP, RESITE_BOX_HOR_PADDING, RESITE_FONT_SIZE, LINE_PADDING_TOP, FONT_FAMILY} from '../constants';
 import React from 'react';
-import {getResiteLayer} from '../rendering/annotations';
 import {measureFontWidth} from '../rendering/fonts';
 
 // Assumption: the text for the restriction site label is never longer than the length
 // of the restriction site box
-const RestrictionSiteLabel = ({site, index, arr, config, startIndex, maxResiteLayer, charsPerRow, lineWidth}) => {
-  const layer = getResiteLayer(arr, index);
+const RestrictionSiteLabel = ({site, layerIndex, config, startIndex, maxResiteLayer, charsPerRow, lineWidth}) => {
   const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE + 1;
-  const y = (maxResiteLayer - layer + 1) * (1 + RESITE_LABEL_GAP) + LINE_PADDING_TOP;
+  const y = (maxResiteLayer - layerIndex) * (1 + RESITE_LABEL_GAP) + LINE_PADDING_TOP;
   const textWidth = site.name.length * measureFontWidth(FONT_FAMILY, RESITE_FONT_SIZE, 'i').width;
   const siteWidth = RESITE_BOX_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
   var translate = 'translate(0)';
@@ -70,7 +68,7 @@ const RestrictionSiteLabel = ({site, index, arr, config, startIndex, maxResiteLa
   }
 
   const siteText = getRestrictionSiteText(site, textWidth, siteWidth, x, y, translate);
-  const siteLine = getRestrictionSiteLine(site, textWidth, siteWidth, index, config, startIndex, x, y, d);
+  const siteLine = getRestrictionSiteLine(site, textWidth, siteWidth, config, startIndex, x, y, d);
   return (
     <g key={'resite-label'}>
       {showText && siteText}
@@ -97,7 +95,7 @@ const getRestrictionSiteText = (site, textWidth, siteWidth, x, y, translate) => 
 };
 
 // If d is passed in, it is because the text was cropped and we are changing the location of the text/line
-const getRestrictionSiteLine = (site, textWidth, siteWidth, index, config, startIndex, x, y, d) => {
+const getRestrictionSiteLine = (site, textWidth, siteWidth, config, startIndex, x, y, d) => {
   const firstLineEndX = Math.max(x, x + (siteWidth / 2 - textWidth / 2) - 2);
   const secondLineStartX = x + (siteWidth / 2 + textWidth / 2) + 1;
   const secondLineEndX = Math.max(secondLineStartX, x + siteWidth);

@@ -8,25 +8,36 @@ import {
   MINUS_STRAND_MARGIN
 } from '../constants';
 
-const getLayerCount = checkOverlap => (annotations = [], index) =>
-  annotations
-    .slice(0, index)
-    .map((annotation, i) => Object.assign({}, annotation, {layer: getLayerCount(checkOverlap)(annotations, i)}))
-    .filter(annotation => checkOverlap(annotations[index], annotation))
-    .sort((a, b) => {
-      if (a.layer < b.layer) {
-        return -1;
+// This function uses a greedy interval partitioning algorithm
+export const getLayers = (annotations = []) => {
+  const layers = [];
+  if (annotations.length !== 0) {
+    layers.push([annotations[0]]);
+    annotations.slice(1, annotations.length).forEach(annotation => {
+      let added = false;
+      for (var i = 0; i < layers.length; i++) {
+        if (!overlapping(annotation, layers[i])) {
+          layers[i].push(annotation);
+          added = true;
+          break;
+        }
       }
-      if (b.layer < a.layer) {
-        return 1;
+      if (!added) {
+        layers.push([annotation]);
       }
-      return 0;
-    })
-    .reduce((curr, prev) => (prev.layer === curr ? prev.layer + 1 : curr), 1);
+    });
+  }
+  return layers;
+};
 
-export const getAnnotationLayer = getLayerCount((curr, prev) => curr.startIndex <= prev.endIndex);
-export const getResiteLayer = getLayerCount((curr, prev) => curr.startIndex <= prev.endIndex);
-export const getOrfLayer = getLayerCount((curr, prev) => curr.orfLineStart < prev.orfLineEnd);
+const overlapping = (annotation, layerOfAnnotations) => {
+  const overlapping = layerOfAnnotations.reduce(function(overlapping, currAnnotation) {
+    const overlappingWithCurrent =
+      annotation.startIndex <= currAnnotation.endIndex && annotation.endIndex >= currAnnotation.startIndex;
+    return overlapping || overlappingWithCurrent;
+  }, false);
+  return overlapping;
+};
 
 export const filterAnnotations = (annotation, startIndex, charsPerRow) => {
   const showAnnotation =
@@ -36,11 +47,8 @@ export const filterAnnotations = (annotation, startIndex, charsPerRow) => {
 };
 
 export const getAnnotationsTopHeight = restrictionSites => {
-  const resiteLabelLayers = restrictionSites.map((site, index) => {
-    return getAnnotationLayer(restrictionSites, index);
-  });
-  const mostLayers = Math.max(...resiteLabelLayers);
-  const annotationsTopHeight = LINE_PADDING_TOP + (1 + RESITE_LABEL_GAP) * (mostLayers > 0 ? mostLayers + 1 : 1);
+  const numLayers = getLayers(restrictionSites).length;
+  const annotationsTopHeight = LINE_PADDING_TOP + (1 + RESITE_LABEL_GAP) * (numLayers > 0 ? numLayers + 1 : 1);
   return annotationsTopHeight;
 };
 
@@ -52,11 +60,8 @@ export const getSequenceHeight = (minusStrand, config) => {
 };
 
 export const getAnnotationsBottomHeight = (annotations, startIndex, charsPerRow) => {
-  const layerCount = annotations
-    .filter(annotation => filterAnnotations(annotation, startIndex, charsPerRow))
-    .reduce((layers, annotation, currIndex, arr) => {
-      return Math.max(layers, getAnnotationLayer(arr, currIndex));
-    }, 0);
+  const filteredAnnotations = annotations.filter(annotation => filterAnnotations(annotation, startIndex, charsPerRow));
+  const layerCount = getLayers(filteredAnnotations).length;
   const annotationsBottomHeight =
     LINE_PADDING_BOTTOM + layerCount > 0
       ? layerCount * (ANNOTATION_GAP + ANNOTATION_HEIGHT) + ANNOTATION_PADDING_TOP

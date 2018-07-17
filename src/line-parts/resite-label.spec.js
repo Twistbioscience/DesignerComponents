@@ -1,7 +1,7 @@
 import React from 'react';
 import RestrictionSiteLabel from './resite-label';
 import {render, cleanup} from 'react-testing-library';
-import {getResiteLayer} from '../rendering/annotations';
+import {getLayers} from '../rendering/annotations';
 import sinon from 'sinon';
 import * as Fonts from '../rendering/fonts';
 
@@ -42,13 +42,7 @@ describe('resite-label', () => {
     LETTER_WIDTH_BP_INDEX_LABEL: 8
   };
 
-  const maxResiteLayer = restrictionSites
-    .map((site, index, arr) => {
-      return getResiteLayer(arr, index);
-    })
-    .reduce((maxLayer, currentLayer) => {
-      return Math.max(maxLayer, currentLayer);
-    });
+  const maxResiteLayer = getLayers(restrictionSites).length;
 
   it('label should be as long as the restriction site', () => {
     const props = {
