@@ -10,26 +10,26 @@ import {
 
 // This function uses a greedy interval partitioning algorithm
 export const getLayers = (annotations = []) => {
-  var layers = {};
+  const layers = [];
   if (annotations.length !== 0) {
-    layers[0] = [annotations[0]];
-    var numLayers = 1;
+    layers.push([annotations[0]]);
+    let numLayers = 1;
     annotations.slice(1, annotations.length).forEach(annotation => {
-      var added = false;
-      for (var layer in layers) {
-        if (!overlapping(annotation, layers[layer])) {
-          layers[layer].push(annotation);
+      let added = false;
+      for (var i = 0; i < layers.length; i++) {
+        if (!overlapping(annotation, layers[i])) {
+          layers[i].push(annotation);
           added = true;
           break;
         }
       }
       if (!added) {
-        layers[numLayers] = [annotation];
+        layers.push([annotation]);
         numLayers++;
       }
     });
   }
-  return Object.values(layers);
+  return layers;
 };
 
 const overlapping = (annotation, layerOfAnnotations) => {
