@@ -13,7 +13,6 @@ export const getLayers = (annotations = []) => {
   const layers = [];
   if (annotations.length !== 0) {
     layers.push([annotations[0]]);
-    let numLayers = 1;
     annotations.slice(1, annotations.length).forEach(annotation => {
       let added = false;
       for (var i = 0; i < layers.length; i++) {
@@ -25,7 +24,6 @@ export const getLayers = (annotations = []) => {
       }
       if (!added) {
         layers.push([annotation]);
-        numLayers++;
       }
     });
   }
