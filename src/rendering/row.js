@@ -1,5 +1,5 @@
 import Line from '../line-parts/line';
-import {getLayers, getAnnotationsTopHeight, getSequenceHeight, getAnnotationsBottomHeight} from './annotations';
+import {getAnnotationsTopHeight, getSequenceHeight, getAnnotationsBottomHeight} from './annotations';
 
 export const rowRenderer = ({
   sequence,
