@@ -1,5 +1,5 @@
 import Line from '../line-parts/line';
-import {getAnnotationsTopHeight, getSequenceHeight, getAnnotationsBottomHeight} from './annotations';
+import {getLayers, getAnnotationsTopHeight, getSequenceHeight, getAnnotationsBottomHeight} from './annotations';
 
 export const rowRenderer = ({
   sequence,
@@ -21,7 +21,6 @@ export const rowRenderer = ({
   style // Style object to be applied to row (to position it)
 }) => {
   const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
-  console.log("Returning rowRenderer");
   return (
     <Line
       sequence={sequence}

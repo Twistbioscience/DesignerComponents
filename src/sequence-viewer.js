@@ -5,7 +5,7 @@ import {LEFT_PADDING} from './constants';
 import {getRowHeight, rowRenderer} from './rendering/row';
 import {css, cx} from 'react-emotion';
 import {detectRestrictionSites} from './utils/restriction-sites';
-import {getResiteLayer, getAnnotationsTopHeight} from './rendering/annotations';
+import {getLayers, getAnnotationsTopHeight} from './rendering/annotations';
 
 const noSelection = css`
   -webkit-user-select: none;
@@ -22,16 +22,8 @@ const panel = css`
 
 export default class SequenceViewer extends React.Component {
   render() {
-    console.log("Rendering SequenceViewer");
-    const restrictionSites = detectRestrictionSites(this.props.sequence.substring(0, 700));
-    const maxResiteLayer = restrictionSites
-    .map((site, index, arr) => {
-      return getResiteLayer(arr, index);
-    })
-    .reduce((maxLayer, currentLayer) => {
-      return Math.max(maxLayer, currentLayer);
-    }, 0);
-    console.log(restrictionSites);
+    const restrictionSites = detectRestrictionSites(this.props.sequence);
+    const maxResiteLayer = getLayers(restrictionSites).length;
     const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
     const rowHeightFunc = getRowHeight(
       this.props.charsPerRow,

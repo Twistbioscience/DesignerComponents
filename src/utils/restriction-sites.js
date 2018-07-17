@@ -47,7 +47,6 @@ const restrictionSiteDefinitions = Object.entries(reSiteDefinitions).map(entry =
 const popularReSiteDefinitions = restrictionSiteDefinitions.filter(site => site.subLists.includes('POPULAR'));
 
 export const detectRestrictionSites = (sequenceString, reSiteDefinitions = popularReSiteDefinitions) => {
-  console.log("detectRestrictionSites START");
   const sequenceLength = sequenceString.length;
   const complementString = getComplementSequence(sequenceString.toUpperCase());
   const reversedComplementString = complementString
@@ -91,7 +90,6 @@ export const detectRestrictionSites = (sequenceString, reSiteDefinitions = popul
   const uniqueReSites = uniqueRestrictionSites(reSites);
   const sortedReSites = sortRestrictionSites(uniqueReSites);
 
-  console.log("detectRestrictionSites END");
   return sortedReSites;
 };
 

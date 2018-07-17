@@ -19,7 +19,6 @@ export const WithConfigSetter = Component => {
     }
 
     componentWillMount() {
-      console.log("will mount");
       const config = getConfig();
       this.setState({config: config});
       this.calculateStaticParams(config, this.props.width, this.props.sequence);
