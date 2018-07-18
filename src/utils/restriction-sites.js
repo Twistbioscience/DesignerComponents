@@ -43,7 +43,7 @@ for (var i = 0; i < 256; i++) {
   bitCountLookup.push(count);
 }
 
-const restrictionSiteDefinitions = Object.entries(reSiteDefinitions).map(entry => entry[1])[0];
+const restrictionSiteDefinitions = reSiteDefinitions.reSitesDefList;
 const popularReSiteDefinitions = restrictionSiteDefinitions.filter(site => site.subLists.includes('POPULAR'));
 
 export const detectRestrictionSites = (sequenceString, reSiteDefinitions = popularReSiteDefinitions) => {
