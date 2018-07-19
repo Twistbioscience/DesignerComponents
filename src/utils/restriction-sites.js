@@ -47,6 +47,7 @@ const restrictionSiteDefinitions = reSiteDefinitions.reSitesDefList;
 const popularReSiteDefinitions = restrictionSiteDefinitions.filter(site => site.subLists.includes('POPULAR'));
 
 export const detectRestrictionSites = (sequenceString, reSiteDefinitions = popularReSiteDefinitions) => {
+  let total = 0;
   const sequenceLength = sequenceString.length;
   const complementString = getComplementSequence(sequenceString.toUpperCase());
   const reversedComplementString = complementString
@@ -59,10 +60,10 @@ export const detectRestrictionSites = (sequenceString, reSiteDefinitions = popul
   var reSites = [];
 
   reSiteDefinitions.map(site => {
-    const siteLength = site.recognitionSequence.length;
-    const forwardMatches = matchSequences(site.recognitionSequence, sequenceBinary);
-    const reverseMatches = matchSequences(site.recognitionSequence, sequenceComplementBinary);
-
+    const siteSequence = site.recognitionSequence.toUpperCase();
+    const siteLength = siteSequence.length;
+    const forwardMatches = matchSequences(siteSequence, sequenceBinary);
+    total += sequenceLength * siteLength;
     forwardMatches.map(index => {
       reSites.push({
         name: site.name,
@@ -74,23 +75,37 @@ export const detectRestrictionSites = (sequenceString, reSiteDefinitions = popul
         color: getNamedColor(site.name)
       });
     });
-    reverseMatches.map(index => {
-      reSites.push({
-        name: site.name,
-        startIndex: sequenceLength - index - siteLength,
-        endIndex: sequenceLength - index - 1,
-        overhang: Number(site.overhang),
-        cutIndex3_5: Number(site.cutIndex3_5),
-        direction: -1,
-        color: getNamedColor(site.name)
+
+    if (!isPalindrome(siteSequence)) {
+      total += sequenceLength * siteLength;
+      const reverseMatches = matchSequences(siteSequence, sequenceComplementBinary);
+      reverseMatches.map(index => {
+        reSites.push({
+          name: site.name,
+          startIndex: sequenceLength - index - siteLength,
+          endIndex: sequenceLength - index - 1,
+          overhang: Number(site.overhang),
+          cutIndex3_5: Number(site.cutIndex3_5),
+          direction: -1,
+          color: getNamedColor(site.name)
+        });
       });
-    });
+    }
   });
 
-  const uniqueReSites = uniqueRestrictionSites(reSites);
-  const sortedReSites = sortRestrictionSites(uniqueReSites);
-
+  const sortedReSites = sortRestrictionSites(reSites);
+  console.log('total: ' + total);
+  console.log('numComps: ' + numComps);
   return sortedReSites;
+};
+
+const isPalindrome = reSiteSequence => {
+  let tmp = getComplementSequence(reSiteSequence.toUpperCase());
+  tmp = tmp
+    .split('')
+    .reverse()
+    .join('');
+  return reSiteSequence === tmp;
 };
 
 /**
@@ -134,9 +149,9 @@ const convertSequenceToBinary = sequenceString => {
  * @param sequenceBinary - dna sequence (binary representation) we are searching
  * @return Array<int> - indices in sequence where pattern matches
  */
+let numComps = 0;
 const matchSequences = (patternString, sequenceBinary) => {
   var A, A1, A2, B, T, pos, i, k, adjustNeg, adjustPos;
-
   const patternBinary = convertSequenceToBinary(patternString.toUpperCase());
   const patternStringLength = patternString.length;
 
@@ -157,6 +172,7 @@ const matchSequences = (patternString, sequenceBinary) => {
     A = patternBinary.getUint32(k << 2);
 
     for (i = k; i < sequenceLength; i++) {
+      numComps++;
       B = sequenceBinary.getUint32(i << 2);
 
       // if match without shifting is non-zero, count matches
@@ -176,6 +192,7 @@ const matchSequences = (patternString, sequenceBinary) => {
     // to zero them both out
     while (A1 || A2) {
       for (i = 0; i < sequenceLength; i++) {
+        numComps++;
         B = sequenceBinary.getUint32(i << 2);
         pos = (i - k) << 3;
 
@@ -227,26 +244,6 @@ const matchCount = T => {
   return numMatches;
 };
 
-// Print an entire dataview in binary
-// const printDataView = dv => {
-//   const len = dv.byteLength / 4;
-//   var str = '';
-//   for (var i = 0; i < len; i++) {
-//     str += dv.getUint32(i << 2).toString(2) + ' ';
-//   }
-//   console.log(str);
-// };
-
-// Print a 32 bit number b in binary
-// const print32Bit = b => {
-//   var str = '';
-//   for (var i = 0; i < 4; i++) {
-//     str = (b & 0b11111111).toString(2) + ' ' + str;
-//     b = b >>> 8;
-//   }
-//   console.log(str);
-// };
-
 // Sorts array of restriction sites by startIndex, and breaks ties with
 // alphabetical order of names
 const sortRestrictionSites = sites => {
@@ -267,14 +264,4 @@ const sortRestrictionSites = sites => {
   });
 
   return sorted;
-};
-
-// Filters array of restriction sites to array of unique restriction sites
-// Use case: for some restriction site definitions, the site matches both in the
-// forward and backward direction at the same index of a sequence. This function
-// makes sure that we don't render the site twice unnecessarily
-const uniqueRestrictionSites = sites => {
-  return sites.filter(
-    (site, index, arr) => index === arr.findIndex(s => s.name === site.name && s.startIndex === site.startIndex)
-  );
 };
