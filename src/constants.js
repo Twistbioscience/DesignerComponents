@@ -27,7 +27,7 @@ export const charMap = {
   D: 'H',
   H: 'D',
   V: 'B',
-  N: 'N',
+  N: 'N'
 };
 
 export const MIN_ORF_SIZE = 60;
