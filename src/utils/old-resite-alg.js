@@ -8,7 +8,7 @@ const popularReSiteDefinitions = restrictionSiteDefinitions.filter(site => site.
 
 var wildcardsRegex = /[NURKMSWBDHVnurykmswbdhv]/;
 
-let restrictionSitesDefinitions, siteCountMap, siteDescriptorsMap;
+let siteCountMap, siteDescriptorsMap;
 
 export const detectRestrictionSitesOld = (sequence, reSiteDefinitions) => {
   siteCountMap = {};

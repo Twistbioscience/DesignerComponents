@@ -1,5 +1,4 @@
 import {detectRestrictionSites} from './restriction-sites';
-import {detectRestrictionSitesOld} from './old-resite-alg';
 import reSiteDefinitions from '../re-site-definitions.json';
 describe('utils/restriction-sites', () => {
   const restrictionSiteDefinitions = reSiteDefinitions.reSitesDefList;
