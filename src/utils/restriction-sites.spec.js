@@ -4,7 +4,7 @@ describe('utils/restriction-sites', () => {
   const restrictionSiteDefinitions = reSiteDefinitions.reSitesDefList;
   const popularReSiteDefinitions = restrictionSiteDefinitions.filter(site => site.subLists.includes('POPULAR'));
 
-  describe('detectRestrictionSites on site that starts at index 0: ', () => {
+  describe('detectRestrictionSites on (< 30 base pairs) site that starts at index 0: ', () => {
     const seq = 'GGTACCAAAAAAAA';
     it('should detect Acc65I at index 0', () => {
       const indices = detectRestrictionSites(seq, popularReSiteDefinitions);
@@ -12,7 +12,7 @@ describe('utils/restriction-sites', () => {
     });
   });
 
-  describe('detectRestrictionSites on overlapping sites: ', () => {
+  describe('detectRestrictionSites on overlapping sites (< 30 base pairs): ', () => {
     const seq = 'GACGTCTTAAG';
     const indices = detectRestrictionSites(seq, popularReSiteDefinitions);
     it('should detect AatII at index 0', () => {
@@ -25,7 +25,7 @@ describe('utils/restriction-sites', () => {
     });
   });
 
-  describe('detectRestrictionSites on sequence 1: ', () => {
+  describe('detectRestrictionSites on sequence 1 (> 30 base pairs): ', () => {
     const seq =
       'TGCCCGCGTTGCAGGCCATGCTGTCCCAGGCAGGTAGATGACGACCATCAGGGACAGCTTCAAGGATCGCTCGCGGCTCTTACCAGCCTAACTTCGATC' +
       'ATTGGACCGCTGATCGTCACGGCGATTTATGCCGCCTCGGCGAGCACATGGAACGGGTTGGCATGGATTGTAGGCGCCGCCCTATACCTTGTCTGCCTCCCCGCGTT' +
@@ -49,7 +49,7 @@ describe('utils/restriction-sites', () => {
     });
   });
 
-  describe('detectRestrictionSites on sequence 2: ', () => {
+  describe('detectRestrictionSites on sequence 2 (> 30 base pairs): ', () => {
     const seq =
       'ATGAAATCTAACAATGCGCTCATCGTCATCCTCGGCACCGTCACCCTGGATGCTGTAGGCATAGGCTTGGTTATGCCGGTACTGCCGGGCCTCTTGCGG' +
       'GATATCGTCCATTCCGACAGCATCGCCAGTCACTATGGCGTGCTGCTAGCGCTATATGCGTTGATGCAATTTCTATGCGCACCCGTTCTCGGAGCACTGTCCGACCG' +

@@ -22,8 +22,8 @@ export const detectRestrictionSites = (sequence, reSiteDefinitions) => {
   if (sequence.length >= 30) {
     sequence = sequence.substring(sequence.length - 30) + sequence;
   } else {
-    sequence += sequence;
     sequenceOffset = sequence.length;
+    sequence += sequence;
   }
 
   const restrictionSitesList = reSiteDefinitions || popularReSiteDefinitions;
