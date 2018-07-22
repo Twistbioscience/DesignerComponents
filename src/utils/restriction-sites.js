@@ -47,7 +47,6 @@ const restrictionSiteDefinitions = reSiteDefinitions.reSitesDefList;
 const popularReSiteDefinitions = restrictionSiteDefinitions.filter(site => site.subLists.includes('POPULAR'));
 
 export const detectRestrictionSites = (sequenceString, reSiteDefinitions = popularReSiteDefinitions) => {
-  let total = 0;
   const sequenceLength = sequenceString.length;
   const complementString = getComplementSequence(sequenceString.toUpperCase());
   const reversedComplementString = complementString
@@ -63,7 +62,6 @@ export const detectRestrictionSites = (sequenceString, reSiteDefinitions = popul
     const siteSequence = site.recognitionSequence.toUpperCase();
     const siteLength = siteSequence.length;
     const forwardMatches = matchSequences(siteSequence, sequenceBinary);
-    total += sequenceLength * siteLength;
     forwardMatches.map(index => {
       reSites.push({
         name: site.name,
@@ -77,7 +75,6 @@ export const detectRestrictionSites = (sequenceString, reSiteDefinitions = popul
     });
 
     if (!isPalindrome(siteSequence)) {
-      total += sequenceLength * siteLength;
       const reverseMatches = matchSequences(siteSequence, sequenceComplementBinary);
       reverseMatches.map(index => {
         reSites.push({
@@ -94,8 +91,6 @@ export const detectRestrictionSites = (sequenceString, reSiteDefinitions = popul
   });
 
   const sortedReSites = sortRestrictionSites(reSites);
-  console.log('total: ' + total);
-  console.log('numComps: ' + numComps);
   return sortedReSites;
 };
 
@@ -149,7 +144,6 @@ const convertSequenceToBinary = sequenceString => {
  * @param sequenceBinary - dna sequence (binary representation) we are searching
  * @return Array<int> - indices in sequence where pattern matches
  */
-let numComps = 0;
 const matchSequences = (patternString, sequenceBinary) => {
   var A, A1, A2, B, T, pos, i, k, adjustNeg, adjustPos;
   const patternBinary = convertSequenceToBinary(patternString.toUpperCase());
@@ -172,7 +166,6 @@ const matchSequences = (patternString, sequenceBinary) => {
     A = patternBinary.getUint32(k << 2);
 
     for (i = k; i < sequenceLength; i++) {
-      numComps++;
       B = sequenceBinary.getUint32(i << 2);
 
       // if match without shifting is non-zero, count matches
@@ -192,7 +185,6 @@ const matchSequences = (patternString, sequenceBinary) => {
     // to zero them both out
     while (A1 || A2) {
       for (i = 0; i < sequenceLength; i++) {
-        numComps++;
         B = sequenceBinary.getUint32(i << 2);
         pos = (i - k) << 3;
 

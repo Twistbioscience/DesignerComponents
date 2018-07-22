@@ -1,8 +1,30 @@
 import {detectRestrictionSites} from './restriction-sites';
+import {detectRestrictionSitesOld} from './old-resite-alg';
 import reSiteDefinitions from '../re-site-definitions.json';
 describe('utils/restriction-sites', () => {
   const restrictionSiteDefinitions = reSiteDefinitions.reSitesDefList;
   const popularReSiteDefinitions = restrictionSiteDefinitions.filter(site => site.subLists.includes('POPULAR'));
+
+  describe('detectRestrictionSites on site that starts at index 0: ', () => {
+    const seq = 'GGTACCAAAAAAAA';
+    it('should detect Acc65I at index 0', () => {
+      const indices = detectRestrictionSites(seq, popularReSiteDefinitions);
+      expect(indices[0].name).toBe('Acc65I');
+    });
+  });
+
+  describe('detectRestrictionSites on overlapping sites: ', () => {
+    const seq = 'GACGTCTTAAG';
+    const indices = detectRestrictionSites(seq, popularReSiteDefinitions);
+    it('should detect AatII at index 0', () => {
+      const AaSite = indices.find(site => site.name === 'AatII');
+      expect(AaSite.startIndex).toBe(0);
+    });
+    it('should detect AflII at index 5', () => {
+      const AfSite = indices.find(site => site.name === 'AflII');
+      expect(AfSite.startIndex).toBe(5);
+    });
+  });
 
   describe('detectRestrictionSites on sequence 1: ', () => {
     const seq =
@@ -23,8 +45,8 @@ describe('utils/restriction-sites', () => {
       'GGTAGATGACGACCATCAGGGACAGCTTCAAGGATCGCTCGCGGCTCTTACCAGCCTAACTTCGATCATTGGACCGCTGATCGTCACGGCGATTTATGCCGCCTCGG' +
       'CGAGCACATGGAACGGGTTGGCATGGATTGTAGGCGCCGCCCTATACCTTGTCTGCCTCCCCGCGTTGCGTCGCGGTGCATGGAGCCGGGCCACCTCGACCTGA';
     it('should detect 42 sites on provided sequence with POPULAR sublist', () => {
-      const detection1 = detectRestrictionSites(seq, popularReSiteDefinitions);
-      expect(detection1.length).toBe(42);
+      const indices = detectRestrictionSites(seq, popularReSiteDefinitions);
+      expect(indices.length).toBe(42);
     });
   });
 
