@@ -1,15 +1,7 @@
 // @flow
 export type Annotation = {startIndex: number, endIndex: number, name: string, color?: string};
 
-export type RestrictionSite = {
-  name: string,
-  startIndex: number,
-  endIndex: number,
-  overhang: number,
-  cutIndex3_5: number,
-  direction: number,
-  color?: string
-};
+export type RestrictionSite = Annotation & {overhang: number, cutIndex3_5: number, direction: number};
 
 export type SelectionType = {
   startIndex: number,

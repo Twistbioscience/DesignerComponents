@@ -58,7 +58,6 @@ class Line extends React.Component<Props> {
       style,
       selection,
       selectionInProgress,
-      annotations,
       config,
       restrictionSites,
       annotations,
@@ -88,10 +87,10 @@ class Line extends React.Component<Props> {
         );
       });
     });
-		const filteredAnnotations = annotations.filter(annotation =>
+    const filteredAnnotations = annotations.filter(annotation =>
       filterAnnotations(annotation, startIndex, charsPerRow)
     );
-		const annotationsBottom = getLayers(filteredAnnotations).map((layer, layerIndex) => {
+    const annotationsBottom = getLayers(filteredAnnotations).map((layer, layerIndex) => {
       return layer.map((annotation, annotationIndex) => {
         return (
           <AnnotationMarker
