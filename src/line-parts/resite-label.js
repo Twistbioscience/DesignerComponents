@@ -1,14 +1,12 @@
 // @flow
 import React from 'react';
 import {RESITE_LABEL_GAP, RESITE_BOX_HOR_PADDING, RESITE_FONT_SIZE, LINE_PADDING_TOP, FONT_FAMILY} from '../constants';
-import {getAnnotationLayer} from '../rendering/annotations';
 import {measureFontWidth} from '../rendering/fonts';
 import type {RestrictionSite, Config} from '../types';
 
 const RestrictionSiteLabel = ({
   site,
-  index,
-  arr,
+  layerIndex,
   config,
   startIndex,
   maxResiteLayer,
@@ -16,17 +14,15 @@ const RestrictionSiteLabel = ({
   lineWidth
 }: {
   site: RestrictionSite,
-  index: number,
-  arr: Array<RestrictionSite>,
+  layerIndex: number,
   config: Config,
   startIndex: number,
   maxResiteLayer: number,
   charsPerRow: number,
   lineWidth: number
 }) => {
-  const layer = getAnnotationLayer(arr, index);
   const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE + 1;
-  const y = (maxResiteLayer - layer + 1) * (1 + RESITE_LABEL_GAP) + LINE_PADDING_TOP;
+  const y = (maxResiteLayer - layerIndex) * (1 + RESITE_LABEL_GAP) + LINE_PADDING_TOP;
   const textWidth = site.name.length * measureFontWidth(FONT_FAMILY, RESITE_FONT_SIZE, 'i').width;
   const siteWidth = RESITE_BOX_HOR_PADDING + (site.endIndex - site.startIndex + 1) * config.LETTER_FULL_WIDTH_SEQUENCE;
   var translate = 'translate(0)';
@@ -88,7 +84,7 @@ const RestrictionSiteLabel = ({
   }
 
   const siteText = getRestrictionSiteText(site, textWidth, siteWidth, x, y, translate);
-  const siteLine = getRestrictionSiteLine(site, textWidth, siteWidth, index, config, startIndex, x, y, d);
+  const siteLine = getRestrictionSiteLine(site, textWidth, siteWidth, config, startIndex, x, y, d);
   return (
     <g key={'resite-label'}>
       {showText && siteText}
@@ -115,10 +111,10 @@ const getRestrictionSiteText = (site, textWidth, siteWidth, x, y, translate) => 
 };
 
 // If d is passed in, it is because the text was cropped and we are changing the location of the text/line
-const getRestrictionSiteLine = (site, textWidth, siteWidth, index, config, startIndex, x, y, d) => {
-  const firstLineEndX = x + (siteWidth / 2 - textWidth / 2) - 2;
+const getRestrictionSiteLine = (site, textWidth, siteWidth, config, startIndex, x, y, d) => {
+  const firstLineEndX = Math.max(x, x + (siteWidth / 2 - textWidth / 2) - 2);
   const secondLineStartX = x + (siteWidth / 2 + textWidth / 2) + 1;
-  const secondLineEndX = x + siteWidth;
+  const secondLineEndX = Math.max(secondLineStartX, x + siteWidth);
   return (
     <path
       d={

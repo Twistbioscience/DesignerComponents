@@ -1,4 +1,4 @@
-import {getAnnotationLayer} from './annotations';
+import {getLayers} from './annotations';
 
 const annotations = [
   {name: 'BsaI', startIndex: 142, endIndex: 152, overhang: 4, cutIndex3_5: 7, direction: -1, color: '#b0b3ee'},
@@ -15,14 +15,14 @@ const annotations = [
   {name: 'HaeII', startIndex: 370, endIndex: 375, overhang: -4, cutIndex3_5: 5, direction: 1, color: '#fc957b'}
 ];
 
-describe('rendering/getAnnotationLayer', () => {
-  it('should return 1 for index 0', () => {
-    expect(getAnnotationLayer(annotations, 0)).toBe(1);
+describe('rendering/getLayers', () => {
+  it('should return 4 annotations for layer 0', () => {
+    expect(getLayers(annotations)[0].length).toBe(4);
   });
-  it('should return 2 for index 1', () => {
-    expect(getAnnotationLayer(annotations, 1)).toBe(2);
+  it('should return 1 annotation for layer 1', () => {
+    expect(getLayers(annotations)[1].length).toBe(1);
   });
-  it('should return 3 for index 2', () => {
-    expect(getAnnotationLayer(annotations, 2)).toBe(3);
+  it('should return 1 annotation for layer 2', () => {
+    expect(getLayers(annotations)[2].length).toBe(1);
   });
 });

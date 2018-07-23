@@ -5,6 +5,7 @@ import Sequence from './line-sequence';
 import Selection from './selection';
 import RestrictionSiteLabel from './resite-label';
 import AnnotationMarker from './annotation-marker';
+import {getLayers, filterAnnotations} from '../rendering/annotations';
 import type {Config, Annotation, RestrictionSite, SelectionType} from '../types';
 
 type Props = {
@@ -60,6 +61,7 @@ class Line extends React.Component<Props> {
       annotations,
       config,
       restrictionSites,
+      annotations,
       maxResiteLayer,
       annotationsTopHeight
     } = this.props;
@@ -67,39 +69,37 @@ class Line extends React.Component<Props> {
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
     const endIndex = startIndex + sequence.length;
     const lineWidth = config.LETTER_FULL_WIDTH_SEQUENCE * charsPerRow;
-    const filteredRestrictionSites = restrictionSites.filter(
-      site =>
-        (site.startIndex <= startIndex && site.endIndex >= startIndex) ||
-        (site.startIndex >= startIndex && site.startIndex < startIndex + charsPerRow)
+    const filteredRestrictionSites = restrictionSites.filter(annotation =>
+      filterAnnotations(annotation, startIndex, charsPerRow)
     );
-    const annotationsTop = filteredRestrictionSites.map((site, index, arr) => {
-      return (
-        <RestrictionSiteLabel
-          key={'resite-label-' + startIndex + '-' + site.name + '-' + site.startIndex}
-          site={site}
-          index={index}
-          arr={arr}
-          config={config}
-          startIndex={startIndex}
-          maxResiteLayer={maxResiteLayer}
-          charsPerRow={charsPerRow}
-          lineWidth={lineWidth}
-        />
-      );
+    const annotationsTop = getLayers(filteredRestrictionSites).map((layer, layerIndex) => {
+      return layer.map((site, siteIndex) => {
+        return (
+          <RestrictionSiteLabel
+            key={'resite-label-' + layerIndex + '-' + site.name + '-' + siteIndex}
+            site={site}
+            layerIndex={layerIndex}
+            config={config}
+            startIndex={startIndex}
+            maxResiteLayer={maxResiteLayer}
+            charsPerRow={charsPerRow}
+            lineWidth={lineWidth}
+          />
+        );
+      });
     });
-    const annotationsBottom = annotations
-      .filter(
-        annotation =>
-          (annotation.startIndex < startIndex && annotation.endIndex > startIndex) ||
-          (annotation.startIndex > startIndex && annotation.startIndex < startIndex + charsPerRow)
-      )
-      .map((annotation, index, arr) => {
+		const filteredAnnotations = annotations.filter(annotation =>
+      filterAnnotations(annotation, startIndex, charsPerRow)
+    );
+		const annotationsBottom = getLayers(filteredAnnotations).map((layer, layerIndex) => {
+      return layer.map((annotation, annotationIndex) => {
         return (
           <AnnotationMarker
-            key={'annotation-marker-' + annotation.name + '-' + annotation.startIndex}
+            key={'annotation-marker-' + annotation.name + '-' + annotationIndex}
             annotation={annotation}
             index={index}
-            arr={arr}
+            layerIndex={layerIndex}
+            annotationIndex={annotationIndex}
             config={config}
             minusStrand={minusStrand}
             startIndex={startIndex}
@@ -107,6 +107,7 @@ class Line extends React.Component<Props> {
           />
         );
       });
+    });
 
     const getRect: () => {x: number, wdt: number} = () => {
       const startX =
