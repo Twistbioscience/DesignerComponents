@@ -8,8 +8,7 @@
   "files": [
     "dist",
     "lib",
-    "es",
-    "src"
+    "es"
   ],
   "scripts": {
     "test": "NODE_ENV=test node node_modules/.bin/jest --watch",
