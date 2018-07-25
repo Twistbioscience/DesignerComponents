@@ -1,5 +1,5 @@
 import React from 'react';
-import {RIGHT_PADDING} from '../constants';
+import {LEFT_PADDING} from '../constants';
 
 export const WithSelection = Component => {
   return class extends React.Component {
@@ -15,7 +15,7 @@ export const WithSelection = Component => {
     }
 
     getIndexFromEvent(e, index) {
-      return Math.floor((e.clientX - RIGHT_PADDING) / this.props.config.LETTER_FULL_WIDTH_SEQUENCE) + index;
+      return Math.floor((e.clientX - LEFT_PADDING) / this.props.config.LETTER_FULL_WIDTH_SEQUENCE) + index;
     }
 
     onMouseDown(e, index) {

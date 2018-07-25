@@ -17,6 +17,7 @@ class App extends Component {
                 <DesignerComponents
                   sequence={sequenceEditorData.text}
                   annotations={sequenceEditorData.annotations}
+                  restrictionSites={ sequenceEditorData.restrictionSites }
                   orfs={this.state.orfs}
                   minusStrand={this.state.minusStrand}
                   width={width}

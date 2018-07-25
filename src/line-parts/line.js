@@ -1,15 +1,10 @@
 import React from 'react';
-import {
-  ANNOTATION_HEIGHT,
-  ANNOTATION_GAP,
-  LINE_PADDING_TOP,
-  MINUS_STRAND_MARGIN,
-  ANNOTATION_PADDING_TOP
-} from '../constants';
-import {getAnnotationLayer, filterAnnotations} from '../rendering/annotations';
 import LineBpIndex from './bp-index';
 import Sequence from './line-sequence';
 import Selection from './selection';
+import RestrictionSiteLabel from './resite-label';
+import AnnotationMarker from './annotation-marker';
+import {getLayers, filterAnnotations} from '../rendering/annotations';
 
 class Line extends React.Component {
   constructor() {
@@ -36,57 +31,62 @@ class Line extends React.Component {
   }
 
   render() {
-    const {charsPerRow, minusStrand, index, style, selection, selectionInProgress, config} = this.props;
+    const {
+      charsPerRow,
+      minusStrand,
+      index,
+      style,
+      selection,
+      selectionInProgress,
+      config,
+      restrictionSites,
+      annotations,
+      maxResiteLayer,
+      annotationsTopHeight
+    } = this.props;
     const startIndex = charsPerRow * index;
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
     const endIndex = startIndex + sequence.length;
-    const annotationsBottom = this.props.annotations
-      .filter(annotation => filterAnnotations(annotation, startIndex, charsPerRow))
-      .map((annotation, index, arr) => {
-        const layer = getAnnotationLayer(arr, index);
-        const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
-        const x = (annotation.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
-        const y =
-          config.LETTER_HEIGHT_SEQUENCE * (minusStrand ? 2 : 1) +
-          (minusStrand ? MINUS_STRAND_MARGIN : 0) +
-          layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP) +
-          LINE_PADDING_TOP +
-          ANNOTATION_PADDING_TOP;
-        const points = [
-          //arrowheads on both edges, no teeth:
-          x - 5 / 2,
-          y,
-          x + width - 5 / 2,
-          y,
-          x + width + 5 / 2,
-          y + ANNOTATION_HEIGHT / 2,
-          x + width - 5 / 2,
-          y + ANNOTATION_HEIGHT,
-          x - 5 / 2,
-          y + ANNOTATION_HEIGHT,
-          x + 5 / 2,
-          y + ANNOTATION_HEIGHT / 2
-        ].join(' ');
+    const lineWidth = config.LETTER_FULL_WIDTH_SEQUENCE * charsPerRow;
+    const filteredRestrictionSites = restrictionSites.filter(annotation =>
+      filterAnnotations(annotation, startIndex, charsPerRow)
+    );
+    const annotationsTop = getLayers(filteredRestrictionSites).map((layer, layerIndex) => {
+      return layer.map((site, siteIndex) => {
         return (
-          <g key={`annotations-bottom-${index}`}>
-            <polygon
-              key={`annotations-bottom-poly-${index}`}
-              points={points}
-              x={x}
-              y={y}
-              fill={annotation.color || '#0000a4'}
-              fillOpacity="0.3"
-            />
-            <text
-              key={`annotations-bottom-text-${index}`}
-              x={x + width / 4}
-              y={y + ANNOTATION_HEIGHT / 2 + 5}
-              fontSize="12px">
-              {annotation.name}
-            </text>
-          </g>
+          <RestrictionSiteLabel
+            key={'resite-label-' + layerIndex + '-' + site.name + '-' + siteIndex}
+            site={site}
+            layerIndex={layerIndex}
+            config={config}
+            startIndex={startIndex}
+            maxResiteLayer={maxResiteLayer}
+            charsPerRow={charsPerRow}
+            lineWidth={lineWidth}
+          />
         );
       });
+    });
+    const filteredAnnotations = annotations.filter(annotation =>
+      filterAnnotations(annotation, startIndex, charsPerRow)
+    );
+    const annotationsBottom = getLayers(filteredAnnotations).map((layer, layerIndex) => {
+      return layer.map((annotation, annotationIndex) => {
+        return (
+          <AnnotationMarker
+            key={'annotation-marker-' + annotation.name + '-' + annotationIndex}
+            annotation={annotation}
+            index={index}
+            layerIndex={layerIndex}
+            annotationIndex={annotationIndex}
+            config={config}
+            minusStrand={minusStrand}
+            startIndex={startIndex}
+            annotationsTopHeight={annotationsTopHeight}
+          />
+        );
+      });
+    });
 
     const getRect = () => {
       const startX =
@@ -105,25 +105,31 @@ class Line extends React.Component {
     return (
       <svg
         style={style}
-        width={config.LETTER_FULL_WIDTH_SEQUENCE * charsPerRow}
         onMouseDown={this.mouseDownHandler(index, charsPerRow)}
         onMouseUp={this.mouseUpHandler(index, charsPerRow, true, selectionInProgress)}
         onMouseMove={this.mouseUpHandler(index, charsPerRow, false, selectionInProgress)}>
-        <Sequence sequence={sequence} minusStrand={minusStrand} config={config} />
+        {annotationsTop}
+        <Sequence
+          sequence={sequence}
+          minusStrand={minusStrand}
+          config={config}
+          startIndex={startIndex}
+          endIndex={endIndex}
+          charsPerRow={charsPerRow}
+          annotationsTopHeight={annotationsTopHeight}
+          restrictionSites={filteredRestrictionSites}
+        />
         <LineBpIndex
           startIndex={startIndex + 1}
           endIndex={startIndex + sequence.length}
           stepSize={10}
           minusStrand={minusStrand}
+          offset={startIndex === 1 ? 30 : 0}
+          annotationsTopHeight={annotationsTopHeight}
           config={config}
         />
         {annotationsBottom}
-        <rect
-          height="2"
-          y={style.height - 2}
-          width={config.LETTER_FULL_WIDTH_SEQUENCE * charsPerRow}
-          style={{fill: '#000000'}}
-        />
+        <rect height="2" y={style.height - 2} width={lineWidth} style={{fill: '#000000'}} />
         {selectionRect.wdt > 0 && (
           <Selection
             height={style.height}

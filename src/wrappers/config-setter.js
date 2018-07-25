@@ -1,5 +1,5 @@
 import React from 'react';
-import {RIGHT_PADDING, SCOLL_BAR_OFFSET, FONT_FAMILY} from '../constants';
+import {LEFT_PADDING, SCOLL_BAR_OFFSET, FONT_FAMILY} from '../constants';
 import {measureFontWidth} from '../rendering/fonts';
 
 export const WithConfigSetter = Component => {
@@ -25,7 +25,7 @@ export const WithConfigSetter = Component => {
     }
 
     calculateStaticParams(config, width, sequence) {
-      const charsPerRow = Math.floor((width - RIGHT_PADDING) / config.LETTER_FULL_WIDTH_SEQUENCE) - SCOLL_BAR_OFFSET;
+      const charsPerRow = Math.floor((width - LEFT_PADDING) / config.LETTER_FULL_WIDTH_SEQUENCE) - SCOLL_BAR_OFFSET;
       const rowCount = Math.ceil(sequence.length / charsPerRow);
       this.setState({
         charsPerRow,
