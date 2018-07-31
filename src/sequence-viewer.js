@@ -6,6 +6,8 @@ import {LEFT_PADDING} from './constants';
 import {getRowHeight, rowRenderer} from './rendering/row';
 import {css, cx} from 'react-emotion';
 import type {Config, Annotation, RestrictionSite, SelectionType} from './types';
+import {detectRestrictionSites} from './utils/restriction-sites';
+import {getLayers, getAnnotationsTopHeight} from './rendering/annotations';
 
 const noSelection = css`
   -webkit-user-select: none;
@@ -37,10 +39,13 @@ type Props = {
 
 export default class SequenceViewer extends React.Component<Props> {
   render() {
+    const restrictionSites = detectRestrictionSites(this.props.sequence);
+    const maxResiteLayer = getLayers(restrictionSites).length;
+    const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
     const rowHeightFunc = getRowHeight(
       this.props.charsPerRow,
       this.props.annotations,
-      this.props.restrictionSites,
+      annotationsTopHeight,
       this.props.minusStrand,
       this.props.config
     );
@@ -58,7 +63,8 @@ export default class SequenceViewer extends React.Component<Props> {
           rowRenderer={rowRenderer({
             sequence: this.props.sequence,
             annotations: this.props.annotations,
-            restrictionSites: this.props.restrictionSites,
+            restrictionSites: restrictionSites,
+            maxResiteLayer: maxResiteLayer,
             charsPerRow: this.props.charsPerRow,
             minusStrand: this.props.minusStrand,
             onMouseDown: this.props.onMouseDown,

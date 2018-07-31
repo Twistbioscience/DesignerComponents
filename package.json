@@ -1,6 +1,6 @@
 {
   "name": "designercomponents",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "Designer-Components v2 POC for React",
   "main": "lib/designer-components.js",
   "unpkg": "dist/designer-components.js",
@@ -8,8 +8,7 @@
   "files": [
     "dist",
     "lib",
-    "es",
-    "src"
+    "es"
   ],
   "scripts": {
     "test": "NODE_ENV=test node node_modules/.bin/jest --watch",
