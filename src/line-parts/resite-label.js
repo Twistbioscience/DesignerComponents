@@ -1,10 +1,26 @@
-import {RESITE_LABEL_GAP, RESITE_BOX_HOR_PADDING, RESITE_FONT_SIZE, LINE_PADDING_TOP, FONT_FAMILY} from '../constants';
+// @flow
 import React from 'react';
+import {RESITE_LABEL_GAP, RESITE_BOX_HOR_PADDING, RESITE_FONT_SIZE, LINE_PADDING_TOP, FONT_FAMILY} from '../constants';
 import {measureFontWidth} from '../rendering/fonts';
+import type {RestrictionSite, Config} from '../types';
 
-// Assumption: the text for the restriction site label is never longer than the length
-// of the restriction site box
-const RestrictionSiteLabel = ({site, layerIndex, config, startIndex, maxResiteLayer, charsPerRow, lineWidth}) => {
+const RestrictionSiteLabel = ({
+  site,
+  layerIndex,
+  config,
+  startIndex,
+  maxResiteLayer,
+  charsPerRow,
+  lineWidth
+}: {
+  site: RestrictionSite,
+  layerIndex: number,
+  config: Config,
+  startIndex: number,
+  maxResiteLayer: number,
+  charsPerRow: number,
+  lineWidth: number
+}) => {
   const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE + 1;
   const y = (maxResiteLayer - layerIndex) * (1 + RESITE_LABEL_GAP) + LINE_PADDING_TOP;
   const textWidth = site.name.length * measureFontWidth(FONT_FAMILY, RESITE_FONT_SIZE, 'i').width;
@@ -87,7 +103,7 @@ const getRestrictionSiteText = (site, textWidth, siteWidth, x, y, translate) => 
       transform={translate}
       fontFamily={FONT_FAMILY}
       fontSize={RESITE_FONT_SIZE}
-      fill={site.color}
+      fill={site.color || '#0000a4'}
       textAnchor="start">
       {site.name}
     </text>
@@ -121,7 +137,7 @@ const getRestrictionSiteLine = (site, textWidth, siteWidth, config, startIndex, 
           ' ' +
           y
       }
-      fill={site.color}
+      fill={site.color || '#0000a4'}
       stroke={site.color}
       strokeWidth="1"
     />

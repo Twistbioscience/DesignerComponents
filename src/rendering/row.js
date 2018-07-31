@@ -1,3 +1,4 @@
+// @ flow
 import Line from '../line-parts/line';
 import {getAnnotationsTopHeight, getSequenceHeight, getAnnotationsBottomHeight} from './annotations';
 

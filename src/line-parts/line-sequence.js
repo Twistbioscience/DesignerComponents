@@ -1,7 +1,9 @@
+// @flow
 import React from 'react';
 import {charMap, MINUS_STRAND_MARGIN, FONT_FAMILY} from '../constants';
 import {flipSequence} from '../utils/sequence';
 import RestrictionSiteBox from './resite-box';
+import type {Config, RestrictionSite} from '../types';
 
 const getDx = length => {
   let res = '';
@@ -12,7 +14,23 @@ const getDx = length => {
   return res;
 };
 
-const Sequence = ({sequence, config, minusStrand, restrictionSites, startIndex, endIndex, annotationsTopHeight}) => {
+const Sequence = ({
+  sequence,
+  config,
+  minusStrand,
+  restrictionSites,
+  startIndex,
+  endIndex,
+  annotationsTopHeight
+}: {
+  sequence: string,
+  config: Config,
+  minusStrand: boolean,
+  restrictionSites: Array<RestrictionSite>,
+  startIndex: number,
+  endIndex: number,
+  annotationsTopHeight: number
+}) => {
   const restrictionSiteBoxes = restrictionSites.map((site, index) => {
     return (
       <RestrictionSiteBox
