@@ -37,6 +37,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.toggleMinusStrand = this.toggleMinusStrand.bind(this);
+    this.selectionHandler = this.selectionHandler.bind(this);
     this.state = {
       show: false,
       orfs: [],
