@@ -9,7 +9,6 @@ export const WithSelection = Component => {
       this.onMouseUp = this.onMouseUp.bind(this);
       this.state = {
         clickedIndex: null,
-        selection: {},
         mouseDownIndex: 0
       };
     }
@@ -28,7 +27,7 @@ export const WithSelection = Component => {
         startIndex: Math.min(this.state.mouseDownIndex, mouseUpIndex),
         endIndex: Math.max(this.state.mouseDownIndex, mouseUpIndex)
       };
-      this.setState({selection: selection});
+      this.props.selectionHandler(selection);
       if (endSelection) {
         this.setState({mouseDownIndex: 0});
       }

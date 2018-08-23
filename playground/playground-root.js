@@ -19,7 +19,9 @@ class App extends Component {
                   annotations={sequenceEditorData.annotations}
                   orfs={this.state.orfs}
                   minusStrand={this.state.minusStrand}
+                  selection={this.state.selection}
                   width={width}
+                  selectionHandler={this.selectionHandler}
                 />
                 <button onClick={this.toggleMinusStrand}>Toggle minus strand</button>
               </div>
@@ -39,7 +41,8 @@ class App extends Component {
       show: false,
       orfs: [],
       annotations: [],
-      minusStrand: false
+      minusStrand: false,
+      selection: {}
     };
   }
   componentWillMount() {
@@ -50,6 +53,10 @@ class App extends Component {
 
   toggleMinusStrand() {
     this.setState({minusStrand: !this.state.minusStrand});
+  }
+
+  selectionHandler(selection) {
+    this.setState({ selection });
   }
 }
 
