@@ -25,7 +25,7 @@
     "build:umd": "BABEL_ENV=es NODE_ENV=development rollup -c -o dist/designer-components.js",
     "build:umd:min": "BABEL_ENV=es NODE_ENV=production rollup -c -o dist/designer-components.min.js",
     "prepare": "npm run clean && npm run format:check && npm run lint && npm run test:ci && npm run build",
-    "twist-publish": "npm publish --registry https://nexus.twistbioscience-staging.com/repository/twist-npm/",
+    "twist-publish": "npm publish --registry https://nexus.twistbioscience-staging.com/repository/npm-hosted/",
     "flow": "./node_modules/.bin/flow"
   },
   "repository": {

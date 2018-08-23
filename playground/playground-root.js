@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import sequenceEditorData from './data.json';
 import {detectOrfs} from '../src/utils/sequence';
-import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
 import {hot} from 'react-hot-loader';
 import {DesignerComponentsViewer} from '../src/index';
 import {DesignerComponents} from '../src/index';
+import AutoSizer from '../src/utils/auto-sizer';
 
 class App extends Component {
   render() {
@@ -12,7 +12,7 @@ class App extends Component {
       <div className="App">
         {this.state.show ? (
           <AutoSizer>
-            {({width}) => (
+            {({width, x}) => (
               <div>
                 <DesignerComponents
                   sequence={sequenceEditorData.text}
@@ -21,6 +21,7 @@ class App extends Component {
                   orfs={this.state.orfs}
                   minusStrand={this.state.minusStrand}
                   width={width}
+                  left={x}
                 />
                 <button onClick={this.toggleMinusStrand}>Toggle minus strand</button>
               </div>
