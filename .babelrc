@@ -1,13 +1,28 @@
 {
   "presets": [
+    "flow",
+    "react",
     [
-      "es2015",
+      "env",
       {
         "modules": false
       }
     ]
   ],
   "plugins": [
-    "external-helpers"
-  ]
+    ["module-resolver", { "root": ["./src"] } ]
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        "external-helpers"
+      ]
+    },
+    "development": {
+       "plugins": ["react-hot-loader/babel"]
+    },
+    "test": {
+      "presets": ["env", "react"],
+    }
+  }
 }

@@ -11,7 +11,8 @@ launch_server/compose/paperclip
 jenkins_ci
 
 /.vscode-upload.json
+<<<<<<< Updated upstream
 build/
-dist/
-es/
-lib/
+=======
+build/
+>>>>>>> Stashed changes

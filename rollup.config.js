@@ -1,72 +1,41 @@
-
 // Rollup plugins
-import babel from 'rollup-plugin-babel';
-import eslint from 'rollup-plugin-eslint';
-import replace from 'rollup-plugin-replace';
-import uglify from 'rollup-plugin-uglify';
-import resolve from 'rollup-plugin-node-resolve';
-import rootImport from 'rollup-plugin-root-import';
-import serve from 'rollup-plugin-serve'
+import babel from "rollup-plugin-babel";
+import replace from "rollup-plugin-replace";
+import uglify from "rollup-plugin-uglify";
 
-export default {
-  entry: 'src/app/index.js',
-  dest: 'build/app/index.min.js',
-  format: 'iife',
-  sourceMap: 'inline',
-  watch: {
-    include: 'src/**'
-  },
+const env = process.env.NODE_ENV;
+const config = {
+  input: "src/index.js",
   plugins: [
-    eslint({
-      exclude: [
-        'src/styles/**',
-      ]
-    }),
     babel({
-      exclude: 'node_modules/**',
+      plugins: ["external-helpers"]
     }),
     replace({
-      exclude: 'node_modules/**',
-      ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
-    }),
-    resolve({ jsnext: true }),
-    rootImport({
-      // Will first look in `client/src/*` and then `common/src/*`.
-      root: `${__dirname}/src`,
-      useEntry: 'prepend',
-
-      // If we don't find the file verbatim, try adding these extensions
-      extensions: '.js'
-    }),
-    serve({
-      // Launch in browser (default: false)
-      open: true,
-
-      // Show server address in console (default: true)
-      verbose: false,
-
-      // Folder to serve files from
-      contentBase: '',
-
-      // Multiple folders to serve from
-      contentBase: ['build/app', 'static'],
-
-      // Set to true to return index.html instead of 404
-      historyApiFallback: false,
-
-      // Options used in setting up server
-      host: 'localhost',
-      port: 10001,
-
-
-      //set headers
-      headers: {
-        foo: 'bar'
-      }
-    }),
-    (process.env.NODE_ENV === 'production' && uglify()),
-  ],
+      "process.env.NODE_ENV": JSON.stringify(env)
+    })
+  ]
 };
 
+if (env === "es" || env === "cjs") {
+  config.output = { format: env, indent: false };
+  config.external = ["symbol-observable"];
+}
 
+if (env === "development" || env === "production") {
+  config.output = { format: "umd", name: "DesignerComponents", indent: false };
+}
 
+if (env === "production") {
+  config.plugins.push(
+    uglify({
+      compress: {
+        pure_getters: true,
+        unsafe: true,
+        unsafe_comps: true,
+        warnings: false
+      }
+    })
+  );
+}
+
+export default config;
