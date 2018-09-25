@@ -1,7 +1,7 @@
 {
-  "name": "designercomponents",
+  "name": "dna-visual",
   "version": "0.0.5",
-  "description": "Designer-Components v2 POC for React",
+  "description": "React DNA visualization tools",
   "main": "lib/designer-components.js",
   "unpkg": "dist/designer-components.js",
   "module": "es/designer-components.js",
