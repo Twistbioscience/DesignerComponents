@@ -1,6 +1,6 @@
 {
   "name": "dna-visual",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "React DNA visualization tools",
   "main": "lib/designer-components.js",
   "unpkg": "dist/designer-components.js",
