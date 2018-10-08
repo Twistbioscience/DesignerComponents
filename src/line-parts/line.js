@@ -65,7 +65,7 @@ class Line extends React.Component<Props> {
       annotationsTopHeight
     } = this.props;
     const startIndex = charsPerRow * index;
-    const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
+    const sequence = this.props.sequence.substr(startIndex, charsPerRow - config.SCROLL_BAR_OFFSET).toUpperCase();
     const endIndex = startIndex + sequence.length;
     const lineWidth = config.LETTER_FULL_WIDTH_SEQUENCE * charsPerRow;
     const filteredRestrictionSites = restrictionSites.filter(annotation =>
@@ -101,7 +101,8 @@ class Line extends React.Component<Props> {
             annotationIndex={annotationIndex}
             config={config}
             minusStrand={minusStrand}
-            startIndex={startIndex}
+            lineStartIndex={startIndex}
+            lineEndIndex={endIndex}
             annotationsTopHeight={annotationsTopHeight}
           />
         );
