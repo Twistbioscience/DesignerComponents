@@ -2,6 +2,7 @@
 import React from 'react';
 import {ANNOTATION_HEIGHT, ANNOTATION_GAP, ANNOTATION_PADDING_TOP} from '../constants';
 import {getSequenceHeight} from '../rendering/annotations.js';
+import {measureFontWidth} from '../rendering/fonts';
 import type {Config, Annotation} from '../types';
 
 const AnnotationMarker = ({
@@ -10,7 +11,8 @@ const AnnotationMarker = ({
   annotationIndex,
   config,
   minusStrand,
-  startIndex,
+  lineStartIndex,
+  lineEndIndex,
   annotationsTopHeight
 }: {
   annotation: Annotation,
@@ -18,12 +20,15 @@ const AnnotationMarker = ({
   annotationIndex: number,
   config: Config,
   minusStrand: boolean,
-  startIndex: number,
+  lineStartIndex: number,
+  lineEndIndex: number,
   annotationsTopHeight: number
 }) => {
   const sequenceHeight = getSequenceHeight(minusStrand, config);
-  const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
-  const x = (annotation.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
+  const annotationLineStart = Math.max(annotation.startIndex, lineStartIndex);
+  const annotationLineEnd = Math.min(annotation.endIndex, lineEndIndex);
+  const width = (annotationLineEnd - annotationLineStart) * config.LETTER_FULL_WIDTH_SEQUENCE;
+  const x = (annotationLineStart - lineStartIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
   const y =
     annotationsTopHeight +
     sequenceHeight +
@@ -31,7 +36,7 @@ const AnnotationMarker = ({
     ANNOTATION_PADDING_TOP;
   const points = [
     //arrowheads on both edges, no teeth:
-    x - 5 / 2,
+    x - 5 / 2 + 5,
     y,
     x + width - 5 / 2,
     y,
@@ -39,11 +44,17 @@ const AnnotationMarker = ({
     y + ANNOTATION_HEIGHT / 2,
     x + width - 5 / 2,
     y + ANNOTATION_HEIGHT,
-    x - 5 / 2,
+    x - 5 / 2 + 5,
     y + ANNOTATION_HEIGHT,
-    x + 5 / 2,
+    x + 5 / 2 + 5,
     y + ANNOTATION_HEIGHT / 2
   ].join(' ');
+  const charWidth = measureFontWidth('Droid Sand Mono', '8pt', 'a').width;
+  const annotationNameWidth = measureFontWidth('Droid Sand Mono', '8pt', annotation.name).width;
+  const {annotationName, annotationPos} =
+    annotationNameWidth > width + 26 /* For padding and arrowhead */
+      ? {annotationName: `${annotation.name.substring(0, Math.floor(width / charWidth) - 5)}...`, annotationPos: 10}
+      : {annotationName: annotation.name, annotationPos: (width - annotationNameWidth) / 2 + 7 /* for arrowhead */};
   return (
     <g key={`annotations-bottom-${layerIndex}-${annotationIndex}`}>
       <polygon
@@ -56,10 +67,12 @@ const AnnotationMarker = ({
       />
       <text
         key={`annotations-bottom-text-${layerIndex}-${annotationIndex}`}
-        x={x + width / 4}
-        y={y + ANNOTATION_HEIGHT / 2 + 5}
-        fontSize="12px">
-        {annotation.name}
+        x={x + annotationPos}
+        y={y + ANNOTATION_HEIGHT / 2 + 3}
+        fill="#FFFFFF"
+        fontFamily="Droid Sans Mono"
+        fontSize="8pt">
+        {annotationName}
       </text>
     </g>
   );
