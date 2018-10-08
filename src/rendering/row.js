@@ -1,10 +1,12 @@
+// @ flow
 import Line from '../line-parts/line';
-import {getLayers, getAnnotationsTopHeight, getSequenceHeight, getAnnotationsBottomHeight} from './annotations';
+import {getAnnotationsTopHeight, getSequenceHeight, getAnnotationsBottomHeight} from './annotations';
 
 export const rowRenderer = ({
   sequence,
   annotations,
   restrictionSites,
+  maxResiteLayer,
   charsPerRow,
   minusStrand,
   onMouseDown,
@@ -20,7 +22,6 @@ export const rowRenderer = ({
   style // Style object to be applied to row (to position it)
 }) => {
   const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
-  const maxResiteLayer = getLayers(restrictionSites).length;
   return (
     <Line
       sequence={sequence}
@@ -42,11 +43,10 @@ export const rowRenderer = ({
   );
 };
 
-export const getRowHeight = (charsPerRow, annotations = [], restrictionSites = [], showMinusStrand, config) => ({
+export const getRowHeight = (charsPerRow, annotations = [], annotationsTopHeight, showMinusStrand, config) => ({
   index
 }) => {
   const startIndex = charsPerRow * index;
-  const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
   const annotationsBottomHeight = getAnnotationsBottomHeight(annotations, startIndex, charsPerRow);
   const sequenceHeight = getSequenceHeight(showMinusStrand, config);
   return annotationsTopHeight + sequenceHeight + annotationsBottomHeight + config.BP_INDEX_HEIGHT;

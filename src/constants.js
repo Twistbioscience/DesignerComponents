@@ -1,3 +1,4 @@
+// @flow
 export const ANNOTATION_HEIGHT = 17;
 export const ANNOTATION_GAP = 5;
 export const ANNOTATION_PADDING_TOP = 5;
@@ -16,7 +17,18 @@ export const charMap = {
   A: 'T',
   G: 'C',
   C: 'G',
-  T: 'A'
+  T: 'A',
+  W: 'W',
+  S: 'S',
+  M: 'K',
+  K: 'M',
+  R: 'Y',
+  Y: 'R',
+  B: 'V',
+  D: 'H',
+  H: 'D',
+  V: 'B',
+  N: 'N'
 };
 
 export const MIN_ORF_SIZE = 60;

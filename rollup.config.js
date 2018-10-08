@@ -2,11 +2,16 @@
 import babel from "rollup-plugin-babel";
 import replace from "rollup-plugin-replace";
 import uglify from "rollup-plugin-uglify";
+import json from 'rollup-plugin-json';
 
 const env = process.env.NODE_ENV;
 const config = {
   input: "src/index.js",
   plugins: [
+    json({
+      preferConst: true,
+      compact: true
+    }),
     babel({
       plugins: ["external-helpers"]
     }),
