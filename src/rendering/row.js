@@ -1,5 +1,5 @@
 // @ flow
-import React, {Component} from 'react';
+import React from 'react';
 import Line from '../line-parts/line';
 import {getAnnotationsTopHeight, getSequenceHeight, getAnnotationsBottomHeight} from './annotations';
 
