@@ -4,6 +4,7 @@ import {WithSelection} from './wrappers/selection';
 import {WithConfigSetter} from './wrappers/config-setter';
 import {WithFontsLoader} from './wrappers/font-loader';
 import {isFontLoaded} from './rendering/fonts';
+export {default as Measurer} from './utils/measurer';
 
 export const DesignerComponents = isFontLoaded()
   ? WithConfigSetter(WithSelection(SequenceViewer))
