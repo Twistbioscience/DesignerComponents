@@ -20,6 +20,8 @@ class App extends Component {
                   minusStrand={this.state.minusStrand}
                   width={width}
                   left={x}
+                  selectionHandler={this.selectionHandler}
+                  selection={this.state.selection}
                 />
                 <button onClick={this.toggleMinusStrand}>Toggle minus strand</button>
               </div>
@@ -35,11 +37,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.toggleMinusStrand = this.toggleMinusStrand.bind(this);
+    this.selectionHandler = this.selectionHandler.bind(this);
     this.state = {
       show: false,
       orfs: [],
       annotations: [],
-      minusStrand: false
+      minusStrand: false,
+      selection: {}
     };
   }
   componentWillMount() {
@@ -50,6 +54,10 @@ class App extends Component {
 
   toggleMinusStrand() {
     this.setState({minusStrand: !this.state.minusStrand});
+  }
+
+  selectionHandler(selection) {
+    this.setState({selection});
   }
 }
 
