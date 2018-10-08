@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class AutoSizer extends Component {
+class Measurer extends Component {
   render() {
     return <div ref={this.ref}>{this.props.children({width: this.state.width, x: this.state.x})}</div>;
   }
@@ -16,7 +16,7 @@ class AutoSizer extends Component {
   }
 
   componentDidMount() {
-    if (this.autoSizer) {
+    if (this.inst) {
       window.addEventListener('resize', this.onResize);
       this.onResize();
     }
@@ -27,15 +27,15 @@ class AutoSizer extends Component {
   }
 
   onResize() {
-    if (this.autoSizer) {
-      const {x, width} = this.autoSizer.getBoundingClientRect();
+    if (this.inst) {
+      const {x, width} = this.inst.getBoundingClientRect();
       this.setState({x, width});
     }
   }
 
   ref(c) {
-    this.autoSizer = c;
+    this.inst = c;
   }
 }
 
-export default AutoSizer;
+export default Measurer;

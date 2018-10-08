@@ -2,16 +2,15 @@ import React, {Component} from 'react';
 import sequenceEditorData from './data.json';
 import {detectOrfs} from '../src/utils/sequence';
 import {hot} from 'react-hot-loader';
-import {DesignerComponentsViewer} from '../src/index';
-import {DesignerComponents} from '../src/index';
-import AutoSizer from '../src/utils/auto-sizer';
+import {DesignerComponents /*, DesignerComponentsViewer*/} from '../src/index';
+import Measurer from '../src/utils/measurer';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         {this.state.show ? (
-          <AutoSizer>
+          <Measurer>
             {({width, x}) => (
               <div>
                 <DesignerComponents
@@ -25,7 +24,7 @@ class App extends Component {
                 <button onClick={this.toggleMinusStrand}>Toggle minus strand</button>
               </div>
             )}
-          </AutoSizer>
+          </Measurer>
         ) : (
           <div>Loading...</div>
         )}
