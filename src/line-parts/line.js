@@ -6,6 +6,7 @@ import Selection from './selection';
 import RestrictionSiteLabel from './resite-label';
 import AnnotationMarker from './annotation-marker';
 import {getLayers, filterAnnotations} from '../rendering/annotations';
+import {map} from '../utils/array';
 import type {Config, Annotation, RestrictionSite, SelectionType} from '../types';
 
 type Props = {
@@ -71,8 +72,8 @@ class Line extends React.Component<Props> {
     const filteredRestrictionSites = restrictionSites.filter(annotation =>
       filterAnnotations(annotation, startIndex, charsPerRow)
     );
-    const annotationsTop = getLayers(filteredRestrictionSites).map((layer, layerIndex) => {
-      return layer.map((site, siteIndex) => {
+    const annotationsTop = map(getLayers(filteredRestrictionSites), (layer, layerIndex) => {
+      return map(layer, (site, siteIndex) => {
         return (
           <RestrictionSiteLabel
             key={'resite-label-' + layerIndex + '-' + site.name + '-' + siteIndex}
@@ -90,8 +91,8 @@ class Line extends React.Component<Props> {
     const filteredAnnotations = annotations.filter(annotation =>
       filterAnnotations(annotation, startIndex, charsPerRow)
     );
-    const annotationsBottom = getLayers(filteredAnnotations).map((layer, layerIndex) => {
-      return layer.map((annotation, annotationIndex) => {
+    const annotationsBottom = map(getLayers(filteredAnnotations), (layer, layerIndex) => {
+      return map(layer, (annotation, annotationIndex) => {
         return (
           <AnnotationMarker
             key={'annotation-marker-' + annotation.name + '-' + annotationIndex}

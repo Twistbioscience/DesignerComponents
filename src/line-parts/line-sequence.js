@@ -3,6 +3,7 @@ import React from 'react';
 import {charMap, MINUS_STRAND_MARGIN, FONT_FAMILY} from '../constants';
 import {flipSequence} from '../utils/sequence';
 import RestrictionSiteBox from './resite-box';
+import {map} from '../utils/array';
 import type {Config, RestrictionSite} from '../types';
 
 const getDx = length => {
@@ -31,7 +32,7 @@ const Sequence = ({
   endIndex: number,
   annotationsTopHeight: number
 }) => {
-  const restrictionSiteBoxes = restrictionSites.map((site, index) => {
+  const restrictionSiteBoxes = map(restrictionSites, (site, index) => {
     return (
       <RestrictionSiteBox
         key={'resite-box-' + startIndex + '-' + site.name + '-' + site.startIndex}
