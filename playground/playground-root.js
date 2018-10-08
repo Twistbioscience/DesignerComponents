@@ -21,6 +21,7 @@ class App extends Component {
                   width={width}
                   left={x}
                   selectionHandler={this.selectionHandler}
+                  selection={this.state.selection}
                 />
                 <button onClick={this.toggleMinusStrand}>Toggle minus strand</button>
               </div>
@@ -56,7 +57,7 @@ class App extends Component {
   }
 
   selectionHandler(selection) {
-    this.setState({ selection });
+    this.setState({selection});
   }
 }
 
