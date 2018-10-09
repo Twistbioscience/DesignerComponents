@@ -1,7 +1,7 @@
 {
-  "name": "designercomponents",
-  "version": "0.0.5",
-  "description": "Designer-Components v2 POC for React",
+  "name": "dna-visual",
+  "version": "0.0.14",
+  "description": "React DNA visualization tools",
   "main": "lib/designer-components.js",
   "unpkg": "dist/designer-components.js",
   "module": "es/designer-components.js",
@@ -25,7 +25,7 @@
     "build:umd": "BABEL_ENV=es NODE_ENV=development rollup -c -o dist/designer-components.js",
     "build:umd:min": "BABEL_ENV=es NODE_ENV=production rollup -c -o dist/designer-components.min.js",
     "prepare": "npm run clean && npm run format:check && npm run lint && npm run test:ci && npm run build",
-    "twist-publish": "npm publish --registry https://nexus.twistbioscience-staging.com/repository/twist-npm/",
+    "twist-publish": "npm publish --registry https://registry.npmjs.org/",
     "flow": "flow"
   },
   "repository": {
@@ -74,6 +74,7 @@
     "rollup-plugin-babel": "^3.0.4",
     "rollup-plugin-commonjs": "^9.1.3",
     "rollup-plugin-eslint": "^4.0.0",
+    "rollup-plugin-json": "3.1.0",
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-root-import": "^0.2.2",

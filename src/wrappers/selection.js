@@ -9,13 +9,14 @@ export const WithSelection = Component => {
       this.onMouseUp = this.onMouseUp.bind(this);
       this.state = {
         clickedIndex: null,
-        selection: {},
         mouseDownIndex: 0
       };
     }
 
     getIndexFromEvent(e, index) {
-      return Math.floor((e.clientX - LEFT_PADDING) / this.props.config.LETTER_FULL_WIDTH_SEQUENCE) + index;
+      return (
+        Math.floor((e.clientX - LEFT_PADDING - this.props.left) / this.props.config.LETTER_FULL_WIDTH_SEQUENCE) + index
+      );
     }
 
     onMouseDown(e, index) {
@@ -28,7 +29,7 @@ export const WithSelection = Component => {
         startIndex: Math.min(this.state.mouseDownIndex, mouseUpIndex),
         endIndex: Math.max(this.state.mouseDownIndex, mouseUpIndex)
       };
-      this.setState({selection: selection});
+      this.props.selectionHandler(selection);
       if (endSelection) {
         this.setState({mouseDownIndex: 0});
       }
