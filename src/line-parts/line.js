@@ -22,23 +22,25 @@ const isStarterWithinLine = (start, end, starter) => starter <= end && starter >
 const isOrfWithinLine = (orf, start, end) => orf.location[0].start <= end && orf.location[0].end >= start;
 
 export const getOrfPositionInLine = (lineStartIndex, lineEndIndex, orfs, charsPerRow, letterWidth) => {
-  return orfs.filter(orf => isOrfWithinLine(orf, lineStartIndex, lineEndIndex)).map(orf => {
-    const orfLineStart = Math.max(lineStartIndex, orf.location[0].start);
-    const orfLineEnd = Math.min(lineEndIndex, orf.location[0].end);
-    return {
-      orfLineStart,
-      orfLineEnd,
-      start: (orfLineStart % charsPerRow) * letterWidth,
-      end: (orfLineEnd % charsPerRow) * letterWidth,
-      orfStartIndex: orf.location[0].start,
-      strand: orf.strand,
-      frame: orf.frame,
-      starters: orf.starters
-        .filter(starter => isStarterWithinLine(lineStartIndex, lineEndIndex, starter))
-        .map(starter => (starter % (charsPerRow + 1)) * letterWidth),
-      color: colorMap[orf.location[0].start] // for dev time only
-    };
-  });
+  return orfs
+    .filter(orf => isOrfWithinLine(orf, lineStartIndex, lineEndIndex))
+    .map(orf => {
+      const orfLineStart = Math.max(lineStartIndex, orf.location[0].start);
+      const orfLineEnd = Math.min(lineEndIndex, orf.location[0].end);
+      return {
+        orfLineStart,
+        orfLineEnd,
+        start: (orfLineStart % charsPerRow) * letterWidth,
+        end: (orfLineEnd % charsPerRow) * letterWidth,
+        orfStartIndex: orf.location[0].start,
+        strand: orf.strand,
+        frame: orf.frame,
+        starters: orf.starters
+          .filter(starter => isStarterWithinLine(lineStartIndex, lineEndIndex, starter))
+          .map(starter => (starter % (charsPerRow + 1)) * letterWidth),
+        color: colorMap[orf.location[0].start] // for dev time only
+      };
+    });
 };
 
 class Line extends React.Component {
@@ -165,6 +167,7 @@ class Line extends React.Component {
           config={config}
           minusStrand={minusStrand}
           sequence={this.props.sequence}
+          prevOrfs={index === 0 ? null : this.props.orfs[index - 1]}
         />
         {annotationsBottom}
         <rect

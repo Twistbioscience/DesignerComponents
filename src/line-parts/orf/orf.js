@@ -8,14 +8,13 @@ const calculateOrfYPosition = (index, orfHeight, arr) => {
 };
 
 /*
-* brickType: 1 - brick with length 2
-*            2 - brick with length 1
-*            0 - brick with length 3
-* */
+ * brickType: 1 - brick with length 2
+ *            2 - brick with length 1
+ *            0 - brick with length 3
+ * */
 const splitSequenceIntoChunks = (sequence, startIndex, endIndex, firstBrickType, lastBrickType) => {
-  const translationEndIndex = lastBrickType === 1 ? endIndex + 1 : lastBrickType === 2 ? endIndex - 1 : endIndex;
-  const translationStartIndex =
-    firstBrickType === 2 ? startIndex + 1 : firstBrickType === 1 ? startIndex - 1 : startIndex;
+  const translationEndIndex = lastBrickType === 1 ? endIndex - 1 : lastBrickType === 2 ? endIndex + 1 : endIndex;
+  const translationStartIndex = firstBrickType === 1 ? startIndex + 1 : startIndex;
   let seq = sequence.substring(translationStartIndex, translationEndIndex + 1);
   const chunks = [];
   while (seq) {
@@ -29,11 +28,10 @@ const splitSequenceIntoChunks = (sequence, startIndex, endIndex, firstBrickType,
 
 const getBricksData = (orfs, charsPerRow, letterWidth, endIndex, orfLineHeight, sequence) =>
   orfs.map((orf, index, arr) => {
-    const firstBrickType = getFirstBrickType(orf.orfStartIndex, orf.orfLineStart);
-    const nextBrickIndex = firstBrickType + orf.orfLineStart;
-    const restOfBricks = orf.orfLineEnd - nextBrickIndex;
-    const fullBricks = Math.floor(restOfBricks / 3);
-    const lastBrickType = 3 - ((orf.orfLineEnd + 1 - orf.orfStartIndex) % 3 || 3);
+    const firstBrickType = getFirstBrickType(orf);
+    const restBricksIndex = firstBrickType + orf.orfLineStart;
+    const totalFullBricks = Math.floor((orf.orfLineEnd - restBricksIndex) / 3);
+    const lastBrickType = getLastBrickType(orf.orfLineEnd, orf.orfLineStart, totalFullBricks, firstBrickType);
     const start = (orf.orfLineStart % charsPerRow) * letterWidth;
     const textChunks = splitSequenceIntoChunks(
       sequence,
@@ -47,18 +45,17 @@ const getBricksData = (orfs, charsPerRow, letterWidth, endIndex, orfLineHeight, 
       start,
       firstBrickType,
       lastBrickType,
-      fullBricks,
+      totalFullBricks,
       textChunks,
       y: calculateOrfYPosition(index, orfLineHeight, arr)
     };
   });
+const getFirstBrickType = ({orfStartIndex, orfLineStart, orfLineEnd, strand}) =>
+  ((strand === 'reverse' && orfLineStart !== orfStartIndex ? orfLineEnd : orfLineStart) - orfStartIndex) % 3;
 
-const getFirstBrickType = (orfStartIndex, lineOrfStartIndex) => {
-  if (lineOrfStartIndex === orfStartIndex) {
-    return 0;
-  }
-  return (lineOrfStartIndex - orfStartIndex) % 3;
-};
+const getLastBrickType = (lineEnd, lineStart, totalFullBricks, firstBrickType) =>
+  // last brick can't be 0 (will render another full brick), return null
+  lineEnd - (lineStart + firstBrickType + totalFullBricks * 3) || null;
 
 const Orf = ({orfs, config, minusStrand, charsPerRow, letterWidth, endIndex, sequence}) => {
   const orfsBricksData = getBricksData(orfs, charsPerRow, letterWidth, endIndex, config.ORF_LINE_HEIGHT, sequence);
