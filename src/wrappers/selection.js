@@ -7,6 +7,7 @@ export const WithSelection = Component => {
       super(props);
       this.onMouseDown = this.onMouseDown.bind(this);
       this.onMouseUp = this.onMouseUp.bind(this);
+      this.onSequenceClick = this.onSequenceClick.bind(this);
       this.state = {
         clickedIndex: null,
         mouseDownIndex: 0
@@ -23,6 +24,11 @@ export const WithSelection = Component => {
       this.setState({mouseDownIndex: this.getIndexFromEvent(e, index)});
     }
 
+    onSequenceClick(e, index) {
+      this.props.selectionHandler(this.getIndexFromEvent(e, index));
+      this.setState({mouseDownIndex: null});
+    }
+
     onMouseUp(e, index, endSelection) {
       const mouseUpIndex = this.getIndexFromEvent(e, index);
       const selection = {
@@ -31,12 +37,20 @@ export const WithSelection = Component => {
       };
       this.props.selectionHandler(selection);
       if (endSelection) {
-        this.setState({mouseDownIndex: 0});
+        this.setState({mouseDownIndex: null});
       }
     }
 
     render() {
-      return <Component {...this.props} {...this.state} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp} />;
+      return (
+        <Component
+          {...this.props}
+          {...this.state}
+          onMouseDown={this.onMouseDown}
+          onMouseUp={this.onMouseUp}
+          onSequenceClick={this.onSequenceClick}
+        />
+      );
     }
   };
 };

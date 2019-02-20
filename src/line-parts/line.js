@@ -2,12 +2,12 @@
 import React from 'react';
 import LineBpIndex from './bp-index';
 import Sequence from './line-sequence';
-import Selection from './selection';
+import {Selection, SelectionCaret} from './selection';
 import RestrictionSiteLabel from './resite-label';
 import AnnotationMarker from './annotation-marker';
 import {getLayers, filterAnnotations} from '../rendering/annotations';
 import {map} from '../utils/array';
-import type {Config, Annotation, RestrictionSite, SelectionType} from '../types';
+import type {Config, Annotation, RestrictionSite, SelectionType, RangeType} from '../types';
 
 type Props = {
   charsPerRow: number,
@@ -26,11 +26,22 @@ type Props = {
   onMouseUp: (e: SyntheticEvent<>, index: number, endSelection: boolean) => void
 };
 
+const indexInRow = (index: number, rowStart: number, rowEnd: number) => index >= rowStart && index <= rowEnd;
+
 class Line extends React.Component<Props> {
   constructor() {
     super();
     this.mouseDownHandler = this.mouseDownHandler.bind(this);
     this.mouseUpHandler = this.mouseUpHandler.bind(this);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick(index: number, charsPerRow: number) {
+    return this.props.onClick
+      ? (e: SyntheticEvent<>) => {
+          this.props.onClick(e, index * charsPerRow);
+        }
+      : null;
   }
 
   mouseDownHandler(index: number, charsPerRow: number) {
@@ -44,6 +55,7 @@ class Line extends React.Component<Props> {
   mouseUpHandler(index: number, charsPerRow: number, endSelection: boolean, selectionInProgress: boolean) {
     return this.props.onMouseUp
       ? (e: SyntheticEvent<>) => {
+          const mouseUpTime = new Date();
           if (selectionInProgress) {
             this.props.onMouseUp(e, index * charsPerRow, endSelection);
           }
@@ -110,7 +122,7 @@ class Line extends React.Component<Props> {
       });
     });
 
-    const getRect: () => {x: number, wdt: number} = () => {
+    const getRect: (selection: RangeType) => {x: number, wdt: number} = () => {
       const startX =
         selection.startIndex && selection.startIndex > startIndex
           ? (selection.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE
@@ -123,11 +135,17 @@ class Line extends React.Component<Props> {
       return {x: startX, wdt: endX - startX};
     };
 
-    const selectionRect = selection ? getRect() : {x: 0, wdt: 0};
+    const isCaret = typeof selection === 'number';
+    const isSelection =
+      selection !== null &&
+      typeof selection === 'object' &&
+      (indexInRow(selection.startIndex, startIndex, endIndex) || indexInRow(selection.endIndex, startIndex, endIndex));
+    const selectionRect = isSelection && getRect();
     return (
       <svg
         style={style}
         onMouseDown={this.mouseDownHandler(index, charsPerRow)}
+        onClick={this.onClick(index, charsPerRow)}
         onMouseUp={this.mouseUpHandler(index, charsPerRow, true, selectionInProgress)}
         onMouseMove={this.mouseUpHandler(index, charsPerRow, false, selectionInProgress)}>
         {annotationsTop}
@@ -152,7 +170,7 @@ class Line extends React.Component<Props> {
         />
         {annotationsBottom}
         <rect height="2" y={style.height - 2} width={lineWidth} style={{fill: '#000000'}} />
-        {selectionRect.wdt > 0 && (
+        {isSelection && (
           <Selection
             height={style.height}
             selectionRect={selectionRect}
@@ -161,6 +179,7 @@ class Line extends React.Component<Props> {
             endIndex={endIndex}
           />
         )}
+        {isCaret && <SelectionCaret height={style.height} pos={startIndex} />}
       </svg>
     );
   }

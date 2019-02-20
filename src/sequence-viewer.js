@@ -69,6 +69,7 @@ export default class SequenceViewer extends React.Component<Props> {
             minusStrand: this.props.minusStrand,
             onMouseDown: this.props.onMouseDown,
             onMouseUp: this.props.onMouseUp,
+            onSequenceClick: this.props.onSequenceClick,
             selection: this.props.selection,
             selectionInProgress: selectionInProgress,
             config: this.props.config

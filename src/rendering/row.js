@@ -12,6 +12,7 @@ export const rowRenderer = ({
   minusStrand,
   onMouseDown,
   onMouseUp,
+  onSequenceClick,
   selection,
   selectionInProgress,
   config
@@ -35,6 +36,7 @@ export const rowRenderer = ({
       minusStrand={minusStrand}
       key={key}
       index={index}
+      onSequenceClick={onSequenceClick}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
       selection={selection}

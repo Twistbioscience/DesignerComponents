@@ -43,7 +43,7 @@ class App extends Component {
       orfs: [],
       annotations: [],
       minusStrand: false,
-      selection: {}
+      selection: null
     };
   }
   componentWillMount() {
