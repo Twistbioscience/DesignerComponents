@@ -39,7 +39,7 @@ type Props = {
 
 export default class SequenceViewer extends React.Component<Props> {
   render() {
-    const restrictionSites = detectRestrictionSites(this.props.sequence);
+    const restrictionSites = detectRestrictionSites(this.props.sequence, this.props.reSiteDefinitions);
     const maxResiteLayer = getLayers(restrictionSites).length;
     const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
     const rowHeightFunc = getRowHeight(
