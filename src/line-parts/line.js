@@ -55,7 +55,6 @@ class Line extends React.Component<Props> {
   mouseUpHandler(index: number, charsPerRow: number, endSelection: boolean, selectionInProgress: boolean) {
     return this.props.onMouseUp
       ? (e: SyntheticEvent<>) => {
-          const mouseUpTime = new Date();
           if (selectionInProgress) {
             this.props.onMouseUp(e, index * charsPerRow, endSelection);
           }
@@ -139,7 +138,9 @@ class Line extends React.Component<Props> {
     const isSelection =
       selection !== null &&
       typeof selection === 'object' &&
-      (indexInRow(selection.startIndex, startIndex, endIndex) || indexInRow(selection.endIndex, startIndex, endIndex));
+      (indexInRow(selection.startIndex, startIndex, endIndex) ||
+        indexInRow(selection.endIndex, startIndex, endIndex) ||
+        (selection.startIndex <= startIndex && selection.endIndex >= endIndex));
     const selectionRect = isSelection && getRect();
     return (
       <svg
