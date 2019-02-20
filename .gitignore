@@ -12,6 +12,7 @@ jenkins_ci
 
 /.vscode-upload.json
 build/
+playground-dist/
 dist/
 es/
 lib/

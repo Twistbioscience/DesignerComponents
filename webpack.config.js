@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const path = require('path');
 const appPath = path.join(__dirname);
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const autoprefixer = require('autoprefixer');
 const exclude = [/node_modules/, /vendor/];
 const distPath = path.join(__dirname, 'playgroud-dist');
 

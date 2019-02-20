@@ -14,7 +14,10 @@
     "globals": {
         "clicky_custom": false,
         "clicky": false,
-        "__ENVIRONMENT__": false
+        "__ENVIRONMENT__": false,
+        "process": false,
+        "require": false,
+        "__dirname": false
     },
 
     "parserOptions": {
