@@ -52,9 +52,9 @@ const OrfShapeItem = ({x, y, color, d}) => {
 };
 
 const aaLetterStartPosition = {
-  2: '27px',
-  1: '10px',
-  0: '16px'
+  2: '9px',
+  1: '27px',
+  0: '15px'
 };
 
 const aaLetterEndPosition = {
@@ -64,14 +64,13 @@ const aaLetterEndPosition = {
 };
 
 const calculateAALetterDx = (arr, index, lastBrickType, firstBrickType) => {
-  if (index === arr.length - 1) {
-    return aaLetterEndPosition[lastBrickType];
+  if (index === arr.length - 1 && lastBrickType === 2) {
+    return '22px';
   }
 
-  if (index === 1 && firstBrickType === 1) {
-    return '20px';
+  if (index === 1 && firstBrickType === 2) {
+    return '19px';
   }
-
   if (index > 0) {
     return DEFAULT_LETTER_SPACING;
   }
