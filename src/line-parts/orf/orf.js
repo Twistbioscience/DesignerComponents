@@ -73,7 +73,9 @@ const Orf = ({orfs, config, minusStrand, charsPerRow, letterWidth, endIndex, seq
   const accumulatedHeight =
     annotationsTopHeight + config.BP_INDEX_HEIGHT + config.LETTER_HEIGHT_SEQUENCE * (minusStrand ? 2 : 1);
   return orfsBricksData.map(orfBrickData => (
-    <svg y={accumulatedHeight} key={`${orfBrickData.startIndex}_${orfBrickData.endIndex}_${orfBrickData.orfStartIndex}`}>
+    <svg
+      y={accumulatedHeight}
+      key={`${orfBrickData.startIndex}_${orfBrickData.endIndex}_${orfBrickData.orfStartIndex}`}>
       <OrfShapeContainer {...orfBrickData} />
     </svg>
   ));

@@ -24,7 +24,6 @@ export const rowRenderer = ({
   // isVisible, // This row is visible within the List (eg it is not an overscanned row)
   style // Style object to be applied to row (to position it)
 }) => {
-  const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
   return (
     <Line
       sequence={sequence}
