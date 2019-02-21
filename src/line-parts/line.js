@@ -3,6 +3,29 @@ import React from 'react';
 import LineBpIndex from './bp-index';
 import Sequence from './line-sequence';
 import {Selection, SelectionCaret} from './selection';
+import Orf from '../line-parts/orf/orf';
+
+const isStarterWithinLine = (start, end, starter) => starter <= end && starter >= start;
+const isOrfWithinLine = (orf, start, end) => orf.location[0].start <= end && orf.location[0].end >= start;
+
+export const getOrfPositionInLine = (lineStartIndex, lineEndIndex, orfs, charsPerRow, letterWidth) => {
+  return orfs.filter(orf => isOrfWithinLine(orf, lineStartIndex, lineEndIndex)).map(orf => {
+    const orfLineStart = Math.max(lineStartIndex, orf.location[0].start);
+    const orfLineEnd = Math.min(lineEndIndex, orf.location[0].end);
+    return {
+      orfLineStart,
+      orfLineEnd,
+      start: (orfLineStart % charsPerRow) * letterWidth,
+      end: (orfLineEnd % charsPerRow) * letterWidth,
+      orfStartIndex: orf.location[0].start,
+      strand: orf.strand,
+      frame: orf.frame,
+      starters: orf.starters
+        .filter(starter => isStarterWithinLine(lineStartIndex, lineEndIndex, starter))
+        .map(starter => (starter % (charsPerRow + 1)) * letterWidth)
+    };
+  });
+};
 import RestrictionSiteLabel from './resite-label';
 import AnnotationMarker from './annotation-marker';
 import {getLayers, filterAnnotations} from '../rendering/annotations';
@@ -139,6 +162,7 @@ class Line extends React.Component<Props> {
         );
       });
     });
+    const orfsHeight = getOrfsHeight(startIndex, this.props.sequence, charsPerRow, this.props.orfs, config);
 
     const isCaret = typeof selection === 'number';
     const isSelection =
@@ -175,7 +199,24 @@ class Line extends React.Component<Props> {
           annotationsTopHeight={annotationsTopHeight}
           config={config}
         />
-        {annotationsBottom}
+        <Orf
+          orfs={getOrfPositionInLine(
+            startIndex,
+            endIndex - 1,
+            this.props.orfs,
+            config.LETTER_FULL_WIDTH_SEQUENCE,
+            config.LETTER_SPACING_SEQUENCE
+          )}
+          charsPerRow={charsPerRow}
+          endIndex={endIndex - 1}
+          letterWidth={config.LETTER_FULL_WIDTH_SEQUENCE}
+          config={config}
+          minusStrand={minusStrand}
+          sequence={this.props.sequence}
+          annotationsTopHeight={annotationsTopHeight}
+        />
+        <svg y={orfsHeight}>{annotationsBottom}</svg>
+
         <rect height="2" y={style.height - 2} width={lineWidth} style={{fill: '#000000'}} />
         {isSelection && (
           <Selection

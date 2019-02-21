@@ -46,7 +46,9 @@ export default class SequenceViewer extends React.Component<Props> {
       this.props.annotations,
       annotationsTopHeight,
       this.props.minusStrand,
-      this.props.config
+      this.props.config,
+      this.props.orfs,
+      this.props.sequence
     );
     const selectionInProgress = this.props.mouseDownIndex > 0;
     const width = this.props.config.LETTER_FULL_WIDTH_SEQUENCE * this.props.charsPerRow + LEFT_PADDING;
@@ -71,7 +73,9 @@ export default class SequenceViewer extends React.Component<Props> {
             onSequenceClick: this.props.onSequenceClick,
             selection: this.props.selection,
             selectionInProgress: selectionInProgress,
-            config: this.props.config
+            config: this.props.config,
+            orfs: this.props.orfs,
+            annotationsTopHeight
           })}
         />
       </div>
