@@ -78,7 +78,6 @@ class Line extends React.Component<Props> {
     return this.props.onClick
       ? (e: SyntheticEvent<>) => {
           e.stopPropagation();
-          console.log(elementRange);
           this.props.onClick(e, index * charsPerRow, elementRange);
         }
       : null;
@@ -88,6 +87,14 @@ class Line extends React.Component<Props> {
     return this.props.onMouseDown
       ? (e: SyntheticEvent<>) => {
           this.props.onMouseDown(e, index * charsPerRow);
+        }
+      : null;
+  }
+
+  mouseDragHandler(index: number, charsPerRow: number) {
+    return this.props.onDrag
+      ? (e: SyntheticEvent<>) => {
+          this.props.onDrag(e, index * charsPerRow);
         }
       : null;
   }
@@ -176,9 +183,10 @@ class Line extends React.Component<Props> {
       <svg
         style={style}
         onMouseDown={this.mouseDownHandler(index, charsPerRow)}
+        // onDrag is in actual event, which we are hijacking, but the name makes sense for us
         onClick={this.onClick(index, charsPerRow)}
-        onMouseUp={this.mouseUpHandler(index, charsPerRow, true, selectionInProgress)}
-        onMouseMove={this.mouseUpHandler(index, charsPerRow, false, selectionInProgress)}>
+        onMouseMove={this.mouseDragHandler(index, charsPerRow)}
+        onMouseUp={this.mouseUpHandler(index, charsPerRow, true, selectionInProgress)}>
         {annotationsTop}
         <Sequence
           sequence={sequence}
@@ -227,7 +235,9 @@ class Line extends React.Component<Props> {
             endIndex={endIndex}
           />
         )}
-        {isCaret && <SelectionCaret height={style.height} pos={startIndex} />}
+        {isCaret && (
+          <SelectionCaret height={style.height} pos={(selection - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE} />
+        )}
       </svg>
     );
   }
