@@ -1,8 +1,7 @@
 // @ flow
 import React from 'react';
-import {getSequenceHeight, getAnnotationsBottomHeight, getOrfsHeight} from './annotations';
-
 import Line from '../line-parts/line';
+import {getAnnotationsTopHeight, getSequenceHeight, getAnnotationsBottomHeight, getOrfsHeight} from './annotations';
 
 export const rowRenderer = ({
   sequence,
@@ -25,6 +24,7 @@ export const rowRenderer = ({
   // isVisible, // This row is visible within the List (eg it is not an overscanned row)
   style // Style object to be applied to row (to position it)
 }) => {
+  const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
   return (
     <Line
       sequence={sequence}

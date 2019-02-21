@@ -31,7 +31,7 @@ const RestrictionSiteLabel = ({
   var showLine = true;
   var showText = true;
   const isSiteCroppedFromLeft = site.startIndex < startIndex;
-  const isSiteCroppedFromRight = site.endInzdex - startIndex + 1 > charsPerRow;
+  const isSiteCroppedFromRight = site.endIndex - startIndex + 1 > charsPerRow;
 
   if (isSiteCroppedFromLeft) {
     isTextShown = x + siteWidth / 2 + textWidth / 2 > 0;
