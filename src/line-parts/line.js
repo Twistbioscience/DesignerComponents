@@ -165,6 +165,10 @@ class Line extends React.Component<Props> {
             lineStartIndex={startIndex}
             lineEndIndex={endIndex}
             annotationsTopHeight={annotationsTopHeight}
+            onClick={this.onClick(index, charsPerRow, {
+              startIndex: annotation.startIndex,
+              endIndex: annotation.endIndex
+            })}
           />
         );
       });
@@ -215,6 +219,7 @@ class Line extends React.Component<Props> {
             config.LETTER_FULL_WIDTH_SEQUENCE,
             config.LETTER_SPACING_SEQUENCE
           )}
+          index={index}
           charsPerRow={charsPerRow}
           endIndex={endIndex - 1}
           letterWidth={config.LETTER_FULL_WIDTH_SEQUENCE}
@@ -222,6 +227,7 @@ class Line extends React.Component<Props> {
           minusStrand={minusStrand}
           sequence={this.props.sequence}
           annotationsTopHeight={annotationsTopHeight}
+          onClick={this.onClick}
         />
         <svg y={orfsHeight}>{annotationsBottom}</svg>
 

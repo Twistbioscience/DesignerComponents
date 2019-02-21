@@ -91,7 +91,7 @@ const RestrictionSiteLabel = ({
     <g key={'resite-label'}>
       {showText && siteText}
       {showLine && siteLine}
-      <rect width={siteWidth} onClick={onClick} x={x} y={y} height={6} opacity="1" />
+      <rect width={siteWidth} onClick={onClick} x={x} y={y - 6} height={11} opacity="0" fill="#FFFFFF" />
     </g>
   );
 };

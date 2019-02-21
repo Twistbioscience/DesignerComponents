@@ -68,13 +68,28 @@ const getLastBrickType = (lineEnd, lineStart, totalFullBricks, firstBrickType) =
   // last brick can't be 0 (will render another full brick), return null
   lineEnd - (lineStart + firstBrickType + totalFullBricks * 3) || null;
 
-const Orf = ({orfs, config, minusStrand, charsPerRow, letterWidth, endIndex, sequence, annotationsTopHeight}) => {
+const Orf = ({
+  orfs,
+  config,
+  minusStrand,
+  charsPerRow,
+  letterWidth,
+  endIndex,
+  sequence,
+  annotationsTopHeight,
+  onClick,
+  index
+}) => {
   const orfsBricksData = getBricksData(orfs, charsPerRow, letterWidth, endIndex, config.ORF_LINE_HEIGHT, sequence);
   const accumulatedHeight =
     annotationsTopHeight + config.BP_INDEX_HEIGHT + config.LETTER_HEIGHT_SEQUENCE * (minusStrand ? 2 : 1);
   return orfsBricksData.map(orfBrickData => (
     <svg
       y={accumulatedHeight}
+      onClick={onClick(index, charsPerRow, {
+        startIndex: orfBrickData.startIndex,
+        endIndex: orfBrickData.endIndex
+      })}
       key={`${orfBrickData.startIndex}_${orfBrickData.endIndex}_${orfBrickData.orfStartIndex}`}>
       <OrfShapeContainer {...orfBrickData} />
     </svg>
