@@ -57,12 +57,6 @@ const aaLetterStartPosition = {
   0: '15px'
 };
 
-const aaLetterEndPosition = {
-  2: DEFAULT_LETTER_SPACING,
-  1: '20px',
-  0: DEFAULT_LETTER_SPACING
-};
-
 const calculateAALetterDx = (arr, index, lastBrickType, firstBrickType) => {
   if (index === arr.length - 1 && lastBrickType === 2) {
     return '22px';
