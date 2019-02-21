@@ -1,0 +1,140 @@
+[
+  {
+    "location": [
+      {
+        "start": 200,
+        "end": 250
+      }
+    ],
+    "startCodons": [
+      "ATG"
+    ],
+    "starters": [
+      285,
+      336,
+      387,
+      48,
+      702,
+      738,
+      762
+    ],
+    "strand": "forward",
+    "frame": 1,
+    "color": "blue"
+  },
+  {
+    "location": [
+      {
+        "start": 200,
+        "end": 220
+      }
+    ],
+    "startCodons": [
+      "ATG"
+    ],
+    "starters": [
+      285,
+      336,
+      387,
+      48,
+      702,
+      738,
+      762
+    ],
+    "strand": "reverse",
+    "frame": 1,
+    "color": "yellow"
+  },
+  {
+    "location": [
+      {
+        "start": 200,
+        "end": 220
+      }
+    ],
+    "startCodons": [
+      "ATG"
+    ],
+    "starters": [
+      285,
+      336,
+      387,
+      48,
+      702,
+      738,
+      762
+    ],
+    "strand": "forward",
+    "frame": 1,
+    "color": "red"
+  },
+  {
+    "location": [
+      {
+        "start": 200,
+        "end": 220
+      }
+    ],
+    "startCodons": [
+      "ATG"
+    ],
+    "starters": [
+      285,
+      336,
+      387,
+      48,
+      702,
+      738,
+      762
+    ],
+    "strand": "reverse",
+    "frame": 1,
+    "color": "black"
+  },
+  {
+    "location": [
+      {
+        "start": 200,
+        "end": 220
+      }
+    ],
+    "startCodons": [
+      "ATG"
+    ],
+    "starters": [
+      285,
+      336,
+      387,
+      48,
+      702,
+      738,
+      762
+    ],
+    "strand": "reverse",
+    "frame": 1,
+    "color": "black"
+  },
+  {
+    "location": [
+      {
+        "start": 200,
+        "end": 220
+      }
+    ],
+    "startCodons": [
+      "ATG"
+    ],
+    "starters": [
+      285,
+      336,
+      387,
+      48,
+      702,
+      738,
+      762
+    ],
+    "strand": "reverse",
+    "frame": 1,
+    "color": "black"
+  }
+]

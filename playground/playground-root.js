@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import sequenceEditorData from './data.json';
+import orfs from './orfs.json';
 import {detectOrfs} from '../src/utils/sequence';
 import {hot} from 'react-hot-loader';
 import {DesignerComponents /*, DesignerComponentsViewer*/} from '../src/index';
