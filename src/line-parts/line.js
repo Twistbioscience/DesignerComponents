@@ -1,65 +1,72 @@
+// @flow
 import React from 'react';
-import {
-  ANNOTATION_HEIGHT,
-  ANNOTATION_GAP,
-  LINE_PADDING_TOP,
-  MINUS_STRAND_MARGIN,
-  ANNOTATION_PADDING_TOP
-} from '../constants';
-import {getAnnotationLayer} from '../rendering/annotations';
 import LineBpIndex from './bp-index';
 import Sequence from './line-sequence';
 import Selection from './selection';
 import Orf from '../line-parts/orf/orf';
 
-const colorMap = {
-  285: 'blue',
-  361: 'yellow',
-  319: 'green',
-  170: 'black'
-};
 const isStarterWithinLine = (start, end, starter) => starter <= end && starter >= start;
 const isOrfWithinLine = (orf, start, end) => orf.location[0].start <= end && orf.location[0].end >= start;
 
 export const getOrfPositionInLine = (lineStartIndex, lineEndIndex, orfs, charsPerRow, letterWidth) => {
-  return orfs
-    .filter(orf => isOrfWithinLine(orf, lineStartIndex, lineEndIndex))
-    .map(orf => {
-      const orfLineStart = Math.max(lineStartIndex, orf.location[0].start);
-      const orfLineEnd = Math.min(lineEndIndex, orf.location[0].end);
-      return {
-        orfLineStart,
-        orfLineEnd,
-        start: (orfLineStart % charsPerRow) * letterWidth,
-        end: (orfLineEnd % charsPerRow) * letterWidth,
-        orfStartIndex: orf.location[0].start,
-        strand: orf.strand,
-        frame: orf.frame,
-        starters: orf.starters
-          .filter(starter => isStarterWithinLine(lineStartIndex, lineEndIndex, starter))
-          .map(starter => (starter % (charsPerRow + 1)) * letterWidth),
-        color: colorMap[orf.location[0].start] // for dev time only
-      };
-    });
+  return orfs.filter(orf => isOrfWithinLine(orf, lineStartIndex, lineEndIndex)).map(orf => {
+    const orfLineStart = Math.max(lineStartIndex, orf.location[0].start);
+    const orfLineEnd = Math.min(lineEndIndex, orf.location[0].end);
+    return {
+      orfLineStart,
+      orfLineEnd,
+      start: (orfLineStart % charsPerRow) * letterWidth,
+      end: (orfLineEnd % charsPerRow) * letterWidth,
+      orfStartIndex: orf.location[0].start,
+      strand: orf.strand,
+      frame: orf.frame,
+      starters: orf.starters
+        .filter(starter => isStarterWithinLine(lineStartIndex, lineEndIndex, starter))
+        .map(starter => (starter % (charsPerRow + 1)) * letterWidth)
+    };
+  });
+};
+import RestrictionSiteLabel from './resite-label';
+import AnnotationMarker from './annotation-marker';
+import {getLayers, filterAnnotations, getOrfsHeight} from '../rendering/annotations';
+import {map} from '../utils/array';
+import type {Config, Annotation, RestrictionSite, SelectionType} from '../types';
+
+type Props = {
+  charsPerRow: number,
+  minusStrand: boolean,
+  index: number,
+  style: any,
+  selection: SelectionType,
+  selectionInProgress: boolean,
+  sequence: string,
+  config: Config,
+  restrictionSites: Array<RestrictionSite>,
+  maxResiteLayer: number,
+  annotations: Array<Annotation>,
+  annotationsTopHeight: number,
+  onMouseDown: (e: SyntheticEvent<>, index: number) => void,
+  onMouseUp: (e: SyntheticEvent<>, index: number, endSelection: boolean) => void
 };
 
-class Line extends React.Component {
+class Line extends React.Component<Props> {
   constructor() {
     super();
     this.mouseDownHandler = this.mouseDownHandler.bind(this);
     this.mouseUpHandler = this.mouseUpHandler.bind(this);
   }
 
-  mouseDownHandler(index, charsPerRow) {
+  mouseDownHandler(index: number, charsPerRow: number) {
     return this.props.onMouseDown
-      ? e => {
+      ? (e: SyntheticEvent<>) => {
           this.props.onMouseDown(e, index * charsPerRow);
         }
       : null;
   }
-  mouseUpHandler(index, charsPerRow, endSelection, selectionInProgress) {
+
+  mouseUpHandler(index: number, charsPerRow: number, endSelection: boolean, selectionInProgress: boolean) {
     return this.props.onMouseUp
-      ? e => {
+      ? (e: SyntheticEvent<>) => {
           if (selectionInProgress) {
             this.props.onMouseUp(e, index * charsPerRow, endSelection);
           }
@@ -68,63 +75,66 @@ class Line extends React.Component {
   }
 
   render() {
-    const {charsPerRow, minusStrand, index, style, selection, selectionInProgress, config} = this.props;
+    const {
+      charsPerRow,
+      minusStrand,
+      index,
+      style,
+      selection,
+      selectionInProgress,
+      config,
+      restrictionSites,
+      annotations,
+      maxResiteLayer,
+      annotationsTopHeight
+    } = this.props;
     const startIndex = charsPerRow * index;
     const sequence = this.props.sequence.substr(startIndex, charsPerRow).toUpperCase();
     const endIndex = startIndex + sequence.length;
-    const annotationsBottom = this.props.annotations
-      .filter(
-        annotation =>
-          (annotation.startIndex < startIndex && annotation.endIndex > startIndex) ||
-          (annotation.startIndex > startIndex && annotation.startIndex < startIndex + charsPerRow)
-      )
-      .map((annotation, index, arr) => {
-        const layer = getAnnotationLayer(arr, index);
-        const width = (annotation.endIndex - annotation.startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
-        const x = (annotation.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE;
-        const y =
-          config.LETTER_HEIGHT_SEQUENCE * (minusStrand ? 2 : 1) +
-          (minusStrand ? MINUS_STRAND_MARGIN : 0) +
-          layer * (ANNOTATION_HEIGHT + ANNOTATION_GAP) +
-          LINE_PADDING_TOP +
-          ANNOTATION_PADDING_TOP;
-        const points = [
-          //arrowheads on both edges, no teeth:
-          x - 5 / 2,
-          y,
-          x + width - 5 / 2,
-          y,
-          x + width + 5 / 2,
-          y + ANNOTATION_HEIGHT / 2,
-          x + width - 5 / 2,
-          y + ANNOTATION_HEIGHT,
-          x - 5 / 2,
-          y + ANNOTATION_HEIGHT,
-          x + 5 / 2,
-          y + ANNOTATION_HEIGHT / 2
-        ].join(' ');
+    const lineWidth = config.LETTER_FULL_WIDTH_SEQUENCE * charsPerRow;
+    const filteredRestrictionSites = restrictionSites.filter(annotation =>
+      filterAnnotations(annotation, startIndex, charsPerRow)
+    );
+    const annotationsTop = map(getLayers(filteredRestrictionSites), (layer, layerIndex) => {
+      return map(layer, (site, siteIndex) => {
         return (
-          <g key={`annotations-bottom-${index}`}>
-            <polygon
-              key={`annotations-bottom-poly-${index}`}
-              points={points}
-              x={x}
-              y={y}
-              fill={annotation.color || '#0000a4'}
-              fillOpacity="0.3"
-            />
-            <text
-              key={`annotations-bottom-text-${index}`}
-              x={x + width / 4}
-              y={y + ANNOTATION_HEIGHT / 2 + 5}
-              fontSize="12px">
-              {annotation.name}
-            </text>
-          </g>
+          <RestrictionSiteLabel
+            key={'resite-label-' + layerIndex + '-' + site.name + '-' + siteIndex}
+            site={site}
+            layerIndex={layerIndex}
+            config={config}
+            startIndex={startIndex}
+            maxResiteLayer={maxResiteLayer}
+            charsPerRow={charsPerRow}
+            lineWidth={lineWidth}
+          />
         );
       });
+    });
+    const filteredAnnotations = annotations.filter(annotation =>
+      filterAnnotations(annotation, startIndex, charsPerRow)
+    );
+    const annotationsBottom = map(getLayers(filteredAnnotations), (layer, layerIndex) => {
+      return map(layer, (annotation, annotationIndex) => {
+        return (
+          <AnnotationMarker
+            key={'annotation-marker-' + annotation.name + '-' + annotationIndex}
+            annotation={annotation}
+            index={index}
+            layerIndex={layerIndex}
+            annotationIndex={annotationIndex}
+            config={config}
+            minusStrand={minusStrand}
+            lineStartIndex={startIndex}
+            lineEndIndex={endIndex}
+            annotationsTopHeight={annotationsTopHeight}
+          />
+        );
+      });
+    });
+    const orfsHeight = getOrfsHeight(startIndex, this.props.sequence, charsPerRow, this.props.orfs, config);
 
-    const getRect = () => {
+    const getRect: () => {x: number, wdt: number} = () => {
       const startX =
         selection.startIndex && selection.startIndex > startIndex
           ? (selection.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE
@@ -137,20 +147,31 @@ class Line extends React.Component {
       return {x: startX, wdt: endX - startX};
     };
 
-    const selectionRect = selection ? getRect() : 0;
+    const selectionRect = selection ? getRect() : {x: 0, wdt: 0};
     return (
       <svg
         style={style}
-        width={config.LETTER_FULL_WIDTH_SEQUENCE * charsPerRow}
         onMouseDown={this.mouseDownHandler(index, charsPerRow)}
         onMouseUp={this.mouseUpHandler(index, charsPerRow, true, selectionInProgress)}
         onMouseMove={this.mouseUpHandler(index, charsPerRow, false, selectionInProgress)}>
-        <Sequence sequence={sequence} minusStrand={minusStrand} config={config} />
+        {annotationsTop}
+        <Sequence
+          sequence={sequence}
+          minusStrand={minusStrand}
+          config={config}
+          startIndex={startIndex}
+          endIndex={endIndex}
+          charsPerRow={charsPerRow}
+          annotationsTopHeight={annotationsTopHeight}
+          restrictionSites={filteredRestrictionSites}
+        />
         <LineBpIndex
           startIndex={startIndex + 1}
           endIndex={startIndex + sequence.length}
           stepSize={10}
           minusStrand={minusStrand}
+          offset={startIndex === 1 ? 30 : 0}
+          annotationsTopHeight={annotationsTopHeight}
           config={config}
         />
         <Orf
@@ -167,15 +188,11 @@ class Line extends React.Component {
           config={config}
           minusStrand={minusStrand}
           sequence={this.props.sequence}
-          prevOrfs={index === 0 ? null : this.props.orfs[index - 1]}
+          annotationsTopHeight={annotationsTopHeight}
         />
-        {annotationsBottom}
-        <rect
-          height="2"
-          y={style.height - 2}
-          width={config.LETTER_FULL_WIDTH_SEQUENCE * charsPerRow}
-          style={{fill: '#000000'}}
-        />
+        <svg y={orfsHeight}>{annotationsBottom}</svg>
+
+        <rect height="2" y={style.height - 2} width={lineWidth} style={{fill: '#000000'}} />
         {selectionRect.wdt > 0 && (
           <Selection
             height={style.height}

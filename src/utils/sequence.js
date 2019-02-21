@@ -24,6 +24,10 @@ export const flipSequence = (map, sequence) => {
   return res;
 };
 
+export const getComplementSequence = sequence => {
+  return flipSequence(charMap, sequence);
+};
+
 export const toTriplets = sequence => sequence.match(/.{1,3}/g);
 export const findMatches = (base, pattern, tripletSearch) => {
   const result = [];

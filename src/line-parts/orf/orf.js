@@ -1,10 +1,9 @@
 import React from 'react';
+import {getLayers} from '../../rendering/annotations';
 import OrfShapeContainer from './orf-shape-container';
-import {getOrfLayer} from '../../rendering/annotations';
 
-const calculateOrfYPosition = (index, orfHeight, arr) => {
-  const layersCount = getOrfLayer(arr, index);
-  return layersCount * orfHeight;
+const calculateOrfYPosition = (level, orfHeight) => {
+  return level * orfHeight;
 };
 
 /*
@@ -26,30 +25,42 @@ const splitSequenceIntoChunks = (sequence, startIndex, endIndex, firstBrickType,
   return chunks;
 };
 
-const getBricksData = (orfs, charsPerRow, letterWidth, endIndex, orfLineHeight, sequence) =>
-  orfs.map((orf, index, arr) => {
-    const firstBrickType = getFirstBrickType(orf);
-    const restBricksIndex = firstBrickType + orf.orfLineStart;
-    const totalFullBricks = Math.floor((orf.orfLineEnd - restBricksIndex) / 3);
-    const lastBrickType = getLastBrickType(orf.orfLineEnd, orf.orfLineStart, totalFullBricks, firstBrickType);
-    const start = (orf.orfLineStart % charsPerRow) * letterWidth;
-    const textChunks = splitSequenceIntoChunks(
-      sequence,
-      orf.orfLineStart,
-      orf.orfLineEnd,
-      firstBrickType,
-      lastBrickType
-    );
-    return {
-      ...orf,
-      start,
-      firstBrickType,
-      lastBrickType,
-      totalFullBricks,
-      textChunks,
-      y: calculateOrfYPosition(index, orfLineHeight, arr)
-    };
-  });
+const getBricksData = (orfs, charsPerRow, letterWidth, endIndex, orfLineHeight, sequence) => {
+  const transformedArray = orfs.map(orf => ({
+    startIndex: orf.orfLineStart,
+    endIndex: orf.orfLineEnd,
+    ...orf
+  }));
+  const orfsLayers = getLayers(transformedArray);
+
+  return orfsLayers
+    .map((orfsLayer, level) => {
+      return orfsLayer.map(orf => {
+        const firstBrickType = getFirstBrickType(orf);
+        const restBricksIndex = firstBrickType + orf.orfLineStart;
+        const totalFullBricks = Math.floor((orf.orfLineEnd - restBricksIndex) / 3);
+        const lastBrickType = getLastBrickType(orf.orfLineEnd, orf.orfLineStart, totalFullBricks, firstBrickType);
+        const start = (orf.orfLineStart % charsPerRow) * letterWidth;
+        const textChunks = splitSequenceIntoChunks(
+          sequence,
+          orf.orfLineStart,
+          orf.orfLineEnd,
+          firstBrickType,
+          lastBrickType
+        );
+        return {
+          ...orf,
+          start,
+          firstBrickType,
+          lastBrickType,
+          totalFullBricks,
+          textChunks,
+          y: calculateOrfYPosition(level, orfLineHeight)
+        };
+      });
+    })
+    .reduce((a, b) => [...a, ...b]);
+};
 const getFirstBrickType = ({orfStartIndex, orfLineStart, orfLineEnd, strand}) =>
   ((strand === 'reverse' && orfLineStart !== orfStartIndex ? orfLineEnd : orfLineStart) - orfStartIndex) % 3;
 
@@ -57,11 +68,12 @@ const getLastBrickType = (lineEnd, lineStart, totalFullBricks, firstBrickType) =
   // last brick can't be 0 (will render another full brick), return null
   lineEnd - (lineStart + firstBrickType + totalFullBricks * 3) || null;
 
-const Orf = ({orfs, config, minusStrand, charsPerRow, letterWidth, endIndex, sequence}) => {
+const Orf = ({orfs, config, minusStrand, charsPerRow, letterWidth, endIndex, sequence, annotationsTopHeight}) => {
   const orfsBricksData = getBricksData(orfs, charsPerRow, letterWidth, endIndex, config.ORF_LINE_HEIGHT, sequence);
-  const accumulatedHeight = config.BP_INDEX_HEIGHT + config.LETTER_HEIGHT_SEQUENCE * (minusStrand ? 2 : 1);
+  const accumulatedHeight =
+    annotationsTopHeight + config.BP_INDEX_HEIGHT + config.LETTER_HEIGHT_SEQUENCE * (minusStrand ? 2 : 1);
   return orfsBricksData.map(orfBrickData => (
-    <svg y={accumulatedHeight}>
+    <svg y={accumulatedHeight} key={`${orfBrickData.startIndex}_${orfBrickData.endIndex}_${orfBrickData.orfStartIndex}`}>
       <OrfShapeContainer {...orfBrickData} />
     </svg>
   ));

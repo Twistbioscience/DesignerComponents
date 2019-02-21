@@ -82,10 +82,8 @@ const AALetters = ({textChunks, x, y, firstBrickType, lastBrickType, strand}) =>
   return (
     <text x={x} y={y + 12} fontFamily="Inconsolata" fontSize="16px">
       {textChunks.map((chunk, index, arr) => (
-        <tspan dx={calculateAALetterDx(arr, index, lastBrickType, firstBrickType)}>
-{/*
+        <tspan key={`${chunk}_${x + index}`} dx={calculateAALetterDx(arr, index, lastBrickType, firstBrickType)}>
           {getAminoAcidByTriplet(chunk, strand)}
-*/}
         </tspan>
       ))}
     </text>
@@ -117,6 +115,7 @@ const OrfShapeContainer = ({start, firstBrickType, lastBrickType, totalFullBrick
     .reduce(getBrickWithXPosition, [])
     .map(brick => (
       <OrfShapeItem
+        key={brick.x + start}
         x={brick.x + start}
         y={y}
         d={

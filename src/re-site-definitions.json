@@ -1,0 +1,7282 @@
+{
+  "reSitesDefList": [
+    {
+      "cutIndex3_5": "3",
+      "name": "AanI",
+      "overhang": "0",
+      "recognitionSequence": "TTATAA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "11",
+      "name": "AarI",
+      "overhang": "4",
+      "recognitionSequence": "CACCTGCnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "AasI",
+      "overhang": "-2",
+      "recognitionSequence": "GACnnnnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "AatI",
+      "overhang": "0",
+      "recognitionSequence": "AGGCCT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "AatII",
+      "overhang": "-4",
+      "recognitionSequence": "GACGTC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "AbsI",
+      "overhang": "4",
+      "recognitionSequence": "CCTCGAGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "AccI",
+      "overhang": "2",
+      "recognitionSequence": "GTmkAC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "AccII",
+      "overhang": "0",
+      "recognitionSequence": "CGCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AccIII",
+      "overhang": "4",
+      "recognitionSequence": "TCCGGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Acc16I",
+      "overhang": "0",
+      "recognitionSequence": "TGCGCA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "10",
+      "name": "Acc36I",
+      "overhang": "4",
+      "recognitionSequence": "ACCTGCnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Acc65I",
+      "overhang": "4",
+      "recognitionSequence": "GGTACC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AccB1I",
+      "overhang": "4",
+      "recognitionSequence": "GGyrCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "AccB7I",
+      "overhang": "-3",
+      "recognitionSequence": "CCAnnnnnTGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "AccBSI",
+      "overhang": "0",
+      "recognitionSequence": "CCGCTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "13",
+      "name": "AceIII",
+      "overhang": "4",
+      "recognitionSequence": "CAGCTCnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AciI",
+      "overhang": "2",
+      "recognitionSequence": "CCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "AclI",
+      "overhang": "2",
+      "recognitionSequence": "AACGTT",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "9",
+      "name": "AclWI",
+      "overhang": "1",
+      "recognitionSequence": "GGATCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AcoI",
+      "overhang": "4",
+      "recognitionSequence": "yGGCCr",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AcsI",
+      "overhang": "4",
+      "recognitionSequence": "rAATTy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "22",
+      "name": "AcuI",
+      "overhang": "-2",
+      "recognitionSequence": "CTGAAGnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "AcvI",
+      "overhang": "0",
+      "recognitionSequence": "CACGTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "AcyI",
+      "overhang": "2",
+      "recognitionSequence": "GrCGyC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "AdeI",
+      "overhang": "-3",
+      "recognitionSequence": "CACnnnGTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "AfaI",
+      "overhang": "0",
+      "recognitionSequence": "GTAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "AfeI",
+      "overhang": "0",
+      "recognitionSequence": "AGCGCT",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "AfiI",
+      "overhang": "-3",
+      "recognitionSequence": "CCnnnnnnnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AflII",
+      "overhang": "4",
+      "recognitionSequence": "CTTAAG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AflIII",
+      "overhang": "4",
+      "recognitionSequence": "ACryGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AgeI",
+      "overhang": "4",
+      "recognitionSequence": "ACCGGT",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "AgsI",
+      "overhang": "-1",
+      "recognitionSequence": "TTsAA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "AhaIII",
+      "overhang": "0",
+      "recognitionSequence": "TTTAAA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "AhdI",
+      "overhang": "-1",
+      "recognitionSequence": "GACnnnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AhlI",
+      "overhang": "4",
+      "recognitionSequence": "ACTAGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "AjiI",
+      "overhang": "0",
+      "recognitionSequence": "CACGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "AjnI",
+      "overhang": "5",
+      "recognitionSequence": "CCwGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "AjuI",
+      "overhang": "-5",
+      "recognitionSequence": "GAAnnnnnnnTTGGnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "26",
+      "name": "AjuI",
+      "overhang": "-5",
+      "recognitionSequence": "CCAAnnnnnnnTTCnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "AleI",
+      "overhang": "0",
+      "recognitionSequence": "CACnnnnGTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "AlfI",
+      "overhang": "-2",
+      "recognitionSequence": "GCAnnnnnnTGCnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "AloI",
+      "overhang": "-5",
+      "recognitionSequence": "GAACnnnnnnTCCnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "AloI",
+      "overhang": "-5",
+      "recognitionSequence": "GGAnnnnnnGTTCnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "AluI",
+      "overhang": "0",
+      "recognitionSequence": "AGCT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "AluBI",
+      "overhang": "0",
+      "recognitionSequence": "AGCT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "9",
+      "name": "AlwI",
+      "overhang": "1",
+      "recognitionSequence": "GGATCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "Alw21I",
+      "overhang": "-4",
+      "recognitionSequence": "GwGCwC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "Alw26I",
+      "overhang": "4",
+      "recognitionSequence": "GTCTCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Alw44I",
+      "overhang": "4",
+      "recognitionSequence": "GTGCAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "AlwFI",
+      "overhang": "0",
+      "recognitionSequence": "GAAAynnnnnrTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "AlwNI",
+      "overhang": "-3",
+      "recognitionSequence": "CAGnnnCTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Ama87I",
+      "overhang": "4",
+      "recognitionSequence": "CyCGrG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Aor13HI",
+      "overhang": "4",
+      "recognitionSequence": "TCCGGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Aor51HI",
+      "overhang": "0",
+      "recognitionSequence": "AGCGCT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "AoxI",
+      "overhang": "4",
+      "recognitionSequence": "GGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "ApaI",
+      "overhang": "-4",
+      "recognitionSequence": "GGGCCC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "ApaBI",
+      "overhang": "-5",
+      "recognitionSequence": "GCAnnnnnTGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "ApaLI",
+      "overhang": "4",
+      "recognitionSequence": "GTGCAC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "ApeKI",
+      "overhang": "3",
+      "recognitionSequence": "GCwGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "ApoI",
+      "overhang": "4",
+      "recognitionSequence": "rAATTy",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "26",
+      "name": "ApyPI",
+      "overhang": "-2",
+      "recognitionSequence": "ATCGACnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "27",
+      "name": "AquII",
+      "overhang": "-2",
+      "recognitionSequence": "GCCGnACnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "26",
+      "name": "AquIII",
+      "overhang": "-2",
+      "recognitionSequence": "GAGGAGnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "26",
+      "name": "AquIV",
+      "overhang": "-2",
+      "recognitionSequence": "GrGGAAGnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "ArsI",
+      "overhang": "-5",
+      "recognitionSequence": "GACnnnnnnTTyGnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "26",
+      "name": "ArsI",
+      "overhang": "-5",
+      "recognitionSequence": "CrAAnnnnnnGTCnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "AscI",
+      "overhang": "4",
+      "recognitionSequence": "GGCGCGCC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "AseI",
+      "overhang": "2",
+      "recognitionSequence": "ATTAAT",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Asi256I",
+      "overhang": "2",
+      "recognitionSequence": "GATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AsiGI",
+      "overhang": "4",
+      "recognitionSequence": "ACCGGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "AsiSI",
+      "overhang": "-2",
+      "recognitionSequence": "GCGATCGC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "AspI",
+      "overhang": "1",
+      "recognitionSequence": "GACnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "Asp700I",
+      "overhang": "0",
+      "recognitionSequence": "GAAnnnnTTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Asp718I",
+      "overhang": "4",
+      "recognitionSequence": "GGTACC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AspA2I",
+      "overhang": "4",
+      "recognitionSequence": "CCTAGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "13",
+      "name": "AspBHI",
+      "overhang": "4",
+      "recognitionSequence": "ysCnsnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "AspCNI",
+      "overhang": "0",
+      "recognitionSequence": "GCCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "AspEI",
+      "overhang": "-1",
+      "recognitionSequence": "GACnnnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "AspLEI",
+      "overhang": "-2",
+      "recognitionSequence": "GCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AspS9I",
+      "overhang": "3",
+      "recognitionSequence": "GGnCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "AssI",
+      "overhang": "0",
+      "recognitionSequence": "AGTACT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AsuI",
+      "overhang": "3",
+      "recognitionSequence": "GGnCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "AsuII",
+      "overhang": "2",
+      "recognitionSequence": "TTCGAA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "AsuC2I",
+      "overhang": "1",
+      "recognitionSequence": "CCsGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "13",
+      "name": "AsuHPI",
+      "overhang": "-1",
+      "recognitionSequence": "GGTGAnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AsuNHI",
+      "overhang": "4",
+      "recognitionSequence": "GCTAGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AvaI",
+      "overhang": "4",
+      "recognitionSequence": "CyCGrG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AvaII",
+      "overhang": "3",
+      "recognitionSequence": "GGwCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "AvaIII",
+      "overhang": "0",
+      "recognitionSequence": "ATGCAT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "AviII",
+      "overhang": "0",
+      "recognitionSequence": "TGCGCA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "AvrII",
+      "overhang": "4",
+      "recognitionSequence": "CCTAGG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "AxyI",
+      "overhang": "3",
+      "recognitionSequence": "CCTnAGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "23",
+      "name": "BaeI",
+      "overhang": "-5",
+      "recognitionSequence": "ACnnnnGTAyCnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BaeGI",
+      "overhang": "-4",
+      "recognitionSequence": "GkGCmC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BalI",
+      "overhang": "0",
+      "recognitionSequence": "TGGCCA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BamHI",
+      "overhang": "4",
+      "recognitionSequence": "GGATCC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BanI",
+      "overhang": "4",
+      "recognitionSequence": "GGyrCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BanII",
+      "overhang": "-4",
+      "recognitionSequence": "GrGCyC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BanIII",
+      "overhang": "2",
+      "recognitionSequence": "ATCGAT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "BarI",
+      "overhang": "-5",
+      "recognitionSequence": "GAAGnnnnnnTACnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "BarI",
+      "overhang": "-5",
+      "recognitionSequence": "GTAnnnnnnCTTCnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "BasI",
+      "overhang": "-3",
+      "recognitionSequence": "CCAnnnnnTGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BauI",
+      "overhang": "4",
+      "recognitionSequence": "CACGAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BbeI",
+      "overhang": "-4",
+      "recognitionSequence": "GGCGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "13",
+      "name": "Bbr7I",
+      "overhang": "4",
+      "recognitionSequence": "GAAGACnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BbrPI",
+      "overhang": "0",
+      "recognitionSequence": "CACGTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "BbsI",
+      "overhang": "4",
+      "recognitionSequence": "GAAGACnnnnnn",
+      "subLists": [
+        "NEB",
+        "POPULAR"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "BbsI-HF",
+      "overhang": "4",
+      "recognitionSequence": "GAAGACnnnnnn",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "13",
+      "name": "BbvI",
+      "overhang": "4",
+      "recognitionSequence": "GCAGCnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "BbvII",
+      "overhang": "4",
+      "recognitionSequence": "GAAGACnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "Bbv12I",
+      "overhang": "-4",
+      "recognitionSequence": "GwGCwC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BbvCI",
+      "overhang": "3",
+      "recognitionSequence": "CCTCAGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "9",
+      "name": "BccI",
+      "overhang": "1",
+      "recognitionSequence": "CCATCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "22",
+      "name": "Bce83I",
+      "overhang": "-2",
+      "recognitionSequence": "CTTGAGnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "17",
+      "name": "BceAI",
+      "overhang": "2",
+      "recognitionSequence": "ACGGCnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "14",
+      "name": "R1.BceSIV",
+      "overhang": "2",
+      "recognitionSequence": "GCAGCnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "10",
+      "name": "R1.BceSIV",
+      "overhang": "2",
+      "recognitionSequence": "GCTGCnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "17",
+      "name": "BcefI",
+      "overhang": "1",
+      "recognitionSequence": "ACGGCnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "BcgI",
+      "overhang": "-2",
+      "recognitionSequence": "CGAnnnnnnTGCnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "BcgI",
+      "overhang": "-2",
+      "recognitionSequence": "GCAnnnnnnTCGnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BciT130I",
+      "overhang": "1",
+      "recognitionSequence": "CCwGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "12",
+      "name": "BciVI",
+      "overhang": "-1",
+      "recognitionSequence": "GTATCCnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BclI",
+      "overhang": "4",
+      "recognitionSequence": "TGATCA",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BcnI",
+      "overhang": "1",
+      "recognitionSequence": "CCsGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "BcoDI",
+      "overhang": "4",
+      "recognitionSequence": "GTCTCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BcuI",
+      "overhang": "4",
+      "recognitionSequence": "ACTAGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "BdaI",
+      "overhang": "-2",
+      "recognitionSequence": "TGAnnnnnnTCAnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BetI",
+      "overhang": "4",
+      "recognitionSequence": "wCCGGw",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BfaI",
+      "overhang": "2",
+      "recognitionSequence": "CTAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "11",
+      "name": "BfiI",
+      "overhang": "-1",
+      "recognitionSequence": "ACTGGGnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BfmI",
+      "overhang": "4",
+      "recognitionSequence": "CTryAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BfoI",
+      "overhang": "-4",
+      "recognitionSequence": "rGCGCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BfrI",
+      "overhang": "4",
+      "recognitionSequence": "CTTAAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "12",
+      "name": "BfuI",
+      "overhang": "-1",
+      "recognitionSequence": "GTATCCnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "10",
+      "name": "BfuAI",
+      "overhang": "4",
+      "recognitionSequence": "ACCTGCnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "BfuCI",
+      "overhang": "4",
+      "recognitionSequence": "GATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "BglI",
+      "overhang": "-3",
+      "recognitionSequence": "GCCnnnnnGGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BglII",
+      "overhang": "4",
+      "recognitionSequence": "AGATCT",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "9",
+      "name": "BinI",
+      "overhang": "1",
+      "recognitionSequence": "GGATCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BisI",
+      "overhang": "1",
+      "recognitionSequence": "GCnGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BlnI",
+      "overhang": "4",
+      "recognitionSequence": "CCTAGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BlpI",
+      "overhang": "3",
+      "recognitionSequence": "GCTnAGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BlsI",
+      "overhang": "-1",
+      "recognitionSequence": "GCnGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BmcAI",
+      "overhang": "0",
+      "recognitionSequence": "AGTACT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Bme18I",
+      "overhang": "3",
+      "recognitionSequence": "GGwCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Bme1390I",
+      "overhang": "1",
+      "recognitionSequence": "CCnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "BmeRI",
+      "overhang": "-1",
+      "recognitionSequence": "GACnnnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BmeT110I",
+      "overhang": "4",
+      "recognitionSequence": "CyCGrG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BmgI",
+      "overhang": "0",
+      "recognitionSequence": "GkGCCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BmgBI",
+      "overhang": "0",
+      "recognitionSequence": "CACGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BmgT120I",
+      "overhang": "1",
+      "recognitionSequence": "GGnCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BmiI",
+      "overhang": "0",
+      "recognitionSequence": "GGnnCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "11",
+      "name": "BmrI",
+      "overhang": "-1",
+      "recognitionSequence": "ACTGGGnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BmrFI",
+      "overhang": "1",
+      "recognitionSequence": "CCnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "10",
+      "name": "BmsI",
+      "overhang": "4",
+      "recognitionSequence": "GCATCnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BmtI",
+      "overhang": "-4",
+      "recognitionSequence": "GCTAGC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "11",
+      "name": "BmuI",
+      "overhang": "-1",
+      "recognitionSequence": "ACTGGGnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BoxI",
+      "overhang": "0",
+      "recognitionSequence": "GACnnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "BpiI",
+      "overhang": "4",
+      "recognitionSequence": "GAAGACnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "BplI",
+      "overhang": "-5",
+      "recognitionSequence": "GAGnnnnnCTCnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "22",
+      "name": "BpmI",
+      "overhang": "-2",
+      "recognitionSequence": "CTGGAGnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Bpu10I",
+      "overhang": "3",
+      "recognitionSequence": "CCTnAGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Bpu14I",
+      "overhang": "2",
+      "recognitionSequence": "TTCGAA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Bpu1102I",
+      "overhang": "3",
+      "recognitionSequence": "GCTnAGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "BpuAI",
+      "overhang": "4",
+      "recognitionSequence": "GAAGACnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "22",
+      "name": "BpuEI",
+      "overhang": "-2",
+      "recognitionSequence": "CTTGAGnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BpuMI",
+      "overhang": "1",
+      "recognitionSequence": "CCsGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "BpvUI",
+      "overhang": "-2",
+      "recognitionSequence": "CGATCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "BsaI",
+      "overhang": "4",
+      "recognitionSequence": "GGTCTCnnnnn",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Bsa29I",
+      "overhang": "2",
+      "recognitionSequence": "ATCGAT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BsaAI",
+      "overhang": "0",
+      "recognitionSequence": "yACGTr",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BsaBI",
+      "overhang": "0",
+      "recognitionSequence": "GATnnnnATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BsaHI",
+      "overhang": "2",
+      "recognitionSequence": "GrCGyC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BsaJI",
+      "overhang": "4",
+      "recognitionSequence": "CCnnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BsaWI",
+      "overhang": "4",
+      "recognitionSequence": "wCCGGw",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "21",
+      "name": "BsaXI",
+      "overhang": "-3",
+      "recognitionSequence": "ACnnnnnCTCCnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "23",
+      "name": "BsaXI",
+      "overhang": "-3",
+      "recognitionSequence": "GGAGnnnnnGTnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "27",
+      "name": "BsbI",
+      "overhang": "-2",
+      "recognitionSequence": "CAACACnnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "Bsc4I",
+      "overhang": "-3",
+      "recognitionSequence": "CCnnnnnnnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "9",
+      "name": "BscAI",
+      "overhang": "2",
+      "recognitionSequence": "GCATCnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BscGI",
+      "overhang": "0",
+      "recognitionSequence": "CCCGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "Bse1I",
+      "overhang": "-2",
+      "recognitionSequence": "ACTGGn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "Bse8I",
+      "overhang": "0",
+      "recognitionSequence": "GATnnnnATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Bse21I",
+      "overhang": "3",
+      "recognitionSequence": "CCTnAGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Bse118I",
+      "overhang": "4",
+      "recognitionSequence": "rCCGGy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BseAI",
+      "overhang": "4",
+      "recognitionSequence": "TCCGGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BseBI",
+      "overhang": "1",
+      "recognitionSequence": "CCwGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BseCI",
+      "overhang": "2",
+      "recognitionSequence": "ATCGAT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BseDI",
+      "overhang": "4",
+      "recognitionSequence": "CCnnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "Bse3DI",
+      "overhang": "-2",
+      "recognitionSequence": "GCAATGnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "BseGI",
+      "overhang": "-2",
+      "recognitionSequence": "GGATGnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BseJI",
+      "overhang": "0",
+      "recognitionSequence": "GATnnnnATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "BseLI",
+      "overhang": "-3",
+      "recognitionSequence": "CCnnnnnnnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "BseMI",
+      "overhang": "-2",
+      "recognitionSequence": "GCAATGnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "15",
+      "name": "BseMII",
+      "overhang": "-2",
+      "recognitionSequence": "CTCAGnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "BseNI",
+      "overhang": "-2",
+      "recognitionSequence": "ACTGGn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BsePI",
+      "overhang": "4",
+      "recognitionSequence": "GCGCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "16",
+      "name": "BseRI",
+      "overhang": "-2",
+      "recognitionSequence": "GAGGAGnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BseSI",
+      "overhang": "-4",
+      "recognitionSequence": "GkGCmC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "13",
+      "name": "BseXI",
+      "overhang": "4",
+      "recognitionSequence": "GCAGCnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BseX3I",
+      "overhang": "4",
+      "recognitionSequence": "CGGCCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BseYI",
+      "overhang": "4",
+      "recognitionSequence": "CCCAGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "22",
+      "name": "BsgI",
+      "overhang": "-2",
+      "recognitionSequence": "GTGCAGnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Bsh1236I",
+      "overhang": "0",
+      "recognitionSequence": "CGCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "Bsh1285I",
+      "overhang": "-2",
+      "recognitionSequence": "CGryCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BshFI",
+      "overhang": "0",
+      "recognitionSequence": "GGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BshNI",
+      "overhang": "4",
+      "recognitionSequence": "GGyrCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BshTI",
+      "overhang": "4",
+      "recognitionSequence": "ACCGGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BshVI",
+      "overhang": "2",
+      "recognitionSequence": "ATCGAT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BsiI",
+      "overhang": "4",
+      "recognitionSequence": "CACGAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "BsiEI",
+      "overhang": "-2",
+      "recognitionSequence": "CGryCG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BsiHKAI",
+      "overhang": "-4",
+      "recognitionSequence": "GwGCwC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BsiHKCI",
+      "overhang": "4",
+      "recognitionSequence": "CyCGrG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BsiSI",
+      "overhang": "2",
+      "recognitionSequence": "CCGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BsiWI",
+      "overhang": "4",
+      "recognitionSequence": "CGTACG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "BsiYI",
+      "overhang": "-3",
+      "recognitionSequence": "CCnnnnnnnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "BslI",
+      "overhang": "-3",
+      "recognitionSequence": "CCnnnnnnnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "15",
+      "name": "BslFI",
+      "overhang": "4",
+      "recognitionSequence": "GGGACnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "BsmI",
+      "overhang": "-2",
+      "recognitionSequence": "GAATGCn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "BsmAI",
+      "overhang": "4",
+      "recognitionSequence": "GTCTCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "BsmBI",
+      "overhang": "4",
+      "recognitionSequence": "CGTCTCnnnnn",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "15",
+      "name": "BsmFI",
+      "overhang": "4",
+      "recognitionSequence": "GGGACnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BsnI",
+      "overhang": "0",
+      "recognitionSequence": "GGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "Bso31I",
+      "overhang": "4",
+      "recognitionSequence": "GGTCTCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BsoBI",
+      "overhang": "4",
+      "recognitionSequence": "CyCGrG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Bsp13I",
+      "overhang": "4",
+      "recognitionSequence": "TCCGGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Bsp19I",
+      "overhang": "4",
+      "recognitionSequence": "CCATGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "Bsp24I",
+      "overhang": "-5",
+      "recognitionSequence": "GACnnnnnnTGGnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "Bsp24I",
+      "overhang": "-5",
+      "recognitionSequence": "CCAnnnnnnGTCnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Bsp68I",
+      "overhang": "0",
+      "recognitionSequence": "TCGCGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Bsp119I",
+      "overhang": "2",
+      "recognitionSequence": "TTCGAA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Bsp120I",
+      "overhang": "4",
+      "recognitionSequence": "GGGCCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "Bsp143I",
+      "overhang": "4",
+      "recognitionSequence": "GATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "Bsp1286I",
+      "overhang": "-4",
+      "recognitionSequence": "GdGChC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Bsp1407I",
+      "overhang": "4",
+      "recognitionSequence": "TGTACA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Bsp1720I",
+      "overhang": "3",
+      "recognitionSequence": "GCTnAGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BspACI",
+      "overhang": "2",
+      "recognitionSequence": "CCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "14",
+      "name": "BspCNI",
+      "overhang": "-2",
+      "recognitionSequence": "CTCAGnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BspDI",
+      "overhang": "2",
+      "recognitionSequence": "ATCGAT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "9",
+      "name": "BspD6I",
+      "overhang": "2",
+      "recognitionSequence": "GACTCnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BspEI",
+      "overhang": "4",
+      "recognitionSequence": "TCCGGA",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BspFNI",
+      "overhang": "0",
+      "recognitionSequence": "CGCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BspGI",
+      "overhang": "0",
+      "recognitionSequence": "CTGGAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BspHI",
+      "overhang": "4",
+      "recognitionSequence": "TCATGA",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BspLI",
+      "overhang": "0",
+      "recognitionSequence": "GGnnCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BspLU11I",
+      "overhang": "4",
+      "recognitionSequence": "ACATGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "10",
+      "name": "BspMI",
+      "overhang": "4",
+      "recognitionSequence": "ACCTGCnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BspMII",
+      "overhang": "4",
+      "recognitionSequence": "TCCGGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BspNCI",
+      "overhang": "0",
+      "recognitionSequence": "CCAGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BspOI",
+      "overhang": "-4",
+      "recognitionSequence": "GCTAGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "9",
+      "name": "BspPI",
+      "overhang": "1",
+      "recognitionSequence": "GGATCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "BspQI",
+      "overhang": "3",
+      "recognitionSequence": "GCTCTTCnnnn",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BspTI",
+      "overhang": "4",
+      "recognitionSequence": "CTTAAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BspT104I",
+      "overhang": "2",
+      "recognitionSequence": "TTCGAA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BspT107I",
+      "overhang": "4",
+      "recognitionSequence": "GGyrCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "BsrI",
+      "overhang": "-2",
+      "recognitionSequence": "ACTGGn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BsrBI",
+      "overhang": "0",
+      "recognitionSequence": "CCGCTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "BsrDI",
+      "overhang": "-2",
+      "recognitionSequence": "GCAATGnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BsrFI",
+      "overhang": "4",
+      "recognitionSequence": "rCCGGy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BsrGI",
+      "overhang": "4",
+      "recognitionSequence": "TGTACA",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "BsrSI",
+      "overhang": "-2",
+      "recognitionSequence": "ACTGGn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BssAI",
+      "overhang": "4",
+      "recognitionSequence": "rCCGGy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BssECI",
+      "overhang": "4",
+      "recognitionSequence": "CCnnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BssHII",
+      "overhang": "4",
+      "recognitionSequence": "GCGCGC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "BssKI",
+      "overhang": "5",
+      "recognitionSequence": "CCnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "BssMI",
+      "overhang": "4",
+      "recognitionSequence": "GATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BssNI",
+      "overhang": "2",
+      "recognitionSequence": "GrCGyC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BssNAI",
+      "overhang": "0",
+      "recognitionSequence": "GTATAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BssSI",
+      "overhang": "4",
+      "recognitionSequence": "CACGAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BssT1I",
+      "overhang": "4",
+      "recognitionSequence": "CCwwGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "Bst6I",
+      "overhang": "3",
+      "recognitionSequence": "CTCTTCnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Bst1107I",
+      "overhang": "0",
+      "recognitionSequence": "GTATAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BstACI",
+      "overhang": "2",
+      "recognitionSequence": "GrCGyC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BstAFI",
+      "overhang": "4",
+      "recognitionSequence": "CTTAAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "BstAPI",
+      "overhang": "-3",
+      "recognitionSequence": "GCAnnnnnTGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BstAUI",
+      "overhang": "4",
+      "recognitionSequence": "TGTACA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BstBI",
+      "overhang": "2",
+      "recognitionSequence": "TTCGAA",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Bst2BI",
+      "overhang": "4",
+      "recognitionSequence": "CACGAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BstBAI",
+      "overhang": "0",
+      "recognitionSequence": "yACGTr",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Bst4CI",
+      "overhang": "-1",
+      "recognitionSequence": "ACnGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BstC8I",
+      "overhang": "0",
+      "recognitionSequence": "GCnnGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BstDEI",
+      "overhang": "3",
+      "recognitionSequence": "CTnAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BstDSI",
+      "overhang": "4",
+      "recognitionSequence": "CCryGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BstEII",
+      "overhang": "5",
+      "recognitionSequence": "GGTnACC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BstENI",
+      "overhang": "1",
+      "recognitionSequence": "CCTnnnnnAGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "BstF5I",
+      "overhang": "-2",
+      "recognitionSequence": "GGATGnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BstFNI",
+      "overhang": "0",
+      "recognitionSequence": "CGCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BstH2I",
+      "overhang": "-4",
+      "recognitionSequence": "rGCGCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BstHHI",
+      "overhang": "-2",
+      "recognitionSequence": "GCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BstKTI",
+      "overhang": "-2",
+      "recognitionSequence": "GATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "BstMAI",
+      "overhang": "4",
+      "recognitionSequence": "GTCTCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "BstMBI",
+      "overhang": "4",
+      "recognitionSequence": "GATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "BstMCI",
+      "overhang": "-2",
+      "recognitionSequence": "CGryCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "BstMWI",
+      "overhang": "-3",
+      "recognitionSequence": "GCnnnnnnnGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BstNI",
+      "overhang": "1",
+      "recognitionSequence": "CCwGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BstNSI",
+      "overhang": "-4",
+      "recognitionSequence": "rCATGy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BstOI",
+      "overhang": "1",
+      "recognitionSequence": "CCwGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BstPI",
+      "overhang": "5",
+      "recognitionSequence": "GGTnACC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BstPAI",
+      "overhang": "0",
+      "recognitionSequence": "GACnnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "BstSCI",
+      "overhang": "5",
+      "recognitionSequence": "CCnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BstSFI",
+      "overhang": "4",
+      "recognitionSequence": "CTryAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "BstSLI",
+      "overhang": "-4",
+      "recognitionSequence": "GkGCmC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BstSNI",
+      "overhang": "0",
+      "recognitionSequence": "TACGTA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BstUI",
+      "overhang": "0",
+      "recognitionSequence": "CGCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Bst2UI",
+      "overhang": "1",
+      "recognitionSequence": "CCwGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "13",
+      "name": "BstV1I",
+      "overhang": "4",
+      "recognitionSequence": "GCAGCnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "BstV2I",
+      "overhang": "4",
+      "recognitionSequence": "GAAGACnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "BstXI",
+      "overhang": "-4",
+      "recognitionSequence": "CCAnnnnnnTGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BstX2I",
+      "overhang": "4",
+      "recognitionSequence": "rGATCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BstYI",
+      "overhang": "4",
+      "recognitionSequence": "rGATCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BstZI",
+      "overhang": "4",
+      "recognitionSequence": "CGGCCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BstZ17I",
+      "overhang": "0",
+      "recognitionSequence": "GTATAC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "12",
+      "name": "BsuI",
+      "overhang": "-1",
+      "recognitionSequence": "GTATCCnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Bsu15I",
+      "overhang": "2",
+      "recognitionSequence": "ATCGAT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Bsu36I",
+      "overhang": "3",
+      "recognitionSequence": "CCTnAGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "BsuRI",
+      "overhang": "0",
+      "recognitionSequence": "GGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "BtgI",
+      "overhang": "4",
+      "recognitionSequence": "CCryGG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "16",
+      "name": "BtgZI",
+      "overhang": "4",
+      "recognitionSequence": "GCGATGnnnnnnnnnnnnnn",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "BthCI",
+      "overhang": "-3",
+      "recognitionSequence": "GCnGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BtrI",
+      "overhang": "0",
+      "recognitionSequence": "CACGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "BtsI",
+      "overhang": "-2",
+      "recognitionSequence": "GCAGTGnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "BtsCI",
+      "overhang": "-2",
+      "recognitionSequence": "GGATGnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "BtsIMutI",
+      "overhang": "-2",
+      "recognitionSequence": "CAGTGnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "BtuMI",
+      "overhang": "0",
+      "recognitionSequence": "TCGCGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "10",
+      "name": "BveI",
+      "overhang": "4",
+      "recognitionSequence": "ACCTGCnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Cac8I",
+      "overhang": "0",
+      "recognitionSequence": "GCnnGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "CaiI",
+      "overhang": "-3",
+      "recognitionSequence": "CAGnnnCTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "CauII",
+      "overhang": "1",
+      "recognitionSequence": "CCsGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "17",
+      "name": "CchII",
+      "overhang": "-2",
+      "recognitionSequence": "GGArGAnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "26",
+      "name": "CchIII",
+      "overhang": "-2",
+      "recognitionSequence": "CCCAAGnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "CciI",
+      "overhang": "4",
+      "recognitionSequence": "TCATGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "CciNI",
+      "overhang": "4",
+      "recognitionSequence": "GCGGCCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "CdiI",
+      "overhang": "0",
+      "recognitionSequence": "CATCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "26",
+      "name": "CdpI",
+      "overhang": "-2",
+      "recognitionSequence": "GCGGAGnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "CelII",
+      "overhang": "3",
+      "recognitionSequence": "GCTnAGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "CfoI",
+      "overhang": "-2",
+      "recognitionSequence": "GCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "CfrI",
+      "overhang": "4",
+      "recognitionSequence": "yGGCCr",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Cfr9I",
+      "overhang": "4",
+      "recognitionSequence": "CCCGGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Cfr10I",
+      "overhang": "4",
+      "recognitionSequence": "rCCGGy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Cfr13I",
+      "overhang": "3",
+      "recognitionSequence": "GGnCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "Cfr42I",
+      "overhang": "-2",
+      "recognitionSequence": "CCGCGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "ChaI",
+      "overhang": "-4",
+      "recognitionSequence": "GATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "26",
+      "name": "CjeI",
+      "overhang": "-6",
+      "recognitionSequence": "CCAnnnnnnGTnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "CjeI",
+      "overhang": "-6",
+      "recognitionSequence": "ACnnnnnnTGGnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "CjeNII",
+      "overhang": "0",
+      "recognitionSequence": "GAGnnnnnGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "26",
+      "name": "CjePI",
+      "overhang": "-6",
+      "recognitionSequence": "CCAnnnnnnnTCnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "CjePI",
+      "overhang": "-6",
+      "recognitionSequence": "GAnnnnnnnTGGnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "CjeP659IV",
+      "overhang": "0",
+      "recognitionSequence": "CACnnnnnnnGAA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "CjuI",
+      "overhang": "0",
+      "recognitionSequence": "CAynnnnnrTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "CjuII",
+      "overhang": "0",
+      "recognitionSequence": "CAynnnnnCTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "ClaI",
+      "overhang": "2",
+      "recognitionSequence": "ATCGAT",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "CpoI",
+      "overhang": "3",
+      "recognitionSequence": "CGGwCCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "10",
+      "name": "CseI",
+      "overhang": "5",
+      "recognitionSequence": "GACGCnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "CsiI",
+      "overhang": "5",
+      "recognitionSequence": "ACCwGGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "CspI",
+      "overhang": "3",
+      "recognitionSequence": "CGGwCCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Csp6I",
+      "overhang": "2",
+      "recognitionSequence": "GTAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Csp45I",
+      "overhang": "2",
+      "recognitionSequence": "TTCGAA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "CspAI",
+      "overhang": "4",
+      "recognitionSequence": "ACCGGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "CspCI",
+      "overhang": "-2",
+      "recognitionSequence": "CAAnnnnnGTGGnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "CspCI",
+      "overhang": "-2",
+      "recognitionSequence": "CCACnnnnnTTGnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "26",
+      "name": "CstMI",
+      "overhang": "-2",
+      "recognitionSequence": "AAGGAGnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "CviAII",
+      "overhang": "2",
+      "recognitionSequence": "CATG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "CviJI",
+      "overhang": "0",
+      "recognitionSequence": "rGCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "CviKI-1",
+      "overhang": "0",
+      "recognitionSequence": "rGCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "CviQI",
+      "overhang": "2",
+      "recognitionSequence": "GTAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "CviRI",
+      "overhang": "0",
+      "recognitionSequence": "TGCA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "DdeI",
+      "overhang": "3",
+      "recognitionSequence": "CTnAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "DinI",
+      "overhang": "0",
+      "recognitionSequence": "GGCGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "DpnI",
+      "overhang": "0",
+      "recognitionSequence": "GATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "DpnII",
+      "overhang": "4",
+      "recognitionSequence": "GATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "DraI",
+      "overhang": "0",
+      "recognitionSequence": "TTTAAA",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "DraII",
+      "overhang": "3",
+      "recognitionSequence": "rGGnCCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "DraIII",
+      "overhang": "-3",
+      "recognitionSequence": "CACnnnGTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "27",
+      "name": "DraRI",
+      "overhang": "-2",
+      "recognitionSequence": "CAAGnACnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "DrdI",
+      "overhang": "-2",
+      "recognitionSequence": "GACnnnnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "DrdII",
+      "overhang": "0",
+      "recognitionSequence": "GAACCA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "26",
+      "name": "DrdIV",
+      "overhang": "-2",
+      "recognitionSequence": "TACGACnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "DriI",
+      "overhang": "-1",
+      "recognitionSequence": "GACnnnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "DsaI",
+      "overhang": "4",
+      "recognitionSequence": "CCryGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "DseDI",
+      "overhang": "-2",
+      "recognitionSequence": "GACnnnnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "EaeI",
+      "overhang": "4",
+      "recognitionSequence": "yGGCCr",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "EagI",
+      "overhang": "4",
+      "recognitionSequence": "CGGCCG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "Eam1104I",
+      "overhang": "3",
+      "recognitionSequence": "CTCTTCnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "Eam1105I",
+      "overhang": "-1",
+      "recognitionSequence": "GACnnnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "EarI",
+      "overhang": "3",
+      "recognitionSequence": "CTCTTCnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "17",
+      "name": "EciI",
+      "overhang": "-2",
+      "recognitionSequence": "GGCGGAnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Ecl136II",
+      "overhang": "0",
+      "recognitionSequence": "GAGCTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "EclXI",
+      "overhang": "4",
+      "recognitionSequence": "CGGCCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "Eco24I",
+      "overhang": "-4",
+      "recognitionSequence": "GrGCyC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "Eco31I",
+      "overhang": "4",
+      "recognitionSequence": "GGTCTCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Eco32I",
+      "overhang": "0",
+      "recognitionSequence": "GATATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Eco47I",
+      "overhang": "3",
+      "recognitionSequence": "GGwCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Eco47III",
+      "overhang": "0",
+      "recognitionSequence": "AGCGCT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Eco52I",
+      "overhang": "4",
+      "recognitionSequence": "CGGCCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "22",
+      "name": "Eco57I",
+      "overhang": "-2",
+      "recognitionSequence": "CTGAAGnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Eco72I",
+      "overhang": "0",
+      "recognitionSequence": "CACGTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Eco81I",
+      "overhang": "3",
+      "recognitionSequence": "CCTnAGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Eco88I",
+      "overhang": "4",
+      "recognitionSequence": "CyCGrG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Eco91I",
+      "overhang": "5",
+      "recognitionSequence": "GGTnACC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Eco105I",
+      "overhang": "0",
+      "recognitionSequence": "TACGTA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Eco130I",
+      "overhang": "4",
+      "recognitionSequence": "CCwwGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Eco147I",
+      "overhang": "0",
+      "recognitionSequence": "AGGCCT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "EcoHI",
+      "overhang": "5",
+      "recognitionSequence": "CCsGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "EcoICRI",
+      "overhang": "0",
+      "recognitionSequence": "GAGCTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "22",
+      "name": "Eco57MI",
+      "overhang": "-2",
+      "recognitionSequence": "CTGrAGnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "EcoNI",
+      "overhang": "1",
+      "recognitionSequence": "CCTnnnnnAGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "EcoO65I",
+      "overhang": "5",
+      "recognitionSequence": "GGTnACC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "EcoO109I",
+      "overhang": "3",
+      "recognitionSequence": "rGGnCCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "EcoRI",
+      "overhang": "4",
+      "recognitionSequence": "GAATTC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "EcoRII",
+      "overhang": "5",
+      "recognitionSequence": "CCwGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "EcoRV",
+      "overhang": "0",
+      "recognitionSequence": "GATATC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "EcoT14I",
+      "overhang": "4",
+      "recognitionSequence": "CCwwGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "EcoT22I",
+      "overhang": "-4",
+      "recognitionSequence": "ATGCAT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "EcoT38I",
+      "overhang": "-4",
+      "recognitionSequence": "GrGCyC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Eco53kI",
+      "overhang": "0",
+      "recognitionSequence": "GAGCTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "EgeI",
+      "overhang": "0",
+      "recognitionSequence": "GGCGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "EheI",
+      "overhang": "0",
+      "recognitionSequence": "GGCGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "ErhI",
+      "overhang": "4",
+      "recognitionSequence": "CCwwGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "EsaBC3I",
+      "overhang": "0",
+      "recognitionSequence": "TCGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "EsaSSI",
+      "overhang": "0",
+      "recognitionSequence": "GACCAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "EspI",
+      "overhang": "3",
+      "recognitionSequence": "GCTnAGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "Esp3I",
+      "overhang": "4",
+      "recognitionSequence": "CGTCTCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "FaeI",
+      "overhang": "-4",
+      "recognitionSequence": "CATG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "FaiI",
+      "overhang": "0",
+      "recognitionSequence": "yATr",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "FalI",
+      "overhang": "-5",
+      "recognitionSequence": "AAGnnnnnCTTnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "15",
+      "name": "FaqI",
+      "overhang": "4",
+      "recognitionSequence": "GGGACnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "FatI",
+      "overhang": "4",
+      "recognitionSequence": "CATG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "9",
+      "name": "FauI",
+      "overhang": "2",
+      "recognitionSequence": "CCCGCnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "FauNDI",
+      "overhang": "2",
+      "recognitionSequence": "CATATG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "FbaI",
+      "overhang": "4",
+      "recognitionSequence": "TGATCA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "FblI",
+      "overhang": "2",
+      "recognitionSequence": "GTmkAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "FinI",
+      "overhang": "0",
+      "recognitionSequence": "GGGAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "FmuI",
+      "overhang": "-3",
+      "recognitionSequence": "GGnCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "FnuDII",
+      "overhang": "0",
+      "recognitionSequence": "CGCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Fnu4HI",
+      "overhang": "1",
+      "recognitionSequence": "GCnGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "14",
+      "name": "FokI",
+      "overhang": "4",
+      "recognitionSequence": "GGATGnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "FriOI",
+      "overhang": "-4",
+      "recognitionSequence": "GrGCyC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "FseI",
+      "overhang": "-4",
+      "recognitionSequence": "GGCCGGCC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "FspI",
+      "overhang": "0",
+      "recognitionSequence": "TGCGCA",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "FspAI",
+      "overhang": "0",
+      "recognitionSequence": "rTGCGCAy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "FspBI",
+      "overhang": "2",
+      "recognitionSequence": "CTAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "14",
+      "name": "FspEI",
+      "overhang": "4",
+      "recognitionSequence": "CCnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Fsp4HI",
+      "overhang": "1",
+      "recognitionSequence": "GCnGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "GdiII",
+      "overhang": "4",
+      "recognitionSequence": "CGGCCr",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "GlaI",
+      "overhang": "0",
+      "recognitionSequence": "GCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "GluI",
+      "overhang": "1",
+      "recognitionSequence": "GCnGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "GsaI",
+      "overhang": "-4",
+      "recognitionSequence": "CCCAGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "22",
+      "name": "GsuI",
+      "overhang": "-2",
+      "recognitionSequence": "CTGGAGnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "HaeI",
+      "overhang": "0",
+      "recognitionSequence": "wGGCCw",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "HaeII",
+      "overhang": "-4",
+      "recognitionSequence": "rGCGCy",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "HaeIII",
+      "overhang": "0",
+      "recognitionSequence": "GGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "HaeIV",
+      "overhang": "-5",
+      "recognitionSequence": "GAynnnnnrTCnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "HaeIV",
+      "overhang": "-6",
+      "recognitionSequence": "GAynnnnnrTCnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "HapII",
+      "overhang": "2",
+      "recognitionSequence": "CCGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "10",
+      "name": "HgaI",
+      "overhang": "5",
+      "recognitionSequence": "GACGCnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "HgiAI",
+      "overhang": "-4",
+      "recognitionSequence": "GwGCwC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "HgiCI",
+      "overhang": "4",
+      "recognitionSequence": "GGyrCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "HgiEII",
+      "overhang": "0",
+      "recognitionSequence": "ACCnnnnnnGGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "HgiJII",
+      "overhang": "-4",
+      "recognitionSequence": "GrGCyC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "HhaI",
+      "overhang": "-2",
+      "recognitionSequence": "GCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Hin1I",
+      "overhang": "2",
+      "recognitionSequence": "GrCGyC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "Hin1II",
+      "overhang": "-4",
+      "recognitionSequence": "CATG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "Hin4I",
+      "overhang": "-5",
+      "recognitionSequence": "GAynnnnnvTCnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "Hin4I",
+      "overhang": "-5",
+      "recognitionSequence": "GAbnnnnnrTCnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "11",
+      "name": "Hin4II",
+      "overhang": "-1",
+      "recognitionSequence": "CCTTCnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Hin6I",
+      "overhang": "2",
+      "recognitionSequence": "GCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "HinP1I",
+      "overhang": "2",
+      "recognitionSequence": "GCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "HincII",
+      "overhang": "0",
+      "recognitionSequence": "GTyrAC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "HindII",
+      "overhang": "0",
+      "recognitionSequence": "GTyrAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "HindIII",
+      "overhang": "4",
+      "recognitionSequence": "AAGCTT",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "HinfI",
+      "overhang": "3",
+      "recognitionSequence": "GAnTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "HpaI",
+      "overhang": "0",
+      "recognitionSequence": "GTTAAC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "HpaII",
+      "overhang": "2",
+      "recognitionSequence": "CCGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "13",
+      "name": "HphI",
+      "overhang": "-1",
+      "recognitionSequence": "GGTGAnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Hpy8I",
+      "overhang": "0",
+      "recognitionSequence": "GTnnAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "Hpy99I",
+      "overhang": "-5",
+      "recognitionSequence": "CGwCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Hpy166II",
+      "overhang": "0",
+      "recognitionSequence": "GTnnAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Hpy178III",
+      "overhang": "2",
+      "recognitionSequence": "TCnnGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Hpy188I",
+      "overhang": "-1",
+      "recognitionSequence": "TCnGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Hpy188III",
+      "overhang": "2",
+      "recognitionSequence": "TCnnGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "11",
+      "name": "HpyAV",
+      "overhang": "-1",
+      "recognitionSequence": "CCTTCnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "HpyCH4III",
+      "overhang": "-1",
+      "recognitionSequence": "ACnGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "HpyCH4IV",
+      "overhang": "2",
+      "recognitionSequence": "ACGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "HpyCH4V",
+      "overhang": "0",
+      "recognitionSequence": "TGCA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "HpyF3I",
+      "overhang": "3",
+      "recognitionSequence": "CTnAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "HpyF10VI",
+      "overhang": "-3",
+      "recognitionSequence": "GCnnnnnnnGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "HpySE526I",
+      "overhang": "2",
+      "recognitionSequence": "ACGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Hsp92I",
+      "overhang": "2",
+      "recognitionSequence": "GrCGyC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "Hsp92II",
+      "overhang": "-4",
+      "recognitionSequence": "CATG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "HspAI",
+      "overhang": "2",
+      "recognitionSequence": "GCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "KasI",
+      "overhang": "4",
+      "recognitionSequence": "GGCGCC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "KflI",
+      "overhang": "3",
+      "recognitionSequence": "GGGwCCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "KpnI",
+      "overhang": "-4",
+      "recognitionSequence": "GGTACC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Kpn2I",
+      "overhang": "4",
+      "recognitionSequence": "TCCGGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "KroI",
+      "overhang": "4",
+      "recognitionSequence": "GCCGGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "KspI",
+      "overhang": "-2",
+      "recognitionSequence": "CCGCGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Ksp22I",
+      "overhang": "4",
+      "recognitionSequence": "TGATCA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "Ksp632I",
+      "overhang": "3",
+      "recognitionSequence": "CTCTTCnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "KspAI",
+      "overhang": "0",
+      "recognitionSequence": "GTTAAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "Kzo9I",
+      "overhang": "4",
+      "recognitionSequence": "GATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "LguI",
+      "overhang": "3",
+      "recognitionSequence": "GCTCTTCnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "LlaGI",
+      "overhang": "0",
+      "recognitionSequence": "CTnGAyG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "LpnI",
+      "overhang": "0",
+      "recognitionSequence": "rGCGCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "14",
+      "name": "LpnPI",
+      "overhang": "4",
+      "recognitionSequence": "CCdGnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "13",
+      "name": "Lsp1109I",
+      "overhang": "4",
+      "recognitionSequence": "GCAGCnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "10",
+      "name": "LweI",
+      "overhang": "4",
+      "recognitionSequence": "GCATCnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "MabI",
+      "overhang": "5",
+      "recognitionSequence": "ACCwGGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "MaeI",
+      "overhang": "2",
+      "recognitionSequence": "CTAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "MaeII",
+      "overhang": "2",
+      "recognitionSequence": "ACGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "MaeIII",
+      "overhang": "5",
+      "recognitionSequence": "GTnAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "MalI",
+      "overhang": "0",
+      "recognitionSequence": "GATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "28",
+      "name": "MaqI",
+      "overhang": "-2",
+      "recognitionSequence": "CrTTGACnnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "MauBI",
+      "overhang": "4",
+      "recognitionSequence": "CGCGCGCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "MbiI",
+      "overhang": "0",
+      "recognitionSequence": "CCGCTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "MboI",
+      "overhang": "4",
+      "recognitionSequence": "GATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "13",
+      "name": "MboII",
+      "overhang": "-1",
+      "recognitionSequence": "GAAGAnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "McaTI",
+      "overhang": "-2",
+      "recognitionSequence": "GCGCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "McrI",
+      "overhang": "-2",
+      "recognitionSequence": "CGryCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "MfeI",
+      "overhang": "4",
+      "recognitionSequence": "CAATTG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "MflI",
+      "overhang": "4",
+      "recognitionSequence": "rGATCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "MhlI",
+      "overhang": "-4",
+      "recognitionSequence": "GdGChC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "MjaIV",
+      "overhang": "0",
+      "recognitionSequence": "GTnnAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "MlsI",
+      "overhang": "0",
+      "recognitionSequence": "TGGCCA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "MluI",
+      "overhang": "4",
+      "recognitionSequence": "ACGCGT",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "MluCI",
+      "overhang": "4",
+      "recognitionSequence": "AATT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "MluNI",
+      "overhang": "0",
+      "recognitionSequence": "TGGCCA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "10",
+      "name": "MlyI",
+      "overhang": "0",
+      "recognitionSequence": "GAGTCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Mly113I",
+      "overhang": "2",
+      "recognitionSequence": "GGCGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "26",
+      "name": "MmeI",
+      "overhang": "-2",
+      "recognitionSequence": "TCCrACnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "11",
+      "name": "MnlI",
+      "overhang": "-1",
+      "recognitionSequence": "CCTCnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "Mph1103I",
+      "overhang": "-4",
+      "recognitionSequence": "ATGCAT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "MreI",
+      "overhang": "4",
+      "recognitionSequence": "CGCCGGCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "MroI",
+      "overhang": "4",
+      "recognitionSequence": "TCCGGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "MroNI",
+      "overhang": "4",
+      "recognitionSequence": "GCCGGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "MroXI",
+      "overhang": "0",
+      "recognitionSequence": "GAAnnnnTTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "MscI",
+      "overhang": "0",
+      "recognitionSequence": "TGGCCA",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "MseI",
+      "overhang": "2",
+      "recognitionSequence": "TTAA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "MslI",
+      "overhang": "0",
+      "recognitionSequence": "CAynnnnrTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "MspI",
+      "overhang": "2",
+      "recognitionSequence": "CCGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Msp20I",
+      "overhang": "0",
+      "recognitionSequence": "TGGCCA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "MspA1I",
+      "overhang": "0",
+      "recognitionSequence": "CmGCkG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "MspCI",
+      "overhang": "4",
+      "recognitionSequence": "CTTAAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "13",
+      "name": "MspJI",
+      "overhang": "4",
+      "recognitionSequence": "Cnnrnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "MspR9I",
+      "overhang": "1",
+      "recognitionSequence": "CCnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "MssI",
+      "overhang": "0",
+      "recognitionSequence": "GTTTAAAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "MstI",
+      "overhang": "0",
+      "recognitionSequence": "TGCGCA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "MunI",
+      "overhang": "4",
+      "recognitionSequence": "CAATTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "MvaI",
+      "overhang": "1",
+      "recognitionSequence": "CCwGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "Mva1269I",
+      "overhang": "-2",
+      "recognitionSequence": "GAATGCn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "MvnI",
+      "overhang": "0",
+      "recognitionSequence": "CGCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "MvrI",
+      "overhang": "-2",
+      "recognitionSequence": "CGATCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "MwoI",
+      "overhang": "-3",
+      "recognitionSequence": "GCnnnnnnnGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "NaeI",
+      "overhang": "0",
+      "recognitionSequence": "GCCGGC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "NarI",
+      "overhang": "2",
+      "recognitionSequence": "GGCGCC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "NciI",
+      "overhang": "1",
+      "recognitionSequence": "CCsGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "NcoI",
+      "overhang": "4",
+      "recognitionSequence": "CCATGG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "NdeI",
+      "overhang": "2",
+      "recognitionSequence": "CATATG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "NdeII",
+      "overhang": "4",
+      "recognitionSequence": "GATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "NgoAVIII",
+      "overhang": "-2",
+      "recognitionSequence": "GACnnnnnTGAnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "NgoAVIII",
+      "overhang": "-2",
+      "recognitionSequence": "TCAnnnnnGTCnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "NgoMIV",
+      "overhang": "4",
+      "recognitionSequence": "GCCGGC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "NhaXI",
+      "overhang": "0",
+      "recognitionSequence": "CAAGrAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "NheI",
+      "overhang": "4",
+      "recognitionSequence": "GCTAGC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "NlaIII",
+      "overhang": "-4",
+      "recognitionSequence": "CATG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "NlaIV",
+      "overhang": "0",
+      "recognitionSequence": "GGnnCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "NlaCI",
+      "overhang": "-2",
+      "recognitionSequence": "CATCACnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "Nli3877I",
+      "overhang": "-4",
+      "recognitionSequence": "CyCGrG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "27",
+      "name": "NmeAIII",
+      "overhang": "-2",
+      "recognitionSequence": "GCCGAGnnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "13",
+      "name": "NmeDI",
+      "overhang": "5",
+      "recognitionSequence": "rCCGGynnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "NmuCI",
+      "overhang": "5",
+      "recognitionSequence": "GTsAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "NotI",
+      "overhang": "4",
+      "recognitionSequence": "GCGGCCGC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "NruI",
+      "overhang": "0",
+      "recognitionSequence": "TCGCGA",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "NsbI",
+      "overhang": "0",
+      "recognitionSequence": "TGCGCA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "NsiI",
+      "overhang": "-4",
+      "recognitionSequence": "ATGCAT",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "NspI",
+      "overhang": "-4",
+      "recognitionSequence": "rCATGy",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "NspV",
+      "overhang": "2",
+      "recognitionSequence": "TTCGAA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "NspBII",
+      "overhang": "0",
+      "recognitionSequence": "CmGCkG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "OliI",
+      "overhang": "0",
+      "recognitionSequence": "CACnnnnGTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "PabI",
+      "overhang": "-2",
+      "recognitionSequence": "GTAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "PacI",
+      "overhang": "-2",
+      "recognitionSequence": "TTAATTAA",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "PaeI",
+      "overhang": "-4",
+      "recognitionSequence": "GCATGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "PaeR7I",
+      "overhang": "4",
+      "recognitionSequence": "CTCGAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "PagI",
+      "overhang": "4",
+      "recognitionSequence": "TCATGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "PalAI",
+      "overhang": "4",
+      "recognitionSequence": "GGCGCGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "PasI",
+      "overhang": "3",
+      "recognitionSequence": "CCCwGGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "PauI",
+      "overhang": "4",
+      "recognitionSequence": "GCGCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "PceI",
+      "overhang": "0",
+      "recognitionSequence": "AGGCCT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "PciI",
+      "overhang": "4",
+      "recognitionSequence": "ACATGT",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "PciSI",
+      "overhang": "3",
+      "recognitionSequence": "GCTCTTCnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "PcsI",
+      "overhang": "-1",
+      "recognitionSequence": "wCGnnnnnnnCGw",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "PctI",
+      "overhang": "-2",
+      "recognitionSequence": "GAATGCn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "PdiI",
+      "overhang": "0",
+      "recognitionSequence": "GCCGGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "PdmI",
+      "overhang": "0",
+      "recognitionSequence": "GAAnnnnTTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "PenI",
+      "overhang": "0",
+      "recognitionSequence": "GCAGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "PfeI",
+      "overhang": "3",
+      "recognitionSequence": "GAwTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Pfl23II",
+      "overhang": "4",
+      "recognitionSequence": "CGTACG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Pfl1108I",
+      "overhang": "0",
+      "recognitionSequence": "TCGTAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "PflFI",
+      "overhang": "1",
+      "recognitionSequence": "GACnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "PflMI",
+      "overhang": "-3",
+      "recognitionSequence": "CCAnnnnnTGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "PfoI",
+      "overhang": "5",
+      "recognitionSequence": "TCCnGGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "PhoI",
+      "overhang": "0",
+      "recognitionSequence": "GGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "PinAI",
+      "overhang": "4",
+      "recognitionSequence": "ACCGGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "27",
+      "name": "PlaDI",
+      "overhang": "-2",
+      "recognitionSequence": "CATCAGnnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "9",
+      "name": "PleI",
+      "overhang": "1",
+      "recognitionSequence": "GAGTCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "Ple19I",
+      "overhang": "-2",
+      "recognitionSequence": "CGATCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "PmaCI",
+      "overhang": "0",
+      "recognitionSequence": "CACGTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "PmeI",
+      "overhang": "0",
+      "recognitionSequence": "GTTTAAAC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "PmlI",
+      "overhang": "0",
+      "recognitionSequence": "CACGTG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "PpiI",
+      "overhang": "-5",
+      "recognitionSequence": "GAACnnnnnCTCnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "PpiI",
+      "overhang": "-5",
+      "recognitionSequence": "GAGnnnnnGTTCnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "9",
+      "name": "PpsI",
+      "overhang": "1",
+      "recognitionSequence": "GAGTCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Ppu10I",
+      "overhang": "4",
+      "recognitionSequence": "ATGCAT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Ppu21I",
+      "overhang": "0",
+      "recognitionSequence": "yACGTr",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "PpuMI",
+      "overhang": "3",
+      "recognitionSequence": "rGGwCCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "PscI",
+      "overhang": "4",
+      "recognitionSequence": "ACATGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "PshAI",
+      "overhang": "0",
+      "recognitionSequence": "GACnnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "PshBI",
+      "overhang": "2",
+      "recognitionSequence": "ATTAAT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "PsiI",
+      "overhang": "0",
+      "recognitionSequence": "TTATAA",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "Psp03I",
+      "overhang": "-3",
+      "recognitionSequence": "GGwCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Psp5II",
+      "overhang": "3",
+      "recognitionSequence": "rGGwCCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "Psp6I",
+      "overhang": "5",
+      "recognitionSequence": "CCwGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Psp1406I",
+      "overhang": "2",
+      "recognitionSequence": "AACGTT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "Psp124BI",
+      "overhang": "-4",
+      "recognitionSequence": "GAGCTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "PspCI",
+      "overhang": "0",
+      "recognitionSequence": "CACGTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "PspEI",
+      "overhang": "5",
+      "recognitionSequence": "GGTnACC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "PspGI",
+      "overhang": "5",
+      "recognitionSequence": "CCwGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "PspLI",
+      "overhang": "4",
+      "recognitionSequence": "CGTACG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "PspN4I",
+      "overhang": "0",
+      "recognitionSequence": "GGnnCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "PspOMI",
+      "overhang": "4",
+      "recognitionSequence": "GGGCCC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "27",
+      "name": "PspOMII",
+      "overhang": "-2",
+      "recognitionSequence": "CGCCCArnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "PspPI",
+      "overhang": "3",
+      "recognitionSequence": "GGnCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "PspPPI",
+      "overhang": "3",
+      "recognitionSequence": "rGGwCCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "21",
+      "name": "PspPRI",
+      "overhang": "-2",
+      "recognitionSequence": "CCyCAGnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "PspXI",
+      "overhang": "4",
+      "recognitionSequence": "vCTCGAGb",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "PsrI",
+      "overhang": "-5",
+      "recognitionSequence": "GAACnnnnnnTACnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "PsrI",
+      "overhang": "-5",
+      "recognitionSequence": "GTAnnnnnnGTTCnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "PssI",
+      "overhang": "-3",
+      "recognitionSequence": "rGGnCCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "PstI",
+      "overhang": "-4",
+      "recognitionSequence": "CTGCAG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "PstNI",
+      "overhang": "-3",
+      "recognitionSequence": "CAGnnnCTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "PsuI",
+      "overhang": "4",
+      "recognitionSequence": "rGATCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "PsyI",
+      "overhang": "1",
+      "recognitionSequence": "GACnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "PteI",
+      "overhang": "4",
+      "recognitionSequence": "GCGCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "PvuI",
+      "overhang": "-2",
+      "recognitionSequence": "CGATCG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "PvuII",
+      "overhang": "0",
+      "recognitionSequence": "CAGCTG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "RcaI",
+      "overhang": "4",
+      "recognitionSequence": "TCATGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "27",
+      "name": "RceI",
+      "overhang": "-2",
+      "recognitionSequence": "CATCGACnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "RdeGBI",
+      "overhang": "0",
+      "recognitionSequence": "CCGCAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "26",
+      "name": "RdeGBII",
+      "overhang": "-2",
+      "recognitionSequence": "ACCCAGnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "17",
+      "name": "RdeGBIII",
+      "overhang": "-2",
+      "recognitionSequence": "TGryCAnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "RflFIII",
+      "overhang": "0",
+      "recognitionSequence": "CGCCAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "RgaI",
+      "overhang": "-2",
+      "recognitionSequence": "GCGATCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "RigI",
+      "overhang": "-4",
+      "recognitionSequence": "GGCCGGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "RlaI",
+      "overhang": "0",
+      "recognitionSequence": "vCw",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "18",
+      "name": "RleAI",
+      "overhang": "-3",
+      "recognitionSequence": "CCCACAnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "18",
+      "name": "RpaI",
+      "overhang": "-2",
+      "recognitionSequence": "GTyGGAGnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "27",
+      "name": "RpaBI",
+      "overhang": "-2",
+      "recognitionSequence": "CCCGCAGnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "27",
+      "name": "RpaB5I",
+      "overhang": "-2",
+      "recognitionSequence": "CGrGGACnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "RruI",
+      "overhang": "0",
+      "recognitionSequence": "TCGCGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "RsaI",
+      "overhang": "0",
+      "recognitionSequence": "GTAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "RsaNI",
+      "overhang": "2",
+      "recognitionSequence": "GTAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "RseI",
+      "overhang": "0",
+      "recognitionSequence": "CAynnnnrTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "RsrII",
+      "overhang": "3",
+      "recognitionSequence": "CGGwCCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Rsr2I",
+      "overhang": "3",
+      "recognitionSequence": "CGGwCCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "SacI",
+      "overhang": "-4",
+      "recognitionSequence": "GAGCTC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "SacII",
+      "overhang": "-2",
+      "recognitionSequence": "CCGCGG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "SalI",
+      "overhang": "4",
+      "recognitionSequence": "GTCGAC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "SanDI",
+      "overhang": "3",
+      "recognitionSequence": "GGGwCCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "SapI",
+      "overhang": "3",
+      "recognitionSequence": "GCTCTTCnnnn",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "SaqAI",
+      "overhang": "2",
+      "recognitionSequence": "TTAA",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "SatI",
+      "overhang": "1",
+      "recognitionSequence": "GCnGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "SauI",
+      "overhang": "3",
+      "recognitionSequence": "CCTnAGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Sau96I",
+      "overhang": "3",
+      "recognitionSequence": "GGnCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "Sau3AI",
+      "overhang": "4",
+      "recognitionSequence": "GATC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "SbfI",
+      "overhang": "-4",
+      "recognitionSequence": "CCTGCAGG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "ScaI",
+      "overhang": "0",
+      "recognitionSequence": "AGTACT",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "10",
+      "name": "SchI",
+      "overhang": "0",
+      "recognitionSequence": "GAGTCnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "SciI",
+      "overhang": "0",
+      "recognitionSequence": "CTCGAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "ScrFI",
+      "overhang": "1",
+      "recognitionSequence": "CCnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "SdaI",
+      "overhang": "-4",
+      "recognitionSequence": "CCTGCAGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "27",
+      "name": "SdeAI",
+      "overhang": "-2",
+      "recognitionSequence": "CAGrAGnnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "23",
+      "name": "SdeOSI",
+      "overhang": "-2",
+      "recognitionSequence": "GACnnnnrTGAnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "SdeOSI",
+      "overhang": "-2",
+      "recognitionSequence": "TCAynnnnGTCnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "SduI",
+      "overhang": "-4",
+      "recognitionSequence": "GdGChC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "SecI",
+      "overhang": "4",
+      "recognitionSequence": "CCnnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "SelI",
+      "overhang": "4",
+      "recognitionSequence": "CGCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "SetI",
+      "overhang": "-4",
+      "recognitionSequence": "AssT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "SexAI",
+      "overhang": "5",
+      "recognitionSequence": "ACCwGGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "SfaAI",
+      "overhang": "-2",
+      "recognitionSequence": "GCGATCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "10",
+      "name": "SfaNI",
+      "overhang": "4",
+      "recognitionSequence": "GCATCnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "SfcI",
+      "overhang": "4",
+      "recognitionSequence": "CTryAG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "SfeI",
+      "overhang": "4",
+      "recognitionSequence": "CTryAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "SfiI",
+      "overhang": "-3",
+      "recognitionSequence": "GGCCnnnnnGGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "SfoI",
+      "overhang": "0",
+      "recognitionSequence": "GGCGCC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Sfr274I",
+      "overhang": "4",
+      "recognitionSequence": "CTCGAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "Sfr303I",
+      "overhang": "-2",
+      "recognitionSequence": "CCGCGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "SfuI",
+      "overhang": "2",
+      "recognitionSequence": "TTCGAA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "13",
+      "name": "SgeI",
+      "overhang": "4",
+      "recognitionSequence": "CnnGnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "SgfI",
+      "overhang": "-2",
+      "recognitionSequence": "GCGATCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "SgrAI",
+      "overhang": "4",
+      "recognitionSequence": "CrCCGGyG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "SgrBI",
+      "overhang": "-2",
+      "recognitionSequence": "CCGCGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "SgrDI",
+      "overhang": "4",
+      "recognitionSequence": "CGTCGACG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "14",
+      "name": "SgrTI",
+      "overhang": "4",
+      "recognitionSequence": "CCdsnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "SgsI",
+      "overhang": "4",
+      "recognitionSequence": "GGCGCGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "SimI",
+      "overhang": "3",
+      "recognitionSequence": "GGGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "SinI",
+      "overhang": "3",
+      "recognitionSequence": "GGwCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "SlaI",
+      "overhang": "4",
+      "recognitionSequence": "CTCGAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "SmaI",
+      "overhang": "0",
+      "recognitionSequence": "CCCGGG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "SmiI",
+      "overhang": "0",
+      "recognitionSequence": "ATTTAAAT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "SmiMI",
+      "overhang": "0",
+      "recognitionSequence": "CAynnnnrTG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "SmlI",
+      "overhang": "4",
+      "recognitionSequence": "CTyrAG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "SmoI",
+      "overhang": "4",
+      "recognitionSequence": "CTyrAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "9",
+      "name": "SmuI",
+      "overhang": "2",
+      "recognitionSequence": "CCCGCnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "SnaI",
+      "overhang": "0",
+      "recognitionSequence": "GTATAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "SnaBI",
+      "overhang": "0",
+      "recognitionSequence": "TACGTA",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Sno506I",
+      "overhang": "0",
+      "recognitionSequence": "GGCCGAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "SpeI",
+      "overhang": "4",
+      "recognitionSequence": "ACTAGT",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "SphI",
+      "overhang": "-4",
+      "recognitionSequence": "GCATGC",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "SplI",
+      "overhang": "4",
+      "recognitionSequence": "CGTACG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "SpoDI",
+      "overhang": "0",
+      "recognitionSequence": "GCGGrAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "SrfI",
+      "overhang": "0",
+      "recognitionSequence": "GCCCGGGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "Sse9I",
+      "overhang": "4",
+      "recognitionSequence": "AATT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Sse232I",
+      "overhang": "4",
+      "recognitionSequence": "CGCCGGCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "Sse8387I",
+      "overhang": "-4",
+      "recognitionSequence": "CCTGCAGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Sse8647I",
+      "overhang": "3",
+      "recognitionSequence": "AGGwCCT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "SseBI",
+      "overhang": "0",
+      "recognitionSequence": "AGGCCT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "SsiI",
+      "overhang": "2",
+      "recognitionSequence": "CCGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "SspI",
+      "overhang": "0",
+      "recognitionSequence": "AATATT",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "SspDI",
+      "overhang": "4",
+      "recognitionSequence": "GGCGCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "13",
+      "name": "SspD5I",
+      "overhang": "0",
+      "recognitionSequence": "GGTGAnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "SstI",
+      "overhang": "-4",
+      "recognitionSequence": "GAGCTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "27",
+      "name": "SstE37I",
+      "overhang": "-2",
+      "recognitionSequence": "CGAAGACnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "Sth132I",
+      "overhang": "4",
+      "recognitionSequence": "CCCGnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "Sth302II",
+      "overhang": "0",
+      "recognitionSequence": "CCGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "StrI",
+      "overhang": "4",
+      "recognitionSequence": "CTCGAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "15",
+      "name": "StsI",
+      "overhang": "4",
+      "recognitionSequence": "GGATGnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "StuI",
+      "overhang": "0",
+      "recognitionSequence": "AGGCCT",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "StyI",
+      "overhang": "4",
+      "recognitionSequence": "CCwwGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "StyD4I",
+      "overhang": "5",
+      "recognitionSequence": "CCnGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "SwaI",
+      "overhang": "0",
+      "recognitionSequence": "ATTTAAAT",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "TaaI",
+      "overhang": "-1",
+      "recognitionSequence": "ACnGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "TaiI",
+      "overhang": "-4",
+      "recognitionSequence": "ACGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "TaqI",
+      "overhang": "2",
+      "recognitionSequence": "TCGA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "17",
+      "name": "TaqII",
+      "overhang": "-2",
+      "recognitionSequence": "GACCGAnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "TasI",
+      "overhang": "4",
+      "recognitionSequence": "AATT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "TatI",
+      "overhang": "4",
+      "recognitionSequence": "wGTACw",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "TauI",
+      "overhang": "-3",
+      "recognitionSequence": "GCsGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "TfiI",
+      "overhang": "3",
+      "recognitionSequence": "GAwTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "TliI",
+      "overhang": "4",
+      "recognitionSequence": "CTCGAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Tru1I",
+      "overhang": "2",
+      "recognitionSequence": "TTAA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Tru9I",
+      "overhang": "2",
+      "recognitionSequence": "TTAA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "9",
+      "name": "TscAI",
+      "overhang": "-9",
+      "recognitionSequence": "nnCAsTGnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "TseI",
+      "overhang": "3",
+      "recognitionSequence": "GCwGC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "17",
+      "name": "TsoI",
+      "overhang": "-2",
+      "recognitionSequence": "TArCCAnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "Tsp45I",
+      "overhang": "5",
+      "recognitionSequence": "GTsAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "activity_1_1": "",
+      "activity_2_1": "",
+      "activity_3_1": "",
+      "activity_cut_smart": "",
+      "cutIndex3_5": "0",
+      "name": "Tsp509I",
+      "overhang": "4",
+      "recognitionSequence": "AATT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "Tsp4CI",
+      "overhang": "-1",
+      "recognitionSequence": "ACnGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "16",
+      "name": "TspDTI",
+      "overhang": "-2",
+      "recognitionSequence": "ATGAAnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "TspEI",
+      "overhang": "4",
+      "recognitionSequence": "AATT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "16",
+      "name": "TspGWI",
+      "overhang": "-2",
+      "recognitionSequence": "ACGGAnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "TspMI",
+      "overhang": "4",
+      "recognitionSequence": "CCCGGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "9",
+      "name": "TspRI",
+      "overhang": "-9",
+      "recognitionSequence": "nnCAsTGnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "TssI",
+      "overhang": "0",
+      "recognitionSequence": "GAGnnnCTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "24",
+      "name": "TstI",
+      "overhang": "-5",
+      "recognitionSequence": "CACnnnnnnTCCnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "25",
+      "name": "TstI",
+      "overhang": "-5",
+      "recognitionSequence": "GGAnnnnnnGTGnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "TsuI",
+      "overhang": "0",
+      "recognitionSequence": "GCGAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "4",
+      "name": "Tth111I",
+      "overhang": "1",
+      "recognitionSequence": "GACnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "17",
+      "name": "Tth111II",
+      "overhang": "-2",
+      "recognitionSequence": "CAArCAnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "UbaF9I",
+      "overhang": "0",
+      "recognitionSequence": "TACnnnnnrTGT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "UbaF11I",
+      "overhang": "0",
+      "recognitionSequence": "TCGTA",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "UbaF12I",
+      "overhang": "0",
+      "recognitionSequence": "CTACnnnGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "6",
+      "name": "UbaF13I",
+      "overhang": "0",
+      "recognitionSequence": "GAGnnnnnnCTGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "UbaF14I",
+      "overhang": "0",
+      "recognitionSequence": "CCAnnnnnTCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "UbaPI",
+      "overhang": "0",
+      "recognitionSequence": "CGAACG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "11",
+      "name": "UcoMSI",
+      "overhang": "2",
+      "recognitionSequence": "GAGCTCnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "UnbI",
+      "overhang": "5",
+      "recognitionSequence": "GGnCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "7",
+      "name": "Van91I",
+      "overhang": "-3",
+      "recognitionSequence": "CCAnnnnnTGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "Vha464I",
+      "overhang": "4",
+      "recognitionSequence": "CTTAAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "VneI",
+      "overhang": "4",
+      "recognitionSequence": "GTGCAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "0",
+      "name": "VpaK11AI",
+      "overhang": "5",
+      "recognitionSequence": "GGwCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "VpaK11BI",
+      "overhang": "3",
+      "recognitionSequence": "GGwCC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "VspI",
+      "overhang": "2",
+      "recognitionSequence": "ATTAAT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "27",
+      "name": "WviI",
+      "overhang": "-2",
+      "recognitionSequence": "CACrAGnnnnnnnnnnnnnnnnnnnnn",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "XagI",
+      "overhang": "1",
+      "recognitionSequence": "CCTnnnnnAGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "XapI",
+      "overhang": "4",
+      "recognitionSequence": "rAATTy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "XbaI",
+      "overhang": "4",
+      "recognitionSequence": "TCTAGA",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "XceI",
+      "overhang": "-4",
+      "recognitionSequence": "rCATGy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "8",
+      "name": "XcmI",
+      "overhang": "-1",
+      "recognitionSequence": "CCAnnnnnnnnnTGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "XhoI",
+      "overhang": "4",
+      "recognitionSequence": "CTCGAG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "XhoII",
+      "overhang": "4",
+      "recognitionSequence": "rGATCy",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "XmaI",
+      "overhang": "4",
+      "recognitionSequence": "CCCGGG",
+      "subLists": [
+        "POPULAR",
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "XmaIII",
+      "overhang": "4",
+      "recognitionSequence": "CGGCCG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "XmaJI",
+      "overhang": "4",
+      "recognitionSequence": "CCTAGG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "2",
+      "name": "XmiI",
+      "overhang": "2",
+      "recognitionSequence": "GTmkAC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "XmnI",
+      "overhang": "0",
+      "recognitionSequence": "GAAnnnnTTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "1",
+      "name": "XspI",
+      "overhang": "2",
+      "recognitionSequence": "CTAG",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "ZraI",
+      "overhang": "0",
+      "recognitionSequence": "GACGTC",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "3",
+      "name": "ZrmI",
+      "overhang": "0",
+      "recognitionSequence": "AGTACT",
+      "subLists": [
+        "NEB"
+      ]
+    },
+    {
+      "cutIndex3_5": "5",
+      "name": "Zsp2I",
+      "overhang": "-4",
+      "recognitionSequence": "ATGCAT",
+      "subLists": [
+        "NEB"
+      ]
+    }
+  ]
+}

@@ -1,8 +1,23 @@
+// @flow
 import React from 'react';
-import {LINE_PADDING_TOP} from '../constants';
+import type {Config} from '../types';
 
 //const someVal = 0;
-const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, config}) => {
+const LineBpIndex = ({
+  startIndex,
+  endIndex,
+  stepSize,
+  minusStrand,
+  config,
+  annotationsTopHeight
+}: {
+  startIndex: number,
+  endIndex: number,
+  stepSize: number,
+  minusStrand: boolean,
+  config: Config,
+  annotationsTopHeight: number
+}) => {
   const markers = [
     /* <line
       x1={10 + 11 * (someVal - 0.25)}
@@ -26,8 +41,8 @@ const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, config}) => {
         key={`bp-line-${marker}`}
         x1={pos}
         x2={pos}
-        y1={lineStart + LINE_PADDING_TOP}
-        y2={lineEnd + LINE_PADDING_TOP}
+        y1={lineStart + annotationsTopHeight}
+        y2={lineEnd + annotationsTopHeight}
         shapeRendering="crispEdges"
         stroke="#000000"
         strokeWidth="1px"
@@ -39,7 +54,7 @@ const LineBpIndex = ({startIndex, endIndex, stepSize, minusStrand, config}) => {
         fontFamily="Droid Sans Mono"
         fontSize="7pt"
         fill="#4a4a4a"
-        y={bpLabel + LINE_PADDING_TOP}
+        y={bpLabel + annotationsTopHeight}
         x={pos - (marker.toString().length * config.LETTER_WIDTH_BP_INDEX_LABEL) / 2}>
         {marker}
       </text>

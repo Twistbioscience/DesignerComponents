@@ -1,6 +1,21 @@
+// @flow
+import React from 'react';
 import {LINE_PADDING_TOP} from '../constants';
+import type {SelectionType} from '../types';
 
-const Selection = ({selectionRect, height, selection, startIndex, endIndex}) => {
+const Selection = ({
+  selectionRect,
+  height,
+  selection,
+  startIndex,
+  endIndex
+}: {
+  selectionRect: {x: number, wdt: number},
+  height: number,
+  selection: SelectionType,
+  startIndex: number,
+  endIndex: number
+}) => {
   return (
     <g>
       <rect
