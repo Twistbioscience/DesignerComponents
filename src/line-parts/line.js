@@ -28,7 +28,7 @@ export const getOrfPositionInLine = (lineStartIndex, lineEndIndex, orfs, charsPe
 };
 import RestrictionSiteLabel from './resite-label';
 import AnnotationMarker from './annotation-marker';
-import {getLayers, filterAnnotations} from '../rendering/annotations';
+import {getLayers, filterAnnotations, getOrfsHeight} from '../rendering/annotations';
 import {map} from '../utils/array';
 import type {Config, Annotation, RestrictionSite, SelectionType, RangeType} from '../types';
 
