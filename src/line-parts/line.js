@@ -27,6 +27,21 @@ type Props = {
 };
 
 const indexInRow = (index: number, rowStart: number, rowEnd: number) => index >= rowStart && index <= rowEnd;
+const getRect: (
+  selection: RangeType,
+  startIndex: number,
+  endIndex: number,
+  letterWidth: number
+) => {x: number, wdt: number} = (selection, startIndex, endIndex, letterWidth) => {
+  const startX =
+    selection.startIndex && selection.startIndex > startIndex ? (selection.startIndex - startIndex) * letterWidth : 0;
+  const endX = selection.endIndex
+    ? selection.endIndex < endIndex
+      ? (selection.endIndex - startIndex) * letterWidth
+      : (endIndex - startIndex) * letterWidth
+    : -1;
+  return {x: startX, wdt: endX - startX};
+};
 
 class Line extends React.Component<Props> {
   constructor() {
@@ -36,10 +51,12 @@ class Line extends React.Component<Props> {
     this.onClick = this.onClick.bind(this);
   }
 
-  onClick(index: number, charsPerRow: number) {
+  onClick(index: number, charsPerRow: number, elementRange: RangeType) {
     return this.props.onClick
       ? (e: SyntheticEvent<>) => {
-          this.props.onClick(e, index * charsPerRow);
+          e.stopPropagation();
+          console.log(elementRange);
+          this.props.onClick(e, index * charsPerRow, elementRange);
         }
       : null;
   }
@@ -89,12 +106,14 @@ class Line extends React.Component<Props> {
           <RestrictionSiteLabel
             key={'resite-label-' + layerIndex + '-' + site.name + '-' + siteIndex}
             site={site}
+            index={index}
             layerIndex={layerIndex}
             config={config}
             startIndex={startIndex}
             maxResiteLayer={maxResiteLayer}
             charsPerRow={charsPerRow}
             lineWidth={lineWidth}
+            onClick={this.onClick(index, charsPerRow, {startIndex: site.startIndex, endIndex: site.endIndex})}
           />
         );
       });
@@ -121,19 +140,6 @@ class Line extends React.Component<Props> {
       });
     });
 
-    const getRect: (selection: RangeType) => {x: number, wdt: number} = () => {
-      const startX =
-        selection.startIndex && selection.startIndex > startIndex
-          ? (selection.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE
-          : 0;
-      const endX = selection.endIndex
-        ? selection.endIndex < endIndex
-          ? (selection.endIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE
-          : (endIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE
-        : -1;
-      return {x: startX, wdt: endX - startX};
-    };
-
     const isCaret = typeof selection === 'number';
     const isSelection =
       selection !== null &&
@@ -141,7 +147,7 @@ class Line extends React.Component<Props> {
       (indexInRow(selection.startIndex, startIndex, endIndex) ||
         indexInRow(selection.endIndex, startIndex, endIndex) ||
         (selection.startIndex <= startIndex && selection.endIndex >= endIndex));
-    const selectionRect = isSelection && getRect();
+    const selectionRect = isSelection && getRect(selection, startIndex, endIndex, config.LETTER_FULL_WIDTH_SEQUENCE);
     return (
       <svg
         style={style}

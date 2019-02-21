@@ -11,7 +11,8 @@ const RestrictionSiteLabel = ({
   startIndex,
   maxResiteLayer,
   charsPerRow,
-  lineWidth
+  lineWidth,
+  onClick
 }: {
   site: RestrictionSite,
   layerIndex: number,
@@ -19,7 +20,8 @@ const RestrictionSiteLabel = ({
   startIndex: number,
   maxResiteLayer: number,
   charsPerRow: number,
-  lineWidth: number
+  lineWidth: number,
+  onClick: any
 }) => {
   const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE + 1;
   const y = (maxResiteLayer - layerIndex) * (1 + RESITE_LABEL_GAP) + LINE_PADDING_TOP;
@@ -89,6 +91,7 @@ const RestrictionSiteLabel = ({
     <g key={'resite-label'}>
       {showText && siteText}
       {showLine && siteLine}
+      <rect width={siteWidth} onClick={onClick} x={x} y={y} height={6} opacity="1" />
     </g>
   );
 };

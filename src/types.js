@@ -20,3 +20,4 @@ export type Config = {
   LETTER_FULL_WIDTH_SEQUENCE: number,
   BP_INDEX_HEIGHT: number
 };
+

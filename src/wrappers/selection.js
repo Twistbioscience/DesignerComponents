@@ -24,8 +24,12 @@ export const WithSelection = Component => {
       this.setState({mouseDownIndex: this.getIndexFromEvent(e, index)});
     }
 
-    onSequenceClick(e, index) {
-      this.props.selectionHandler(this.getIndexFromEvent(e, index));
+    onSequenceClick(e, index, range) {
+      if (range) {
+        this.props.selectionHandler(range);
+      } else {
+        this.props.selectionHandler(this.getIndexFromEvent(e, index));
+      }
       this.setState({mouseDownIndex: null});
     }
 
