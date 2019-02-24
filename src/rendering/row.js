@@ -12,11 +12,13 @@ export const rowRenderer = ({
   minusStrand,
   onMouseDown,
   onMouseUp,
+  onSequenceClick,
   selection,
   selectionInProgress,
   config,
   orfs,
-  annotationsTopHeight
+  annotationsTopHeight,
+  onDrag
 }) => ({
   key, // Unique key within array of rows
   index, // Index of row within collection
@@ -36,8 +38,10 @@ export const rowRenderer = ({
       minusStrand={minusStrand}
       key={key}
       index={index}
+      onClick={onSequenceClick}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
+      onDrag={onDrag}
       selection={selection}
       selectionInProgress={selectionInProgress}
       config={config}

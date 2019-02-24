@@ -2,7 +2,7 @@
 import React from 'react';
 import LineBpIndex from './bp-index';
 import Sequence from './line-sequence';
-import Selection from './selection';
+import {Selection, SelectionCaret} from './selection';
 import Orf from '../line-parts/orf/orf';
 
 const isStarterWithinLine = (start, end, starter) => starter <= end && starter >= start;
@@ -30,7 +30,7 @@ import RestrictionSiteLabel from './resite-label';
 import AnnotationMarker from './annotation-marker';
 import {getLayers, filterAnnotations, getOrfsHeight} from '../rendering/annotations';
 import {map} from '../utils/array';
-import type {Config, Annotation, RestrictionSite, SelectionType} from '../types';
+import type {Config, Annotation, RestrictionSite, SelectionType, RangeType} from '../types';
 
 type Props = {
   charsPerRow: number,
@@ -49,17 +49,51 @@ type Props = {
   onMouseUp: (e: SyntheticEvent<>, index: number, endSelection: boolean) => void
 };
 
+const isIndexInLine = (index: number, rowStart: number, rowEnd: number) => index >= rowStart && index <= rowEnd;
+const getRect: (
+  selection: RangeType,
+  startIndex: number,
+  endIndex: number,
+  letterWidth: number
+) => {x: number, wdt: number} = (selection, startIndex, endIndex, letterWidth) => {
+  const startX = selection.startIndex > startIndex ? (selection.startIndex - startIndex) * letterWidth : 0;
+  const endX =
+    selection.endIndex < endIndex
+      ? (selection.endIndex - startIndex) * letterWidth
+      : (endIndex - startIndex) * letterWidth;
+
+  return {x: startX, wdt: endX - startX};
+};
+
 class Line extends React.Component<Props> {
   constructor() {
     super();
     this.mouseDownHandler = this.mouseDownHandler.bind(this);
     this.mouseUpHandler = this.mouseUpHandler.bind(this);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick(index: number, charsPerRow: number, elementRange: RangeType) {
+    return this.props.onClick
+      ? (e: SyntheticEvent<>) => {
+          e.stopPropagation();
+          this.props.onClick(e, index * charsPerRow, elementRange);
+        }
+      : null;
   }
 
   mouseDownHandler(index: number, charsPerRow: number) {
     return this.props.onMouseDown
       ? (e: SyntheticEvent<>) => {
           this.props.onMouseDown(e, index * charsPerRow);
+        }
+      : null;
+  }
+
+  mouseDragHandler(index: number, charsPerRow: number) {
+    return this.props.onDrag
+      ? (e: SyntheticEvent<>) => {
+          this.props.onDrag(e, index * charsPerRow);
         }
       : null;
   }
@@ -101,12 +135,14 @@ class Line extends React.Component<Props> {
           <RestrictionSiteLabel
             key={'resite-label-' + layerIndex + '-' + site.name + '-' + siteIndex}
             site={site}
+            index={index}
             layerIndex={layerIndex}
             config={config}
             startIndex={startIndex}
             maxResiteLayer={maxResiteLayer}
             charsPerRow={charsPerRow}
             lineWidth={lineWidth}
+            onClick={this.onClick(index, charsPerRow, {startIndex: site.startIndex, endIndex: site.endIndex})}
           />
         );
       });
@@ -128,32 +164,32 @@ class Line extends React.Component<Props> {
             lineStartIndex={startIndex}
             lineEndIndex={endIndex}
             annotationsTopHeight={annotationsTopHeight}
+            onClick={this.onClick(index, charsPerRow, {
+              startIndex: annotation.startIndex,
+              endIndex: annotation.endIndex
+            })}
           />
         );
       });
     });
     const orfsHeight = getOrfsHeight(startIndex, this.props.sequence, charsPerRow, this.props.orfs, config);
 
-    const getRect: () => {x: number, wdt: number} = () => {
-      const startX =
-        selection.startIndex && selection.startIndex > startIndex
-          ? (selection.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE
-          : 0;
-      const endX = selection.endIndex
-        ? selection.endIndex < endIndex
-          ? (selection.endIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE
-          : (endIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE
-        : -1;
-      return {x: startX, wdt: endX - startX};
-    };
-
-    const selectionRect = selection ? getRect() : {x: 0, wdt: 0};
+    const isCaret = typeof selection === 'number';
+    const isSelection =
+      selection !== null &&
+      typeof selection === 'object' &&
+      (isIndexInLine(selection.startIndex, startIndex, endIndex) ||
+        isIndexInLine(selection.endIndex, startIndex, endIndex) ||
+        (selection.startIndex <= startIndex && selection.endIndex >= endIndex));
+    const selectionRect = isSelection && getRect(selection, startIndex, endIndex, config.LETTER_FULL_WIDTH_SEQUENCE);
     return (
       <svg
         style={style}
         onMouseDown={this.mouseDownHandler(index, charsPerRow)}
-        onMouseUp={this.mouseUpHandler(index, charsPerRow, true, selectionInProgress)}
-        onMouseMove={this.mouseUpHandler(index, charsPerRow, false, selectionInProgress)}>
+        // onDrag is in actual event, which we are hijacking, but the name makes sense for us
+        onClick={this.onClick(index, charsPerRow)}
+        onMouseMove={this.mouseDragHandler(index, charsPerRow)}
+        onMouseUp={this.mouseUpHandler(index, charsPerRow, true, selectionInProgress)}>
         {annotationsTop}
         <Sequence
           sequence={sequence}
@@ -182,6 +218,7 @@ class Line extends React.Component<Props> {
             config.LETTER_FULL_WIDTH_SEQUENCE,
             config.LETTER_SPACING_SEQUENCE
           )}
+          index={index}
           charsPerRow={charsPerRow}
           endIndex={endIndex - 1}
           letterWidth={config.LETTER_FULL_WIDTH_SEQUENCE}
@@ -189,11 +226,12 @@ class Line extends React.Component<Props> {
           minusStrand={minusStrand}
           sequence={this.props.sequence}
           annotationsTopHeight={annotationsTopHeight}
+          onClick={this.onClick}
         />
         <svg y={orfsHeight}>{annotationsBottom}</svg>
 
         <rect height="2" y={style.height - 2} width={lineWidth} style={{fill: '#000000'}} />
-        {selectionRect.wdt > 0 && (
+        {isSelection && (
           <Selection
             height={style.height}
             selectionRect={selectionRect}
@@ -201,6 +239,9 @@ class Line extends React.Component<Props> {
             startIndex={startIndex}
             endIndex={endIndex}
           />
+        )}
+        {isCaret && (
+          <SelectionCaret height={style.height} pos={(selection - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE} />
         )}
       </svg>
     );
