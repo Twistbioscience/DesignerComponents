@@ -1,3 +1,4 @@
+import {getOrfPositionInLine} from '../line-parts/line';
 // @flow
 import {
   RESITE_LABEL_GAP,
@@ -73,4 +74,21 @@ export const getAnnotationsBottomHeight = (
       ? layerCount * (ANNOTATION_GAP + ANNOTATION_HEIGHT) + ANNOTATION_PADDING_TOP
       : 0;
   return annotationsBottomHeight;
+};
+
+export const getOrfsHeight = (startIndex, sequence, charsPerRow, orfs, config) => {
+  const seqLength = sequence.substr(startIndex, charsPerRow).length;
+  const endIndex = startIndex + seqLength;
+  const orfsPerLine = getOrfPositionInLine(
+    startIndex,
+    endIndex,
+    orfs,
+    charsPerRow,
+    config.LETTER_FULL_WIDTH_SEQUENCE,
+    config.LETTER_SPACING_SEQUENCE
+  );
+  const transformedArray = orfsPerLine.map(item => ({startIndex: item.orfLineStart, endIndex: item.orfLineEnd}));
+
+  const orfsLayersCount = getLayers(transformedArray).length;
+  return orfsLayersCount ? orfsLayersCount * config.ORF_LINE_HEIGHT + config.ORF_LINE_HEIGHT : 0;
 };

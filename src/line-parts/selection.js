@@ -1,9 +1,9 @@
 // @flow
 import React from 'react';
 import {LINE_PADDING_TOP} from '../constants';
-import type {SelectionType} from '../types';
+import type {RangeType} from '../types';
 
-const Selection = ({
+export const Selection = ({
   selectionRect,
   height,
   selection,
@@ -12,7 +12,7 @@ const Selection = ({
 }: {
   selectionRect: {x: number, wdt: number},
   height: number,
-  selection: SelectionType,
+  selection: RangeType,
   startIndex: number,
   endIndex: number
 }) => {
@@ -24,7 +24,7 @@ const Selection = ({
         height={height}
         width={selectionRect.wdt}
         fill="rgba(0,0,0,0.05)"
-      />}
+      />
       {selection.startIndex > startIndex &&
         selection.startIndex < endIndex && <SelectionCaret height={height} pos={selectionRect.x} />}
       {selection.endIndex < endIndex &&
@@ -33,7 +33,7 @@ const Selection = ({
   );
 };
 
-const SelectionCaret = ({height, pos}) => {
+export const SelectionCaret = ({height, pos}) => {
   return (
     <g>
       <rect x={pos - 3} y={LINE_PADDING_TOP - 3} height="5" width="5" fill="0x111111" />
@@ -49,5 +49,3 @@ const SelectionCaret = ({height, pos}) => {
     </g>
   );
 };
-
-export default Selection;

@@ -39,17 +39,17 @@ type Props = {
 
 export default class SequenceViewer extends React.Component<Props> {
   render() {
-    const restrictionSites = detectRestrictionSites(this.props.sequence, this.props.reSiteDefinitions);
-    const maxResiteLayer = getLayers(restrictionSites).length;
-    const annotationsTopHeight = getAnnotationsTopHeight(restrictionSites);
+    const maxResiteLayer = getLayers(this.restrictionSites).length;
+    const annotationsTopHeight = getAnnotationsTopHeight(this.restrictionSites);
     const rowHeightFunc = getRowHeight(
       this.props.charsPerRow,
       this.props.annotations,
       annotationsTopHeight,
       this.props.minusStrand,
-      this.props.config
+      this.props.config,
+      this.props.orfs,
+      this.props.sequence
     );
-    const selectionInProgress = this.props.mouseDownIndex > 0;
     const width = this.props.config.LETTER_FULL_WIDTH_SEQUENCE * this.props.charsPerRow + LEFT_PADDING;
     return (
       <div>
@@ -63,15 +63,20 @@ export default class SequenceViewer extends React.Component<Props> {
           rowRenderer={rowRenderer({
             sequence: this.props.sequence,
             annotations: this.props.annotations,
-            restrictionSites: restrictionSites,
+            restrictionSites: this.restrictionSites,
             maxResiteLayer: maxResiteLayer,
             charsPerRow: this.props.charsPerRow,
             minusStrand: this.props.minusStrand,
             onMouseDown: this.props.onMouseDown,
             onMouseUp: this.props.onMouseUp,
+            onDrag: this.props.onDrag,
+            onSequenceClick: this.props.onSequenceClick,
             selection: this.props.selection,
-            selectionInProgress: selectionInProgress,
-            config: this.props.config
+            config: this.props.config,
+            orfs: this.props.orfs,
+            mouseDownIndex: this.props.mouseDownIndex,
+            selectionInProgress: this.props.selectionInProgress,
+            annotationsTopHeight
           })}
         />
       </div>
@@ -81,6 +86,7 @@ export default class SequenceViewer extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     this.listRef = this.listRef.bind(this);
+    this.restrictionSites = detectRestrictionSites(this.props.sequence, this.props.reSiteDefinitions);
   }
 
   listRef(c) {
@@ -94,6 +100,9 @@ export default class SequenceViewer extends React.Component<Props> {
       if (this.list) {
         this.list.recomputeRowHeights();
       }
+    }
+    if (nextProps.sequence !== this.props.sequence) {
+      this.restrictionSites = detectRestrictionSites(nextProps.sequence, this.props.reSiteDefinitions);
     }
   }
 }

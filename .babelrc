@@ -9,9 +9,7 @@
       }
     ]
   ],
-  "plugins": [
-    ["module-resolver", { "root": ["./src"] } ]
-  ],
+  "plugins": [["module-resolver", { "root": ["./src"] } ], "transform-object-rest-spread"],
   "env": {
     "production": {
       "plugins": [
@@ -22,7 +20,7 @@
        "plugins": ["react-hot-loader/babel"]
     },
     "test": {
-      "presets": ["env", "react"],
+      "presets": ["env", "react"]
     }
   }
 }

@@ -13,7 +13,8 @@ const AnnotationMarker = ({
   minusStrand,
   lineStartIndex,
   lineEndIndex,
-  annotationsTopHeight
+  annotationsTopHeight,
+  onClick
 }: {
   annotation: Annotation,
   layerIndex: number,
@@ -22,7 +23,8 @@ const AnnotationMarker = ({
   minusStrand: boolean,
   lineStartIndex: number,
   lineEndIndex: number,
-  annotationsTopHeight: number
+  annotationsTopHeight: number,
+  onClick: any
 }) => {
   const sequenceHeight = getSequenceHeight(minusStrand, config);
   const annotationLineStart = Math.max(annotation.startIndex, lineStartIndex);
@@ -64,11 +66,13 @@ const AnnotationMarker = ({
         y={y}
         fill={annotation.color || '#0000a4'}
         fillOpacity="0.3"
+        onClick={onClick}
       />
       <text
         key={`annotations-bottom-text-${layerIndex}-${annotationIndex}`}
         x={x + annotationPos}
         y={y + ANNOTATION_HEIGHT / 2 + 3}
+        onClick={onClick}
         fill="#FFFFFF"
         fontFamily="Droid Sans Mono"
         fontSize="8pt">

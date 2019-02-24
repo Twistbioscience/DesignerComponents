@@ -52,6 +52,7 @@ export const getConfig = () => {
   config.LETTER_WIDTH_BP_INDEX_LABEL = measureFontWidth('Droid Sans Mono', '7pt').width;
   config.LETTER_FULL_WIDTH_SEQUENCE = twoLetters.width - oneLetter.width;
   config.SCROLL_BAR_OFFSET = SCROLL_BAR_OFFSET;
+  config.ORF_LINE_HEIGHT = 20;
   // First letter has a different width from the others
   // So I kept these props for the dics - but I prefer not use them - cause they are just confusing
   // config.FIRST_LETTER_WIDTH = oneLetter.width;

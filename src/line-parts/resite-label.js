@@ -4,6 +4,9 @@ import {RESITE_LABEL_GAP, RESITE_BOX_HOR_PADDING, RESITE_FONT_SIZE, LINE_PADDING
 import {measureFontWidth} from '../rendering/fonts';
 import type {RestrictionSite, Config} from '../types';
 
+const CLICK_HIT_AREA_HEIGHT = 11;
+const CLICK_HIT_AREA_TOP_OFFSET = 6;
+
 const RestrictionSiteLabel = ({
   site,
   layerIndex,
@@ -11,7 +14,8 @@ const RestrictionSiteLabel = ({
   startIndex,
   maxResiteLayer,
   charsPerRow,
-  lineWidth
+  lineWidth,
+  onClick
 }: {
   site: RestrictionSite,
   layerIndex: number,
@@ -19,7 +23,8 @@ const RestrictionSiteLabel = ({
   startIndex: number,
   maxResiteLayer: number,
   charsPerRow: number,
-  lineWidth: number
+  lineWidth: number,
+  onClick: any
 }) => {
   const x = (site.startIndex - startIndex) * config.LETTER_FULL_WIDTH_SEQUENCE + 1;
   const y = (maxResiteLayer - layerIndex) * (1 + RESITE_LABEL_GAP) + LINE_PADDING_TOP;
@@ -89,6 +94,15 @@ const RestrictionSiteLabel = ({
     <g key={'resite-label'}>
       {showText && siteText}
       {showLine && siteLine}
+      <rect
+        width={siteWidth}
+        onClick={onClick}
+        x={x}
+        y={y - CLICK_HIT_AREA_TOP_OFFSET}
+        height={CLICK_HIT_AREA_HEIGHT}
+        opacity="0"
+        fill="#FFFFFF"
+      />
     </g>
   );
 };

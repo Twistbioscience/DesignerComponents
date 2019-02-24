@@ -51,6 +51,14 @@
       "react/jsx-uses-react": 2,
       "react/jsx-uses-vars": 2,
       "flowtype/use-flow-type": 1,
-      "flowtype/define-flow-type": 1
+      "flowtype/define-flow-type": 1,
+      "no-useless-escape": "warn",
+      "import/no-named-as-default": 0,
+      "react/jsx-key": "error",
+      "react/no-array-index-key": "error",
+      "react/prop-types": 0,
+      "react/display-name": 0,
+      "react/no-find-dom-node": 0,
+      "import/no-duplicates": 2
     }
 }
