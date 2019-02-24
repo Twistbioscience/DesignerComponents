@@ -14,7 +14,7 @@ const config = {
   output: {
     path: distPath,
     publicPath: '/',
-    filename: '[name].[chunkhash].js',
+    filename: '[name].[hash].js',
     chunkFilename: '[name].[chunkhash].js'
   },
 

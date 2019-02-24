@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import sequenceEditorData from './data.json';
-import orfs from './orfs.json';
 import {detectOrfs} from '../src/utils/sequence';
 import {hot} from 'react-hot-loader';
-import {DesignerComponents /*, DesignerComponentsViewer*/, ReSiteDefinitions} from '../es/designer-components';
+import {DesignerComponents /*, DesignerComponentsViewer*/, reSiteDefinitions} from '../es/designer-components';
 import Measurer from '../src/utils/measurer';
 
 const getPopularReSiteDefinitions = reSiteDefinitions =>
@@ -26,7 +25,7 @@ class App extends Component {
                   left={x}
                   selectionHandler={this.selectionHandler}
                   selection={this.state.selection}
-                  reSiteDefinitions={getPopularReSiteDefinitions(ReSiteDefinitions.reDefList)}
+                  reSiteDefinitions={getPopularReSiteDefinitions(ReSiteDefinitions.reSitesDefList)}
                 />
                 <button onClick={this.toggleMinusStrand}>Toggle minus strand</button>
               </div>

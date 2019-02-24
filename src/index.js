@@ -7,7 +7,7 @@ import {isFontLoaded} from './rendering/fonts';
 
 export {detectOrfs} from './utils/sequence';
 export {default as Measurer} from './utils/measurer';
-export {default as ReSiteDefinitions} from './re-site-definitions.json';
+export {default as reSiteDefinitions} from './re-site-definitions.json';
 
 export const DesignerComponents = isFontLoaded()
   ? WithConfigSetter(WithSelection(SequenceViewer))
