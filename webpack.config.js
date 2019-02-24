@@ -3,14 +3,20 @@ const webpack = require('webpack');
 const path = require('path');
 const appPath = path.join(__dirname);
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const autoprefixer = require('autoprefixer');
 const exclude = [/node_modules/, /vendor/];
+const distPath = path.join(__dirname, 'playgroud-dist');
 
 const config = {
   // The base directory for resolvinnpg `entry` (must be absolute path)
   context: appPath,
 
   entry: ['./playground/index.js'],
+  output: {
+    path: distPath,
+    publicPath: '/',
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js'
+  },
 
   plugins: [
     new HtmlWebpackPlugin({

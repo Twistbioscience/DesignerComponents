@@ -86,7 +86,7 @@ export default class SequenceViewer extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     this.listRef = this.listRef.bind(this);
-    this.restrictionSites = detectRestrictionSites(this.props.sequence);
+    this.restrictionSites = detectRestrictionSites(this.props.sequence, this.props.reSiteDefinitions);
   }
 
   listRef(c) {
@@ -102,7 +102,7 @@ export default class SequenceViewer extends React.Component<Props> {
       }
     }
     if (nextProps.sequence !== this.props.sequence) {
-      this.restrictionSites = detectRestrictionSites(nextProps.sequence);
+      this.restrictionSites = detectRestrictionSites(nextProps.sequence, this.props.reSiteDefinitions);
     }
   }
 }

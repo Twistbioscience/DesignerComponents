@@ -1,10 +1,6 @@
-import reSiteDefinitions from '../re-site-definitions.json';
 import {getComplementSequence} from './sequence';
 import {getNamedColor} from './colors';
 import {charMap} from '../constants';
-
-const restrictionSiteDefinitions = reSiteDefinitions.reSitesDefList;
-const popularReSiteDefinitions = restrictionSiteDefinitions.filter(site => site.subLists.includes('POPULAR'));
 
 var wildcardsRegex = /[NURKMSWBDHVnurykmswbdhv]/;
 
@@ -26,11 +22,10 @@ export const detectRestrictionSites = (sequence, reSiteDefinitions) => {
     sequence += sequence;
   }
 
-  const restrictionSitesList = reSiteDefinitions || popularReSiteDefinitions;
   const complementarySequence = getComplementSequence(sequence);
 
   // loop only the included list and find matches
-  restrictionSitesList.forEach(siteDescriptor => {
+  reSiteDefinitions.forEach(siteDescriptor => {
     includeWildcards = isWildcardsIncluded(siteDescriptor.recognitionSequence);
 
     if (includeWildcards) {
