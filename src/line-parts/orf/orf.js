@@ -12,8 +12,9 @@ const calculateOrfYPosition = (level, orfHeight) => {
  *            0 - brick with length 3
  * */
 const splitSequenceIntoChunks = (sequence, startIndex, endIndex, firstBrickType, lastBrickType) => {
-  const translationEndIndex = lastBrickType === 1 ? endIndex - 1 : lastBrickType === 2 ? endIndex + 1 : endIndex;
-  const translationStartIndex = firstBrickType === 1 ? startIndex + 1 : startIndex;
+  const translationEndIndex = lastBrickType === 1 ? endIndex - 1 : endIndex;
+  const translationStartIndex =
+    firstBrickType === 1 ? startIndex + 1 : [1, 2].includes(lastBrickType) ? startIndex - 1 : startIndex;
   let seq = sequence.substring(translationStartIndex, translationEndIndex + 1);
   const chunks = [];
   while (seq) {
@@ -47,7 +48,7 @@ const getBricksData = (orfs, charsPerRow, letterWidth, endIndex, orfLineHeight, 
           orf.orfLineEnd,
           firstBrickType,
           lastBrickType
-        );
+        ).filter(chunk => chunk.length === 3);
         return {
           ...orf,
           start,
