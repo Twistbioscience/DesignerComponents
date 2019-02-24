@@ -1,6 +1,8 @@
 import React from 'react';
 import {LEFT_PADDING} from '../constants';
 
+const CLICK_TIME = 500;
+
 export const WithSelection = Component => {
   return class extends React.Component {
     constructor(props) {
@@ -9,6 +11,7 @@ export const WithSelection = Component => {
       this.onMouseUp = this.onMouseUp.bind(this);
       this.onDrag = this.onDrag.bind(this);
       this.onSequenceClick = this.onSequenceClick.bind(this);
+      this.mouseDownTime = null;
       this.state = {
         clickedIndex: null,
         mouseDownIndex: null,
@@ -24,16 +27,12 @@ export const WithSelection = Component => {
     }
 
     onMouseDown(e, index) {
-      this.setState({mouseDownIndex: this.getIndexFromEvent(e, index)});
+      this.mouseDownTime = new Date().getTime();
+      this.setState({mouseDownIndex: this.getIndexFromEvent(e, index), selectionInProgress: true});
     }
 
     onDrag(e, index) {
-      if (this.state.mouseDownIndex !== null) {
-        if (!this.state.selectionInProgress) {
-          this.setState({
-            selectionInProgress: true
-          });
-        }
+      if (this.mouseDownTime !== null) {
         const currIndex = this.getIndexFromEvent(e, index);
         if (currIndex !== this.state.mouseUpIndex) {
           this.setState({mouseUpIndex: currIndex});
@@ -46,15 +45,25 @@ export const WithSelection = Component => {
     }
 
     onSequenceClick(e, index, range) {
+      // Have a time limit which longer than that is not a click
+      const clickTime = new Date().getTime();
+      if (clickTime - this.mouseDownTime > CLICK_TIME) {
+        return;
+      }
       if (range) {
         this.props.selectionHandler(range);
       } else {
         this.props.selectionHandler(this.getIndexFromEvent(e, index));
       }
+      this.mouseDownTime = null;
       this.setState({mouseDownIndex: null, selectionInProgress: false});
     }
 
     onMouseUp(e, index, endSelection) {
+      const upTime = new Date().getTime();
+      if (upTime - this.mouseDownTime <= CLICK_TIME) {
+        return;
+      }
       const mouseUpIndex = this.getIndexFromEvent(e, index);
       const selection = {
         startIndex: Math.min(this.state.mouseDownIndex, mouseUpIndex),
@@ -62,7 +71,13 @@ export const WithSelection = Component => {
       };
       this.props.selectionHandler(selection);
       if (endSelection) {
-        this.setState({mouseDownIndex: null, mouseUpIndex: null, selectionInProgress: false, clickedIndex: null});
+        this.mouseDownTime = null;
+        this.setState({
+          mouseDownIndex: null,
+          mouseUpIndex: null,
+          selectionInProgress: false,
+          clickedIndex: null
+        });
       }
     }
 
