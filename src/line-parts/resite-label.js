@@ -4,6 +4,9 @@ import {RESITE_LABEL_GAP, RESITE_BOX_HOR_PADDING, RESITE_FONT_SIZE, LINE_PADDING
 import {measureFontWidth} from '../rendering/fonts';
 import type {RestrictionSite, Config} from '../types';
 
+const CLICK_HIT_AREA_HEIGHT = 11;
+const CLICK_HIT_AREA_TOP_OFFSET = 6;
+
 const RestrictionSiteLabel = ({
   site,
   layerIndex,
@@ -91,7 +94,15 @@ const RestrictionSiteLabel = ({
     <g key={'resite-label'}>
       {showText && siteText}
       {showLine && siteLine}
-      <rect width={siteWidth} onClick={onClick} x={x} y={y - 6} height={11} opacity="0" fill="#FFFFFF" />
+      <rect
+        width={siteWidth}
+        onClick={onClick}
+        x={x}
+        y={y - CLICK_HIT_AREA_TOP_OFFSET}
+        height={CLICK_HIT_AREA_HEIGHT}
+        opacity="0"
+        fill="#FFFFFF"
+      />
     </g>
   );
 };

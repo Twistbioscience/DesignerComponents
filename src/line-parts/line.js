@@ -49,20 +49,19 @@ type Props = {
   onMouseUp: (e: SyntheticEvent<>, index: number, endSelection: boolean) => void
 };
 
-const indexInRow = (index: number, rowStart: number, rowEnd: number) => index >= rowStart && index <= rowEnd;
+const isIndexInLine = (index: number, rowStart: number, rowEnd: number) => index >= rowStart && index <= rowEnd;
 const getRect: (
   selection: RangeType,
   startIndex: number,
   endIndex: number,
   letterWidth: number
 ) => {x: number, wdt: number} = (selection, startIndex, endIndex, letterWidth) => {
-  const startX =
-    selection.startIndex && selection.startIndex > startIndex ? (selection.startIndex - startIndex) * letterWidth : 0;
-  const endX = selection.endIndex
-    ? selection.endIndex < endIndex
+  const startX = selection.startIndex > startIndex ? (selection.startIndex - startIndex) * letterWidth : 0;
+  const endX =
+    selection.endIndex < endIndex
       ? (selection.endIndex - startIndex) * letterWidth
-      : (endIndex - startIndex) * letterWidth
-    : -1;
+      : (endIndex - startIndex) * letterWidth;
+
   return {x: startX, wdt: endX - startX};
 };
 
@@ -179,8 +178,8 @@ class Line extends React.Component<Props> {
     const isSelection =
       selection !== null &&
       typeof selection === 'object' &&
-      (indexInRow(selection.startIndex, startIndex, endIndex) ||
-        indexInRow(selection.endIndex, startIndex, endIndex) ||
+      (isIndexInLine(selection.startIndex, startIndex, endIndex) ||
+        isIndexInLine(selection.endIndex, startIndex, endIndex) ||
         (selection.startIndex <= startIndex && selection.endIndex >= endIndex));
     const selectionRect = isSelection && getRect(selection, startIndex, endIndex, config.LETTER_FULL_WIDTH_SEQUENCE);
     return (
