@@ -25,7 +25,7 @@ class App extends Component {
                   left={x}
                   selectionHandler={this.selectionHandler}
                   selection={this.state.selection}
-                  reSiteDefinitions={getPopularReSiteDefinitions(ReSiteDefinitions.reSitesDefList)}
+                  reSiteDefinitions={getPopularReSiteDefinitions(reSiteDefinitions.reSitesDefList)}
                 />
                 <button onClick={this.toggleMinusStrand}>Toggle minus strand</button>
               </div>
