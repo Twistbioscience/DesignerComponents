@@ -47,13 +47,8 @@ const config = {
       },
       // Expose React as global object
       {
-        test: require.resolve('react'),
-        use: [
-          {
-            loader: 'expose-loader',
-            options: 'React'
-          }
-        ]
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },

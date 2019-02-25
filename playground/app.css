@@ -1,0 +1,8 @@
+.App {
+  height: 900px;
+  display: flex;
+}
+
+.App > *:first-child {
+  flex: 1;
+}

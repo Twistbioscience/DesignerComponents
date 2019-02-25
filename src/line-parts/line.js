@@ -174,7 +174,7 @@ class Line extends React.Component<Props> {
     });
     const orfsHeight = getOrfsHeight(startIndex, this.props.sequence, charsPerRow, this.props.orfs, config);
 
-    const isCaret = typeof selection === 'number';
+    const isCaret = typeof selection === 'number' && isIndexInLine(selection, startIndex, endIndex);
     const isSelection =
       selection !== null &&
       typeof selection === 'object' &&
@@ -210,24 +210,27 @@ class Line extends React.Component<Props> {
           annotationsTopHeight={annotationsTopHeight}
           config={config}
         />
-        <Orf
-          orfs={getOrfPositionInLine(
-            startIndex,
-            endIndex - 1,
-            this.props.orfs,
-            config.LETTER_FULL_WIDTH_SEQUENCE,
-            config.LETTER_SPACING_SEQUENCE
+        {this.props.orfs &&
+          this.props.orfs.length > 0 && (
+            <Orf
+              orfs={getOrfPositionInLine(
+                startIndex,
+                endIndex - 1,
+                this.props.orfs,
+                config.LETTER_FULL_WIDTH_SEQUENCE,
+                config.LETTER_SPACING_SEQUENCE
+              )}
+              index={index}
+              charsPerRow={charsPerRow}
+              endIndex={endIndex - 1}
+              letterWidth={config.LETTER_FULL_WIDTH_SEQUENCE}
+              config={config}
+              minusStrand={minusStrand}
+              sequence={this.props.sequence}
+              annotationsTopHeight={annotationsTopHeight}
+              onClick={this.onClick}
+            />
           )}
-          index={index}
-          charsPerRow={charsPerRow}
-          endIndex={endIndex - 1}
-          letterWidth={config.LETTER_FULL_WIDTH_SEQUENCE}
-          config={config}
-          minusStrand={minusStrand}
-          sequence={this.props.sequence}
-          annotationsTopHeight={annotationsTopHeight}
-          onClick={this.onClick}
-        />
         <svg y={orfsHeight}>{annotationsBottom}</svg>
 
         <rect height="2" y={style.height - 2} width={lineWidth} style={{fill: '#000000'}} />

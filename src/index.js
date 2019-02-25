@@ -12,7 +12,3 @@ export {default as reSiteDefinitions} from './re-site-definitions.json';
 export const DesignerComponents = isFontLoaded()
   ? WithConfigSetter(WithSelection(SequenceViewer))
   : WithFontsLoader(WithConfigSetter(WithSelection(SequenceViewer)));
-
-export const DesignerComponentsViewer = isFontLoaded()
-  ? WithConfigSetter(SequenceViewer)
-  : WithFontsLoader(WithConfigSetter(SequenceViewer));

@@ -2,6 +2,7 @@ import {MIN_ORF_SIZE, charMap} from '../constants';
 
 const chars = 'AGTC';
 const getChar = () => chars[Math.floor(Math.random() * (3 + 1)) + 0];
+export const isValidDna = seq => !new RegExp(`[^${chars}]`, 'ig').test(seq);
 
 const randInRange = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;

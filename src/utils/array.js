@@ -8,3 +8,10 @@ export const map = (arr, f) => {
   }
   return res;
 };
+
+export const includes = (arr, elem) => {
+  if (!arr || !Array.isArray(arr)) {
+    return false;
+  }
+  return arr.indexOf(elem) > -1;
+};

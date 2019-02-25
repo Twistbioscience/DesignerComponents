@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 class Measurer extends Component {
   render() {
-    return <div ref={this.ref}>{this.props.children({width: this.state.width, x: this.state.x})}</div>;
+    return <div ref={this.ref}>{this.props.children(this.state)}</div>;
   }
 
   constructor(props) {
@@ -28,8 +28,8 @@ class Measurer extends Component {
 
   onResize() {
     if (this.inst) {
-      const {x, width} = this.inst.getBoundingClientRect();
-      this.setState({x, width});
+      const {x, width, height} = this.inst.getBoundingClientRect();
+      this.setState({x, width, height});
     }
   }
 
