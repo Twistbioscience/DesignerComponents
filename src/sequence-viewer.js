@@ -89,6 +89,8 @@ class SequenceViewer extends React.Component<Props> {
         {this.props.showInputPopup && (
           <SequenceInput
             selection={this.props.selection}
+            sequence={this.props.sequence}
+            features={this.props.annotations}
             top={this.state.caretY}
             left={(this.props.selection % this.props.charsPerRow) * this.props.config.LETTER_FULL_WIDTH_SEQUENCE}
             okHandler={this.props.onChange}

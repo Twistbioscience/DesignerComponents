@@ -6,12 +6,29 @@ const handleDelete = (selection, sequence, features) => {
   return {sequence: newSequence, features: newFeatures, selection: deleteStart};
 };
 
+const handleSelectionAdd = (selection, sequence, features, value) => {
+  const baseData = handleDelete(selection, sequence, features);
+  return {
+    ...baseData,
+    sequence: baseData.sequence.substr(0, baseData.selection) + value + baseData.sequence.substr(baseData.selection),
+    selection: baseData.selection + value.length
+  };
+};
+
+const handleCaretAdd = (selection, sequence, features, value) => ({
+  sequence: sequence.substr(0, selection) + value + sequence.substr(selection),
+  selection: selection + value.length,
+  features: features
+});
+
 export const handleChangeEvent = ({selection, type, value, sequence, features}) => {
   if (type === 'DELETE') {
     return handleDelete(selection, sequence, features);
   }
   if (type === 'ADDITION') {
-    return {sequence, features, selection};
+    const fn = typeof selection === 'number' ? handleCaretAdd : handleSelectionAdd;
+    return fn(selection, sequence, features, value);
   }
+
   return {sequence, features, selection};
 };

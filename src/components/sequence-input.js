@@ -3,7 +3,7 @@ import {isValidDna} from 'utils/sequence';
 
 class SequenceInput extends React.Component {
   state = {
-    sequence: ''
+    tempSequence: ''
   };
   render() {
     return (
@@ -24,21 +24,34 @@ class SequenceInput extends React.Component {
         onClick={e => {
           e.stopPropagation();
         }}>
-        <textarea autoFocus={true} value={this.state.sequence} onInput={this.onInput} />
-        {isValidDna(this.state.sequence) ? (
+        <textarea autoFocus={true} value={this.state.tempSequence} onInput={this.onInput} />
+        {isValidDna(this.state.tempSequence) ? (
           <span>
-            You will add {this.state.sequence.length} chars at position{' '}
+            You will add {this.state.tempSequence.length} chars at position{' '}
             {(this.props.selection.startIndex || this.props.selection) + 1}
           </span>
         ) : (
           <span>Your sequence contains invalid chars</span>
         )}
+        <button disabled={!isValidDna(this.state.tempSequence)} onClick={this.onConfirmInput}>
+          Ok
+        </button>
       </div>
     );
   }
 
   onInput = e => {
-    this.setState({sequence: e.target.value});
+    this.setState({tempSequence: e.target.value});
+  };
+
+  onConfirmInput = () => {
+    this.props.okHandler({
+      selection: this.props.selection,
+      type: 'ADDITION',
+      sequence: this.props.sequence,
+      features: this.props.features,
+      value: this.state.tempSequence
+    });
   };
 }
 
