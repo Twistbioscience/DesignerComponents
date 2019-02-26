@@ -21,7 +21,7 @@ class App extends Component {
                 <DesignerComponents
                   sequence={this.state.sequence}
                   annotations={this.state.features}
-                  orfs={this.state.orfs}
+                  orfs={[] || this.state.orfs}
                   minusStrand={this.state.minusStrand}
                   width={width}
                   height={height - 50}
@@ -29,7 +29,7 @@ class App extends Component {
                   selectionHandler={this.selectionHandler}
                   selection={this.state.selection}
                   onChange={this.onChange}
-                  //reSiteDefinitions={getPopularReSiteDefinitions(reSiteDefinitions.reSitesDefList)}
+                  reSiteDefinitions={getPopularReSiteDefinitions(reSiteDefinitions.reSitesDefList)}
                 />
                 <button onClick={this.toggleMinusStrand}>Toggle minus strand</button>
               </div>
@@ -59,7 +59,7 @@ class App extends Component {
   }
   componentWillMount() {
     setTimeout(() => {
-      this.setState({show: true /*, orfs: detectOrfs({sequence: sequenceEditorData.text.toUpperCase()})*/});
+      this.setState({show: true, orfs: detectOrfs({sequence: sequenceEditorData.text.toUpperCase()})});
     }, 0);
   }
 
@@ -76,7 +76,11 @@ class App extends Component {
     this.setState({
       sequence: newData.sequence,
       features: newData.features,
-      selection: newData.selection
+      selection: newData.selection,
+      orfs:
+        newData.sequence !== this.state.sequence
+          ? detectOrfs({sequence: newData.sequence.toUpperCase()})
+          : this.state.orfs
     });
   }
 }

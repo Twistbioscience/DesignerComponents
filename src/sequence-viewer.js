@@ -7,9 +7,7 @@ import {getRowHeight, rowRenderer} from './rendering/row';
 import {css, cx} from 'react-emotion';
 import type {Config, Annotation, RestrictionSite, SelectionType} from './types';
 import {detectRestrictionSites} from './utils/restriction-sites';
-import {detectOrfs} from './utils/sequence';
 import {getLayers, getAnnotationsTopHeight} from './rendering/annotations';
-import KeyboardHandlerWrapper from './wrappers/keyboard-handler';
 import SequenceInput from './components/sequence-input';
 
 const noSelection = css`
@@ -41,6 +39,9 @@ type Props = {
 };
 
 class SequenceViewer extends React.Component<Props> {
+  state = {
+    caretY: null
+  };
   render() {
     const maxResiteLayer = getLayers(this.restrictionSites).length;
     const annotationsTopHeight = getAnnotationsTopHeight(this.restrictionSites);
@@ -86,16 +87,14 @@ class SequenceViewer extends React.Component<Props> {
             annotationsTopHeight
           })}
         />
-        {this.props.showInputPopup && (
-          <SequenceInput
-            selection={this.props.selection}
-            sequence={this.props.sequence}
-            features={this.props.annotations}
-            top={this.state.caretY}
-            left={(this.props.selection % this.props.charsPerRow) * this.props.config.LETTER_FULL_WIDTH_SEQUENCE}
-            okHandler={this.props.onChange}
-          />
-        )}
+        <SequenceInput
+          selection={this.props.selection}
+          sequence={this.props.sequence}
+          features={this.props.annotations}
+          top={this.state.caretY}
+          left={(this.props.selection % this.props.charsPerRow) * this.props.config.LETTER_FULL_WIDTH_SEQUENCE}
+          okHandler={this.props.onChange}
+        />
       </div>
     );
   }
@@ -130,4 +129,4 @@ class SequenceViewer extends React.Component<Props> {
 
 SequenceViewer.defaultProps = {};
 
-export default KeyboardHandlerWrapper(SequenceViewer);
+export default SequenceViewer;
