@@ -18,8 +18,7 @@ export const rowRenderer = ({
   config,
   orfs,
   annotationsTopHeight,
-  onDrag,
-  showInputPopup
+  onDrag
 }) => ({
   key, // Unique key within array of rows
   index, // Index of row within collection
@@ -47,7 +46,6 @@ export const rowRenderer = ({
       selectionInProgress={selectionInProgress}
       config={config}
       orfs={orfs}
-      showInputPopup={showInputPopup}
     />
   );
 };
