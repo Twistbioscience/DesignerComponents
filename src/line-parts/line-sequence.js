@@ -50,6 +50,7 @@ const Sequence = ({
   return (
     <g width={config.LETTER_FULL_WIDTH_SEQUENCE * sequence.length}>
       <text
+        className="sequence-text-plus-strand"
         y={annotationsTopHeight + config.LETTER_HEIGHT_SEQUENCE}
         fontFamily={FONT_FAMILY}
         fontSize="12pt"

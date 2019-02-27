@@ -35,7 +35,7 @@ class SequenceInput extends React.Component {
           position: 'absolute',
           width: 300,
           height: 208,
-          top: this.props.top,
+          top: this.props.container.getBoundingClientRect().top,
           left: this.props.left,
           border: 'solid 1px #ABABAB',
           borderRadius: 3,

@@ -184,6 +184,10 @@ class Line extends React.Component<Props> {
     const selectionRect = isSelection && getRect(selection, startIndex, endIndex, config.LETTER_FULL_WIDTH_SEQUENCE);
     return (
       <svg
+        id={`line-container-${index}`}
+        className="line-container"
+        data-line-index={index}
+        data-container-top={style.top}
         style={style}
         onMouseDown={this.mouseDownHandler(index, charsPerRow)}
         // onDrag is in actual event, which we are hijacking, but the name makes sense for us

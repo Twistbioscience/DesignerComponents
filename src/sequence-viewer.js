@@ -38,9 +38,19 @@ type Props = {
   rowCount: number
 };
 
+const getElementParentSvg = (elem, threshold) => {
+  if (!elem || elem === threshold) {
+    return null;
+  }
+  if (elem.classList.contains('line-container')) {
+    return elem;
+  }
+  return getElementParentSvg(elem.parentElement, threshold);
+};
+
 class SequenceViewer extends React.Component<Props> {
   state = {
-    caretY: null
+    focusdContainer: null
   };
   render() {
     const maxResiteLayer = getLayers(this.restrictionSites).length;
@@ -59,7 +69,8 @@ class SequenceViewer extends React.Component<Props> {
       <div
         style={{position: 'relative'}}
         onMouseDown={e => {
-          this.setState({caretY: e.clientY});
+          const container = getElementParentSvg(e.target, e.currentTarget);
+          this.setState({container: container ? container.querySelector('.sequence-text-plus-strand') : null});
         }}>
         <List
           ref={this.listRef}
@@ -92,9 +103,15 @@ class SequenceViewer extends React.Component<Props> {
           sequence={this.props.sequence}
           features={this.props.annotations}
           top={this.state.caretY}
-          left={(this.props.selection % this.props.charsPerRow) * this.props.config.LETTER_FULL_WIDTH_SEQUENCE}
+          left={
+            this.props.selection !== null
+              ? ((this.props.selection.startIndex || this.props.selection) % this.props.charsPerRow) *
+                this.props.config.LETTER_FULL_WIDTH_SEQUENCE
+              : 0
+          }
           onChange={this.props.onChange}
           inlineAddition={this.props.inlineAddition}
+          container={this.state.container}
         />
       </div>
     );
