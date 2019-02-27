@@ -141,9 +141,17 @@ class SequenceInputWrapper extends React.Component {
   };
 
   okHandler = e => {
-    this.props.okHandler(e);
+    this.props.onChange(e);
     this.toggleSequenceInput();
   };
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.keyDownHandler);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.keyDownHandler);
+  }
 
   componentDidUpdate(prevProps) {
     window.removeEventListener('keydown', this.keyDownHandler);
@@ -177,7 +185,7 @@ class SequenceInputWrapper extends React.Component {
           selection: this.props.selection,
           type: 'ADDITION',
           sequence: this.props.sequence,
-          features: this.props.annotations,
+          features: this.props.features,
           value: isPaste(e) ? document.clipboardData.getData('Text') : e.key
         });
       } else {
@@ -192,7 +200,7 @@ class SequenceInputWrapper extends React.Component {
         selection: this.props.selection,
         type: 'DELETE',
         sequence: this.props.sequence,
-        features: this.props.annotations
+        features: this.props.features
       });
     }
     if (e.key === KEY_DELETE) {
@@ -201,7 +209,7 @@ class SequenceInputWrapper extends React.Component {
         selection: typeof this.props.selection === 'number' ? this.props.selection + 1 : this.props.selection,
         type: 'DELETE',
         sequence: this.props.sequence,
-        features: this.props.annotations
+        features: this.props.features
       });
     }
   };

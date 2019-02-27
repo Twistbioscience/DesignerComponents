@@ -93,7 +93,8 @@ class SequenceViewer extends React.Component<Props> {
           features={this.props.annotations}
           top={this.state.caretY}
           left={(this.props.selection % this.props.charsPerRow) * this.props.config.LETTER_FULL_WIDTH_SEQUENCE}
-          okHandler={this.props.onChange}
+          onChange={this.props.onChange}
+          inlineAddition={this.props.inlineAddition}
         />
       </div>
     );

@@ -2,10 +2,13 @@ import React, {Component} from 'react';
 import sequenceEditorData from './data.json';
 import {detectOrfs} from '../src/utils/sequence';
 import {hot} from 'react-hot-loader';
-import {DesignerComponents /*, DesignerComponentsViewer*/, reSiteDefinitions} from '../src';
-import Measurer from '../src/utils/measurer';
+import {
+  DesignerComponents /*, DesignerComponentsViewer*/,
+  reSiteDefinitions,
+  Measurer,
+  handleChangeEvent
+} from '../src';
 import './app.css';
-import {handleChangeEvent} from '../src/utils/event-handlers';
 
 const getPopularReSiteDefinitions = reSiteDefinitions =>
   reSiteDefinitions.filter(site => site.subLists.includes('POPULAR'));
