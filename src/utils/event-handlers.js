@@ -1,3 +1,6 @@
+export const DELETION = 'DELETION';
+export const ADDITION = 'ADDITION';
+
 const handleDelete = (selection, sequence, features) => {
   const deleteStart = selection.startIndex || selection - 1;
   const deleteEnd = selection.endIndex || deleteStart + 1;
@@ -22,10 +25,10 @@ const handleCaretAdd = (selection, sequence, features, value) => ({
 });
 
 export const handleChangeEvent = ({selection, type, value, sequence, features}) => {
-  if (type === 'DELETE') {
+  if (type === DELETION) {
     return handleDelete(selection, sequence, features);
   }
-  if (type === 'ADDITION') {
+  if (type === ADDITION) {
     const fn = typeof selection === 'number' ? handleCaretAdd : handleSelectionAdd;
     return fn(selection, sequence, features, value);
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import {isValidDna} from 'utils/sequence';
 import {includes} from 'utils/array';
+import {DELETION, ADDITION} from 'utils/event-handlers';
 
 const Button = ({children, style = {}, ...otherProps}) => (
   <button
@@ -91,7 +92,7 @@ class SequenceInput extends React.Component {
   onConfirmInput = () => {
     this.props.okHandler({
       selection: this.props.selection,
-      type: 'ADDITION',
+      type: ADDITION,
       sequence: this.props.sequence,
       features: this.props.features,
       value: this.state.tempSequence
@@ -183,7 +184,7 @@ class SequenceInputWrapper extends React.Component {
       if (this.props.inlineAddition) {
         this.props.onChange({
           selection: this.props.selection,
-          type: 'ADDITION',
+          type: ADDITION,
           sequence: this.props.sequence,
           features: this.props.features,
           value: isPaste(e) ? document.clipboardData.getData('Text') : e.key
@@ -198,7 +199,7 @@ class SequenceInputWrapper extends React.Component {
     if (e.key === KEY_BACKSPACE) {
       this.props.onChange({
         selection: this.props.selection,
-        type: 'DELETE',
+        type: DELETION,
         sequence: this.props.sequence,
         features: this.props.features
       });
@@ -207,7 +208,7 @@ class SequenceInputWrapper extends React.Component {
       // Delete has a special case because it deletes the next char
       this.props.onChange({
         selection: typeof this.props.selection === 'number' ? this.props.selection + 1 : this.props.selection,
-        type: 'DELETE',
+        type: DELETION,
         sequence: this.props.sequence,
         features: this.props.features
       });
