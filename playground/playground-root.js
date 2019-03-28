@@ -17,30 +17,35 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.show ? (
-          <Measurer>
-            {({width, x, height}) => (
-              <div>
-                <DesignerComponents
-                  sequence={this.state.sequence}
-                  annotations={this.state.features}
-                  orfs={[] || this.state.orfs}
-                  minusStrand={this.state.minusStrand}
-                  width={width}
-                  height={height - 50}
-                  left={x}
-                  selectionHandler={this.selectionHandler}
-                  selection={this.state.selection}
-                  onChange={this.onChange}
-                  reSiteDefinitions={getPopularReSiteDefinitions(reSiteDefinitions.reSitesDefList)}
-                />
-                <button onClick={this.toggleMinusStrand}>Toggle minus strand</button>
-              </div>
-            )}
-          </Measurer>
-        ) : (
-          <div>Loading...</div>
-        )}
+        <h2>Designer tool demo</h2>
+        <div className="wrapper">
+          {this.state.show ? (
+            <Measurer>
+              {({width, x, height}) => (
+                <div>
+                  <DesignerComponents
+                    sequence={this.state.sequence}
+                    annotations={this.state.features}
+                    orfs={[] || this.state.orfs}
+                    minusStrand={this.state.minusStrand}
+                    width={width}
+                    height={height - 50}
+                    left={x}
+                    selectionHandler={this.selectionHandler}
+                    selection={this.state.selection}
+                    onChange={this.onChange}
+                    reSiteDefinitions={getPopularReSiteDefinitions(reSiteDefinitions.reSitesDefList)}
+                  />
+                </div>
+              )}
+            </Measurer>
+          ) : (
+            <div>Loading...</div>
+          )}
+        </div>
+        <button onClick={this.toggleMinusStrand} disabled={!this.state.show} className="action-button">
+          Toggle minus strand
+        </button>
       </div>
     );
   }
