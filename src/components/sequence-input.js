@@ -6,7 +6,7 @@ import {DELETION, ADDITION} from 'utils/event-handlers';
 const Button = ({children, style = {}, ...otherProps}) => (
   <button
     style={{
-      cursor: disabled ? 'default' : 'pointer',
+      cursor: otherProps.disabled ? 'default' : 'pointer',
       width: 78,
       height: 30,
       lineHeight: '30px',
