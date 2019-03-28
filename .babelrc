@@ -9,7 +9,7 @@
       }
     ]
   ],
-  "plugins": [["module-resolver", { "root": ["./src"] } ], "transform-object-rest-spread"],
+  "plugins": [["module-resolver", { "root": ["./src"] } ], "transform-object-rest-spread", "transform-class-properties"],
   "env": {
     "production": {
       "plugins": [
