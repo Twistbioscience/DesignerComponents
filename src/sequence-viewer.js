@@ -50,7 +50,7 @@ const getElementParentSvg = (elem, threshold) => {
 
 class SequenceViewer extends React.Component<Props> {
   state = {
-    focusdContainer: null
+    container: null
   };
   render() {
     const maxResiteLayer = getLayers(this.restrictionSites).length;
@@ -66,12 +66,7 @@ class SequenceViewer extends React.Component<Props> {
     );
     const width = this.props.config.LETTER_FULL_WIDTH_SEQUENCE * this.props.charsPerRow + LEFT_PADDING;
     return (
-      <div
-        style={{position: 'relative'}}
-        onMouseDown={e => {
-          const container = getElementParentSvg(e.target, e.currentTarget);
-          this.setState({container: container ? container.querySelector('.sequence-text-plus-strand') : null});
-        }}>
+      <div style={{position: 'relative'}} onMouseDown={this.containerMouseDown}>
         <List
           ref={this.listRef}
           className={cx(panel, noSelection)}
@@ -102,7 +97,6 @@ class SequenceViewer extends React.Component<Props> {
           selection={this.props.selection}
           sequence={this.props.sequence}
           features={this.props.annotations}
-          top={this.state.caretY}
           left={
             this.props.selection !== null
               ? ((this.props.selection.startIndex || this.props.selection) % this.props.charsPerRow) *
@@ -120,6 +114,7 @@ class SequenceViewer extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     this.listRef = this.listRef.bind(this);
+    this.containerMouseDown = this.containerMouseDown.bind(this);
     this.restrictionSites = this.props.reSiteDefinitions
       ? detectRestrictionSites(this.props.sequence, this.props.reSiteDefinitions)
       : [];
@@ -129,6 +124,11 @@ class SequenceViewer extends React.Component<Props> {
     if (c) {
       this.list = c;
     }
+  }
+
+  containerMouseDown(e) {
+    const container = getElementParentSvg(e.target, e.currentTarget);
+    this.setState({container: container ? container.querySelector('.sequence-text-plus-strand') : null});
   }
 
   componentWillReceiveProps(nextProps: Props) {
@@ -144,7 +144,5 @@ class SequenceViewer extends React.Component<Props> {
     }
   }
 }
-
-SequenceViewer.defaultProps = {};
 
 export default SequenceViewer;

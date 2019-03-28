@@ -6,7 +6,7 @@ import {DELETION, ADDITION} from 'utils/event-handlers';
 const Button = ({children, style = {}, ...otherProps}) => (
   <button
     style={{
-      cursor: 'pointer',
+      cursor: disabled ? 'default' : 'pointer',
       width: 78,
       height: 30,
       lineHeight: '30px',
@@ -147,7 +147,9 @@ class SequenceInputWrapper extends React.Component {
   };
 
   componentDidMount() {
-    window.addEventListener('keydown', this.keyDownHandler);
+    if (this.props.selection !== null) {
+      window.addEventListener('keydown', this.keyDownHandler);
+    }
   }
 
   componentWillUnmount() {
